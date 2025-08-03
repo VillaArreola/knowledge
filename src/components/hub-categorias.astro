@@ -1,0 +1,225 @@
+<!-- Hub de Categorías de Conocimiento -->
+<div class="knowledge-grid">
+    <!-- Ciberseguridad -->
+    <div class="knowledge-card cyber">
+        <div class="card-header">
+            <div class="card-icon">🔐</div>
+            <h2>Ciberseguridad</h2>
+        </div>
+        <div class="card-content">
+            <p>Fundamentos de seguridad, criptografía y protección de sistemas</p>
+            <div class="topics-grid">
+                <a href="/cyber/criptografia" class="topic-tag">🔒 Criptografía</a>
+                <a href="/cyber/CIA" class="topic-tag">🛡️ CIA Triad</a>
+                <a href="/cyber/pki" class="topic-tag">🔑 PKI</a>
+                <a href="/cyber/nist" class="topic-tag">📋 NIST</a>
+                <a href="/cyber/interactivo" class="topic-tag interactive">🎮 Laboratorio</a>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="progress-indicator">5 temas completados</span>
+        </div>
+    </div>
+
+    <!-- Redes -->
+    <div class="knowledge-card networks">
+        <div class="card-header">
+            <div class="card-icon">🌐</div>
+            <h2>Redes</h2>
+        </div>
+        <div class="card-content">
+            <p>Protocolos, configuración y administración de redes</p>
+            <div class="topics-grid">
+                <div class="topic-tag coming-soon">📶 WiFi</div>
+                <div class="topic-tag coming-soon">🔗 TCP/IP</div>
+                <div class="topic-tag coming-soon">🌍 Routing</div>
+                <div class="topic-tag coming-soon">⚙️ Switching</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="progress-indicator coming">Próximamente...</span>
+        </div>
+    </div>
+
+    <!-- Programación -->
+    <div class="knowledge-card programming">
+        <div class="card-header">
+            <div class="card-icon">💻</div>
+            <h2>Programación</h2>
+        </div>
+        <div class="card-content">
+            <p>Lenguajes, frameworks y desarrollo de aplicaciones</p>
+            <div class="topics-grid">
+                <div class="topic-tag coming-soon">🐍 Python</div>
+                <div class="topic-tag coming-soon">⚡ JavaScript</div>
+                <div class="topic-tag coming-soon">🗄️ Bases de Datos</div>
+                <div class="topic-tag coming-soon">🔧 DevOps</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="progress-indicator coming">En planificación</span>
+        </div>
+    </div>
+
+    <!-- Sistemas -->
+    <div class="knowledge-card systems">
+        <div class="card-header">
+            <div class="card-icon">⚙️</div>
+            <h2>Sistemas</h2>
+        </div>
+        <div class="card-content">
+            <p>Administración de servidores y infraestructura</p>
+            <div class="topics-grid">
+                <div class="topic-tag coming-soon">🐧 Linux</div>
+                <div class="topic-tag coming-soon">☁️ Cloud</div>
+                <div class="topic-tag coming-soon">🔧 Monitoring</div>
+                <div class="topic-tag coming-soon">📊 Performance</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="progress-indicator coming">Futuro contenido</span>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Knowledge Grid */
+    .knowledge-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+    }
+    
+    .knowledge-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .knowledge-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+    
+    .knowledge-card.cyber::before {
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    }
+    
+    .knowledge-card.networks::before {
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+    }
+    
+    .knowledge-card.programming::before {
+        background: linear-gradient(90deg, #43e97b, #38f9d7);
+    }
+    
+    .knowledge-card.systems::before {
+        background: linear-gradient(90deg, #fa709a, #fee140);
+    }
+    
+    .knowledge-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .card-icon {
+        font-size: 2.5em;
+        padding: 15px;
+        background: linear-gradient(45deg, #f7fafc, #edf2f7);
+        border-radius: 15px;
+    }
+    
+    .card-header h2 {
+        font-size: 1.5em;
+        color: #2d3748;
+    }
+    
+    .card-content p {
+        color: #718096;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+    
+    .topics-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .topic-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #f7fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 20px;
+        font-size: 0.85em;
+        text-decoration: none;
+        color: #4a5568;
+        transition: all 0.3s ease;
+    }
+    
+    .topic-tag:hover {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+        transform: scale(1.05);
+    }
+    
+    .topic-tag.interactive {
+        background: linear-gradient(45deg, #ff9a9e, #fecfef);
+        color: white;
+        border-color: transparent;
+        font-weight: 600;
+    }
+    
+    .topic-tag.interactive:hover {
+        background: linear-gradient(45deg, #ff7675, #fd79a8);
+    }
+    
+    .topic-tag.coming-soon {
+        background: #f8f9fa;
+        color: #adb5bd;
+        border-color: #dee2e6;
+        cursor: not-allowed;
+    }
+    
+    .card-footer {
+        border-top: 1px solid #e2e8f0;
+        padding-top: 15px;
+        text-align: center;
+    }
+    
+    .progress-indicator {
+        font-size: 0.9em;
+        color: #48bb78;
+        font-weight: 600;
+    }
+    
+    .progress-indicator.coming {
+        color: #ed8936;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .knowledge-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

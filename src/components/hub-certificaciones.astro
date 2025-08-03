@@ -1,0 +1,338 @@
+<!-- Hub de Certificaciones y Cursos -->
+<div class="certifications-grid">
+    <!-- CompTIA Security+ -->
+    <div class="cert-card comptia">
+        <div class="cert-header">
+            <div class="cert-logo">🛡️</div>
+            <div class="cert-info">
+                <h4>CompTIA Security+</h4>
+                <span class="cert-code">SY0-701</span>
+            </div>
+            <div class="cert-status studying">En Estudio</div>
+        </div>
+        <div class="cert-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%"></div>
+            </div>
+            <span class="progress-text">75% completado</span>
+        </div>
+        <div class="cert-topics">
+            <span class="topic-tag completed">✅ Criptografía</span>
+            <span class="topic-tag completed">✅ CIA Triad</span>
+            <span class="topic-tag current">📖 PKI</span>
+            <span class="topic-tag pending">⏳ Network Security</span>
+        </div>
+    </div>
+
+    <!-- CFE (Certified Forensic Examiner) -->
+    <div class="cert-card cfe">
+        <div class="cert-header">
+            <div class="cert-logo">🔍</div>
+            <div class="cert-info">
+                <h4>Certified Forensic Examiner</h4>
+                <span class="cert-code">CFE</span>
+            </div>
+            <div class="cert-status planned">Planificado</div>
+        </div>
+        <div class="cert-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 25%"></div>
+            </div>
+            <span class="progress-text">25% preparación</span>
+        </div>
+        <div class="cert-topics">
+            <span class="topic-tag current">📖 Digital Forensics</span>
+            <span class="topic-tag pending">⏳ Evidence Analysis</span>
+            <span class="topic-tag pending">⏳ Legal Procedures</span>
+            <span class="topic-tag pending">⏳ Report Writing</span>
+        </div>
+    </div>
+
+    <!-- Fortinet NSE -->
+    <div class="cert-card fortinet">
+        <div class="cert-header">
+            <div class="cert-logo">🔥</div>
+            <div class="cert-info">
+                <h4>Fortinet NSE 4</h4>
+                <span class="cert-code">NSE4_FGT-7.2</span>
+            </div>
+            <div class="cert-status considering">Considerando</div>
+        </div>
+        <div class="cert-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 10%"></div>
+            </div>
+            <span class="progress-text">10% investigación</span>
+        </div>
+        <div class="cert-topics">
+            <span class="topic-tag pending">⏳ FortiGate Administration</span>
+            <span class="topic-tag pending">⏳ Security Policies</span>
+            <span class="topic-tag pending">⏳ VPN Configuration</span>
+            <span class="topic-tag pending">⏳ Threat Protection</span>
+        </div>
+    </div>
+
+    <!-- Azure AI-900 -->
+    <div class="cert-card azure">
+        <div class="cert-header">
+            <div class="cert-logo">☁️</div>
+            <div class="cert-info">
+                <h4>Azure AI Fundamentals</h4>
+                <span class="cert-code">AI-900</span>
+            </div>
+            <div class="cert-status future">Futuro</div>
+        </div>
+        <div class="cert-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 5%"></div>
+            </div>
+            <span class="progress-text">5% exploración</span>
+        </div>
+        <div class="cert-topics">
+            <span class="topic-tag pending">⏳ AI Workloads</span>
+            <span class="topic-tag pending">⏳ Machine Learning</span>
+            <span class="topic-tag pending">⏳ Computer Vision</span>
+            <span class="topic-tag pending">⏳ Natural Language</span>
+        </div>
+    </div>
+
+    <!-- CCNA -->
+    <div class="cert-card cisco">
+        <div class="cert-header">
+            <div class="cert-logo">🌐</div>
+            <div class="cert-info">
+                <h4>Cisco CCNA</h4>
+                <span class="cert-code">200-301</span>
+            </div>
+            <div class="cert-status future">Largo Plazo</div>
+        </div>
+        <div class="cert-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text">No iniciado</span>
+        </div>
+        <div class="cert-topics">
+            <span class="topic-tag pending">⏳ Network Fundamentals</span>
+            <span class="topic-tag pending">⏳ Routing & Switching</span>
+            <span class="topic-tag pending">⏳ IP Connectivity</span>
+            <span class="topic-tag pending">⏳ Security Fundamentals</span>
+        </div>
+    </div>
+
+    <!-- AWS Cloud Practitioner -->
+    <div class="cert-card aws">
+        <div class="cert-header">
+            <div class="cert-logo">📦</div>
+            <div class="cert-info">
+                <h4>AWS Cloud Practitioner</h4>
+                <span class="cert-code">CLF-C02</span>
+            </div>
+            <div class="cert-status considering">En Evaluación</div>
+        </div>
+        <div class="cert-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text">Evaluando prioridad</span>
+        </div>
+        <div class="cert-topics">
+            <span class="topic-tag pending">⏳ Cloud Concepts</span>
+            <span class="topic-tag pending">⏳ Security & Compliance</span>
+            <span class="topic-tag pending">⏳ Technology Services</span>
+            <span class="topic-tag pending">⏳ Billing & Pricing</span>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Certifications */
+    .certifications-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+    }
+
+    .cert-card {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cert-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+    }
+
+    .cert-card.comptia::before {
+        background: linear-gradient(90deg, #e74c3c, #c0392b);
+    }
+
+    .cert-card.cfe::before {
+        background: linear-gradient(90deg, #8e44ad, #9b59b6);
+    }
+
+    .cert-card.fortinet::before {
+        background: linear-gradient(90deg, #ee5a24, #ff6348);
+    }
+
+    .cert-card.azure::before {
+        background: linear-gradient(90deg, #0078d4, #106ebe);
+    }
+
+    .cert-card.cisco::before {
+        background: linear-gradient(90deg, #049fd9, #005073);
+    }
+
+    .cert-card.aws::before {
+        background: linear-gradient(90deg, #ff9900, #ec7211);
+    }
+
+    .cert-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .cert-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .cert-logo {
+        font-size: 2.5em;
+        padding: 12px;
+        background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+        border-radius: 12px;
+    }
+
+    .cert-info {
+        flex: 1;
+    }
+
+    .cert-info h4 {
+        font-size: 1.2em;
+        color: #2d3748;
+        margin-bottom: 5px;
+    }
+
+    .cert-code {
+        color: #718096;
+        font-size: 0.9em;
+        font-weight: 600;
+    }
+
+    .cert-status {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8em;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .cert-status.studying {
+        background: #e3f2fd;
+        color: #1976d2;
+    }
+
+    .cert-status.planned {
+        background: #f3e5f5;
+        color: #7b1fa2;
+    }
+
+    .cert-status.future {
+        background: #e8f5e8;
+        color: #388e3c;
+    }
+
+    .cert-status.considering {
+        background: #fff3e0;
+        color: #f57c00;
+    }
+
+    .cert-progress {
+        margin-bottom: 20px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #e2e8f0;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 8px;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 4px;
+        transition: width 1.5s ease-out;
+    }
+
+    .progress-text {
+        font-size: 0.85em;
+        color: #718096;
+        font-weight: 500;
+    }
+
+    .cert-topics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .cert-topics .topic-tag {
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 0.8em;
+        font-weight: 500;
+    }
+
+    .cert-topics .topic-tag.completed {
+        background: #c6f6d5;
+        color: #22543d;
+    }
+
+    .cert-topics .topic-tag.current {
+        background: #fed7d7;
+        color: #742a2a;
+        animation: pulse 2s infinite;
+    }
+
+    .cert-topics .topic-tag.pending {
+        background: #f7fafc;
+        color: #a0aec0;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .certifications-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .cert-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+        }
+        
+        .cert-topics {
+            justify-content: center;
+        }
+    }
+</style>

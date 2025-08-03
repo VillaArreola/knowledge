@@ -1,0 +1,281 @@
+<!-- Technologies & Stats Section -->
+<div class="tech-stats-section">
+    <div class="tech-grid">
+        <h3>💻 Tecnologías</h3>
+        <div class="tech-icons">
+            <div class="tech-item" title="Python">
+                <div class="tech-icon python">🐍</div>
+                <span class="tech-name">Python</span>
+            </div>
+            <div class="tech-item" title="JavaScript">
+                <div class="tech-icon javascript">⚡</div>
+                <span class="tech-name">JavaScript</span>
+            </div>
+            <div class="tech-item" title="Docker">
+                <div class="tech-icon docker">🐳</div>
+                <span class="tech-name">Docker</span>
+            </div>
+            <div class="tech-item" title="Linux">
+                <div class="tech-icon linux">🐧</div>
+                <span class="tech-name">Linux</span>
+            </div>
+            <div class="tech-item" title="AWS">
+                <div class="tech-icon aws">☁️</div>
+                <span class="tech-name">AWS</span>
+            </div>
+            <div class="tech-item" title="Kubernetes">
+                <div class="tech-icon k8s">⚙️</div>
+                <span class="tech-name">K8s</span>
+            </div>
+            <div class="tech-item" title="Git">
+                <div class="tech-icon git">📚</div>
+                <span class="tech-name">Git</span>
+            </div>
+            <div class="tech-item" title="SQL">
+                <div class="tech-icon sql">🗃️</div>
+                <span class="tech-name">SQL</span>
+            </div>
+            <div class="tech-item" title="Astro">
+                <div class="tech-icon astro">🚀</div>
+                <span class="tech-name">Astro</span>
+            </div>
+            <div class="tech-item" title="Tailwind">
+                <div class="tech-icon tailwind">🎨</div>
+                <span class="tech-name">Tailwind</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="course-stats">
+        <h3>📈 Estadísticas de Cursos</h3>
+        <div class="stats-mini-grid">
+            <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Cursos Activos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">85%</span>
+                <span class="stat-label">Progreso Global</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2.5h</span>
+                <span class="stat-label">Tiempo Hoy</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">7</span>
+                <span class="stat-label">Días de Racha</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Hover effects para tech icons
+        const techItems = document.querySelectorAll('.tech-item');
+        
+        techItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) translateY(-5px)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) translateY(0)';
+            });
+        });
+
+        // Animación de entrada para stats
+        const statItems = document.querySelectorAll('.stat-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        statItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px) scale(0.95)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+    });
+</script>
+
+<style>
+    /* Tech Stats Section */
+    .tech-stats-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .tech-grid h3, .course-stats h3 {
+        color: white;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .tech-icons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 15px;
+    }
+
+    .tech-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .tech-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    /* Tech Icon Colors */
+    .tech-icon.python { 
+        background: linear-gradient(45deg, #3776ab, #ffd343); 
+    }
+    
+    .tech-icon.javascript { 
+        background: linear-gradient(45deg, #f7df1e, #000); 
+        color: black; 
+    }
+    
+    .tech-icon.docker { 
+        background: linear-gradient(45deg, #2496ed, #0db7ed); 
+    }
+    
+    .tech-icon.linux { 
+        background: linear-gradient(45deg, #fcc624, #000); 
+    }
+    
+    .tech-icon.aws { 
+        background: linear-gradient(45deg, #ff9900, #232f3e); 
+    }
+    
+    .tech-icon.k8s { 
+        background: linear-gradient(45deg, #326ce5, #fff); 
+    }
+    
+    .tech-icon.git { 
+        background: linear-gradient(45deg, #f05032, #fff); 
+    }
+    
+    .tech-icon.sql { 
+        background: linear-gradient(45deg, #336791, #fff); 
+    }
+    
+    .tech-icon.astro { 
+        background: linear-gradient(45deg, #ff5d01, #000); 
+    }
+    
+    .tech-icon.tailwind { 
+        background: linear-gradient(45deg, #06b6d4, #0891b2); 
+    }
+
+    .tech-name {
+        font-size: 0.75em;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+        text-align: center;
+    }
+
+    /* Course Stats */
+    .course-stats .stats-mini-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .course-stats .stat-item {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .course-stats .stat-item:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .course-stats .stat-number {
+        display: block;
+        font-size: 1.8em;
+        font-weight: bold;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        margin-bottom: 3px;
+    }
+
+    .course-stats .stat-label {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.8em;
+        font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .tech-stats-section {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .tech-icons {
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 10px;
+        }
+        
+        .tech-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1.2em;
+        }
+        
+        .tech-name {
+            font-size: 0.7em;
+        }
+        
+        .course-stats .stats-mini-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .tech-icons {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        
+        .course-stats .stats-mini-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .tech-grid h3, .course-stats h3 {
+            font-size: 1.3em;
+        }
+    }
+</style>
