@@ -1,0 +1,190 @@
+---
+import WikiLayout from '../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="Inicio - Mi Wiki de Estudios">
+  <div class="hero-section">
+    <h1>🎓 Bienvenido a Mi Wiki de Estudios</h1>
+    <p class="hero-subtitle">Tu repositorio personal de conocimiento en tecnología</p>
+  </div>
+  
+  <div class="categories-grid">
+    <div class="category-card">
+      <div class="card-icon">🌐</div>
+      <h2>Redes</h2>
+      <p>Protocolos, configuración WiFi, TCP/IP y más conceptos de networking.</p>
+      <a href="/redes/wifi" class="card-link">Explorar Redes →</a>
+    </div>
+    
+    <div class="category-card">
+      <div class="card-icon">🔒</div>
+      <h2>Ciberseguridad</h2>
+      <p>Virus, malware, firewall, encriptación y técnicas de protección.</p>
+      <a href="/ciberseguridad/virus" class="card-link">Ver Ciberseguridad →</a>
+    </div>
+    
+    <div class="category-card">
+      <div class="card-icon">💻</div>
+      <h2>Programación</h2>
+      <p>JavaScript, Python, bases de datos y desarrollo de aplicaciones.</p>
+      <a href="/programacion/javascript" class="card-link">Aprender Programación →</a>
+    </div>
+  </div>
+  
+  <div class="recent-updates">
+    <h2>📝 Actualizaciones Recientes</h2>
+    <ul class="updates-list">
+      <li>
+        <span class="update-date">2024-01-15</span>
+        <a href="/redes/wifi">Actualizada guía de configuración WiFi</a>
+      </li>
+      <li>
+        <span class="update-date">2024-01-12</span>
+        <a href="/ciberseguridad/virus">Nuevos tipos de malware agregados</a>
+      </li>
+      <li>
+        <span class="update-date">2024-01-10</span>
+        <a href="/programacion/javascript">Ejemplos de async/await</a>
+      </li>
+    </ul>
+  </div>
+</WikiLayout>
+
+<style>
+  .hero-section {
+    text-align: center;
+    padding: 3rem 0;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 10px;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+  }
+  
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .category-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+  
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .category-card h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  .category-card p {
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .card-link {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .card-link:hover {
+    background: #2980b9;
+  }
+  
+  .recent-updates {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .recent-updates h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+  }
+  
+  .updates-list {
+    list-style: none;
+  }
+  
+  .updates-list li {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ecf0f1;
+  }
+  
+  .updates-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .update-date {
+    background: #e74c3c;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin-right: 1rem;
+    min-width: 80px;
+    text-align: center;
+  }
+  
+  .updates-list a {
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  .updates-list a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: 2rem;
+    }
+    
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .updates-list li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .update-date {
+      margin-bottom: 0.5rem;
+      margin-right: 0;
+    }
+  }
+</style>

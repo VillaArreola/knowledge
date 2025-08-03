@@ -1,0 +1,356 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="NIST Cybersecurity Framework - Guía Completa" description="Guía completa del NIST Cybersecurity Framework 2.0 y sus 6 funciones.">
+  <div class="header text-center text-white mb-8 p-5">
+    <h1 class="text-4xl md:text-5xl mb-2 drop-shadow-lg">🛡️ NIST Cybersecurity Framework</h1>
+    <p class="text-lg opacity-90">Guía Completa para la Gestión de Riesgos de Ciberseguridad</p>
+  </div>
+
+  <div class="update-banner bg-gradient-to-br from-red-400 to-orange-500 text-white p-4 rounded-xl mb-8 text-center shadow-lg">
+    <h3 class="text-xl font-bold mb-1">🚀 ¡ACTUALIZACIÓN IMPORTANTE!</h3>
+    <p>NIST lanzó la versión 2.0 en febrero de 2024, ahora con <strong class="font-extrabold">6 funciones</strong> incluyendo la nueva función "GOVERN"</p>
+  </div>
+
+  <div class="benefits-section bg-white rounded-xl p-6 md:p-8 mb-8 shadow-xl">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">🎯 ¿Qué es un Cybersecurity Framework?</h2>
+    <p class="text-gray-700 mb-6 text-center">Es un modelo estructurado que ayuda a las organizaciones a gestionar riesgos de seguridad de forma consistente y estandarizada. El framework de NIST es el más utilizado mundialmente.</p>
+    
+    <div class="benefits-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5">
+      <div class="benefit-item bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-5 rounded-lg text-center shadow-md">
+        <h4 class="text-xl font-semibold mb-2">📊 Estandarización</h4>
+        <p class="text-sm">Unifica la gestión de ciberseguridad en toda la organización</p>
+      </div>
+      <div class="benefit-item bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-5 rounded-lg text-center shadow-md">
+        <h4 class="text-xl font-semibold mb-2">⚖️ Cumplimiento</h4>
+        <p class="text-sm">Facilita el cumplimiento con GDPR, HIPAA, SOX y otras normativas</p>
+      </div>
+      <div class="benefit-item bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-5 rounded-lg text-center shadow-md">
+        <h4 class="text-xl font-semibold mb-2">🔍 Gap Analysis</h4>
+        <p class="text-sm">Identifica brechas y áreas de mejora en la seguridad</p>
+      </div>
+      <div class="benefit-item bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-5 rounded-lg text-center shadow-md">
+        <h4 class="text-xl font-semibold mb-2">💼 Comunicación</h4>
+        <p class="text-sm">Mejora la comunicación con directivos y stakeholders</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-white text-center text-3xl font-bold mb-6">🔧 Las 6 Funciones del NIST CSF 2.0</h2>
+    
+  <div class="framework-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+    <div class="function-card bg-white rounded-2xl p-6 shadow-xl transform transition-transform hover:-translate-y-1 hover:shadow-2xl cursor-pointer">
+      <h3 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="function-icon bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">G</span>GOVERN (Gobernar)
+      </h3>
+      <p class="function-description text-gray-600 mb-4">
+        <strong class="font-semibold">Nueva función en CSF 2.0:</strong> Establece políticas, procedimientos y procesos para gestionar y monitorear los riesgos de ciberseguridad de la organización.
+      </p>
+      <div class="example-section bg-gray-50 p-4 rounded-md border-l-4 border-blue-500">
+        <div class="example-title font-bold text-gray-900 mb-2">Ejemplo práctico:</div>
+        <p class="text-gray-700">• Desarrollo de políticas de seguridad<br>
+        • Asignación de roles y responsabilidades<br>
+        • Gestión de riesgos de terceros<br>
+        • Supervisión del programa de ciberseguridad</p>
+      </div>
+    </div>
+
+    <div class="function-card bg-white rounded-2xl p-6 shadow-xl transform transition-transform hover:-translate-y-1 hover:shadow-2xl cursor-pointer">
+      <h3 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="function-icon bg-red-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">I</span>IDENTIFY (Identificar)
+      </h3>
+      <p class="function-description text-gray-600 mb-4">
+        Evalúa activos, amenazas, vulnerabilidades y riesgos para establecer una base de conocimiento sobre el entorno de ciberseguridad.
+      </p>
+      <div class="example-section bg-gray-50 p-4 rounded-md border-l-4 border-red-500">
+        <div class="example-title font-bold text-gray-900 mb-2">Ejemplo práctico:</div>
+        <p class="text-gray-700">• Inventario de servidores y dispositivos<br>
+        • Mapeo de flujos de datos<br>
+        • Análisis de vulnerabilidades<br>
+        • Evaluación de riesgos de negocio</p>
+      </div>
+    </div>
+
+    <div class="function-card bg-white rounded-2xl p-6 shadow-xl transform transition-transform hover:-translate-y-1 hover:shadow-2xl cursor-pointer">
+      <h3 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="function-icon bg-green-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">P</span>PROTECT (Proteger)
+      </h3>
+      <p class="function-description text-gray-600 mb-4">
+        Implementa controles y medidas de seguridad para proteger datos, sistemas y activos críticos de la organización.
+      </p>
+      <div class="example-section bg-gray-50 p-4 rounded-md border-l-4 border-green-500">
+        <div class="example-title font-bold text-gray-900 mb-2">Ejemplo práctico:</div>
+        <p class="text-gray-700">• Cifrado de datos en reposo y tránsito<br>
+        • Configuración de firewalls<br>
+        • Gestión de identidades y accesos (IAM)<br>
+        • Capacitación en concienciación de seguridad</p>
+      </div>
+    </div>
+
+    <div class="function-card bg-white rounded-2xl p-6 shadow-xl transform transition-transform hover:-translate-y-1 hover:shadow-2xl cursor-pointer">
+      <h3 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="function-icon bg-yellow-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">D</span>DETECT (Detectar)
+      </h3>
+      <p class="function-description text-gray-600 mb-4">
+        Monitorea continuamente para identificar eventos de ciberseguridad y actividades anómalas en tiempo real.
+      </p>
+      <div class="example-section bg-gray-50 p-4 rounded-md border-l-4 border-yellow-500">
+        <div class="example-title font-bold text-gray-900 mb-2">Ejemplo práctico:</div>
+        <p class="text-gray-700">• Sistemas SIEM (Security Information and Event Management)<br>
+        • IDS/IPS (Intrusion Detection/Prevention Systems)<br>
+        • Monitoreo de logs y alertas<br>
+        • Análisis de comportamiento de usuarios</p>
+      </div>
+    </div>
+
+    <div class="function-card bg-white rounded-2xl p-6 shadow-xl transform transition-transform hover:-translate-y-1 hover:shadow-2xl cursor-pointer">
+      <h3 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="function-icon bg-purple-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">R</span>RESPOND (Responder)
+      </h3>
+      <p class="function-description text-gray-600 mb-4">
+        Contiene, analiza y responde de manera efectiva a incidentes de ciberseguridad una vez detectados.
+      </p>
+      <div class="example-section bg-gray-50 p-4 rounded-md border-l-4 border-purple-500">
+        <div class="example-title font-bold text-gray-900 mb-2">Ejemplo práctico:</div>
+        <p class="text-gray-700">• Plan de respuesta a incidentes<br>
+        • Aislamiento de sistemas comprometidos<br>
+        • Análisis forense de malware<br>
+        • Comunicación con stakeholders</p>
+      </div>
+    </div>
+
+    <div class="function-card bg-white rounded-2xl p-6 shadow-xl transform transition-transform hover:-translate-y-1 hover:shadow-2xl cursor-pointer">
+      <h3 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="function-icon bg-teal-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">R</span>RECOVER (Recuperar)
+      </h3>
+      <p class="function-description text-gray-600 mb-4">
+        Restaura las operaciones normales y mejora la capacidad de recuperación después de un incidente de ciberseguridad.
+      </p>
+      <div class="example-section bg-gray-50 p-4 rounded-md border-l-4 border-teal-500">
+        <div class="example-title font-bold text-gray-900 mb-2">Ejemplo práctico:</div>
+        <p class="text-gray-700">• Restauración desde backups<br>
+        • Planes de continuidad de negocio<br>
+        • Pruebas de recuperación ante desastres<br>
+        • Lecciones aprendidas y mejoras</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mnemonic-section bg-gradient-to-br from-red-300 to-pink-300 text-gray-800 p-8 rounded-2xl text-center mb-8 shadow-xl">
+    <h2 class="text-3xl font-bold mb-4">🧠 Técnica Mnemotécnica Actualizada</h2>
+    <div class="mnemonic-text text-5xl font-extrabold my-5 text-gray-900">"GI-PDRR"</div>
+    <p class="text-lg mb-2"><strong class="font-bold">"Gobierno, Identifico, Protejo, Detecto, Respondo, Recupero"</strong></p>
+    <p class="text-md text-gray-700">💡 Piensa en un <strong class="font-semibold">Guardián Cibernético</strong> que primero establece las reglas (Govern), luego sigue el ciclo IPDRR</p>
+  </div>
+
+  <div class="real-example bg-white rounded-2xl p-6 md:p-8 mb-8 shadow-xl">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">🏥 Ejemplo Real: Hospital Implementando NIST CSF 2.0</h2>
+    <p class="text-gray-700 text-center mb-6">Un hospital regional aplica el framework completo para proteger datos médicos sensibles:</p>
+    
+    <div class="example-steps grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+      <div class="step-card bg-gray-50 p-4 rounded-md border-l-4 border-blue-500">
+        <h4 class="font-bold text-lg mb-1">GOVERN</h4>
+        <p class="text-gray-700 text-sm">Establece comité de ciberseguridad, políticas HIPAA y programa de gestión de riesgos</p>
+      </div>
+      <div class="step-card bg-gray-50 p-4 rounded-md border-l-4 border-red-500">
+        <h4 class="font-bold text-lg mb-1">IDENTIFY</h4>
+        <p class="text-gray-700 text-sm">Cataloga dispositivos médicos IoT, sistemas EHR y datos de pacientes</p>
+      </div>
+      <div class="step-card bg-gray-50 p-4 rounded-md border-l-4 border-green-500">
+        <h4 class="font-bold text-lg mb-1">PROTECT</h4>
+        <p class="text-gray-700 text-sm">Cifra historiales clínicos, implementa MFA y segmenta la red</p>
+      </div>
+      <div class="step-card bg-gray-50 p-4 rounded-md border-l-4 border-yellow-500">
+        <h4 class="font-bold text-lg mb-1">DETECT</h4>
+        <p class="text-gray-700 text-sm">Despliega SIEM para alertas de acceso inusual a datos de pacientes</p>
+      </div>
+      <div class="step-card bg-gray-50 p-4 rounded-md border-l-4 border-purple-500">
+        <h4 class="font-bold text-lg mb-1">RESPOND</h4>
+        <p class="text-gray-700 text-sm">Activa plan de respuesta ante ransomware WannaCry 2.0</p>
+      </div>
+      <div class="step-card bg-gray-50 p-4 rounded-md border-l-4 border-teal-500">
+        <h4 class="font-bold text-lg mb-1">RECOVER</h4>
+        <p class="text-gray-700 text-sm">Restaura sistemas desde backups y mejora la segmentación de red</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="interactive-demo bg-white rounded-2xl p-6 md:p-8 mb-8 shadow-xl">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">🎮 Simulador Interactivo: Respuesta a Incidentes</h2>
+    <p class="text-gray-700 text-center mb-6">Selecciona un tipo de incidente para ver cómo se aplicaría el framework:</p>
+    
+    <div class="flex flex-wrap justify-center gap-4">
+      <button class="demo-button bg-gradient-to-br from-indigo-500 to-purple-600 text-white border-none py-3 px-6 rounded-full cursor-pointer transition-transform hover:scale-105 shadow-md" onclick="showIncidentResponse('phishing')">📧 Ataque de Phishing</button>
+      <button class="demo-button bg-gradient-to-br from-indigo-500 to-purple-600 text-white border-none py-3 px-6 rounded-full cursor-pointer transition-transform hover:scale-105 shadow-md" onclick="showIncidentResponse('ransomware')">🔒 Ransomware</button>
+      <button class="demo-button bg-gradient-to-br from-indigo-500 to-purple-600 text-white border-none py-3 px-6 rounded-full cursor-pointer transition-transform hover:scale-105 shadow-md" onclick="showIncidentResponse('insider')">👤 Amenaza Interna</button>
+      <button class="demo-button bg-gradient-to-br from-indigo-500 to-purple-600 text-white border-none py-3 px-6 rounded-full cursor-pointer transition-transform hover:scale-105 shadow-md" onclick="showIncidentResponse('ddos')">⚡ Ataque DDoS</button>
+    </div>
+      
+    <div id="incidentResult" class="demo-result bg-gray-50 p-5 rounded-lg mt-6 border-l-4 border-blue-500" style="display: none;">
+      <div id="incidentContent"></div>
+    </div>
+  </div>
+
+  <div class="quiz-section bg-white rounded-2xl p-6 md:p-8 mb-8 shadow-xl">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">❓ Quiz de Evaluación</h2>
+      
+    <div class="quiz-question bg-gray-50 p-5 rounded-lg mb-5 border-l-4 border-blue-500">
+      <h3 class="text-xl font-semibold mb-3">1. ¿Cuál es la nueva función añadida en NIST CSF 2.0?</h3>
+      <ul class="quiz-options list-none mt-4">
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">A. Detect</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, true)">B. Govern ✅</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">C. Respond</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">D. Monitor</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question bg-gray-50 p-5 rounded-lg mb-5 border-l-4 border-blue-500">
+      <h3 class="text-xl font-semibold mb-3">2. La función "Protect" del NIST se enfoca en:</h3>
+      <ul class="quiz-options list-none mt-4">
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">A. Restaurar sistemas tras un ataque</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">B. Detectar amenazas en tiempo real</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, true)">C. Implementar medidas preventivas ✅</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">D. Analizar incidentes de seguridad</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question bg-gray-50 p-5 rounded-lg mb-5 border-l-4 border-blue-500">
+      <h3 class="text-xl font-semibold mb-3">3. Una empresa que hace backups diarios está cumpliendo con cuál función?</h3>
+      <ul class="quiz-options list-none mt-4">
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">A. Identify</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">B. Detect</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, true)">C. Recover ✅</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">D. Protect</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question bg-gray-50 p-5 rounded-lg mb-5 border-l-4 border-blue-500">
+      <h3 class="text-xl font-semibold mb-3">4. ¿Cuántas funciones tiene el NIST CSF 2.0?</h3>
+      <ul class="quiz-options list-none mt-4">
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">A. 5 funciones</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, true)">B. 6 funciones ✅</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">C. 7 funciones</li>
+        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">D. 4 funciones</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="benefits-section bg-white rounded-2xl p-6 md:p-8 mb-8 shadow-xl">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">💼 Consejo Profesional</h2>
+    <p class="text-gray-700 text-center mb-4">Los frameworks como NIST CSF 2.0 no solo son herramientas técnicas, sino <strong class="font-bold">lenguajes de negocio</strong> que permiten:</p>
+    
+    <div class="grid gap-4 mt-4">
+      <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+        <strong class="font-semibold text-gray-900">🎯 Comunicación Ejecutiva:</strong> Traducir riesgos técnicos a impacto de negocio
+      </div>
+      <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+        <strong class="font-semibold text-gray-900">📋 Auditorías y Compliance:</strong> Demostrar cumplimiento normativo de forma estructurada
+      </div>
+      <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+        <strong class="font-semibold text-gray-900">🚀 Desarrollo Profesional:</strong> Dominar este lenguaje abre puertas a roles de liderazgo en ciberseguridad
+      </div>
+    </div>
+  </div>
+
+</WikiLayout>
+
+<script>
+  function selectAnswer(element, isCorrect) {
+    const siblings = element.parentNode.children;
+    for (let sibling of siblings) {
+      sibling.classList.remove('bg-green-100', 'border-green-500', 'text-green-800', 'bg-red-100', 'border-red-500', 'text-red-800');
+      sibling.classList.add('bg-white', 'border-gray-200', 'text-gray-800');
+    }
+    
+    if (isCorrect) {
+      element.classList.remove('bg-white', 'border-gray-200', 'text-gray-800');
+      element.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
+    } else {
+      element.classList.remove('bg-white', 'border-gray-200', 'text-gray-800');
+      element.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
+      
+      setTimeout(() => {
+        for (let sibling of siblings) {
+          if (sibling.textContent.includes('✅')) {
+            sibling.classList.remove('bg-white', 'border-gray-200', 'text-gray-800');
+            sibling.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
+          }
+        }
+      }, 500);
+    }
+  }
+
+  function showIncidentResponse(incidentType) {
+    const resultDiv = document.getElementById('incidentResult');
+    const contentDiv = document.getElementById('incidentContent');
+      
+    const scenarios = {
+      phishing: {
+        title: '📧 Respuesta a Ataque de Phishing',
+        content: `
+          <h3 class="text-xl font-bold mb-3">Escenario: Empleado recibe email malicioso solicitando credenciales</h3>
+          <div class="grid gap-3 mt-4">
+            <div class="bg-blue-500 text-white p-3 rounded-md"><strong>GOVERN:</strong> Activar política de respuesta a incidentes</div>
+            <div class="bg-red-500 text-white p-3 rounded-md"><strong>IDENTIFY:</strong> Determinar alcance del phishing y usuarios afectados</div>
+            <div class="bg-green-500 text-white p-3 rounded-md"><strong>PROTECT:</strong> Bloquear dominio malicioso en email gateway</div>
+            <div class="bg-yellow-500 text-white p-3 rounded-md"><strong>DETECT:</strong> Buscar emails similares en toda la organización</div>
+            <div class="bg-purple-500 text-white p-3 rounded-md"><strong>RESPOND:</strong> Forzar reset de contraseñas comprometidas</div>
+            <div class="bg-teal-500 text-white p-3 rounded-md"><strong>RECOVER:</strong> Capacitación adicional en concienciación</div>
+          </div>
+        `
+      },
+      ransomware: {
+        title: '🔒 Respuesta a Ransomware',
+        content: `
+          <h3 class="text-xl font-bold mb-3">Escenario: Ransomware cifra servidores críticos de la organización</h3>
+          <div class="grid gap-3 mt-4">
+            <div class="bg-blue-500 text-white p-3 rounded-md"><strong>GOVERN:</strong> Declarar incidente crítico y activar crisis team</div>
+            <div class="bg-red-500 text-white p-3 rounded-md"><strong>IDENTIFY:</strong> Mapear sistemas afectados y vector de entrada</div>
+            <div class="bg-green-500 text-white p-3 rounded-md"><strong>PROTECT:</strong> Aislar sistemas infectados de la red</div>
+            <div class="bg-yellow-500 text-white p-3 rounded-md"><strong>DETECT:</strong> Buscar indicadores de compromiso (IoCs)</div>
+            <div class="bg-purple-500 text-white p-3 rounded-md"><strong>RESPOND:</strong> Activar plan de continuidad de negocio</div>
+            <div class="bg-teal-500 text-white p-3 rounded-md"><strong>RECOVER:</strong> Restaurar desde backups y fortalecer defensa</div>
+          </div>
+        `
+      },
+      insider: {
+        title: '👤 Respuesta a Amenaza Interna',
+        content: `
+          <h3 class="text-xl font-bold mb-3">Escenario: Empleado accede datos confidenciales fuera de su rol</h3>
+          <div class="grid gap-3 mt-4">
+            <div class="bg-blue-500 text-white p-3 rounded-md"><strong>GOVERN:</strong> Coordinar con RRHH y legal</div>
+            <div class="bg-red-500 text-white p-3 rounded-md"><strong>IDENTIFY:</strong> Revisar accesos históricos del empleado</div>
+            <div class="bg-green-500 text-white p-3 rounded-md"><strong>PROTECT:</strong> Suspender credenciales inmediatamente</div>
+            <div class="bg-yellow-500 text-white p-3 rounded-md"><strong>DETECT:</strong> Analizar logs de actividad sospechosa</div>
+            <div class="bg-purple-500 text-white p-3 rounded-md"><strong>RESPOND:</strong> Preservar evidencia para investigación</div>
+            <div class="bg-teal-500 text-white p-3 rounded-md"><strong>RECOVER:</strong> Reforzar controles de acceso basado en roles</div>
+          </div>
+        `
+      },
+      ddos: {
+        title: '⚡ Respuesta a Ataque DDoS',
+        content: `
+          <h3 class="text-xl font-bold mb-3">Escenario: Sitio web principal sufre ataque de denegación de servicio</h3>
+          <div class="grid gap-3 mt-4">
+            <div class="bg-blue-500 text-white p-3 rounded-md"><strong>GOVERN:</strong> Notificar a stakeholders del impacto</div>
+            <div class="bg-red-500 text-white p-3 rounded-md"><strong>IDENTIFY:</strong> Analizar origen y tipo de tráfico malicioso</div>
+            <div class="bg-green-500 text-white p-3 rounded-md"><strong>PROTECT:</strong> Activar CDN y protección anti-DDoS</div>
+            <div class="bg-yellow-500 text-white p-3 rounded-md"><strong>DETECT:</strong> Monitorear patrones de tráfico anómalo</div>
+            <div class="bg-purple-500 text-white p-3 rounded-md"><strong>RESPOND:</strong> Implementar rate limiting y blacklists</div>
+            <div class="bg-teal-500 text-white p-3 rounded-md"><strong>RECOVER:</strong> Optimizar configuración de red y servidores para futuras cargas</div>
+          </div>
+        `
+      }
+    };
+
+    const scenario = scenarios[incidentType];
+    if (scenario) {
+      contentDiv.innerHTML = `
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">${scenario.title}</h2>
+        ${scenario.content}
+      `;
+      resultDiv.style.display = 'block';
+    }
+  }
+</script>

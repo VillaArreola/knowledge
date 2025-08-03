@@ -1,0 +1,498 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="CIA" description="Guía completa sobre CIA">
+    <div class="cia-page">
+        <div class="container">
+            <div class="header">
+                <h1>🛡️ Seguridad de la Información</h1>
+                <p>Protección integral de datos y sistemas</p>
+            </div>
+    
+            <div class="content-grid">
+                <div class="card cia-card">
+                    <h3><span class="icon">🔺</span>Tríada CIA</h3>
+                    <p>Los tres pilares fundamentales de la seguridad de la información:</p>
+                    <div class="triad">
+                        <div class="triad-item" onclick="showDetails('confidentiality')">
+                            <h4>🔒 Confidencialidad</h4>
+                            <p>Solo personas autorizadas acceden</p>
+                        </div>
+                        <div class="triad-item" onclick="showDetails('integrity')">
+                            <h4>✅ Integridad</h4>
+                            <p>Datos no modificados sin autorización</p>
+                        </div>
+                        <div class="triad-item" onclick="showDetails('availability')">
+                            <h4>🌐 Disponibilidad</h4>
+                            <p>Sistema accesible cuando se necesita</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card dad-card">
+                    <h3><span class="icon">⚠️</span>Tríada DAD</h3>
+                    <p>Lo que buscan los atacantes:</p>
+                    <div class="triad">
+                        <div class="triad-item">
+                            <h4>📢 Divulgación</h4>
+                            <p>Acceso no autorizado a datos</p>
+                        </div>
+                        <div class="triad-item">
+                            <h4>🔄 Alteración</h4>
+                            <p>Modificación no autorizada</p>
+                        </div>
+                        <div class="triad-item">
+                            <h4>🚫 Negación</h4>
+                            <p>DoS/DDoS - Sistema no disponible</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card nonrepudiation-card">
+                    <h3><span class="icon">🔐</span>No Repudio</h3>
+                    <p>Evita que alguien niegue una acción realizada</p>
+                    <div class="example-box">
+                        <strong>Implementación:</strong>
+                        <ul>
+                            <li>Firmas digitales</li>
+                            <li>Registros de auditoría</li>
+                            <li>Timestamps seguros</li>
+                            <li>Certificados digitales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="practical-example">
+                <h3>💼 Ejemplo Práctico: Banco Digital</h3>
+                <div class="triad">
+                    <div class="triad-item">
+                        <h4>🔒 Confidencialidad</h4>
+                        <p>Cifrado AES-256 para datos de clientes</p>
+                        <small>Herramientas: TLS 1.3, VPN, 2FA</small>
+                    </div>
+                    <div class="triad-item">
+                        <h4>✅ Integridad</h4>
+                        <p>SHA-256 para verificar transacciones</p>
+                        <small>Herramientas: HMAC, checksums, blockchain</small>
+                    </div>
+                    <div class="triad-item">
+                        <h4>🌐 Disponibilidad</h4>
+                        <p>Servidores redundantes 99.9% uptime</p>
+                        <small>Herramientas: Load balancers, CDN, backups</small>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="mnemonic">
+                🧠 Técnica Mnemotécnica: <strong>C-I-A = "Cuidado Importante Siempre"</strong>
+            </div>
+    
+            <div class="quiz-section">
+                <h3>🎯 Quiz Interactivo</h3>
+                <div id="quiz-container">
+                    <!-- Quiz questions will be loaded here -->
+                </div>
+                <div class="score" id="score" style="display: none;"></div>
+                <button class="btn" onclick="startQuiz()">Iniciar Quiz</button>
+                <button class="btn" onclick="resetQuiz()" style="display: none;" id="resetBtn">Reiniciar Quiz</button>
+            </div>
+        </div>
+    </div>
+</WikiLayout>
+
+<script>
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    const questions = [
+        {
+            question: "¿Qué componente del triángulo CIA asegura que los datos no hayan sido modificados?",
+            options: ["Confidencialidad", "Integridad", "Disponibilidad", "No repudio"],
+            correct: 1,
+            explanation: "La Integridad protege la exactitud y completitud de los datos."
+        },
+        {
+            question: "¿Qué propiedad impide que un usuario niegue haber enviado un mensaje?",
+            options: ["Autenticación", "No repudio", "Integridad", "Confidencialidad"],
+            correct: 1,
+            explanation: "El No repudio asegura trazabilidad legal y técnica de las acciones."
+        },
+        {
+            question: "Un ataque DoS afecta principalmente a qué parte del CIA?",
+            options: ["Confidencialidad", "Integridad", "Disponibilidad", "No repudio"],
+            correct: 2,
+            explanation: "Los ataques DoS/DDoS buscan impedir el acceso al sistema, afectando la Disponibilidad."
+        },
+        {
+            question: "¿Cuál es la función principal del cifrado AES-256?",
+            options: ["Garantizar disponibilidad", "Asegurar confidencialidad", "Verificar integridad", "Prevenir DoS"],
+            correct: 1,
+            explanation: "AES-256 es un algoritmo de cifrado que protege la confidencialidad de los datos."
+        },
+        {
+            question: "¿Qué técnica se usa principalmente para verificar la integridad de datos?",
+            options: ["Cifrado simétrico", "Funciones hash", "Autenticación biométrica", "Firewalls"],
+            correct: 1,
+            explanation: "Las funciones hash (como SHA-256) generan códigos únicos para verificar que los datos no han sido alterados."
+        }
+    ];
+
+    function startQuiz() {
+        currentQuestion = 0;
+        score = 0;
+        answered = false;
+        const startBtn = document.querySelector('.btn') as HTMLElement;
+        const resetBtn = document.getElementById('resetBtn') as HTMLElement;
+        const scoreEl = document.getElementById('score') as HTMLElement;
+        
+        if (startBtn) startBtn.style.display = 'none';
+        if (resetBtn) resetBtn.style.display = 'none';
+        if (scoreEl) scoreEl.style.display = 'none';
+        showQuestion();
+    }
+
+    function showQuestion() {
+        if (currentQuestion >= questions.length) {
+            showResults();
+            return;
+        }
+
+        const question = questions[currentQuestion];
+        const container = document.getElementById('quiz-container');
+        
+        if (container) {
+            container.innerHTML = `
+                <div class="question">
+                    <h4>Pregunta ${currentQuestion + 1}/${questions.length}</h4>
+                    <p>${question.question}</p>
+                </div>
+                <div class="options">
+                    ${question.options.map((option: string, index: number) => 
+                        `<div class="option" onclick="selectAnswer(${index})">${String.fromCharCode(65 + index)}. ${option}</div>`
+                    ).join('')}
+                </div>
+                <div id="explanation" style="display: none; margin-top: 15px; padding: 15px; background: #e3f2fd; border-radius: 8px;"></div>
+            `;
+        }
+        answered = false;
+    }
+
+    function selectAnswer(selectedIndex: number) {
+        if (answered) return;
+        
+        answered = true;
+        const question = questions[currentQuestion];
+        const options = document.querySelectorAll('.option');
+        
+        options.forEach((option, index) => {
+            const optionElement = option as HTMLElement;
+            if (index === question.correct) {
+                optionElement.classList.add('correct');
+            } else if (index === selectedIndex && index !== question.correct) {
+                optionElement.classList.add('incorrect');
+            }
+            optionElement.style.pointerEvents = 'none';
+        });
+
+        if (selectedIndex === question.correct) {
+            score++;
+        }
+
+        const explanationEl = document.getElementById('explanation');
+        if (explanationEl) {
+            explanationEl.innerHTML = `
+                <strong>Explicación:</strong> ${question.explanation}
+            `;
+            explanationEl.style.display = 'block';
+        }
+
+        setTimeout(() => {
+            currentQuestion++;
+            showQuestion();
+        }, 3000);
+    }
+
+    function showResults() {
+        const container = document.getElementById('quiz-container');
+        const percentage = Math.round((score / questions.length) * 100);
+        
+        let message = '';
+        let emoji = '';
+        
+        if (percentage >= 80) {
+            message = '¡Excelente! Dominas bien los conceptos de seguridad de la información.';
+            emoji = '🎉';
+        } else if (percentage >= 60) {
+            message = 'Buen trabajo, pero puedes mejorar repasando algunos conceptos.';
+            emoji = '👍';
+        } else {
+            message = 'Es recomendable repasar los conceptos fundamentales de InfoSec.';
+            emoji = '📚';
+        }
+
+        if (container) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <h3>${emoji} Resultados del Quiz</h3>
+                    <div class="score">Puntuación: ${score}/${questions.length} (${percentage}%)</div>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        const scoreEl = document.getElementById('score') as HTMLElement;
+        const resetBtn = document.getElementById('resetBtn') as HTMLElement;
+        
+        if (scoreEl) {
+            scoreEl.textContent = `Puntuación Final: ${score}/${questions.length}`;
+            scoreEl.style.display = 'block';
+        }
+        if (resetBtn) {
+            resetBtn.style.display = 'inline-block';
+        }
+    }
+
+    function resetQuiz() {
+        const container = document.getElementById('quiz-container');
+        const scoreEl = document.getElementById('score') as HTMLElement;
+        const resetBtn = document.getElementById('resetBtn') as HTMLElement;
+        const startBtn = document.querySelector('.btn') as HTMLElement;
+        
+        if (container) container.innerHTML = '';
+        if (scoreEl) scoreEl.style.display = 'none';
+        if (resetBtn) resetBtn.style.display = 'none';
+        if (startBtn) startBtn.style.display = 'inline-block';
+    }
+
+    function showDetails(type: string) {
+        const details: Record<string, { title: string; content: string }> = {
+            confidentiality: {
+                title: "Confidencialidad 🔒",
+                content: "Herramientas prácticas:\n• Cifrado: AES-256, RSA\n• Autenticación: 2FA, biometría\n• Control de acceso: RBAC, ACL\n• VPN y TLS para transmisión segura"
+            },
+            integrity: {
+                title: "Integridad ✅",
+                content: "Herramientas prácticas:\n• Hash functions: SHA-256, MD5\n• HMAC para autenticación\n• Checksums y CRC\n• Firmas digitales\n• Control de versiones"
+            },
+            availability: {
+                title: "Disponibilidad 🌐",
+                content: "Herramientas prácticas:\n• Redundancia: RAID, clustering\n• Load balancers y CDN\n• Backups automatizados\n• UPS y generadores\n• Monitoreo 24/7"
+            }
+        };
+
+        const detail = details[type];
+        if (detail) {
+            alert(`${detail.title}\n\n${detail.content}`);
+        }
+    }
+</script>
+
+<style>
+    .cia-page {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .header {
+        text-align: center;
+        color: white;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: rgba(0,0,0,0.2);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    .header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-left: 5px solid;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .cia-card { border-left-color: #4CAF50; }
+    .dad-card { border-left-color: #f44336; }
+    .nonrepudiation-card { border-left-color: #2196F3; }
+
+    .card h3 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .icon {
+        font-size: 1.8em;
+    }
+
+    .triad {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .triad-item {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .triad-item:hover {
+        transform: scale(1.05);
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    }
+
+    .triad-item h4 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+    .example-box {
+        background: #f8f9fa;
+        border-left: 4px solid #007bff;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+    }
+
+    .quiz-section {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .question {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 15px 0;
+        border-left: 4px solid #ffc107;
+    }
+
+    .options {
+        margin: 15px 0;
+    }
+
+    .option {
+        background: #e9ecef;
+        padding: 10px 15px;
+        margin: 8px 0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .option:hover {
+        background: #dee2e6;
+        transform: translateX(5px);
+    }
+
+    .option.correct {
+        background: #d4edda;
+        border-color: #28a745;
+    }
+
+    .option.incorrect {
+        background: #f8d7da;
+        border-color: #dc3545;
+    }
+
+    .btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: all 0.3s ease;
+        margin: 10px 5px;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .practical-example {
+        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        padding: 25px;
+        border-radius: 15px;
+        margin: 20px 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .mnemonic {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin: 20px 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .score {
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #667eea;
+        margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .triad {
+            grid-template-columns: 1fr;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+        }
+    }
+</style>

@@ -1,0 +1,657 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="Criptografía" description="El arte y la ciencia de proteger información en el mundo digital">
+    <div class="crypto-page">
+        <div class="container">
+            <div class="header">
+                <h1>🔐 Criptografía</h1>
+                <p>El arte y la ciencia de proteger información en el mundo digital</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">🔒</div>
+                    ¿Qué es la Criptografía?
+                </h2>
+                <p class="intro-text">
+                    La <span class="highlight">criptografía</span> es como tener un <strong>idioma secreto</strong> para proteger información importante. 
+                    Imagínate que quieres enviar una carta súper secreta a tu mejor amigo, pero no quieres que nadie más la entienda si la interceptan.
+                </p>
+                
+                <div class="encryption-demo">
+                    <h3>¿Cómo funciona? ¡Muy fácil!</h3>
+                    <div class="demo-flow">
+                        <div class="demo-box">
+                            <strong>Mensaje Original</strong><br>
+                            "Hola Mundo"
+                        </div>
+                        <div class="arrow">🔐</div>
+                        <div class="demo-box">
+                            <strong>Mensaje Cifrado</strong><br>
+                            "X8#mK$9pQ@"
+                        </div>
+                        <div class="arrow">🔓</div>
+                        <div class="demo-box">
+                            <strong>Mensaje Descifrado</strong><br>
+                            "Hola Mundo"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">🌟</div>
+                    ¿Dónde la usas SIN darte cuenta?
+                </h2>
+                <div class="real-world-examples">
+                    <div class="example-item">
+                        <strong>📱 WhatsApp/Telegram:</strong> Tus mensajes están cifrados de extremo a extremo
+                    </div>
+                    <div class="example-item">
+                        <strong>🛒 Compras online:</strong> Tu tarjeta de crédito está protegida con criptografía
+                    </div>
+                    <div class="example-item">
+                        <strong>🏦 Banca online:</strong> Todas las transacciones están cifradas
+                    </div>
+                    <div class="example-item">
+                        <strong>📧 Email:</strong> Gmail, Outlook usan cifrado para proteger tus correos
+                    </div>
+                    <div class="example-item">
+                        <strong>🔐 Contraseñas:</strong> Se almacenan cifradas, no en texto plano
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">🛡️</div>
+                    Los 4 Súper Poderes de la Criptografía
+                </h2>
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <h3>🤐 Privacidad</h3>
+                        <p>Solo TÚ y tu destinatario pueden leer el mensaje. ¡Como un susurro que nadie más escucha!</p>
+                    </div>
+                    <div class="principle-card">
+                        <h3>✅ Integridad</h3>
+                        <p>El mensaje llega exactamente como lo enviaste. ¡Sin modificaciones misteriosas!</p>
+                    </div>
+                    <div class="principle-card">
+                        <h3>🆔 Autenticidad</h3>
+                        <p>Sabes con 100% de certeza quién te envió el mensaje. ¡Sin impostores!</p>
+                    </div>
+                    <div class="principle-card">
+                        <h3>📝 No Repudio</h3>
+                        <p>El autor no puede negar que envió el mensaje. ¡Como una firma digital permanente!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">🔑</div>
+                    PKI: Tu Infraestructura de Seguridad Personal
+                </h2>
+                <p class="intro-text">
+                    La <strong>PKI (Infraestructura de Clave Pública)</strong> es como tener un <span class="highlight">sistema de llaves súper inteligente</span> 
+                    que gestiona automáticamente todas tus claves digitales y certificados.
+                </p>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🖥️ Hardware Seguro</h4>
+                        <p>Dispositivos especializados que guardan tus claves de forma ultra-segura</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💻 Software Inteligente</h4>
+                        <p>Programas que manejan automáticamente el cifrado y descifrado</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📋 Políticas Claras</h4>
+                        <p>Reglas que definen cómo se debe usar la criptografía</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⚙️ Procedimientos</h4>
+                        <p>Pasos sistemáticos para garantizar la seguridad</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">⚔️</div>
+                    Batalla de Cifrados: Flujo vs. Bloques
+                </h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>🌊 Cifrado de Flujo</th>
+                            <th>🧱 Cifrado por Bloques</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>¿Cómo funciona?</strong></td>
+                            <td>Cifra bit por bit, como un río continuo</td>
+                            <td>Cifra en bloques fijos, como construir con ladrillos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Velocidad</strong></td>
+                            <td>⚡ Súper rápido</td>
+                            <td>🐢 Más lento, pero muy seguro</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mejor para...</strong></td>
+                            <td>Video en vivo, llamadas, streaming</td>
+                            <td>Archivos grandes, datos importantes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ejemplo popular</strong></td>
+                            <td>RC4 (ya obsoleto)</td>
+                            <td>AES (el campeón actual)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">🏆</div>
+                    Los Campeones del Cifrado por Bloques
+                </h2>
+                <div class="algorithm-showcase">
+                    <div class="algorithm-card">
+                        <h4>🥇 AES (Advanced Encryption Standard)</h4>
+                        <p>El <strong>campeón actual</strong> del mundo criptográfico. Usado por gobiernos, bancos y empresas de todo el mundo.</p>
+                        <p><strong>Claves:</strong> 128, 192 o 256 bits</p>
+                        <span class="status-badge secure">✅ MUY SEGURO</span>
+                    </div>
+                    
+                    <div class="algorithm-card">
+                        <h4>🥈 3DES (Triple DES)</h4>
+                        <p>Una versión mejorada del viejo DES. Aplica el cifrado <strong>tres veces</strong> para mayor seguridad.</p>
+                        <p><strong>Uso:</strong> Sistemas bancarios legacy</p>
+                        <span class="status-badge legacy">⚠️ EN DESUSO</span>
+                    </div>
+                    
+                    <div class="algorithm-card">
+                        <h4>🥉 DES (Data Encryption Standard)</h4>
+                        <p>El veterano que abrió el camino. Fue el estándar durante décadas, pero ya no es seguro.</p>
+                        <p><strong>Problema:</strong> Clave de solo 56 bits</p>
+                        <span class="status-badge deprecated">❌ OBSOLETO</span>
+                    </div>
+                    
+                    <div class="algorithm-card">
+                        <h4>🐡 Blowfish</h4>
+                        <p>Rápido como un pez y muy seguro. Popular en aplicaciones que necesitan <strong>velocidad extrema</strong>.</p>
+                        <p><strong>Clave:</strong> Variable hasta 448 bits</p>
+                        <span class="status-badge secure">✅ SEGURO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-section">
+                <h2>🎯 Dato Curioso</h2>
+                <p>
+                    Una firma digital tiene la <strong>misma validez legal</strong> que tu firma manuscrita en muchos países. 
+                    ¡Es como si tu firma cobrara vida digital y fuera imposible de falsificar!
+                </p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">💡</div>
+                    Conceptos Clave para Recordar
+                </h2>
+                <div class="key-concepts">
+                    <div class="concept-item">
+                        <strong>🔐 Tamaño del bloque ≠ Tamaño de la clave:</strong> AES usa bloques de 128 bits, pero la clave puede ser de 128, 192 o 256 bits
+                    </div>
+                    <div class="concept-item">
+                        <strong>🗝️ A mayor tamaño de clave = Mayor seguridad:</strong> Es como tener una cerradura con más combinaciones posibles
+                    </div>
+                    <div class="concept-item">
+                        <strong>⚡ Velocidad vs Seguridad:</strong> Los cifrados de flujo son más rápidos, los de bloques son más seguros
+                    </div>
+                </div>
+            </div>
+
+            <div class="conclusion-section">
+                <h2>🚀 ¡Ahora ya sabes qué es la criptografía!</h2>
+                <p>
+                    Cada vez que envías un mensaje, haces una compra online o usas tu banco por internet,
+                    <strong>¡estás usando criptografía!</strong> Es la tecnología invisible que mantiene seguro nuestro mundo digital.
+                </p>
+            </div>
+        </div>
+    </div>
+</WikiLayout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animaciones de entrada para las secciones
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Efecto hover mejorado para las tarjetas de algoritmos
+        const algorithmCards = document.querySelectorAll('.algorithm-card');
+        algorithmCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // Animación suave para las tarjetas de principios
+        const principleCards = document.querySelectorAll('.principle-card');
+        principleCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    });
+</script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .crypto-page {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .header {
+        text-align: center;
+        margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .header h1 {
+        font-size: 3em;
+        color: white;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .header p {
+        font-size: 1.2em;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .section {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .section-title {
+        font-size: 2em;
+        color: #4a5568;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .icon {
+        font-size: 1.2em;
+        padding: 10px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .intro-text {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .feature-card {
+        background: linear-gradient(45deg, #f7fafc, #edf2f7);
+        border-radius: 12px;
+        padding: 20px;
+        border-left: 4px solid #667eea;
+        transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+        background: linear-gradient(45deg, #edf2f7, #e2e8f0);
+        transform: scale(1.02);
+    }
+    
+    .feature-card h4 {
+        color: #2d3748;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+    
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    .comparison-table th {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+    
+    .comparison-table td {
+        padding: 15px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+        background: #f7fafc;
+    }
+    
+    .encryption-demo {
+        background: linear-gradient(45deg, #ff9a9e, #fecfef);
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .encryption-demo h3 {
+        margin-bottom: 20px;
+        color: #2d3748;
+        font-size: 1.4em;
+    }
+
+    .demo-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .demo-box {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px;
+        display: inline-block;
+        min-width: 200px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .arrow {
+        font-size: 2em;
+        color: #667eea;
+        margin: 0 20px;
+    }
+    
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .principle-card {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    .principle-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .principle-card h3 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+    
+    .algorithm-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .algorithm-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        border: 2px solid #e2e8f0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .algorithm-card:hover {
+        border-color: #667eea;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+    }
+    
+    .algorithm-card h4 {
+        color: #667eea;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    
+    .secure { 
+        background: #c6f6d5; 
+        color: #22543d; 
+    }
+    
+    .deprecated { 
+        background: #fed7d7; 
+        color: #742a2a; 
+    }
+    
+    .legacy { 
+        background: #fef5e7; 
+        color: #744210; 
+    }
+    
+    .interactive-section {
+        background: linear-gradient(45deg, #4facfe, #00f2fe);
+        border-radius: 15px;
+        padding: 30px;
+        color: white;
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    .interactive-section h2 {
+        margin-bottom: 20px;
+        font-size: 2em;
+    }
+
+    .interactive-section p {
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+    
+    .real-world-examples {
+        background: #f7fafc;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+    
+    .example-item {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 10px 0;
+        border-left: 4px solid #48bb78;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: transform 0.2s ease;
+    }
+
+    .example-item:hover {
+        transform: translateX(5px);
+    }
+    
+    .highlight {
+        background: linear-gradient(45deg, #ffd89b, #19547b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: bold;
+    }
+
+    .key-concepts {
+        background: #f7fafc;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .concept-item {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 15px 0;
+        border-left: 4px solid #667eea;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+
+    .concept-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .conclusion-section {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border-radius: 15px;
+        padding: 30px;
+        color: white;
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    .conclusion-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .conclusion-section p {
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .header h1 { 
+            font-size: 2em; 
+        }
+        
+        .section { 
+            padding: 20px; 
+        }
+        
+        .demo-box { 
+            min-width: 150px; 
+        }
+
+        .demo-flow {
+            flex-direction: column;
+        }
+
+        .arrow {
+            transform: rotate(90deg);
+            margin: 10px 0;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+        }
+
+        .conclusion-section h2 {
+            font-size: 2em;
+        }
+    }
+</style>

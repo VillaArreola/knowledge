@@ -1,0 +1,123 @@
+---
+import Navbar from '../components/Navbar.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Knowledge Base" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} | Knowledge Base</title>
+  <meta name="description" content={description}>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="h-full bg-gray-50 dark:bg-gray-900">
+  <div class="min-h-screen flex flex-col">
+    <!-- Header con search -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center space-x-4">
+            <h1 class="text-2xl text-white font-bold gradient-text">🎓 Knowledge</h1>
+          </div>
+          
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <input 
+                type="search" 
+                placeholder="Buscar conocimiento..." 
+                class="w-64 pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              >
+              <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">
+              <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+              </svg>
+              <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navbar con categorías -->
+    <Navbar />
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+        <slot />
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold gradient-text mb-4">📚 Knowledge Base</h3>
+            <p class="text-slate-300">Tu repositorio personal de conocimiento en tecnología.</p>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-4">🔗 Enlaces Rápidos</h4>
+            <ul class="space-y-2 text-slate-300">
+              <li><a href="/redes/wifi" class="hover:text-white transition-colors duration-200">Redes WiFi</a></li>
+              <li><a href="/ciberseguridad/virus" class="hover:text-white transition-colors duration-200">Ciberseguridad</a></li>
+              <li><a href="/programacion/javascript" class="hover:text-white transition-colors duration-200">Programación</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-4">ℹ️ Información</h4>
+            <ul class="space-y-2 text-slate-300">
+              <li><a href="/about" class="hover:text-white transition-colors duration-200">Acerca de</a></li>
+              <li><a href="/contact" class="hover:text-white transition-colors duration-200">Contacto</a></li>
+              <li><a href="/sitemap" class="hover:text-white transition-colors duration-200">Mapa del Sitio</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="border-t border-slate-700 mt-8 pt-8 text-center text-slate-400">
+          <p>&copy; 2024 Knowledge Base. Construido con ❤️ usando Astro + Tailwind CSS</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.classList.toggle('dark', savedTheme === 'dark');
+    
+    themeToggle?.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
+</body>
+</html>

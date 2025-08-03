@@ -1,0 +1,95 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="main-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>📚 Mi Wiki de Estudios</h3>
+      <p>Tu repositorio personal de conocimiento en tecnología, redes y programación.</p>
+    </div>
+    
+    <div class="footer-section">
+      <h4>🔗 Enlaces Rápidos</h4>
+      <ul>
+        <li><a href="/redes/wifi">Redes WiFi</a></li>
+        <li><a href="/ciberseguridad/virus">Ciberseguridad</a></li>
+        <li><a href="/programacion/javascript">Programación</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h4>ℹ️ Información</h4>
+      <ul>
+        <li><a href="/about">Acerca de</a></li>
+        <li><a href="/contact">Contacto</a></li>
+        <li><a href="/sitemap">Mapa del Sitio</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; {currentYear} Mi Wiki de Estudios. Todos los derechos reservados.</p>
+    <p>Construido con ❤️ y Astro</p>
+  </div>
+</footer>
+
+<style>
+  .main-footer {
+    background: #2c3e50;
+    color: white;
+    margin-top: auto;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .footer-section h3,
+  .footer-section h4 {
+    margin-bottom: 1rem;
+    color: #3498db;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-section a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-section a:hover {
+    color: #3498db;
+  }
+  
+  .footer-bottom {
+    background: #34495e;
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid #4a5f7a;
+  }
+  
+  .footer-bottom p {
+    margin: 0.25rem 0;
+    color: #bdc3c7;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+</style>

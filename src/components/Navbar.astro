@@ -1,0 +1,264 @@
+---
+const currentPath = Astro.url.pathname;
+
+---
+
+<nav class="bg-slate-800 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo/Brand -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-3">
+          <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">K</span>
+          </div>
+          <span class="text-white font-semibold text-lg">Knowledge Base</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <!-- Inicio -->
+          <a 
+            href="/" 
+            class={currentPath === '/' 
+              ? 'px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 bg-slate-700 text-white' 
+              : 'px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-700 hover:text-white'
+            }
+          >
+            🏠 Inicio
+          </a>
+
+          <!-- Redes Dropdown -->
+          <div class="relative group">
+            <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
+              <span>🌐 Redes</span>
+              <svg class="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <!-- Dropdown Menu -->
+            <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+              <a href="/redes/wifi" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                📶 Redes WiFi
+              </a>
+              <a href="/redes/ip" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🔢 Direcciones IP
+              </a>
+              <a href="/redes/tcp" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🔗 TCP/UDP
+              </a>
+              <a href="/redes/routing" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🛣️ Routing
+              </a>
+            </div>
+          </div>
+
+          <!-- Ciberseguridad Dropdown -->
+          <div class="relative group">
+            <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
+              <span>🔒 Ciberseguridad</span>
+              <svg class="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+              <a href="/ciberseguridad/virus" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🦠 Virus y Malware
+              </a>
+              <a href="/ciberseguridad/firewall" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🛡️ Firewall
+              </a>
+              <a href="/ciberseguridad/encryption" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🔐 Encriptación
+              </a>
+              <a href="/ciberseguridad/pentesting" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🎯 Pentesting
+              </a>
+            </div>
+          </div>
+
+          <!-- Programación Dropdown -->
+          <div class="relative group">
+            <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
+              <span>💻 Programación</span>
+              <svg class="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+              <a href="/programacion/javascript" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                📜 JavaScript
+              </a>
+              <a href="/programacion/python" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🐍 Python
+              </a>
+              <a href="/programacion/databases" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🗄️ Bases de Datos
+              </a>
+              <a href="/programacion/devops" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                ⚙️ DevOps
+              </a>
+            </div>
+          </div>
+
+          <!-- Recursos -->
+          <a 
+            href="/recursos" 
+            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+              currentPath === '/recursos' 
+                ? 'bg-slate-700 text-white' 
+                : 'text-slate-300 hover:bg-slate-700 hover:text-white'
+            }`}
+          >
+            📚 Recursos
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button 
+          id="mobile-menu-button"
+          class="inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-colors duration-200"
+        >
+          <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-800 border-t border-slate-700">
+        <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200">
+          🏠 Inicio
+        </a>
+        
+        <!-- Mobile Redes -->
+        <div class="mobile-dropdown">
+          <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200 flex items-center justify-between">
+            <span>🌐 Redes</span>
+            <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
+            <a href="/redes/wifi" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">📶 Redes WiFi</a>
+            <a href="/redes/ip" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔢 Direcciones IP</a>
+            <a href="/redes/tcp" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔗 TCP/UDP</a>
+            <a href="/redes/routing" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🛣️ Routing</a>
+          </div>
+        </div>
+
+        <!-- Mobile Ciberseguridad -->
+        <div class="mobile-dropdown">
+          <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200 flex items-center justify-between">
+            <span>🔒 Ciberseguridad</span>
+            <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
+            <a href="/ciberseguridad/virus" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🦠 Virus y Malware</a>
+            <a href="/ciberseguridad/firewall" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🛡️ Firewall</a>
+            <a href="/ciberseguridad/encryption" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔐 Encriptación</a>
+            <a href="/ciberseguridad/pentesting" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🎯 Pentesting</a>
+          </div>
+        </div>
+
+        <!-- Mobile Programación -->
+        <div class="mobile-dropdown">
+          <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200 flex items-center justify-between">
+            <span>💻 Programación</span>
+            <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
+            <a href="/programacion/javascript" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">📜 JavaScript</a>
+            <a href="/programacion/python" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🐍 Python</a>
+            <a href="/programacion/databases" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🗄️ Bases de Datos</a>
+            <a href="/programacion/devops" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">⚙️ DevOps</a>
+          </div>
+        </div>
+
+        <a href="/recursos" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200">
+          📚 Recursos
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcons = mobileMenuButton?.querySelectorAll('svg');
+
+    mobileMenuButton?.addEventListener('click', function() {
+      const isHidden = mobileMenu?.classList.contains('hidden');
+      
+      if (isHidden) {
+        mobileMenu?.classList.remove('hidden');
+        menuIcons?.[0].classList.add('hidden');
+        menuIcons?.[1].classList.remove('hidden');
+      } else {
+        mobileMenu?.classList.add('hidden');
+        menuIcons?.[0].classList.remove('hidden');
+        menuIcons?.[1].classList.add('hidden');
+      }
+    });
+
+    // Mobile dropdown functionality
+    const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+    
+    mobileDropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const dropdown = this.parentElement;
+        const menu = dropdown?.querySelector('.mobile-dropdown-menu');
+        const icon = this.querySelector('svg');
+        
+        const isHidden = menu?.classList.contains('hidden');
+        
+        // Close all other dropdowns
+        mobileDropdownToggles.forEach(otherToggle => {
+          if (otherToggle !== this) {
+            const otherDropdown = otherToggle.parentElement;
+            const otherMenu = otherDropdown?.querySelector('.mobile-dropdown-menu');
+            const otherIcon = otherToggle.querySelector('svg');
+            
+            otherMenu?.classList.add('hidden');
+            otherIcon?.classList.remove('rotate-180');
+          }
+        });
+        
+        // Toggle current dropdown
+        if (isHidden) {
+          menu?.classList.remove('hidden');
+          icon?.classList.add('rotate-180');
+        } else {
+          menu?.classList.add('hidden');
+          icon?.classList.remove('rotate-180');
+        }
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const navbar = document.querySelector('nav');
+      if (!navbar?.contains(event.target as Node)) {
+        mobileMenu?.classList.add('hidden');
+        menuIcons?.[0].classList.remove('hidden');
+        menuIcons?.[1].classList.add('hidden');
+      }
+    });
+  });
+</script>

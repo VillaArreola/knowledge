@@ -1,0 +1,333 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="Redes WiFi" description="Guía completa sobre redes inalámbricas WiFi">
+  <style>
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 5px solid;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .wifi-card { border-left-color: #4CAF50; }
+    .security-card { border-left-color: #f44336; }
+    .protocols-card { border-left-color: #2196F3; }
+    .setup-card { border-left-color: #ff9800; }
+
+    .card h3 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #333;
+    }
+
+    .icon {
+      font-size: 1.8em;
+    }
+
+    .wifi-standards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .standard-item {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .standard-item:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    }
+
+    .standard-item h4 {
+      color: #333;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+    }
+
+    .example-box {
+      background: #f8f9fa;
+      border-left: 4px solid #007bff;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+
+    .practical-example {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      padding: 25px;
+      border-radius: 15px;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .step-list {
+      list-style: none;
+      counter-reset: step-counter;
+    }
+
+    .step-list li {
+      counter-increment: step-counter;
+      margin: 15px 0;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+      padding-left: 60px;
+    }
+
+    .step-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #2196F3;
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+
+    .frequency-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .frequency-table th,
+    .frequency-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .frequency-table th {
+      background: #2196F3;
+      color: white;
+      font-weight: 600;
+    }
+
+    .frequency-table tr:hover {
+      background: #f5f5f5;
+    }
+
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .wifi-standards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <div style="text-align: center; margin-bottom: 30px;">
+    <h1 style="font-size: 2.5em; color: #2196F3; margin-bottom: 10px;">📶 Redes WiFi</h1>
+    <p style="font-size: 1.2em; color: #666;">Guía completa sobre redes inalámbricas WiFi</p>
+  </div>
+
+  <div class="content-grid">
+    <div class="card wifi-card">
+      <h3><span class="icon">📡</span>¿Qué es WiFi?</h3>
+      <p><strong>WiFi</strong> (Wireless Fidelity) es una tecnología de comunicación inalámbrica que permite conectar dispositivos a internet y entre sí sin cables, utilizando ondas de radio.</p>
+      <div class="example-box">
+        <strong>Principales características:</strong>
+        <ul>
+          <li>Comunicación inalámbrica</li>
+          <li>Basado en el estándar IEEE 802.11</li>
+          <li>Frecuencias de 2.4 GHz y 5 GHz</li>
+          <li>Alcance típico de 30-100 metros</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card protocols-card">
+      <h3><span class="icon">🔄</span>Estándares WiFi</h3>
+      <p>Evolución de los estándares IEEE 802.11:</p>
+      <div class="wifi-standards">
+        <div class="standard-item">
+          <h4>802.11a (WiFi 2)</h4>
+          <p>54 Mbps - 5 GHz</p>
+          <small>1999</small>
+        </div>
+        <div class="standard-item">
+          <h4>802.11b (WiFi 1)</h4>
+          <p>11 Mbps - 2.4 GHz</p>
+          <small>1999</small>
+        </div>
+        <div class="standard-item">
+          <h4>802.11g (WiFi 3)</h4>
+          <p>54 Mbps - 2.4 GHz</p>
+          <small>2003</small>
+        </div>
+        <div class="standard-item">
+          <h4>802.11n (WiFi 4)</h4>
+          <p>600 Mbps - MIMO</p>
+          <small>2009</small>
+        </div>
+        <div class="standard-item">
+          <h4>802.11ac (WiFi 5)</h4>
+          <p>3.5 Gbps - 5 GHz</p>
+          <small>2013</small>
+        </div>
+        <div class="standard-item">
+          <h4>802.11ax (WiFi 6)</h4>
+          <p>9.6 Gbps - OFDMA</p>
+          <small>2019</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="card security-card">
+      <h3><span class="icon">🔐</span>Seguridad WiFi</h3>
+      <p>Protocolos de seguridad para redes inalámbricas:</p>
+      <div class="example-box">
+        <strong>Evolución de la seguridad:</strong>
+        <ul>
+          <li><strong>WEP</strong> - Obsoleto, fácil de romper</li>
+          <li><strong>WPA</strong> - Mejorado pero vulnerable</li>
+          <li><strong>WPA2</strong> - Estándar actual seguro</li>
+          <li><strong>WPA3</strong> - Más reciente y avanzado</li>
+        </ul>
+      </div>
+      <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 15px;">
+        <strong>⚠️ Recomendación:</strong> Usar siempre WPA2 o WPA3 con contraseñas fuertes
+      </div>
+    </div>
+
+    <div class="card setup-card">
+      <h3><span class="icon">⚙️</span>Configuración Básica</h3>
+      <p>Pasos para configurar una red WiFi segura:</p>
+      <ol class="step-list">
+        <li>
+          <strong>Acceder al router</strong><br>
+          Conectar por cable y acceder vía navegador (192.168.1.1)
+        </li>
+        <li>
+          <strong>Cambiar credenciales</strong><br>
+          Modificar usuario/contraseña por defecto del router
+        </li>
+        <li>
+          <strong>Configurar red WiFi</strong><br>
+          Establecer nombre (SSID) y contraseña WPA2/WPA3
+        </li>
+        <li>
+          <strong>Configurar canal</strong><br>
+          Seleccionar canal menos congestionado (1, 6 o 11 en 2.4GHz)
+        </li>
+        <li>
+          <strong>Verificar seguridad</strong><br>
+          Deshabilitar WPS y configurar filtrado MAC si es necesario
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="practical-example">
+    <h3>📶 Bandas de Frecuencia</h3>
+    <table class="frequency-table">
+      <thead>
+        <tr>
+          <th>Banda</th>
+          <th>Frecuencia</th>
+          <th>Canales</th>
+          <th>Ventajas</th>
+          <th>Desventajas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>2.4 GHz</strong></td>
+          <td>2.400-2.485 GHz</td>
+          <td>1-11 (14 en algunos países)</td>
+          <td>Mayor alcance, mejor penetración</td>
+          <td>Más congestionado, menor velocidad</td>
+        </tr>
+        <tr>
+          <td><strong>5 GHz</strong></td>
+          <td>5.150-5.875 GHz</td>
+          <td>36-165 (según región)</td>
+          <td>Menos congestionado, mayor velocidad</td>
+          <td>Menor alcance, menor penetración</td>
+        </tr>
+        <tr>
+          <td><strong>6 GHz</strong></td>
+          <td>5.925-7.125 GHz</td>
+          <td>1-233</td>
+          <td>Sin congestión, velocidades máximas</td>
+          <td>Solo WiFi 6E/7, alcance limitado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="practical-example">
+    <h3>🛠️ Solución de Problemas Comunes</h3>
+    <div class="content-grid">
+      <div style="background: white; padding: 20px; border-radius: 10px;">
+        <h4>🐌 Velocidad Lenta</h4>
+        <ul>
+          <li>Verificar interferencias (microondas, bluetooth)</li>
+          <li>Cambiar canal WiFi</li>
+          <li>Actualizar drivers de red</li>
+          <li>Verificar velocidad contratada</li>
+        </ul>
+      </div>
+      <div style="background: white; padding: 20px; border-radius: 10px;">
+        <h4>📶 Señal Débil</h4>
+        <ul>
+          <li>Reposicionar el router</li>
+          <li>Usar repetidores o mesh</li>
+          <li>Verificar obstáculos físicos</li>
+          <li>Actualizar antenas del router</li>
+        </ul>
+      </div>
+      <div style="background: white; padding: 20px; border-radius: 10px;">
+        <h4>🔌 Desconexiones</h4>
+        <ul>
+          <li>Verificar configuración de energía</li>
+          <li>Actualizar firmware del router</li>
+          <li>Resetear configuración de red</li>
+          <li>Verificar sobrecalentamiento</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</WikiLayout>
