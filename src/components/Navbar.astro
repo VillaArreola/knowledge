@@ -1,6 +1,5 @@
 ---
 const currentPath = Astro.url.pathname;
-
 ---
 
 <nav class="bg-slate-800 shadow-lg">
@@ -27,35 +26,10 @@ const currentPath = Astro.url.pathname;
               : 'px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-700 hover:text-white'
             }
           >
-            🏠 Inicio
+            🏠 Dashboard
           </a>
 
-          <!-- Redes Dropdown -->
-          <div class="relative group">
-            <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
-              <span>🌐 Redes</span>
-              <svg class="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <!-- Dropdown Menu -->
-            <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
-              <a href="/redes/wifi" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                📶 Redes WiFi
-              </a>
-              <a href="/redes/ip" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🔢 Direcciones IP
-              </a>
-              <a href="/redes/tcp" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🔗 TCP/UDP
-              </a>
-              <a href="/redes/routing" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🛣️ Routing
-              </a>
-            </div>
-          </div>
-
-          <!-- Ciberseguridad Dropdown -->
+          <!-- Ciberseguridad Dropdown - TUS PÁGINAS REALES -->
           <div class="relative group">
             <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
               <span>🔒 Ciberseguridad</span>
@@ -63,23 +37,49 @@ const currentPath = Astro.url.pathname;
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
-            <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
-              <a href="/ciberseguridad/virus" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🦠 Virus y Malware
+            <div class="absolute left-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+              <a href="/cyber/criptografia" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🔐 Criptografía
               </a>
-              <a href="/ciberseguridad/firewall" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🛡️ Firewall
+              <a href="/cyber/CIA" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🛡️ CIA Triad
               </a>
-              <a href="/ciberseguridad/encryption" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🔐 Encriptación
+              <a href="/cyber/pki" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                🔑 PKI
               </a>
-              <a href="/ciberseguridad/pentesting" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🎯 Pentesting
+              <a href="/cyber/nist" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
+                📋 NIST Framework
+              </a>
+              <div class="border-t border-gray-200 dark:border-slate-600 my-1"></div>
+              <a href="/cyber/interactivo" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150 font-medium">
+                🧪 Laboratorio Interactivo
               </a>
             </div>
           </div>
 
-          <!-- Programación Dropdown -->
+          <!-- Redes Dropdown - PREPARADO PARA FUTURO -->
+          <div class="relative group">
+            <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
+              <span>🌐 Redes</span>
+              <svg class="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+              <div class="px-4 py-2 text-sm text-gray-500 dark:text-gray-400 italic">
+                📚 Contenido próximamente...
+              </div>
+              <div class="border-t border-gray-200 dark:border-slate-600 my-1"></div>
+              <div class="px-4 py-1 text-xs text-gray-400 dark:text-gray-500">
+                Temas planificados:
+              </div>
+              <div class="px-4 py-1 text-xs text-gray-400 dark:text-gray-500">
+                📶 WiFi • 🔢 IP • 🔗 TCP/UDP
+              </div>
+            </div>
+          </div>
+
+          <!-- Programación Dropdown - PREPARADO PARA FUTURO -->
           <div class="relative group">
             <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
               <span>💻 Programación</span>
@@ -88,18 +88,16 @@ const currentPath = Astro.url.pathname;
               </svg>
             </button>
             <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
-              <a href="/programacion/javascript" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                📜 JavaScript
-              </a>
-              <a href="/programacion/python" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🐍 Python
-              </a>
-              <a href="/programacion/databases" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🗄️ Bases de Datos
-              </a>
-              <a href="/programacion/devops" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                ⚙️ DevOps
-              </a>
+              <div class="px-4 py-2 text-sm text-gray-500 dark:text-gray-400 italic">
+                🚧 En desarrollo...
+              </div>
+              <div class="border-t border-gray-200 dark:border-slate-600 my-1"></div>
+              <div class="px-4 py-1 text-xs text-gray-400 dark:text-gray-500">
+                Próximos temas:
+              </div>
+              <div class="px-4 py-1 text-xs text-gray-400 dark:text-gray-500">
+                🐍 Python • ⚡ JS • 🗄️ DB
+              </div>
             </div>
           </div>
 
@@ -137,9 +135,26 @@ const currentPath = Astro.url.pathname;
     <div id="mobile-menu" class="md:hidden hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-800 border-t border-slate-700">
         <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200">
-          🏠 Inicio
+          🏠 Dashboard
         </a>
         
+        <!-- Mobile Ciberseguridad - TUS PÁGINAS REALES -->
+        <div class="mobile-dropdown">
+          <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200 flex items-center justify-between">
+            <span>🔒 Ciberseguridad</span>
+            <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
+            <a href="/cyber/criptografia" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔐 Criptografía</a>
+            <a href="/cyber/CIA" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🛡️ CIA Triad</a>
+            <a href="/cyber/pki" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔑 PKI</a>
+            <a href="/cyber/nist" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">📋 NIST Framework</a>
+            <a href="/cyber/interactivo" class="block px-3 py-2 text-sm text-yellow-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200 font-medium">🧪 Laboratorio</a>
+          </div>
+        </div>
+
         <!-- Mobile Redes -->
         <div class="mobile-dropdown">
           <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200 flex items-center justify-between">
@@ -149,26 +164,7 @@ const currentPath = Astro.url.pathname;
             </svg>
           </button>
           <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
-            <a href="/redes/wifi" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">📶 Redes WiFi</a>
-            <a href="/redes/ip" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔢 Direcciones IP</a>
-            <a href="/redes/tcp" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔗 TCP/UDP</a>
-            <a href="/redes/routing" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🛣️ Routing</a>
-          </div>
-        </div>
-
-        <!-- Mobile Ciberseguridad -->
-        <div class="mobile-dropdown">
-          <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200 flex items-center justify-between">
-            <span>🔒 Ciberseguridad</span>
-            <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
-            <a href="/ciberseguridad/virus" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🦠 Virus y Malware</a>
-            <a href="/ciberseguridad/firewall" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🛡️ Firewall</a>
-            <a href="/ciberseguridad/encryption" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔐 Encriptación</a>
-            <a href="/ciberseguridad/pentesting" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🎯 Pentesting</a>
+            <div class="px-3 py-2 text-sm text-slate-500 italic">📚 Contenido próximamente...</div>
           </div>
         </div>
 
@@ -181,10 +177,7 @@ const currentPath = Astro.url.pathname;
             </svg>
           </button>
           <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
-            <a href="/programacion/javascript" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">📜 JavaScript</a>
-            <a href="/programacion/python" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🐍 Python</a>
-            <a href="/programacion/databases" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🗄️ Bases de Datos</a>
-            <a href="/programacion/devops" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">⚙️ DevOps</a>
+            <div class="px-3 py-2 text-sm text-slate-500 italic">🚧 En desarrollo...</div>
           </div>
         </div>
 
