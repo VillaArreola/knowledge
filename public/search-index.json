@@ -1,0 +1,52 @@
+{
+    "pages": [
+      {
+        "title": "Criptografía",
+        "url": "/cyber/criptografia",
+        "category": "Ciberseguridad",
+        "icon": "🔐",
+        "tags": ["cifrado", "AES", "DES", "encriptación", "algoritmos", "seguridad"],
+        "description": "Fundamentos de criptografía, algoritmos de cifrado y protección de datos"
+      },
+      {
+        "title": "CIA Triad",
+        "url": "/cyber/CIA", 
+        "category": "Ciberseguridad",
+        "icon": "🛡️",
+        "tags": ["confidencialidad", "integridad", "disponibilidad", "seguridad", "triada"],
+        "description": "Los tres pilares fundamentales de la seguridad informática"
+      },
+      {
+        "title": "PKI",
+        "url": "/cyber/pki",
+        "category": "Ciberseguridad", 
+        "icon": "🔑",
+        "tags": ["infraestructura", "clave publica", "certificados", "PKI", "llaves"],
+        "description": "Infraestructura de Clave Pública y gestión de certificados digitales"
+      },
+      {
+        "title": "NIST Framework",
+        "url": "/cyber/nist",
+        "category": "Ciberseguridad",
+        "icon": "📋", 
+        "tags": ["framework", "NIST", "estándares", "mejores prácticas", "normativas"],
+        "description": "Marco de trabajo y estándares de seguridad del NIST"
+      },
+      {
+        "title": "Laboratorio Interactivo",
+        "url": "/cyber/interactivo",
+        "category": "Ciberseguridad",
+        "icon": "🧪",
+        "tags": ["laboratorio", "práctica", "interactivo", "herramientas", "ejercicios"],
+        "description": "Herramientas interactivas para practicar criptografía y seguridad"
+      },
+      {
+        "title": "Dashboard",
+        "url": "/",
+        "category": "General",
+        "icon": "🏠",
+        "tags": ["inicio", "dashboard", "principal", "home", "categorías"],
+        "description": "Panel principal con categorías de conocimiento y certificaciones"
+      }
+    ]
+  }

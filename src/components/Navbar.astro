@@ -2,16 +2,19 @@
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="bg-slate-800 shadow-lg">
+<nav class="modern-navbar">
+  <!-- Decorative top border -->
+  <div class="navbar-border"></div>
+  
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo/Brand -->
       <div class="flex items-center">
-        <a href="/" class="flex items-center space-x-3">
-          <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">K</span>
+        <a href="/" class="brand-link">
+          <div class="brand-icon">
+            <span class="icon-text">🎓</span>
           </div>
-          <span class="text-white font-semibold text-lg">Knowledge Base</span>
+          <span class="brand-text">Knowledge Base</span>
         </a>
       </div>
 
@@ -22,81 +25,88 @@ const currentPath = Astro.url.pathname;
           <a 
             href="/" 
             class={currentPath === '/' 
-              ? 'px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 bg-slate-700 text-white' 
-              : 'px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-700 hover:text-white'
+              ? 'nav-link active' 
+              : 'nav-link'
             }
           >
-            🏠 Dashboard
+            <span class="nav-icon">🏠</span>
+            Dashboard
           </a>
 
           <!-- Ciberseguridad Dropdown - TUS PÁGINAS REALES -->
-          <div class="relative group">
-            <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
-              <span>🔒 Ciberseguridad</span>
-              <svg class="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-btn">
+              <span class="nav-icon">🔒</span>
+              <span>Ciberseguridad</span>
+              <svg class="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
-            <div class="absolute left-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
-              <a href="/cyber/criptografia" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🔐 Criptografía
+            <div class="dropdown-menu">
+              <a href="/cyber/criptografia" class="dropdown-item">
+                <span class="item-icon">🔐</span>
+                Criptografía
               </a>
-              <a href="/cyber/CIA" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🛡️ CIA Triad
+              <a href="/cyber/CIA" class="dropdown-item">
+                <span class="item-icon">🛡️</span>
+                CIA Triad
               </a>
-              <a href="/cyber/pki" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                🔑 PKI
+              <a href="/cyber/pki" class="dropdown-item">
+                <span class="item-icon">🔑</span>
+                PKI
               </a>
-              <a href="/cyber/nist" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150">
-                📋 NIST Framework
+              <a href="/cyber/nist" class="dropdown-item">
+                <span class="item-icon">📋</span>
+                NIST Framework
               </a>
-              <div class="border-t border-gray-200 dark:border-slate-600 my-1"></div>
-              <a href="/cyber/interactivo" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-150 font-medium">
-                🧪 Laboratorio Interactivo
+              <div class="dropdown-divider"></div>
+              <a href="/cyber/interactivo" class="dropdown-item featured">
+                <span class="item-icon">🧪</span>
+                Laboratorio Interactivo
               </a>
             </div>
           </div>
 
           <!-- Redes Dropdown - PREPARADO PARA FUTURO -->
-          <div class="relative group">
-            <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
-              <span>🌐 Redes</span>
-              <svg class="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-btn">
+              <span class="nav-icon">🌐</span>
+              <span>Redes</span>
+              <svg class="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
-            <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
-              <div class="px-4 py-2 text-sm text-gray-500 dark:text-gray-400 italic">
-                📚 Contenido próximamente...
+            <div class="dropdown-menu">
+              <div class="dropdown-coming-soon">
+                <span class="coming-icon">📚</span>
+                Contenido próximamente...
               </div>
-              <div class="border-t border-gray-200 dark:border-slate-600 my-1"></div>
-              <div class="px-4 py-1 text-xs text-gray-400 dark:text-gray-500">
-                Temas planificados:
-              </div>
-              <div class="px-4 py-1 text-xs text-gray-400 dark:text-gray-500">
-                📶 WiFi • 🔢 IP • 🔗 TCP/UDP
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-preview">
+                <div class="preview-title">Temas planificados:</div>
+                <div class="preview-items">📶 WiFi • 🔢 IP • 🔗 TCP/UDP</div>
               </div>
             </div>
           </div>
 
           <!-- Programación Dropdown - PREPARADO PARA FUTURO -->
-          <div class="relative group">
-            <button class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors duration-200 flex items-center space-x-1">
-              <span>💻 Programación</span>
-              <svg class="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-btn">
+              <span class="nav-icon">💻</span>
+              <span>Programación</span>
+              <svg class="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
-            <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
-              <div class="px-4 py-2 text-sm text-gray-500 dark:text-gray-400 italic">
-                🚧 En desarrollo...
+            <div class="dropdown-menu">
+              <div class="dropdown-coming-soon">
+                <span class="coming-icon">🚧</span>
+                En desarrollo...
               </div>
-              <div class="border-t border-gray-200 dark:border-slate-600 my-1"></div>
-              <div class="px-4 py-1 text-xs text-gray-400 dark:text-gray-500">
-                Próximos temas:
-              </div>
-              <div class="px-4 py-1 text-xs text-gray-400 dark:text-gray-500">
-                🐍 Python • ⚡ JS • 🗄️ DB
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-preview">
+                <div class="preview-title">Próximos temas:</div>
+                <div class="preview-items">🐍 Python • ⚡ JS • 🗄️ DB</div>
               </div>
             </div>
           </div>
@@ -104,13 +114,13 @@ const currentPath = Astro.url.pathname;
           <!-- Recursos -->
           <a 
             href="/recursos" 
-            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-              currentPath === '/recursos' 
-                ? 'bg-slate-700 text-white' 
-                : 'text-slate-300 hover:bg-slate-700 hover:text-white'
-            }`}
+            class={currentPath === '/recursos' 
+              ? 'nav-link active' 
+              : 'nav-link'
+            }
           >
-            📚 Recursos
+            <span class="nav-icon">📚</span>
+            Recursos
           </a>
         </div>
       </div>
@@ -119,7 +129,7 @@ const currentPath = Astro.url.pathname;
       <div class="md:hidden">
         <button 
           id="mobile-menu-button"
-          class="inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-colors duration-200"
+          class="mobile-menu-btn"
         >
           <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -132,57 +142,62 @@ const currentPath = Astro.url.pathname;
     </div>
 
     <!-- Mobile Navigation Menu -->
-    <div id="mobile-menu" class="md:hidden hidden">
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-800 border-t border-slate-700">
-        <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200">
-          🏠 Dashboard
+    <div id="mobile-menu" class="mobile-menu md:hidden hidden">
+      <div class="mobile-menu-content">
+        <a href="/" class="mobile-nav-link">
+          <span class="mobile-nav-icon">🏠</span>
+          Dashboard
         </a>
         
         <!-- Mobile Ciberseguridad - TUS PÁGINAS REALES -->
         <div class="mobile-dropdown">
-          <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200 flex items-center justify-between">
-            <span>🔒 Ciberseguridad</span>
-            <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button class="mobile-dropdown-toggle">
+            <span class="mobile-nav-icon">🔒</span>
+            <span>Ciberseguridad</span>
+            <svg class="mobile-dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
-            <a href="/cyber/criptografia" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔐 Criptografía</a>
-            <a href="/cyber/CIA" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🛡️ CIA Triad</a>
-            <a href="/cyber/pki" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">🔑 PKI</a>
-            <a href="/cyber/nist" class="block px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200">📋 NIST Framework</a>
-            <a href="/cyber/interactivo" class="block px-3 py-2 text-sm text-yellow-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors duration-200 font-medium">🧪 Laboratorio</a>
+          <div class="mobile-dropdown-menu hidden">
+            <a href="/cyber/criptografia" class="mobile-dropdown-item">🔐 Criptografía</a>
+            <a href="/cyber/CIA" class="mobile-dropdown-item">🛡️ CIA Triad</a>
+            <a href="/cyber/pki" class="mobile-dropdown-item">🔑 PKI</a>
+            <a href="/cyber/nist" class="mobile-dropdown-item">📋 NIST Framework</a>
+            <a href="/cyber/interactivo" class="mobile-dropdown-item featured">🧪 Laboratorio</a>
           </div>
         </div>
 
         <!-- Mobile Redes -->
         <div class="mobile-dropdown">
-          <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200 flex items-center justify-between">
-            <span>🌐 Redes</span>
-            <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button class="mobile-dropdown-toggle">
+            <span class="mobile-nav-icon">🌐</span>
+            <span>Redes</span>
+            <svg class="mobile-dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
-            <div class="px-3 py-2 text-sm text-slate-500 italic">📚 Contenido próximamente...</div>
+          <div class="mobile-dropdown-menu hidden">
+            <div class="mobile-coming-soon">📚 Contenido próximamente...</div>
           </div>
         </div>
 
         <!-- Mobile Programación -->
         <div class="mobile-dropdown">
-          <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200 flex items-center justify-between">
-            <span>💻 Programación</span>
-            <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button class="mobile-dropdown-toggle">
+            <span class="mobile-nav-icon">💻</span>
+            <span>Programación</span>
+            <svg class="mobile-dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="mobile-dropdown-menu hidden pl-6 space-y-1">
-            <div class="px-3 py-2 text-sm text-slate-500 italic">🚧 En desarrollo...</div>
+          <div class="mobile-dropdown-menu hidden">
+            <div class="mobile-coming-soon">🚧 En desarrollo...</div>
           </div>
         </div>
 
-        <a href="/recursos" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors duration-200">
-          📚 Recursos
+        <a href="/recursos" class="mobile-nav-link">
+          <span class="mobile-nav-icon">📚</span>
+          Recursos
         </a>
       </div>
     </div>
@@ -214,7 +229,7 @@ const currentPath = Astro.url.pathname;
     const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
     
     mobileDropdownToggles.forEach(toggle => {
-      toggle.addEventListener('click', function() {
+      toggle.addEventListener('click', function(this: HTMLElement) {
         const dropdown = this.parentElement;
         const menu = dropdown?.querySelector('.mobile-dropdown-menu');
         const icon = this.querySelector('svg');
@@ -222,7 +237,7 @@ const currentPath = Astro.url.pathname;
         const isHidden = menu?.classList.contains('hidden');
         
         // Close all other dropdowns
-        mobileDropdownToggles.forEach(otherToggle => {
+        mobileDropdownToggles.forEach((otherToggle: HTMLElement) => {
           if (otherToggle !== this) {
             const otherDropdown = otherToggle.parentElement;
             const otherMenu = otherDropdown?.querySelector('.mobile-dropdown-menu');
@@ -255,3 +270,446 @@ const currentPath = Astro.url.pathname;
     });
   });
 </script>
+
+<style>
+  /* Modern Navbar Styles */
+  .modern-navbar {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .navbar-border {
+    height: 3px;
+    background: linear-gradient(90deg, 
+      #3b82f6 0%, 
+      #8b5cf6 25%, 
+      #06b6d4 50%, 
+      #10b981 75%, 
+      #3b82f6 100%);
+    background-size: 200% 100%;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+  
+  @keyframes shimmer {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* Brand Section */
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .brand-link:hover {
+    transform: scale(1.02);
+  }
+  
+  .brand-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .brand-icon::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shine 3s ease-in-out infinite;
+  }
+  
+  @keyframes shine {
+    0%, 100% {
+      transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    50% {
+      transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+  }
+  
+  .icon-text {
+    font-size: 1.25rem;
+    z-index: 1;
+    position: relative;
+  }
+  
+  .brand-text {
+    color: #f8fafc;
+    font-weight: 700;
+    font-size: 1.125rem;
+    background: linear-gradient(45deg, #f8fafc, #cbd5e1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Navigation Links */
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #cbd5e1;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 0.75rem;
+  }
+  
+  .nav-link:hover::before {
+    opacity: 1;
+  }
+  
+  .nav-link:hover {
+    color: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  }
+  
+  .nav-link.active {
+    color: #f8fafc;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3);
+  }
+  
+  .nav-icon {
+    font-size: 1rem;
+    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.5));
+  }
+  
+  /* Dropdown Styles */
+  .nav-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .nav-dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nav-dropdown-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 0.75rem;
+  }
+  
+  .nav-dropdown:hover .nav-dropdown-btn::before {
+    opacity: 1;
+  }
+  
+  .nav-dropdown:hover .nav-dropdown-btn {
+    color: #f8fafc;
+    transform: translateY(-1px);
+  }
+  
+  .dropdown-arrow {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 14rem;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    border-radius: 1rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(20px);
+  }
+  
+  .nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 0.25rem;
+  }
+  
+  .dropdown-item:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: #f8fafc;
+    transform: translateX(4px);
+  }
+  
+  .dropdown-item.featured {
+    background: linear-gradient(45deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+    color: #10b981;
+    font-weight: 600;
+  }
+  
+  .dropdown-item.featured:hover {
+    background: linear-gradient(45deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.2));
+    color: #34d399;
+  }
+  
+  .item-icon {
+    font-size: 1rem;
+    width: 1.25rem;
+    text-align: center;
+  }
+  
+  .dropdown-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.3), transparent);
+    margin: 0.5rem 0;
+  }
+  
+  .dropdown-coming-soon {
+    padding: 0.75rem 1rem;
+    color: #64748b;
+    font-style: italic;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .coming-icon {
+    font-size: 1rem;
+  }
+  
+  .dropdown-preview {
+    padding: 0.5rem 1rem;
+  }
+  
+  .preview-title {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 0.25rem;
+  }
+  
+  .preview-items {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+  
+  /* Mobile Menu Button */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    color: #cbd5e1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .mobile-menu-btn:hover {
+    color: #f8fafc;
+    background: rgba(59, 130, 246, 0.1);
+    transform: scale(1.05);
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+  }
+  
+  .mobile-menu-content {
+    padding: 1rem;
+    space-y: 0.5rem;
+  }
+  
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mobile-nav-link:hover {
+    color: #f8fafc;
+    background: rgba(59, 130, 246, 0.1);
+    transform: translateX(4px);
+  }
+  
+  .mobile-nav-icon {
+    font-size: 1.25rem;
+    width: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Mobile Dropdown */
+  .mobile-dropdown {
+    margin-bottom: 0.5rem;
+  }
+  
+  .mobile-dropdown-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+  }
+  
+  .mobile-dropdown-toggle:hover {
+    color: #f8fafc;
+    background: rgba(59, 130, 246, 0.1);
+  }
+  
+  .mobile-dropdown-arrow {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-dropdown-toggle[aria-expanded="true"] .mobile-dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .mobile-dropdown-menu {
+    padding-left: 2rem;
+    margin-top: 0.5rem;
+  }
+  
+  .mobile-dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 0.25rem;
+  }
+  
+  .mobile-dropdown-item:hover {
+    color: #f8fafc;
+    background: rgba(59, 130, 246, 0.1);
+    transform: translateX(4px);
+  }
+  
+  .mobile-dropdown-item.featured {
+    color: #10b981;
+    font-weight: 600;
+  }
+  
+  .mobile-dropdown-item.featured:hover {
+    color: #34d399;
+  }
+  
+  .mobile-coming-soon {
+    padding: 0.5rem 1rem;
+    color: #64748b;
+    font-style: italic;
+    font-size: 0.875rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .brand-text {
+      font-size: 1rem;
+    }
+    
+    .brand-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    .icon-text {
+      font-size: 1rem;
+    }
+  }
+</style>

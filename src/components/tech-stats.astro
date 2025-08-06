@@ -46,24 +46,75 @@
         </div>
     </div>
     
-    <div class="course-stats">
-        <h3>📈 Estadísticas de Cursos</h3>
-        <div class="stats-mini-grid">
-            <div class="stat-item">
-                <span class="stat-number">3</span>
-                <span class="stat-label">Cursos Activos</span>
+    <div class="knowledge-bento">
+
+        <div class="bento-grid">
+            <!-- Temas - Bloque grande principal -->
+            <div class="bento-item large temas" onclick="showTemas()">
+                <div class="bento-content">
+                    <div class="bento-header">
+                        <span class="bento-icon">📚</span>
+                        <span class="bento-number">6</span>
+                    </div>
+                    <h4 class="bento-title">Temas</h4>
+                    <p class="bento-desc">Explora tu contenido</p>
+                    <div class="bento-decoration">
+                        <div class="floating-dots">
+                            <span>🔐</span>
+                            <span>🛡️</span>
+                            <span>🔑</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">85%</span>
-                <span class="stat-label">Progreso Global</span>
+
+            <!-- Certificaciones - Bloque vertical -->
+            <div class="bento-item tall certs" onclick="showCertificaciones()">
+                <div class="bento-content">
+                    <span class="bento-icon cert-icon">🎓</span>
+                    <span class="bento-number">3</span>
+                    <h4 class="bento-title">Certificaciones</h4>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">2.5h</span>
-                <span class="stat-label">Tiempo Hoy</span>
+
+            <!-- Ejercicios - Bloque interactivo -->
+            <div class="bento-item medium exercises" onclick="goToLaboratorio()">
+                <div class="bento-content exercises-layout">
+                    <div class="exercises-left">
+                        <div class="lab-animation">
+                            <span class="bento-icon lab-icon">🧪</span>
+                            <div class="bubbles">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="exercises-right">
+                        <span class="bento-number">5</span>
+                        <h4 class="bento-title">Ejercicios</h4>
+                        <p class="bento-desc">Práctica hands-on</p>
+                    </div>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">7</span>
-                <span class="stat-label">Días de Racha</span>
+
+            <!-- Tema Aleatorio - Bloque especial -->
+            <div class="bento-item wide random-dice" onclick="showRandomTopic()">
+                <div class="bento-content">
+                    <div class="dice-container">
+                        <span class="bento-icon dice-icon">🎲</span>
+                        <div class="dice-glow"></div>
+                    </div>
+                    <div class="random-text">
+                        <h4 class="bento-title">Tema Aleatorio</h4>
+                        <p class="bento-desc">¿Qué estudiamos hoy?</p>
+                    </div>
+                    <div class="sparkles">
+                        <span>✨</span>
+                        <span>⭐</span>
+                        <span>✨</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -105,6 +156,88 @@
             observer.observe(item);
         });
     });
+
+    // Funciones para las stats clickeables
+    function showTemas() {
+        // Scroll al hub de categorías
+        const categoriesTab = document.getElementById('categories-tab');
+        if (categoriesTab) {
+            categoriesTab.scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    }
+
+    function showCertificaciones() {
+        // Cambiar al tab de certificaciones
+        const tabBtn = document.querySelector('[data-tab="certifications"]');
+        const tabPanel = document.getElementById('certifications-tab');
+        
+        if (tabBtn && tabPanel) {
+            // Activar tab
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+            
+            tabBtn.classList.add('active');
+            tabPanel.classList.add('active');
+            
+            // Scroll suave
+            tabPanel.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function goToLaboratorio() {
+        window.location.href = '/cyber/interactivo';
+    }
+
+    function showRandomTopic() {
+        const topics = [
+            { name: 'Criptografía AES', url: '/cyber/criptografia', icon: '🔐' },
+            { name: 'CIA Triad', url: '/cyber/CIA', icon: '🛡️' },
+            { name: 'PKI Infraestructura', url: '/cyber/pki', icon: '🔑' },
+            { name: 'NIST Framework', url: '/cyber/nist', icon: '📋' },
+            { name: 'Laboratorio Interactivo', url: '/cyber/interactivo', icon: '🧪' },
+            { name: 'Redes WiFi', url: '/redes/wifi', icon: '📡' }
+        ];
+        
+        const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+        
+        // Mostrar modal con el tema aleatorio
+        const modal = document.createElement('div');
+        modal.className = 'random-topic-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🎲 Tema Aleatorio</h3>
+                    <button onclick="this.parentElement.parentElement.parentElement.remove()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="random-topic-card">
+                        <span class="topic-icon">${randomTopic.icon}</span>
+                        <h4>${randomTopic.name}</h4>
+                        <p>¿Listo para repasar este tema?</p>
+                        <div class="topic-actions">
+                            <button onclick="window.location.href='${randomTopic.url}'" class="go-btn">
+                                📖 Ir al tema
+                            </button>
+                            <button onclick="showRandomTopic(); this.parentElement.parentElement.parentElement.parentElement.remove()" class="shuffle-btn">
+                                🔄 Otro tema
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Cerrar modal al hacer click fuera
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+    }
 </script>
 
 <style>
@@ -116,7 +249,7 @@
         margin-bottom: 40px;
     }
 
-    .tech-grid h3, .course-stats h3 {
+    .tech-grid h3, .knowledge-stats h3 {
         color: white;
         font-size: 1.5em;
         margin-bottom: 20px;
@@ -201,41 +334,460 @@
         text-align: center;
     }
 
-    /* Course Stats */
-    .course-stats .stats-mini-grid {
+    /* Bento Box Knowledge Stats */
+    .knowledge-bento .bento-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 20px;
+        grid-template-areas: 
+            "temas certs"
+            "exercises random";
+        height: 320px;
     }
 
-    .course-stats .stat-item {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 15px;
+    .bento-item {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .bento-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        border-radius: inherit;
+    }
+
+    .bento-item:hover::before {
+        opacity: 1;
+    }
+
+    .bento-item:hover {
+        transform: translateY(-8px) rotate(0.5deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Layouts específicos */
+    .bento-item.large {
+        grid-area: temas;
+    }
+
+    .bento-item.tall {
+        grid-area: certs;
+    }
+
+    .bento-item.medium {
+        grid-area: exercises;
+    }
+
+    .bento-item.wide {
+        grid-area: random;
+    }
+
+    .bento-content {
+        padding: 24px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Temas - Bloque principal */
+    .bento-item.temas {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+        border-color: rgba(59, 130, 246, 0.2);
+    }
+
+    .bento-item.temas:hover {
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        transform: translateY(-8px) rotate(-0.5deg);
+    }
+
+    .bento-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        width: 100%;
+    }
+
+    .floating-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: auto;
+        width: 100%;
+    }
+
+    .floating-dots span {
+        font-size: 1.2em;
+        opacity: 0.6;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .floating-dots span:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+
+    .floating-dots span:nth-child(3) {
+        animation-delay: 1s;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-8px) rotate(5deg); }
+    }
+
+    /* Certificaciones - Bloque vertical */
+    .bento-item.certs {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+        border-color: rgba(245, 158, 11, 0.2);
+    }
+
+    .bento-item.certs:hover {
+        box-shadow: 0 20px 40px rgba(245, 158, 11, 0.3);
+    }
+
+    .cert-icon {
+        display: block;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+
+    /* Ejercicios - Bloque con animación */
+    .bento-item.exercises {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+        border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .bento-item.exercises:hover {
+        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+    }
+
+    /* Layout específico para ejercicios */
+    .bento-content.exercises-layout {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        text-align: left;
+    }
+
+    .exercises-left {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .exercises-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .lab-animation {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lab-icon {
+        position: relative;
+        z-index: 2;
+    }
+
+    .bubbles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .bubbles span {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: rgba(16, 185, 129, 0.6);
+        border-radius: 50%;
+        animation: bubble 2s infinite;
+    }
+
+    .bubbles span:nth-child(1) {
+        left: -20px;
+        animation-delay: 0s;
+    }
+
+    .bubbles span:nth-child(2) {
+        left: 0px;
+        animation-delay: 0.7s;
+    }
+
+    .bubbles span:nth-child(3) {
+        left: 20px;
+        animation-delay: 1.4s;
+    }
+
+    @keyframes bubble {
+        0% { transform: translateY(0); opacity: 1; }
+        50% { transform: translateY(-15px); opacity: 0.7; }
+        100% { transform: translateY(-30px); opacity: 0; }
+    }
+
+    /* Tema Aleatorio - Bloque especial */
+    .bento-item.random-dice {
+        background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(79, 70, 229, 0.1));
+        border-color: rgba(147, 51, 234, 0.2);
+    }
+
+    .bento-item.random-dice:hover {
+        box-shadow: 0 20px 40px rgba(147, 51, 234, 0.3);
+        transform: translateY(-8px) rotate(1deg);
+    }
+
+    .bento-item.random-dice .bento-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        text-align: left;
+    }
+
+    .dice-container {
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .dice-icon {
+        font-size: 2em;
+        animation: spin 4s linear infinite;
+        position: relative;
+        z-index: 2;
+    }
+
+    .dice-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        background: radial-gradient(circle, rgba(147, 51, 234, 0.3), transparent);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+        50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+    }
+
+    .random-text {
+        flex: 1;
+    }
+
+    .sparkles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        opacity: 0.7;
+        flex-shrink: 0;
+    }
+
+    .sparkles span {
+        animation: twinkle 1.5s ease-in-out infinite;
+    }
+
+    .sparkles span:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+
+    .sparkles span:nth-child(3) {
+        animation-delay: 1s;
+    }
+
+    @keyframes twinkle {
+        0%, 100% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Estilos de texto comunes */
+    .bento-icon {
+        font-size: 2em;
+        filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
+    }
+
+    .bento-number {
+        font-size: 2.5em;
+        font-weight: 800;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        line-height: 1;
+    }
+
+    .bento-title {
+        color: white;
+        font-size: 1.1em;
+        font-weight: 600;
+        margin: 8px 0 4px 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        text-align: center;
+        width: 100%;
+    }
+
+    .bento-desc {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.85em;
+        margin: 0;
+        line-height: 1.4;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Modal para tema aleatorio */
+    .random-topic-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        backdrop-filter: blur(10px);
+    }
+
+    .modal-content {
+        background: linear-gradient(135deg, #1e293b, #334155);
+        border-radius: 1rem;
+        max-width: 400px;
+        width: 90%;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        overflow: hidden;
+    }
+
+    .modal-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-header h3 {
+        color: #f8fafc;
+        margin: 0;
+        font-size: 1.25rem;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        color: #94a3b8;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
         transition: all 0.3s ease;
     }
 
-    .course-stats .stat-item:hover {
-        transform: scale(1.05);
-        background: rgba(255, 255, 255, 0.15);
+    .close-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #f8fafc;
     }
 
-    .course-stats .stat-number {
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .random-topic-card {
+        text-align: center;
+    }
+
+    .topic-icon {
+        font-size: 3rem;
         display: block;
-        font-size: 1.8em;
-        font-weight: bold;
-        color: white;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        margin-bottom: 3px;
+        margin-bottom: 1rem;
     }
 
-    .course-stats .stat-label {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.8em;
+    .random-topic-card h4 {
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+    }
+
+    .random-topic-card p {
+        color: #cbd5e1;
+        margin-bottom: 1.5rem;
+    }
+
+    .topic-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+    }
+
+    .go-btn, .shuffle-btn {
+        padding: 0.75rem 1.25rem;
+        border: none;
+        border-radius: 0.5rem;
         font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.875rem;
+    }
+
+    .go-btn {
+        background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+        color: white;
+    }
+
+    .go-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .shuffle-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: #cbd5e1;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .shuffle-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #f8fafc;
     }
 
     /* Responsive */
@@ -260,8 +812,52 @@
             font-size: 0.7em;
         }
         
-        .course-stats .stats-mini-grid {
-            grid-template-columns: repeat(2, 1fr);
+        .knowledge-bento .bento-grid {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto auto;
+            grid-template-areas: 
+                "temas"
+                "certs"
+                "exercises"
+                "random";
+            height: auto;
+            gap: 16px;
+        }
+
+        .bento-content {
+            padding: 20px;
+        }
+
+        .bento-header {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bento-content.exercises-layout {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exercises-left, .exercises-right {
+            width: 100%;
+            text-align: center;
+        }
+
+        .bento-item.random-dice .bento-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .random-text {
+            text-align: center;
+            width: 100%;
+        }
+
+        .bento-number {
+            font-size: 2em;
         }
     }
 
@@ -270,12 +866,36 @@
             grid-template-columns: repeat(5, 1fr);
         }
         
-        .course-stats .stats-mini-grid {
-            grid-template-columns: 1fr;
+        .knowledge-bento .bento-grid {
+            gap: 12px;
+        }
+
+        .bento-content {
+            padding: 16px;
+        }
+
+        .bento-item.random-dice .bento-content {
+            padding: 12px;
+        }
+
+        .bento-title {
+            font-size: 1em;
+        }
+
+        .bento-number {
+            font-size: 1.8em;
+        }
+
+        .bento-icon {
+            font-size: 1.5em;
         }
         
-        .tech-grid h3, .course-stats h3 {
+        .tech-grid h3, .knowledge-bento h3 {
             font-size: 1.3em;
+        }
+
+        .topic-actions {
+            flex-direction: column;
         }
     }
 </style>
