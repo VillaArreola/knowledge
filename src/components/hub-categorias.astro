@@ -91,13 +91,29 @@
     }
     
     .knowledge-card {
-        background: white;
-        border-radius: 15px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.9) 100%);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 20px;
         padding: 25px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
+        box-shadow: 
+            0 8px 32px rgba(0,0,0,0.06),
+            0 2px 8px rgba(0,0,0,0.04),
+            inset 0 1px 0 rgba(255,255,255,0.9);
+        transition: all 0.4s ease;
         position: relative;
         overflow: hidden;
+    }
+
+    .knowledge-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        pointer-events: none;
     }
     
     .knowledge-card::before {
@@ -108,6 +124,7 @@
         right: 0;
         height: 4px;
         background: linear-gradient(90deg, #667eea, #764ba2);
+        z-index: 1;
     }
     
     .knowledge-card.cyber::before {
@@ -127,8 +144,12 @@
     }
     
     .knowledge-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 
+            0 20px 40px rgba(0,0,0,0.1),
+            0 8px 16px rgba(0,0,0,0.06),
+            inset 0 1px 0 rgba(255,255,255,0.95);
+        border-color: rgba(255,255,255,0.4);
     }
     
     .card-header {
@@ -136,24 +157,37 @@
         align-items: center;
         gap: 15px;
         margin-bottom: 15px;
+        position: relative;
+        z-index: 2;
     }
     
     .card-icon {
         font-size: 2.5em;
         padding: 15px;
-        background: linear-gradient(45deg, #f7fafc, #edf2f7);
-        border-radius: 15px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.8) 100%);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 18px;
+        box-shadow: 
+            0 4px 12px rgba(0,0,0,0.05),
+            inset 0 1px 0 rgba(255,255,255,0.8);
     }
     
     .card-header h2 {
         font-size: 1.5em;
         color: #2d3748;
+        text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    }
+    
+    .card-content {
+        position: relative;
+        z-index: 2;
     }
     
     .card-content p {
-        color: #718096;
+        color: #5a6c7d;
         margin-bottom: 20px;
         line-height: 1.6;
+        text-shadow: 0 1px 1px rgba(255,255,255,0.5);
     }
     
     .topics-grid {
@@ -165,51 +199,68 @@
     
     .topic-tag {
         display: inline-block;
-        padding: 6px 12px;
-        background: #f7fafc;
-        border: 2px solid #e2e8f0;
-        border-radius: 20px;
+        padding: 8px 14px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(248,250,252,0.8) 100%);
+        border: 1px solid rgba(255,255,255,0.4);
+        border-radius: 25px;
         font-size: 0.85em;
         text-decoration: none;
         color: #4a5568;
         transition: all 0.3s ease;
+        backdrop-filter: blur(8px);
+        box-shadow: 
+            0 2px 8px rgba(0,0,0,0.04),
+            inset 0 1px 0 rgba(255,255,255,0.7);
     }
     
     .topic-tag:hover {
-        background: #667eea;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
-        border-color: #667eea;
-        transform: scale(1.05);
+        border-color: rgba(102, 126, 234, 0.3);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 
+            0 6px 16px rgba(102, 126, 234, 0.2),
+            0 2px 4px rgba(0,0,0,0.1);
     }
     
     .topic-tag.interactive {
-        background: linear-gradient(45deg, #ff9a9e, #fecfef);
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
         color: white;
-        border-color: transparent;
+        border-color: rgba(255, 154, 158, 0.3);
         font-weight: 600;
+        box-shadow: 
+            0 4px 12px rgba(255, 154, 158, 0.2),
+            inset 0 1px 0 rgba(255,255,255,0.3);
     }
     
     .topic-tag.interactive:hover {
-        background: linear-gradient(45deg, #ff7675, #fd79a8);
+        background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+        box-shadow: 
+            0 8px 20px rgba(255, 118, 117, 0.3),
+            0 2px 4px rgba(0,0,0,0.1);
     }
     
     .topic-tag.coming-soon {
-        background: #f8f9fa;
+        background: linear-gradient(135deg, rgba(248,249,250,0.6) 0%, rgba(233,236,239,0.7) 100%);
         color: #adb5bd;
-        border-color: #dee2e6;
+        border-color: rgba(222, 226, 230, 0.5);
         cursor: not-allowed;
+        opacity: 0.7;
     }
     
     .card-footer {
-        border-top: 1px solid #e2e8f0;
+        border-top: 1px solid rgba(226, 232, 240, 0.5);
         padding-top: 15px;
         text-align: center;
+        position: relative;
+        z-index: 2;
     }
     
     .progress-indicator {
         font-size: 0.9em;
         color: #48bb78;
         font-weight: 600;
+        text-shadow: 0 1px 1px rgba(255,255,255,0.5);
     }
     
     .progress-indicator.coming {
@@ -220,6 +271,10 @@
     @media (max-width: 768px) {
         .knowledge-grid {
             grid-template-columns: 1fr;
+        }
+        
+        .knowledge-card:hover {
+            transform: translateY(-6px) scale(1.01);
         }
     }
 </style>

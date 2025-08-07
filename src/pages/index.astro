@@ -918,17 +918,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* Content Tabs */
     .content-tabs {
-        background: white;
+        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.98) 100%);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        box-shadow: 
+            0 10px 30px rgba(0,0,0,0.08),
+            0 4px 12px rgba(102,126,234,0.1),
+            inset 0 1px 0 rgba(255,255,255,0.8);
         margin-bottom: 40px;
+        position: relative;
+    }
+
+    .content-tabs::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(102,126,234,0.02) 0%, rgba(118,75,162,0.02) 100%);
+        pointer-events: none;
     }
 
     .tab-switcher {
         display: flex;
-        background: #f8f9fa;
-        border-bottom: 1px solid #e9ecef;
+        background: linear-gradient(90deg, rgba(248,249,250,0.8) 0%, rgba(233,236,239,0.6) 100%);
+        border-bottom: 1px solid rgba(233,236,239,0.5);
+        position: relative;
+        z-index: 1;
     }
 
     .tab-btn {
@@ -946,7 +965,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .tab-btn.active {
         color: #667eea;
-        background: white;
+        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.9) 100%);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-bottom: none;
+        box-shadow: 
+            0 -2px 8px rgba(102,126,234,0.1),
+            inset 0 1px 0 rgba(255,255,255,0.9);
     }
 
     .tab-btn.active::after {
@@ -957,15 +982,20 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 0;
         height: 3px;
         background: linear-gradient(90deg, #667eea, #764ba2);
+        box-shadow: 0 2px 8px rgba(102,126,234,0.3);
     }
 
     .tab-btn:hover:not(.active) {
-        background: #e9ecef;
+        background: linear-gradient(135deg, rgba(233,236,239,0.8) 0%, rgba(203,213,224,0.6) 100%);
         color: #495057;
+        backdrop-filter: blur(6px);
     }
 
     .tab-content {
         padding: 30px;
+        background: rgba(255,255,255,0.4);
+        position: relative;
+        z-index: 1;
     }
 
     .tab-panel {
