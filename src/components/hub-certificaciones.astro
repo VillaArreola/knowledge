@@ -1,7 +1,7 @@
 <!-- Hub de Certificaciones y Cursos -->
 <div class="certifications-grid">
     <!-- CompTIA Security+ -->
-    <div class="cert-card comptia">
+    <a class="cert-card comptia" href="/cert/SY0-701">
         <div class="cert-header">
             <div class="cert-logo">🛡️</div>
             <div class="cert-info">
@@ -22,10 +22,10 @@
             <span class="topic-tag current">📖 PKI</span>
             <span class="topic-tag pending">⏳ Network Security</span>
         </div>
-    </div>
+    </a>
 
     <!-- CFE (Certified Forensic Examiner) -->
-    <div class="cert-card cfe">
+    <a class="cert-card cfe" href="/cert/CFE">
         <div class="cert-header">
             <div class="cert-logo">🔍</div>
             <div class="cert-info">
@@ -46,10 +46,10 @@
             <span class="topic-tag pending">⏳ Legal Procedures</span>
             <span class="topic-tag pending">⏳ Report Writing</span>
         </div>
-    </div>
+    </a>
 
     <!-- Fortinet NSE -->
-    <div class="cert-card fortinet">
+    <a class="cert-card fortinet" href="/cert/NSE4_FGT-7.2">
         <div class="cert-header">
             <div class="cert-logo">🔥</div>
             <div class="cert-info">
@@ -70,10 +70,10 @@
             <span class="topic-tag pending">⏳ VPN Configuration</span>
             <span class="topic-tag pending">⏳ Threat Protection</span>
         </div>
-    </div>
+    </a>
 
     <!-- Azure AI-900 -->
-    <div class="cert-card azure">
+    <a class="cert-card azure" href="/cert/AI-900">
         <div class="cert-header">
             <div class="cert-logo">☁️</div>
             <div class="cert-info">
@@ -94,10 +94,10 @@
             <span class="topic-tag pending">⏳ Computer Vision</span>
             <span class="topic-tag pending">⏳ Natural Language</span>
         </div>
-    </div>
+    </a>
 
     <!-- CCNA -->
-    <div class="cert-card cisco">
+    <a class="cert-card cisco" href="/cert/200-301">
         <div class="cert-header">
             <div class="cert-logo">🌐</div>
             <div class="cert-info">
@@ -118,10 +118,10 @@
             <span class="topic-tag pending">⏳ IP Connectivity</span>
             <span class="topic-tag pending">⏳ Security Fundamentals</span>
         </div>
-    </div>
+    </a>
 
     <!-- AWS Cloud Practitioner -->
-    <div class="cert-card aws">
+    <a class="cert-card aws" href="/cert/CLF-C02">
         <div class="cert-header">
             <div class="cert-logo">📦</div>
             <div class="cert-info">
@@ -142,7 +142,7 @@
             <span class="topic-tag pending">⏳ Technology Services</span>
             <span class="topic-tag pending">⏳ Billing & Pricing</span>
         </div>
-    </div>
+    </a>
 </div>
 
 <style>
@@ -154,6 +154,7 @@
     }
 
     .cert-card {
+        display: block;
         background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.9) 100%);
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255,255,255,0.25);
@@ -336,9 +337,13 @@
         gap: 8px;
         position: relative;
         z-index: 2;
+        align-items: center;
     }
 
     .cert-topics .topic-tag {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
         padding: 6px 12px;
         border-radius: 18px;
         font-size: 0.8em;
@@ -360,7 +365,7 @@
         background: linear-gradient(135deg, rgba(254,215,215,0.9) 0%, rgba(252,165,165,0.8) 100%);
         color: #742a2a;
         border-color: rgba(116, 42, 42, 0.2);
-        animation: pulse 2s infinite;
+        animation: pulseOpacity 2s infinite;
         box-shadow: 
             0 4px 12px rgba(116, 42, 42, 0.15),
             inset 0 1px 0 rgba(255,255,255,0.6);
@@ -372,15 +377,9 @@
         border-color: rgba(160, 174, 192, 0.2);
     }
 
-    @keyframes pulse {
-        0%, 100% { 
-            opacity: 1; 
-            transform: scale(1);
-        }
-        50% { 
-            opacity: 0.8; 
-            transform: scale(1.02);
-        }
+    @keyframes pulseOpacity {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.85; }
     }
 
     /* Responsive */

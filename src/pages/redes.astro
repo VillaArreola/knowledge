@@ -1,0 +1,182 @@
+---
+// Página de Redes integrada al diseño general
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+const title = "Redes - Índice de Temas";
+const description = "Índice dinámico de todos los temas de redes cargado automáticamente";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title} | Knowledge Base</title>
+    <meta name="description" content={description}>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <Navbar />
+
+    <!-- Main Content -->
+    <main class="networks-main">
+      <div class="networks-page">
+        <!-- Hero Section -->
+        <section class="hero-section bg-gradient-to-r from-green-400 to-blue-500 text-white py-12">
+            <div class="container mx-auto px-4 text-center">
+                <div class="hero-badge inline-flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm font-medium">
+                    <span class="badge-icon text-2xl">🌐</span>
+                    <span class="badge-text">Knowledge Base</span>
+                </div>
+                
+                <h1 class="hero-title text-4xl md:text-5xl font-extrabold mt-4">
+                    Redes
+                </h1>
+                
+                <p class="hero-description text-lg md:text-xl mt-4 max-w-3xl mx-auto">
+                    Explora protocolos, arquitecturas, infraestructura y tecnologías de red. 
+                    Desde conceptos fundamentales hasta tecnologías emergentes y administración avanzada.
+                </p>
+                
+                <div class="hero-stats flex justify-center items-center gap-8 mt-6">
+                    <div class="stat-item text-center">
+                        <span class="stat-number text-3xl font-bold" id="topics-count">-</span>
+                        <span class="stat-label text-sm text-gray-200">Temas</span>
+                    </div>
+                    <div class="stat-divider w-px h-8 bg-gray-300"></div>
+                    <div class="stat-item text-center">
+                        <span class="stat-number text-3xl font-bold" id="sections-count">-</span>
+                        <span class="stat-label text-sm text-gray-200">Secciones</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Grid -->
+        <section class="content-section py-12 bg-gray-100">
+            <div class="content-container container mx-auto px-4">
+                <div class="section-header text-center mb-8">
+                    <h2 class="section-title text-3xl font-bold text-gray-800">Contenido Organizado</h2>
+                    <p class="section-subtitle text-lg text-gray-600 mt-2">
+                        Navega por los diferentes temas organizados por categorías especializadas
+                    </p>
+                </div>
+                
+                <!-- Dynamic Index -->
+                <div class="index-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="dynamic-index">
+                    <!-- Loading State -->
+                    <div class="loading-wrapper">
+                        <div class="loading-animation">
+                            <div class="loading-dots flex justify-center items-center gap-2">
+                                <div class="dot w-3 h-3 bg-gray-400 rounded-full animate-pulse"></div>
+                                <div class="dot w-3 h-3 bg-gray-400 rounded-full animate-pulse delay-150"></div>
+                                <div class="dot w-3 h-3 bg-gray-400 rounded-full animate-pulse delay-300"></div>
+                            </div>
+                            <p class="loading-text text-gray-500 mt-4">Cargando contenido...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer global -->
+    <Footer />
+
+</body>
+</html>
+
+<script>
+// @ts-nocheck
+// Sistema de carga dinámica desde JSON para Redes
+class NetworksIndex {
+    constructor() {
+        this.searchIndex = null;
+        this.sections = null;
+        this.init();
+    }
+
+    async init() {
+        console.log('🚀 Iniciando NetworksIndex...');
+        try {
+            await this.loadSearchIndex();
+            console.log('✅ JSON cargado exitosamente');
+            this.buildIndex();
+            console.log('✅ Índice construido');
+            console.log('✅ Inicialización completa');
+        } catch (error) {
+            console.error('❌ Error inicializando índice:', error);
+            this.showError();
+        }
+    }
+
+    async loadSearchIndex() {
+        try {
+            const response = await fetch('/search-index.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            this.searchIndex = data.pages.filter(page => page.category === 'Redes');
+            console.log('Páginas de la categoría Redes cargadas:', this.searchIndex);
+        } catch (error) {
+            console.error('Error cargando índice de búsqueda:', error);
+            throw error;
+        }
+    }
+
+    buildIndex() {
+        const indexContainer = document.getElementById('dynamic-index');
+        if (!indexContainer) {
+            console.error('No se encontró el contenedor dynamic-index');
+            return;
+        }
+
+        if (!this.searchIndex || this.searchIndex.length === 0) {
+            indexContainer.innerHTML = '<p>No hay temas disponibles en la categoría Redes.</p>';
+            return;
+        }
+
+        const html = this.searchIndex.map(page => `
+            <a href="${page.url}" class="topic-link flex flex-col p-4 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition">
+                <span class="icon text-2xl mb-2">${page.icon || '📄'}</span>
+                <h3 class="text-lg font-semibold text-white">${page.title}</h3>
+                <p class="text-sm text-gray-400">${page.description}</p>
+            </a>
+        `).join('');
+
+        indexContainer.innerHTML = html;
+    }
+
+    showError() {
+        const indexContainer = document.getElementById('dynamic-index');
+        if (indexContainer) {
+            indexContainer.innerHTML = `
+                <div class="loading-wrapper">
+                    <div class="loading-animation">
+                        <div style="color: #ff6b6b; font-size: 2rem; margin-bottom: 20px;">⚠️</div>
+                        <p style="color: #ff6b6b;">Error cargando el contenido</p>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Revisa la consola para más detalles</p>
+                    </div>
+                </div>
+            `;
+        }
+    }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    new NetworksIndex();
+});
+</script>

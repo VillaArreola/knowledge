@@ -1,6 +1,17 @@
 {
   "pages": [
     {
+      "title": "SDWan",
+      "url": "/redes/sdwan",
+      "category": "Redes",
+      "section": "sdwan",
+      "icon": "🌐",
+      "status": "completed",
+      "order": 1,
+      "tags": ["cifrado", "AES", "DES", "encriptación", "algoritmos", "seguridad"],
+      "description": "Fundamentos de criptografía, algoritmos de cifrado y protección de datos"
+    },
+    {
       "title": "Criptografía",
       "url": "/cyber/criptografia",
       "category": "Ciberseguridad",

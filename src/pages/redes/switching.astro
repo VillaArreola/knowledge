@@ -1,0 +1,967 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+
+<WikiLayout title="🖧 Seguridad en Switches y Redes de Capa 2" description="Aprende sobre amenazas comunes en switches, tabla CAM, ataques MAC flooding y spoofing, y mejores prácticas de seguridad en redes de capa 2">
+
+<!-- Header Principal -->
+<div class="header">
+    <h1>🖧 Seguridad en Switches y Redes de Capa 2</h1>
+    <p>Los switches operan en la Capa 2 del modelo OSI, asignando paquetes a puertos según direcciones MAC. Aunque eficientes, presentan vulnerabilidades específicas que debemos conocer y mitigar.</p>
+</div>
+
+<!-- Cards de Conceptos Principales -->
+<div class="card primary-card">
+    <h3><span class="icon">📊</span>Tabla CAM (Content Addressable Memory)</h3>
+    <p>Base de datos interna que asocia direcciones MAC con puertos del switch para reenvío rápido de paquetes sin broadcast.</p>
+    
+    <div class="concept-item" onclick="showDetails('cam_table')">
+        <h4>🔍 Funcionamiento de la Tabla CAM</h4>
+        <p>Aprende dirección MAC → puerto automáticamente cuando un dispositivo envía tráfico</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('cam_benefits')">
+        <h4>⚡ Beneficios de Rendimiento</h4>
+        <p>Elimina broadcasts innecesarios y acelera el reenvío de tramas</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('cam_vulnerabilities')">
+        <h4>⚠️ Vulnerabilidades Inherentes</h4>
+        <p>La tabla CAM limitada puede ser explotada por atacantes maliciosos</p>
+    </div>
+</div>
+
+<div class="card secondary-card">
+    <h3><span class="icon">💥</span>Ataques Comunes en Switches</h3>
+    <p>Principales vectores de ataque que explotan las características de funcionamiento de los switches de capa 2.</p>
+    
+    <div class="concept-item" onclick="showDetails('broadcast_storm')">
+        <h4>🌪️ Tormentas de Broadcast</h4>
+        <p>Saturación de la red por excesivo tráfico de difusión que colapsa el rendimiento</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('mac_flooding')">
+        <h4>💣 MAC Flooding Attack</h4>
+        <p>Llenar la tabla CAM con direcciones falsas para convertir el switch en hub</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('mac_spoofing')">
+        <h4>🎭 MAC Spoofing</h4>
+        <p>Falsificación de direcciones MAC para suplantar identidad y evadir controles</p>
+    </div>
+</div>
+
+<div class="card tertiary-card">
+    <h3><span class="icon">🛡️</span>Medidas de Protección</h3>
+    <p>Técnicas y configuraciones para asegurar switches y mitigar amenazas de capa 2 efectivamente.</p>
+    
+    <div class="concept-item" onclick="showDetails('port_security')">
+        <h4>🔒 Port Security</h4>
+        <p>Control de acceso por puerto limitando y validando direcciones MAC permitidas</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('vlans_security')">
+        <h4>🧱 Segmentación con VLANs</h4>
+        <p>Separación lógica del tráfico para reducir superficie de ataque</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('dot1x_auth')">
+        <h4>🔐 Autenticación 802.1X</h4>
+        <p>Autenticación de dispositivos antes del acceso a la red mediante RADIUS</p>
+    </div>
+</div>
+
+<!-- Ejemplo Práctico -->
+<div class="practical-example">
+    <h3>💼 Caso Práctico: Empresa con 200 Empleados</h3>
+    
+    <div class="example-aspect">
+        <h4>🏢 Escenario</h4>
+        <p>Red corporativa con switches de acceso, empleados BYOD y red de invitados</p>
+        <strong>Herramientas:</strong> Switches Cisco/HP, servidor RADIUS, software de monitoreo
+    </div>
+    
+    <div class="example-aspect">
+        <h4>⚠️ Amenazas Identificadas</h4>
+        <p>Dispositivos no autorizados, ataques internos, y fuga de información por sniffing</p>
+        <strong>Herramientas:</strong> Wireshark, Nmap, herramientas de pentesting de red
+    </div>
+    
+    <div class="example-aspect">
+        <h4>🛡️ Solución Implementada</h4>
+        <p>Port security, VLANs separadas, 802.1X y monitoreo continuo de tabla CAM</p>
+        <strong>Herramientas:</strong> Configuración CLI, RADIUS server, SIEM para alertas
+    </div>
+</div>
+
+<!-- Técnica Mnemotécnica -->
+<div class="mnemonic">
+    🧠 Acrónimo para recordar las amenazas: <strong>"MAC-BS"</strong>
+    <br>
+    <strong>M</strong>AC Flooding, <strong>A</strong>RP Spoofing, <strong>C</strong>AM Overflow, <strong>B</strong>roadcast Storm, <strong>S</strong>witch Spoofing
+</div>
+
+<!-- Configuración de Ejemplo -->
+<div class="code-example">
+    <h3>💻 Configuración de Port Security</h3>
+    <pre><code>! Habilitar port security en interfaz
+interface FastEthernet0/1
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky
+ switchport port-security violation restrict
+ 
+! Verificar configuración
+show port-security interface FastEthernet0/1</code></pre>
+</div>
+
+<!-- Quiz Container -->
+<div class="quiz-container">
+    <h3>🎯 Quiz de Conocimientos</h3>
+    <div id="quiz"></div>
+    <button id="nextQuestion" class="quiz-btn" onclick="nextQuestion()">Siguiente Pregunta</button>
+    <div id="result"></div>
+</div>
+
+<!-- Modal para detalles -->
+<div id="detailModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+</WikiLayout>
+
+<script>
+// Datos del quiz
+const questions = [
+    {
+        question: "¿Qué almacena la tabla CAM de un switch?",
+        options: [
+            "Direcciones IP y puertos",
+            "Direcciones MAC y puertos", 
+            "VLANs y direcciones IP",
+            "Rutas y métricas"
+        ],
+        correct: 1,
+        explanation: "La tabla CAM (Content Addressable Memory) almacena la asociación entre direcciones MAC y los puertos del switch para el reenvío eficiente de tramas."
+    },
+    {
+        question: "¿Qué ocurre cuando la tabla CAM se llena completamente?",
+        options: [
+            "El switch se reinicia automáticamente",
+            "Se borran las entradas más antiguas",
+            "El switch actúa como un hub",
+            "Se bloquean todas las conexiones"
+        ],
+        correct: 2,
+        explanation: "Cuando la tabla CAM está llena, el switch no puede aprender nuevas direcciones MAC y comienza a hacer flooding (actúa como hub), enviando tramas por todos los puertos."
+    },
+    {
+        question: "¿Cuál es el objetivo principal del ataque MAC Flooding?",
+        options: [
+            "Robar contraseñas directamente",
+            "Saturar la tabla CAM para hacer sniffing",
+            "Apagar el switch remotamente",
+            "Cambiar la configuración del switch"
+        ],
+        correct: 1,
+        explanation: "El MAC Flooding busca saturar la tabla CAM con direcciones MAC falsas para que el switch actúe como hub, permitiendo al atacante interceptar tráfico (sniffing)."
+    },
+    {
+        question: "¿Qué configuración limita el número de direcciones MAC por puerto?",
+        options: [
+            "MAC filtering",
+            "Port security",
+            "VLAN assignment",
+            "Spanning tree"
+        ],
+        correct: 1,
+        explanation: "Port security permite configurar límites en el número de direcciones MAC que pueden aprender en un puerto específico, previniendo ataques de MAC flooding."
+    }
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+// Función para mostrar la pregunta actual
+function showQuestion() {
+    if (currentQuestion < questions.length) {
+        const q = questions[currentQuestion];
+        const quizDiv = document.getElementById('quiz');
+        quizDiv.innerHTML = `
+            <div class="question">
+                <h4>Pregunta ${currentQuestion + 1}/${questions.length}</h4>
+                <p>${q.question}</p>
+                <div class="options">
+                    ${q.options.map((option, index) => `
+                        <label class="option">
+                            <input type="radio" name="answer" value="${index}">
+                            <span>${option}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Función para siguiente pregunta
+function nextQuestion() {
+    const selected = document.querySelector('input[name="answer"]:checked');
+    if (!selected) {
+        alert('Por favor selecciona una respuesta');
+        return;
+    }
+
+    const q = questions[currentQuestion];
+    const resultDiv = document.getElementById('result');
+    
+    if (parseInt(selected.value) === q.correct) {
+        score++;
+        resultDiv.innerHTML = `<div class="correct">✅ ¡Correcto! ${q.explanation}</div>`;
+    } else {
+        resultDiv.innerHTML = `<div class="incorrect">❌ Incorrecto. ${q.explanation}</div>`;
+    }
+
+    currentQuestion++;
+    
+    if (currentQuestion < questions.length) {
+        setTimeout(() => {
+            showQuestion();
+            resultDiv.innerHTML = '';
+        }, 3000);
+    } else {
+        setTimeout(() => {
+            showFinalResult();
+        }, 3000);
+    }
+}
+
+// Función para mostrar resultado final
+function showFinalResult() {
+    const percentage = (score / questions.length) * 100;
+    document.getElementById('quiz').innerHTML = `
+        <div class="final-result">
+            <h4>🎉 Quiz Completado</h4>
+            <p>Tu puntuación: ${score}/${questions.length} (${percentage.toFixed(1)}%)</p>
+            <button onclick="restartQuiz()" class="quiz-btn">Reiniciar Quiz</button>
+        </div>
+    `;
+    document.getElementById('nextQuestion').style.display = 'none';
+    document.getElementById('result').innerHTML = '';
+}
+
+// Función para reiniciar quiz
+function restartQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    document.getElementById('nextQuestion').style.display = 'block';
+    showQuestion();
+}
+
+// Función para mostrar detalles
+function showDetails(type) {
+    const details = {
+        cam_table: {
+            title: "Funcionamiento de la Tabla CAM 🔍",
+            content: `
+                <p><strong>Proceso de Aprendizaje:</strong></p>
+                <ul>
+                    <li>🔄 <strong>Aprendizaje automático:</strong> Cuando llega una trama, el switch examina la MAC origen</li>
+                    <li>📝 <strong>Registro:</strong> Asocia la MAC con el puerto de entrada en la tabla CAM</li>
+                    <li>⏰ <strong>Aging time:</strong> Entradas se eliminan tras 300 segundos por defecto</li>
+                    <li>🎯 <strong>Reenvío:</strong> Consulta tabla para determinar puerto de destino</li>
+                </ul>
+                <p><strong>Comandos útiles:</strong></p>
+                <code>show mac address-table<br>show mac address-table aging-time</code>
+            `
+        },
+        cam_benefits: {
+            title: "Beneficios de Rendimiento ⚡",
+            content: `
+                <p><strong>Ventajas operativas:</strong></p>
+                <ul>
+                    <li>🚀 <strong>Velocidad:</strong> Búsqueda de direcciones en hardware</li>
+                    <li>📡 <strong>Reducción de broadcasts:</strong> Solo envía donde es necesario</li>
+                    <li>⚡ <strong>Wire-speed:</strong> Procesamiento a velocidad de línea</li>
+                    <li>🎯 <strong>Eficiencia:</strong> Elimina colisiones y optimiza ancho de banda</li>
+                </ul>
+                <p><strong>Comparación con Hubs:</strong> Los hubs retransmiten por todos los puertos, generando colisiones y reduciendo el rendimiento.</p>
+            `
+        },
+        cam_vulnerabilities: {
+            title: "Vulnerabilidades Inherentes ⚠️",
+            content: `
+                <p><strong>Limitaciones de seguridad:</strong></p>
+                <ul>
+                    <li>🔢 <strong>Capacidad limitada:</strong> Típicamente 8,000-16,000 entradas</li>
+                    <li>🎭 <strong>No validación:</strong> Acepta cualquier MAC sin verificar autenticidad</li>
+                    <li>💥 <strong>Overflow behavior:</strong> Al llenarse, actúa como hub</li>
+                    <li>⏰ <strong>Aging attacks:</strong> Manipulación de tiempos de expiración</li>
+                </ul>
+                <p><strong>Impacto:</strong> Estas limitaciones permiten ataques de intercepción de tráfico y denegación de servicio.</p>
+            `
+        },
+        broadcast_storm: {
+            title: "Tormentas de Broadcast 🌪️",
+            content: `
+                <p><strong>Definición:</strong> Propagación excesiva de tramas broadcast que consume todo el ancho de banda disponible.</p>
+                <p><strong>Causas comunes:</strong></p>
+                <ul>
+                    <li>🔄 <strong>Loops de red:</strong> Ausencia de Spanning Tree Protocol</li>
+                    <li>🖥️ <strong>Aplicaciones mal configuradas:</strong> Software que genera broadcasts excesivos</li>
+                    <li>🦠 <strong>Malware:</strong> Código malicioso que inunda la red</li>
+                </ul>
+                <p><strong>Mitigación:</strong></p>
+                <code>storm-control broadcast level 70.00<br>storm-control action shutdown</code>
+            `
+        },
+        mac_flooding: {
+            title: "MAC Flooding Attack 💣",
+            content: `
+                <p><strong>Metodología del ataque:</strong></p>
+                <ul>
+                    <li>🔧 <strong>Herramientas:</strong> macof, Ettercap, Yersinia</li>
+                    <li>💨 <strong>Velocidad:</strong> Envío de miles de MACs por segundo</li>
+                    <li>📊 <strong>Objetivo:</strong> Saturar tabla CAM (8K-16K entradas)</li>
+                    <li>🎯 <strong>Resultado:</strong> Switch en modo fail-open (hub)</li>
+                </ul>
+                <p><strong>Detección:</strong></p>
+                <code>show mac address-table count<br>show interfaces counters errors</code>
+                <p><strong>Prevención:</strong> Configurar port-security con límites estrictos.</p>
+            `
+        },
+        mac_spoofing: {
+            title: "MAC Spoofing 🎭",
+            content: `
+                <p><strong>Técnicas de spoofing:</strong></p>
+                <ul>
+                    <li>🔄 <strong>Clonación:</strong> Copiar MAC de dispositivo legítimo</li>
+                    <li>🎲 <strong>Aleatorización:</strong> Generar MACs falsas constantemente</li>
+                    <li>👥 <strong>Suplantación:</strong> Usar MAC de administrador o servidor</li>
+                </ul>
+                <p><strong>Herramientas comunes:</strong></p>
+                <ul>
+                    <li>🐧 <strong>Linux:</strong> ifconfig, macchanger</li>
+                    <li>🪟 <strong>Windows:</strong> Registry edit, SMAC</li>
+                    <li>🎯 <strong>Specialized:</strong> Ettercap, Bettercap</li>
+                </ul>
+                <p><strong>Contramedidas:</strong> 802.1X, port security, MAC address binding.</p>
+            `
+        },
+        port_security: {
+            title: "Port Security 🔒",
+            content: `
+                <p><strong>Configuraciones clave:</strong></p>
+                <ul>
+                    <li>🔢 <strong>Maximum:</strong> Límite de MACs por puerto (defecto: 1)</li>
+                    <li>📌 <strong>Sticky:</strong> Aprende y guarda MACs automáticamente</li>
+                    <li>⚠️ <strong>Violation modes:</strong> Protect, Restrict, Shutdown</li>
+                </ul>
+                <p><strong>Configuración completa:</strong></p>
+                <code>
+                interface fa0/1<br>
+                &nbsp;switchport port-security<br>
+                &nbsp;switchport port-security maximum 2<br>
+                &nbsp;switchport port-security mac-address sticky<br>
+                &nbsp;switchport port-security violation shutdown<br>
+                &nbsp;switchport port-security aging-time 60
+                </code>
+            `
+        },
+        vlans_security: {
+            title: "Segmentación con VLANs 🧱",
+            content: `
+                <p><strong>Estrategia de segmentación:</strong></p>
+                <ul>
+                    <li>👥 <strong>Por departamento:</strong> IT, HR, Finance, Guest</li>
+                    <li>🖥️ <strong>Por función:</strong> Servers, Workstations, IoT</li>
+                    <li>🔒 <strong>Por nivel de seguridad:</strong> DMZ, Internal, Critical</li>
+                </ul>
+                <p><strong>Configuración ejemplo:</strong></p>
+                <code>
+                vlan 10<br>
+                &nbsp;name EMPLOYEES<br>
+                vlan 20<br>
+                &nbsp;name SERVERS<br>
+                vlan 99<br>
+                &nbsp;name GUEST<br><br>
+                interface fa0/1<br>
+                &nbsp;switchport mode access<br>
+                &nbsp;switchport access vlan 10
+                </code>
+            `
+        },
+        dot1x_auth: {
+            title: "Autenticación 802.1X 🔐",
+            content: `
+                <p><strong>Componentes del sistema:</strong></p>
+                <ul>
+                    <li>🖥️ <strong>Supplicant:</strong> Cliente que solicita acceso</li>
+                    <li>🔌 <strong>Authenticator:</strong> Switch que controla el puerto</li>
+                    <li>🛡️ <strong>Authentication Server:</strong> RADIUS server</li>
+                </ul>
+                <p><strong>Proceso de autenticación:</strong></p>
+                <ol>
+                    <li>Cliente envía credenciales (EAP)</li>
+                    <li>Switch retransmite a RADIUS</li>
+                    <li>RADIUS valida y responde</li>
+                    <li>Puerto se abre o mantiene bloqueado</li>
+                </ol>
+                <p><strong>Configuración básica:</strong></p>
+                <code>
+                aaa new-model<br>
+                radius server AUTH<br>
+                &nbsp;address ipv4 192.168.1.100<br>
+                &nbsp;key cisco123<br><br>
+                interface fa0/1<br>
+                &nbsp;authentication port-control auto<br>
+                &nbsp;dot1x pae authenticator
+                </code>
+            `
+        }
+    };
+
+    const modal = document.getElementById('detailModal');
+    const title = document.getElementById('modalTitle');
+    const content = document.getElementById('modalContent');
+    
+    if (details[type]) {
+        title.innerHTML = details[type].title;
+        content.innerHTML = details[type].content;
+        modal.style.display = 'block';
+    }
+}
+
+// Función para cerrar modal
+function closeModal() {
+    document.getElementById('detailModal').style.display = 'none';
+}
+
+// Cerrar modal al hacer clic fuera
+window.onclick = function(event) {
+    const modal = document.getElementById('detailModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Inicializar el quiz cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    showQuestion();
+});
+</script>
+
+<style>
+/* Estilos base del layout */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 25px;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Cards principales */
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.primary-card {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+}
+
+.secondary-card {
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.2) 0%, rgba(245, 87, 108, 0.2) 100%);
+}
+
+.tertiary-card {
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.2) 0%, rgba(0, 242, 254, 0.2) 100%);
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 0.75rem;
+    font-size: 2rem;
+}
+
+.card > p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+/* Items de conceptos */
+.concept-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.concept-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.concept-item h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.concept-item p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+/* Ejemplo práctico */
+.practical-example {
+    background: linear-gradient(135deg, rgba(168, 237, 234, 0.2) 0%, rgba(254, 214, 227, 0.2) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.practical-example h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.example-aspect {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.example-aspect h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #a8edea;
+}
+
+.example-aspect p {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.example-aspect strong {
+    color: #fed6e3;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+/* Técnica mnemotécnica */
+.mnemonic {
+    background: linear-gradient(135deg, rgba(255, 154, 158, 0.2) 0%, rgba(254, 207, 239, 0.2) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.1rem;
+}
+
+/* Código de ejemplo */
+.code-example {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.code-example h3 {
+    margin-bottom: 1rem;
+    color: #a8edea;
+}
+
+.code-example pre {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.code-example code {
+    color: #a8edea;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Quiz */
+.quiz-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.quiz-container h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.question {
+    margin-bottom: 2rem;
+}
+
+.question h4 {
+    color: #a8edea;
+    margin-bottom: 1rem;
+}
+
+.question p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.option {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.option input[type="radio"] {
+    margin-right: 1rem;
+    transform: scale(1.2);
+}
+
+.option span {
+    flex: 1;
+}
+
+.quiz-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.quiz-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.correct {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    color: #4ade80;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.incorrect {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    color: #f87171;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.final-result {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+}
+
+.final-result h4 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #a8edea;
+}
+
+.final-result p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    margin: 5% auto;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    color: white;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: white;
+}
+
+#modalTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #a8edea;
+}
+
+#modalContent {
+    line-height: 1.6;
+}
+
+#modalContent ul, #modalContent ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#modalContent li {
+    margin-bottom: 0.5rem;
+}
+
+#modalContent code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-family: 'Fira Code', monospace;
+    color: #a8edea;
+    display: block;
+    margin: 1rem 0;
+    white-space: pre-line;
+}
+
+#modalContent p {
+    margin-bottom: 1rem;
+}
+
+#modalContent strong {
+    color: #fed6e3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .header p {
+        font-size: 1rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+    
+    .card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .icon {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+    }
+    
+    .concept-item {
+        padding: 0.75rem;
+    }
+    
+    .concept-item:hover {
+        transform: translateX(5px);
+    }
+    
+    .practical-example {
+        padding: 1.5rem;
+    }
+    
+    .example-aspect {
+        padding: 1rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 2% auto;
+        padding: 1.5rem;
+    }
+    
+    #modalTitle {
+        font-size: 1.5rem;
+    }
+    
+    .option {
+        padding: 0.75rem;
+    }
+    
+    .quiz-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 2rem 1rem;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .card, .practical-example, .quiz-container {
+        padding: 1rem;
+    }
+    
+    .concept-item h4 {
+        font-size: 1rem;
+    }
+    
+    .concept-item p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card, .practical-example, .mnemonic, .code-example, .quiz-container {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.concept-item {
+    opacity: 0;
+    animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.concept-item:nth-child(2) { animation-delay: 0.1s; }
+.concept-item:nth-child(3) { animation-delay: 0.2s; }
+.concept-item:nth-child(4) { animation-delay: 0.3s; }

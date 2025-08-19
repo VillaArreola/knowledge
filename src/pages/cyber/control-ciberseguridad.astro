@@ -1,9 +1,8 @@
-
 ---
 import WikiLayout from '../../layouts/WikiLayout.astro';
 ---
 
-<WikiLayout title="🧠 Control Objectives - Objetivos de Control" description="Aprende qué son los objetivos de control en ciberseguridad y cómo implementarlos efectivamente" showHeader={false}>
+<WikiLayout title="🧠 Control Objectives - Objetivos de Control" description="Aprende qué son los objetivos de control en ciberseguridad y cómo implementarlos efectivamente">
     
     <!-- Hero Section -->
     <div class="hero-section">
@@ -365,21 +364,14 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
             emoji = "🤓";
         }
         
-        const resultsTitle = document.getElementById('resultsTitle');
-        const resultsMessage = document.getElementById('resultsMessage');
-        if (resultsTitle) resultsTitle.textContent = title;
-        if (resultsMessage) resultsMessage.textContent = message;
-        if (container) container.style.display = 'none';
-        if (resultsDiv) resultsDiv.style.display = 'block';
+        document.getElementById('resultsTitle').textContent = title;
+        document.getElementById('resultsMessage').textContent = message;
+        
+        container.style.display = 'none';
+        resultsDiv.style.display = 'block';
     }
 
     function restartQuiz() {
-        const quizContainer = document.getElementById('quizContainer');
-        const quizResults = document.getElementById('quizResults');
-
-        if (quizContainer) quizContainer.style.display = 'block';
-        if (quizResults) quizResults.style.display = 'none';
-
         document.getElementById('quizResults').style.display = 'none';
         document.getElementById('quizContainer').style.display = 'block';
         initQuiz();

@@ -1,0 +1,1306 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="🌐 SD-WAN y Secure SD-WAN - Redes Definidas por Software" description="Aprende sobre SD-WAN, sus ventajas sobre redes WAN tradicionales, Secure SD-WAN y cómo optimizar la conectividad empresarial con gestión centralizada">
+
+<!-- Header Principal -->
+<div class="header">
+    <h1>🌐 SD-WAN (Software-Defined Wide Area Network)</h1>
+    <p>Una solución revolucionaria que transforma las redes WAN tradicionales mediante control por software, permitiendo conectar usuarios, aplicaciones y datos de forma segura con gestión centralizada e inteligente del tráfico.</p>
+</div>
+
+<!-- Cards de Conceptos Principales -->
+<div class="card primary-card">
+    <h3><span class="icon">🧠</span>¿Qué hace una SD-WAN?</h3>
+    <p>Sistema inteligente que gestiona múltiples conexiones de red y optimiza el rendimiento mediante decisiones automatizadas en tiempo real.</p>
+    
+    <div class="concept-item" onclick="showDetails('connection_management')">
+        <h4>🔗 Gestión de Conexiones Múltiples</h4>
+        <p>Administra MPLS, banda ancha, LTE, 4G/5G y otras tecnologías simultáneamente</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('performance_monitoring')">
+        <h4>📊 Monitoreo en Tiempo Real</h4>
+        <p>Supervisa latencia, pérdida de paquetes, jitter y ancho de banda continuamente</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('dynamic_routing')">
+        <h4>🔄 Enrutamiento Dinámico</h4>
+        <p>Rutea tráfico automáticamente según condiciones de red y políticas empresariales</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('app_prioritization')">
+        <h4>🎯 Priorización de Aplicaciones</h4>
+        <p>Garantiza ancho de banda y calidad de servicio para aplicaciones críticas</p>
+    </div>
+</div>
+
+<div class="card secondary-card">
+    <h3><span class="icon">✅</span>Ventajas Clave de SD-WAN</h3>
+    <p>Beneficios transformadores que revolucionan la conectividad empresarial y reducen costos operativos significativamente.</p>
+    
+    <div class="concept-item" onclick="showDetails('centralized_orchestration')">
+        <h4>🎯 Orquestación Centralizada</h4>
+        <p>Configuración y gestión unificada desde una consola única para toda la red</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('cloud_access')">
+        <h4>☁️ Acceso Directo a la Nube</h4>
+        <p>Optimización específica para Office 365, AWS, Google Cloud y servicios SaaS</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('performance_improvement')">
+        <h4>🚀 Mejor Rendimiento</h4>
+        <p>Aplicaciones críticas con ancho de banda garantizado y latencia minimizada</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('cost_savings')">
+        <h4>💰 Ahorro de Costos</h4>
+        <p>Reemplaza enlaces MPLS costosos con conexiones de Internet estándar</p>
+    </div>
+</div>
+
+<div class="card tertiary-card">
+    <h3><span class="icon">🔒</span>Secure SD-WAN</h3>
+    <p>Evolución que integra seguridad avanzada y conectividad en una solución unificada, eliminando la necesidad de appliances separados.</p>
+    
+    <div class="concept-item" onclick="showDetails('integrated_security')">
+        <h4>🛡️ Seguridad Integrada</h4>
+        <p>Firewall, IPS, antivirus, filtrado web y cifrado en el mismo dispositivo</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('fortinet_example')">
+        <h4>🔥 Ejemplo: FortiGate SD-WAN</h4>
+        <p>Solución todo-en-uno que combina Next-Gen Firewall con capacidades SD-WAN</p>
+    </div>
+    
+    <div class="concept-item" onclick="showDetails('unified_policies')">
+        <h4>📋 Políticas Unificadas</h4>
+        <p>Gestión coherente de seguridad y conectividad desde una única interfaz</p>
+    </div>
+</div>
+
+<!-- Ejemplo Práctico -->
+<div class="practical-example">
+    <h3>💼 Caso Práctico: Empresa Multinacional</h3>
+    
+    <div class="example-aspect">
+        <h4>🏢 Escenario</h4>
+        <p>Empresa con 50 sucursales, tráfico intensivo a Microsoft 365 y aplicaciones críticas en AWS</p>
+        <strong>Herramientas:</strong> FortiGate, Cisco SD-WAN, VMware VeloCloud
+    </div>
+    
+    <div class="example-aspect">
+        <h4>⚠️ Desafíos Tradicionales</h4>
+        <p>MPLS costoso, latencia alta para cloud, configuración manual compleja</p>
+        <strong>Herramientas:</strong> Monitoring con SolarWinds, análisis de tráfico con Wireshark
+    </div>
+    
+    <div class="example-aspect">
+        <h4>🚀 Solución SD-WAN</h4>
+        <p>Breakout local a Internet, orquestación centralizada, seguridad integrada</p>
+        <strong>Herramientas:</strong> Controlador SD-WAN, dashboards centralizados, automatización
+    </div>
+</div>
+
+<!-- Evolución de SD-WAN -->
+<div class="evolution-section">
+    <h3>📈 Evolución de las Necesidades Empresariales</h3>
+    <div class="evolution-grid">
+        <div class="evolution-item">
+            <div class="evolution-icon">🌐</div>
+            <h4>Mayor Ancho de Banda</h4>
+            <p>Demanda creciente por aplicaciones multimedia, videoconferencias y big data</p>
+        </div>
+        <div class="evolution-item">
+            <div class="evolution-icon">⚡</div>
+            <h4>Rendimiento Cloud/SaaS</h4>
+            <p>Optimización para Office 365, Salesforce, Google Workspace y aplicaciones híbridas</p>
+        </div>
+        <div class="evolution-item">
+            <div class="evolution-icon">🛡️</div>
+            <h4>Seguridad Unificada</h4>
+            <p>Protección consistente en entornos distribuidos y trabajo remoto</p>
+        </div>
+    </div>
+</div>
+
+<!-- Técnica Mnemotécnica -->
+<div class="mnemonic">
+    🧠 Acrónimo para ventajas SD-WAN: <strong>"SMART-C"</strong>
+    <br>
+    <strong>S</strong>eguridad, <strong>M</strong>ayor rendimiento, <strong>A</strong>gilidad, <strong>R</strong>educción costos, <strong>T</strong>ráfico optimizado, <strong>C</strong>entralización
+</div>
+
+<!-- Comparación Tradicional vs SD-WAN -->
+<div class="comparison-section">
+    <h3>🔄 WAN Tradicional vs SD-WAN</h3>
+    <div class="comparison-grid">
+        <div class="comparison-item traditional">
+            <h4>🏢 WAN Tradicional</h4>
+            <ul>
+                <li>❌ MPLS costoso y rígido</li>
+                <li>❌ Configuración manual compleja</li>
+                <li>❌ Tráfico cloud via datacenter</li>
+                <li>❌ Visibilidad limitada</li>
+                <li>❌ Escalabilidad lenta</li>
+            </ul>
+        </div>
+        <div class="comparison-item sdwan">
+            <h4>🌐 SD-WAN</h4>
+            <ul>
+                <li>✅ Múltiples tipos de conexión</li>
+                <li>✅ Orquestación automatizada</li>
+                <li>✅ Breakout local a Internet</li>
+                <li>✅ Visibilidad completa</li>
+                <li>✅ Despliegue rápido</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Laboratorio Sugerido -->
+<div class="lab-section">
+    <h3>🧪 Laboratorio: Simulación SD-WAN</h3>
+    <div class="lab-grid">
+        <div class="lab-step">
+            <div class="step-number">1</div>
+            <h4>Configurar Topología</h4>
+            <p>Crear red SD-WAN con múltiples rutas en GNS3/EVE-NG</p>
+        </div>
+        <div class="lab-step">
+            <div class="step-number">2</div>
+            <h4>Simular Fallos</h4>
+            <p>Introducir pérdida de paquetes y observar cambio automático de ruta</p>
+        </div>
+        <div class="lab-step">
+            <div class="step-number">3</div>
+            <h4>Probar Secure SD-WAN</h4>
+            <p>Implementar FortiGate con políticas de seguridad integradas</p>
+        </div>
+    </div>
+</div>
+
+<!-- Quiz Container -->
+<div class="quiz-container">
+    <h3>🎯 Quiz de Conocimientos</h3>
+    <div id="quiz"></div>
+    <button id="nextQuestion" class="quiz-btn" onclick="nextQuestion()">Siguiente Pregunta</button>
+    <div id="result"></div>
+</div>
+
+<!-- Modal para detalles -->
+<div id="detailModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+</WikiLayout>
+
+<script>
+// Datos del quiz
+const questions = [
+    {
+        question: "¿Cuál es la principal diferencia entre una WAN tradicional y SD-WAN?",
+        options: [
+            "SD-WAN solo funciona con fibra óptica",
+            "SD-WAN es controlada por software",
+            "WAN tradicional es más rápida",
+            "SD-WAN no soporta MPLS"
+        ],
+        correct: 1,
+        explanation: "SD-WAN (Software-Defined Wide Area Network) se distingue por ser controlada por software, permitiendo gestión centralizada y automatizada, a diferencia de las WAN tradicionales que requieren configuración manual."
+    },
+    {
+        question: "¿Qué tipos de conexión puede gestionar simultáneamente una SD-WAN?",
+        options: [
+            "Solo MPLS y banda ancha",
+            "Únicamente conexiones de fibra",
+            "MPLS, banda ancha, LTE, 4G/5G",
+            "Solo conexiones inalámbricas"
+        ],
+        correct: 2,
+        explanation: "SD-WAN puede gestionar múltiples tipos de conexión simultáneamente: MPLS, banda ancha, LTE, 4G/5G, y otras tecnologías, optimizando el uso de cada una según las condiciones de red."
+    },
+    {
+        question: "¿Qué significa 'breakout local' en el contexto de SD-WAN?",
+        options: [
+            "Fallar la conexión principal",
+            "Acceso directo a Internet desde sucursales",
+            "Romper la seguridad de la red",
+            "Desconectar todas las sucursales"
+        ],
+        correct: 1,
+        explanation: "Breakout local permite que las sucursales accedan directamente a Internet y servicios cloud sin pasar por el datacenter central, reduciendo latencia y mejorando el rendimiento."
+    },
+    {
+        question: "¿Qué característica define una Secure SD-WAN?",
+        options: [
+            "Solo cifrado de datos",
+            "Integración de seguridad y conectividad",
+            "Velocidades más altas",
+            "Menor costo que SD-WAN tradicional"
+        ],
+        correct: 1,
+        explanation: "Secure SD-WAN integra capacidades de seguridad avanzadas (firewall, IPS, antivirus, filtrado web) con conectividad en una solución unificada, eliminando la necesidad de appliances separados."
+    },
+    {
+        question: "¿Cuál es una ventaja principal de SD-WAN sobre MPLS tradicional?",
+        options: [
+            "Mayor seguridad inherente",
+            "Velocidades más altas garantizadas",
+            "Reducción significativa de costos",
+            "Mejor compatibilidad con teléfonos"
+        ],
+        correct: 2,
+        explanation: "SD-WAN permite usar conexiones de Internet estándar más económicas en lugar de enlaces MPLS costosos, reduciendo significativamente los costos de conectividad mientras mantiene o mejora el rendimiento."
+    }
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+// Función para mostrar la pregunta actual
+function showQuestion() {
+    if (currentQuestion < questions.length) {
+        const q = questions[currentQuestion];
+        const quizDiv = document.getElementById('quiz');
+        quizDiv.innerHTML = `
+            <div class="question">
+                <h4>Pregunta ${currentQuestion + 1}/${questions.length}</h4>
+                <p>${q.question}</p>
+                <div class="options">
+                    ${q.options.map((option, index) => `
+                        <label class="option">
+                            <input type="radio" name="answer" value="${index}">
+                            <span>${option}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Función para siguiente pregunta
+function nextQuestion() {
+    const selected = document.querySelector('input[name="answer"]:checked');
+    if (!selected) {
+        alert('Por favor selecciona una respuesta');
+        return;
+    }
+
+    const q = questions[currentQuestion];
+    const resultDiv = document.getElementById('result');
+    
+    if (parseInt(selected.value) === q.correct) {
+        score++;
+        resultDiv.innerHTML = `<div class="correct">✅ ¡Correcto! ${q.explanation}</div>`;
+    } else {
+        resultDiv.innerHTML = `<div class="incorrect">❌ Incorrecto. ${q.explanation}</div>`;
+    }
+
+    currentQuestion++;
+    
+    if (currentQuestion < questions.length) {
+        setTimeout(() => {
+            showQuestion();
+            resultDiv.innerHTML = '';
+        }, 3000);
+    } else {
+        setTimeout(() => {
+            showFinalResult();
+        }, 3000);
+    }
+}
+
+// Función para mostrar resultado final
+function showFinalResult() {
+    const percentage = (score / questions.length) * 100;
+    document.getElementById('quiz').innerHTML = `
+        <div class="final-result">
+            <h4>🎉 Quiz Completado</h4>
+            <p>Tu puntuación: ${score}/${questions.length} (${percentage.toFixed(1)}%)</p>
+            <button onclick="restartQuiz()" class="quiz-btn">Reiniciar Quiz</button>
+        </div>
+    `;
+    document.getElementById('nextQuestion').style.display = 'none';
+    document.getElementById('result').innerHTML = '';
+}
+
+// Función para reiniciar quiz
+function restartQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    document.getElementById('nextQuestion').style.display = 'block';
+    showQuestion();
+}
+
+// Función para mostrar detalles
+function showDetails(type) {
+    const details = {
+        connection_management: {
+            title: "Gestión de Conexiones Múltiples 🔗",
+            content: `
+                <p><strong>Tipos de conexión soportados:</strong></p>
+                <ul>
+                    <li>🌐 <strong>MPLS:</strong> Enlaces privados tradicionales con SLA garantizado</li>
+                    <li>📡 <strong>Banda ancha:</strong> Internet estándar via cable, DSL, fibra</li>
+                    <li>📱 <strong>LTE/4G/5G:</strong> Conexiones móviles para backup o sitios remotos</li>
+                    <li>🛰️ <strong>Satelital:</strong> Para ubicaciones extremadamente remotas</li>
+                    <li>☁️ <strong>Cloud-to-cloud:</strong> Conexiones directas entre proveedores cloud</li>
+                </ul>
+                <p><strong>Beneficios:</strong></p>
+                <ul>
+                    <li>Redundancia automática entre conexiones</li>
+                    <li>Agregación de ancho de banda</li>
+                    <li>Optimización de costo por MB/s</li>
+                </ul>
+            `
+        },
+        performance_monitoring: {
+            title: "Monitoreo en Tiempo Real 📊",
+            content: `
+                <p><strong>Métricas monitoreadas continuamente:</strong></p>
+                <ul>
+                    <li>⏱️ <strong>Latencia:</strong> Tiempo de ida y vuelta (RTT)</li>
+                    <li>📉 <strong>Pérdida de paquetes:</strong> Porcentaje de paquetes perdidos</li>
+                    <li>📈 <strong>Jitter:</strong> Variación en la latencia</li>
+                    <li>📊 <strong>Ancho de banda:</strong> Utilización actual vs disponible</li>
+                    <li>🔄 <strong>MOS (Mean Opinion Score):</strong> Calidad percibida de voz/video</li>
+                </ul>
+                <p><strong>Acciones automáticas:</strong></p>
+                <ul>
+                    <li>Cambio de ruta cuando se degrada el rendimiento</li>
+                    <li>Alertas proactivas a administradores</li>
+                    <li>Ajuste dinámico de QoS</li>
+                </ul>
+            `
+        },
+        dynamic_routing: {
+            title: "Enrutamiento Dinámico 🔄",
+            content: `
+                <p><strong>Algoritmos de decisión:</strong></p>
+                <ul>
+                    <li>🎯 <strong>Application-aware routing:</strong> Rutas específicas por aplicación</li>
+                    <li>⚖️ <strong>Load balancing:</strong> Distribución inteligente de carga</li>
+                    <li>🚀 <strong>Path selection:</strong> Mejor ruta según métricas en tiempo real</li>
+                    <li>🔄 <strong>Failover automático:</strong> Cambio instantáneo ante fallos</li>
+                </ul>
+                <p><strong>Políticas configurables:</strong></p>
+                <ul>
+                    <li>Prioridad por tipo de aplicación</li>
+                    <li>Preferencias de ruta por horario</li>
+                    <li>Umbrales de calidad mínima</li>
+                    <li>Reglas de cumplimiento normativo</li>
+                </ul>
+            `
+        },
+        app_prioritization: {
+            title: "Priorización de Aplicaciones 🎯",
+            content: `
+                <p><strong>Clasificación automática:</strong></p>
+                <ul>
+                    <li>🎥 <strong>Tiempo real:</strong> VoIP, videoconferencia (alta prioridad)</li>
+                    <li>💼 <strong>Críticas de negocio:</strong> ERP, CRM, bases de datos</li>
+                    <li>☁️ <strong>Cloud/SaaS:</strong> Office 365, Salesforce, Google Workspace</li>
+                    <li>🌐 <strong>Web browsing:</strong> Navegación general (baja prioridad)</li>
+                </ul>
+                <p><strong>Técnicas de QoS:</strong></p>
+                <ul>
+                    <li>Bandwidth allocation (reserva de ancho de banda)</li>
+                    <li>Packet marking y classification</li>
+                    <li>Traffic shaping y policing</li>
+                    <li>Queue management (FIFO, WFQ, CBWFQ)</li>
+                </ul>
+            `
+        },
+        centralized_orchestration: {
+            title: "Orquestación Centralizada 🎯",
+            content: `
+                <p><strong>Capacidades del controlador central:</strong></p>
+                <ul>
+                    <li>🖥️ <strong>Dashboard unificado:</strong> Vista global de toda la red WAN</li>
+                    <li>⚙️ <strong>Zero-touch provisioning:</strong> Configuración automática de sucursales</li>
+                    <li>📋 <strong>Policy templates:</strong> Plantillas reutilizables de políticas</li>
+                    <li>🔄 <strong>Configuración masiva:</strong> Cambios simultáneos en múltiples sitios</li>
+                </ul>
+                <p><strong>Beneficios operativos:</strong></p>
+                <ul>
+                    <li>Reducción de errores de configuración</li>
+                    <li>Tiempo de despliegue 10x más rápido</li>
+                    <li>Cumplimiento consistente de políticas</li>
+                    <li>Troubleshooting centralizado</li>
+                </ul>
+            `
+        },
+        cloud_access: {
+            title: "Acceso Directo a la Nube ☁️",
+            content: `
+                <p><strong>Optimizaciones específicas:</strong></p>
+                <ul>
+                    <li>🏢 <strong>Microsoft 365:</strong> Aceleración de SharePoint, Teams, Exchange</li>
+                    <li>☁️ <strong>AWS/Azure/GCP:</strong> Acceso optimizado a servicios cloud</li>
+                    <li>💼 <strong>Salesforce:</strong> Mejora de rendimiento CRM</li>
+                    <li>🎥 <strong>Zoom/WebEx:</strong> Calidad garantizada para videoconferencias</li>
+                </ul>
+                <p><strong>Técnicas de optimización:</strong></p>
+                <ul>
+                    <li>Internet breakout local (no via datacenter)</li>
+                    <li>Cloud on-ramps directos</li>
+                    <li>Caché de contenido frecuente</li>
+                    <li>Compresión y deduplicación</li>
+                </ul>
+            `
+        },
+        performance_improvement: {
+            title: "Mejor Rendimiento 🚀",
+            content: `
+                <p><strong>Mejoras cuantificables:</strong></p>
+                <ul>
+                    <li>📈 <strong>Latencia:</strong> Reducción de 30-50% para aplicaciones cloud</li>
+                    <li>🎯 <strong>Disponibilidad:</strong> SLA del 99.9% con múltiples rutas</li>
+                    <li>⚡ <strong>Throughput:</strong> Agregación de ancho de banda disponible</li>
+                    <li>🎥 <strong>Calidad de voz:</strong> MOS score >4.0 garantizado</li>
+                </ul>
+                <p><strong>Tecnologías habilitadoras:</strong></p>
+                <ul>
+                    <li>Forward Error Correction (FEC)</li>
+                    <li>Packet duplication para aplicaciones críticas</li>
+                    <li>TCP optimization y acceleration</li>
+                    <li>Application-specific tuning</li>
+                </ul>
+            `
+        },
+        cost_savings: {
+            title: "Ahorro de Costos 💰",
+            content: `
+                <p><strong>Comparación de costos típicos:</strong></p>
+                <ul>
+                    <li>💸 <strong>MPLS:</strong> $300-800/Mbps/mes</li>
+                    <li>💵 <strong>Internet:</strong> $20-100/Mbps/mes</li>
+                    <li>📱 <strong>LTE:</strong> $50-200/Mbps/mes</li>
+                    <li>✨ <strong>Ahorro promedio:</strong> 40-60% en costos de conectividad</li>
+                </ul>
+                <p><strong>Costos operativos reducidos:</strong></p>
+                <ul>
+                    <li>Menos personal técnico requerido</li>
+                    <li>Configuración automatizada</li>
+                    <li>Troubleshooting centralizado</li>
+                    <li>Escalabilidad sin truck rolls</li>
+                </ul>
+            `
+        },
+        integrated_security: {
+            title: "Seguridad Integrada 🛡️",
+            content: `
+                <p><strong>Funciones de seguridad incluidas:</strong></p>
+                <ul>
+                    <li>🔥 <strong>Next-Gen Firewall:</strong> Inspección de aplicaciones</li>
+                    <li>🛡️ <strong>IPS/IDS:</strong> Prevención de intrusiones</li>
+                    <li>🦠 <strong>Anti-malware:</strong> Protección en tiempo real</li>
+                    <li>🌐 <strong>Web filtering:</strong> Control de contenido</li>
+                    <li>🔐 <strong>VPN/IPSec:</strong> Cifrado end-to-end</li>
+                </ul>
+                <p><strong>Ventajas de integración:</strong></p>
+                <ul>
+                    <li>Single pane of glass para conectividad y seguridad</li>
+                    <li>Políticas consistentes en toda la WAN</li>
+                    <li>Reducción de appliances y complejidad</li>
+                    <li>Mejor visibilidad del tráfico</li>
+                </ul>
+            `
+        },
+        fortinet_example: {
+            title: "Ejemplo: FortiGate SD-WAN 🔥",
+            content: `
+                <p><strong>Arquitectura FortiGate SD-WAN:</strong></p>
+                <ul>
+                    <li>🔧 <strong>FortiGate appliances:</strong> En cada sucursal como CPE</li>
+                    <li>🎛️ <strong>FortiManager:</strong> Gestión centralizada</li>
+                    <li>👁️ <strong>FortiAnalyzer:</strong> Logging y reporting</li>
+                    <li>☁️ <strong>FortiCloud:</strong> Orquestación cloud-based</li>
+                </ul>
+                <p><strong>Capacidades destacadas:</strong></p>
+                <ul>
+                    <li>🔍 Application identification con más de 4000 aplicaciones</li>
+                    <li>🛡️ Security Fabric integration</li>
+                    <li>🎯 Per-packet load balancing</li>
+                    <li>📊 Real-time SLA monitoring</li>
+                </ul>
+                <p><strong>Configuración ejemplo:</strong></p>
+                <code>
+                config system virtual-wan-link<br>
+                &nbsp;&nbsp;set status enable<br>
+                &nbsp;&nbsp;config members<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;edit "wan1"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set interface "wan1"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set gateway 192.168.1.1<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;next<br>
+                &nbsp;&nbsp;end<br>
+                end
+                </code>
+            `
+        },
+        unified_policies: {
+            title: "Políticas Unificadas 📋",
+            content: `
+                <p><strong>Tipos de políticas integradas:</strong></p>
+                <ul>
+                    <li>🔐 <strong>Seguridad:</strong> Firewall, IPS, antivirus por aplicación</li>
+                    <li>🚦 <strong>QoS:</strong> Ancho de banda y priorización</li>
+                    <li>🌐 <strong>Routing:</strong> Path selection y load balancing</li>
+                    <li>👥 <strong>Acceso:</strong> Control por usuario y dispositivo</li>
+                </ul>
+                <p><strong>Beneficios de unificación:</strong></p>
+                <ul>
+                    <li>Configuración coherente en toda la WAN</li>
+                    <li>Menos conflictos entre políticas</li>
+                    <li>Troubleshooting simplificado</li>
+                    <li>Compliance más fácil de auditar</li>
+                </ul>
+                <p><strong>Ejemplo de política:</strong> "Microsoft Teams siempre por MPLS con máxima prioridad y cifrado AES-256"</p>
+            `
+        }
+    };
+
+    const modal = document.getElementById('detailModal');
+    const title = document.getElementById('modalTitle');
+    const content = document.getElementById('modalContent');
+    
+    if (details[type]) {
+        title.innerHTML = details[type].title;
+        content.innerHTML = details[type].content;
+        modal.style.display = 'block';
+    }
+}
+
+// Función para cerrar modal
+function closeModal() {
+    document.getElementById('detailModal').style.display = 'none';
+}
+
+// Cerrar modal al hacer clic fuera
+window.onclick = function(event) {
+    const modal = document.getElementById('detailModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Inicializar el quiz cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    showQuestion();
+});
+</script>
+
+<style>
+/* Estilos base del layout */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 25px;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Cards principales */
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.primary-card {
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.2) 0%, rgba(0, 242, 254, 0.2) 100%);
+}
+
+.secondary-card {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(168, 237, 234, 0.2) 100%);
+}
+
+.tertiary-card {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(245, 87, 108, 0.2) 100%);
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 0.75rem;
+    font-size: 2rem;
+}
+
+.card > p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+/* Items de conceptos */
+.concept-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.concept-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.concept-item h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.concept-item p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+/* Ejemplo práctico */
+.practical-example {
+    background: linear-gradient(135deg, rgba(168, 237, 234, 0.2) 0%, rgba(254, 214, 227, 0.2) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.practical-example h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.example-aspect {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.example-aspect h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #a8edea;
+}
+
+.example-aspect p {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.example-aspect strong {
+    color: #fed6e3;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+/* Sección de evolución */
+.evolution-section {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.evolution-section h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.evolution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.evolution-item {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.evolution-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.evolution-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.evolution-item h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #4facfe;
+}
+
+.evolution-item p {
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* Técnica mnemotécnica */
+.mnemonic {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.1rem;
+}
+
+/* Sección de comparación */
+.comparison-section {
+    margin: 2rem 0;
+}
+
+.comparison-section h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: white;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.comparison-item {
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.traditional {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
+    color: white;
+}
+
+.sdwan {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+    color: white;
+}
+
+.comparison-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.comparison-item h4 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.comparison-item ul {
+    list-style: none;
+    padding: 0;
+}
+
+.comparison-item li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.95rem;
+}
+
+.comparison-item li:last-child {
+    border-bottom: none;
+}
+
+/* Sección de laboratorio */
+.lab-section {
+    background: linear-gradient(135deg, rgba(168, 237, 234, 0.2) 0%, rgba(254, 214, 227, 0.2) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.lab-section h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.lab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.lab-step {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.lab-step:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.step-number {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1rem auto;
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3);
+}
+
+.lab-step h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #a8edea;
+}
+
+.lab-step p {
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* Quiz */
+.quiz-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.quiz-container h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.question {
+    margin-bottom: 2rem;
+}
+
+.question h4 {
+    color: #a8edea;
+    margin-bottom: 1rem;
+}
+
+.question p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.option {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.option input[type="radio"] {
+    margin-right: 1rem;
+    transform: scale(1.2);
+}
+
+.option span {
+    flex: 1;
+}
+
+.quiz-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.quiz-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.correct {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    color: #4ade80;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.incorrect {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    color: #f87171;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.final-result {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+}
+
+.final-result h4 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #a8edea;
+}
+
+.final-result p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    margin: 5% auto;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    color: white;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: white;
+}
+
+#modalTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #a8edea;
+}
+
+#modalContent {
+    line-height: 1.6;
+}
+
+#modalContent ul, #modalContent ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#modalContent li {
+    margin-bottom: 0.5rem;
+}
+
+#modalContent code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-family: 'Fira Code', monospace;
+    color: #a8edea;
+    display: block;
+    margin: 1rem 0;
+    white-space: pre-line;
+}
+
+#modalContent p {
+    margin-bottom: 1rem;
+}
+
+#modalContent strong {
+    color: #fed6e3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .header p {
+        font-size: 1rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+    
+    .card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .icon {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+    }
+    
+    .concept-item {
+        padding: 0.75rem;
+    }
+    
+    .concept-item:hover {
+        transform: translateX(5px);
+    }
+    
+    .practical-example, .evolution-section, .lab-section {
+        padding: 1.5rem;
+    }
+    
+    .evolution-grid, .comparison-grid, .lab-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .evolution-icon {
+        font-size: 2.5rem;
+    }
+    
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 2% auto;
+        padding: 1.5rem;
+    }
+    
+    #modalTitle {
+        font-size: 1.5rem;
+    }
+    
+    .option {
+        padding: 0.75rem;
+    }
+    
+    .quiz-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 2rem 1rem;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .card, .practical-example, .evolution-section, .lab-section, .quiz-container {
+        padding: 1rem;
+    }
+    
+    .concept-item h4 {
+        font-size: 1rem;
+    }
+    
+    .concept-item p {
+        font-size: 0.9rem;
+    }
+    
+    .evolution-grid {
+        gap: 1rem;
+    }
+    
+    .evolution-item {
+        padding: 1.5rem;
+    }
+    
+    .comparison-grid {
+        gap: 1rem;
+    }
+    
+    .comparison-item {
+        padding: 1.5rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card, .practical-example, .evolution-section, .mnemonic, .comparison-section, .lab-section, .quiz-container {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.concept-item {
+    opacity: 0;
+    animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.concept-item:nth-child(2) { animation-delay: 0.1s; }
+.concept-item:nth-child(3) { animation-delay: 0.2s; }
+.concept-item:nth-child(4) { animation-delay: 0.3s; }
+.concept-item:nth-child(5) { animation-delay: 0.4s; }
+
+.evolution-item {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.evolution-item:nth-child(1) { animation-delay: 0.1s; }
+.evolution-item:nth-child(2) { animation-delay: 0.2s; }
+.evolution-item:nth-child(3) { animation-delay: 0.3s; }
+
+.lab-step {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.lab-step:nth-child(1) { animation-delay: 0.1s; }
+.lab-step:nth-child(2) { animation-delay: 0.2s; }
+.lab-step:nth-child(3) { animation-delay: 0.3s; }

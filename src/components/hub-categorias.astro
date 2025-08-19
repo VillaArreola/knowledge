@@ -1,7 +1,7 @@
 <!-- Hub de Categorías de Conocimiento -->
 <div class="knowledge-grid">
     <!-- Ciberseguridad -->
-    <div class="knowledge-card cyber">
+    <a href="/ciberseguridad" class="knowledge-card cyber">
         <div class="card-header">
             <div class="card-icon">🔐</div>
             <h2>Ciberseguridad</h2>
@@ -9,20 +9,20 @@
         <div class="card-content">
             <p>Fundamentos de seguridad, criptografía y protección de sistemas</p>
             <div class="topics-grid">
-                <a href="/cyber/criptografia" class="topic-tag">🔒 Criptografía</a>
-                <a href="/cyber/CIA" class="topic-tag">🛡️ CIA Triad</a>
-                <a href="/cyber/pki" class="topic-tag">🔑 PKI</a>
-                <a href="/cyber/nist" class="topic-tag">📋 NIST</a>
-                <a href="/cyber/interactivo" class="topic-tag interactive">🎮 Laboratorio</a>
+                <span class="topic-tag">🔒 Criptografía</span>
+                <span class="topic-tag">🛡️ CIA Triad</span>
+                <span class="topic-tag">🔑 PKI</span>
+                <span class="topic-tag">📋 NIST</span>
+                <span class="topic-tag interactive">🎮 Laboratorio</span>
             </div>
         </div>
         <div class="card-footer">
             <span class="progress-indicator">5 temas completados</span>
         </div>
-    </div>
+    </a>
 
     <!-- Redes -->
-    <div class="knowledge-card networks">
+    <a href="/redes" class="knowledge-card networks">
         <div class="card-header">
             <div class="card-icon">🌐</div>
             <h2>Redes</h2>
@@ -30,19 +30,19 @@
         <div class="card-content">
             <p>Protocolos, configuración y administración de redes</p>
             <div class="topics-grid">
-                <div class="topic-tag coming-soon">📶 WiFi</div>
-                <div class="topic-tag coming-soon">🔗 TCP/IP</div>
-                <div class="topic-tag coming-soon">🌍 Routing</div>
-                <div class="topic-tag coming-soon">⚙️ Switching</div>
+                <span class="topic-tag coming-soon">📶 WiFi</span>
+                <span class="topic-tag coming-soon">🔗 TCP/IP</span>
+                <span class="topic-tag coming-soon">🌍 Routing</span>
+                <span class="topic-tag coming-soon">⚙️ Switching</span>
             </div>
         </div>
         <div class="card-footer">
             <span class="progress-indicator coming">Próximamente...</span>
         </div>
-    </div>
+    </a>
 
     <!-- Programación -->
-    <div class="knowledge-card programming">
+    <a href="/programacion" class="knowledge-card programming">
         <div class="card-header">
             <div class="card-icon">💻</div>
             <h2>Programación</h2>
@@ -50,19 +50,19 @@
         <div class="card-content">
             <p>Lenguajes, frameworks y desarrollo de aplicaciones</p>
             <div class="topics-grid">
-                <div class="topic-tag coming-soon">🐍 Python</div>
-                <div class="topic-tag coming-soon">⚡ JavaScript</div>
-                <div class="topic-tag coming-soon">🗄️ Bases de Datos</div>
-                <div class="topic-tag coming-soon">🔧 DevOps</div>
+                <span class="topic-tag coming-soon">🐍 Python</span>
+                <span class="topic-tag coming-soon">⚡ JavaScript</span>
+                <span class="topic-tag coming-soon">🗄️ Bases de Datos</span>
+                <span class="topic-tag coming-soon">🔧 DevOps</span>
             </div>
         </div>
         <div class="card-footer">
             <span class="progress-indicator coming">En planificación</span>
         </div>
-    </div>
+    </a>
 
     <!-- Sistemas -->
-    <div class="knowledge-card systems">
+    <a href="/sistemas" class="knowledge-card systems">
         <div class="card-header">
             <div class="card-icon">⚙️</div>
             <h2>Sistemas</h2>
@@ -70,16 +70,16 @@
         <div class="card-content">
             <p>Administración de servidores y infraestructura</p>
             <div class="topics-grid">
-                <div class="topic-tag coming-soon">🐧 Linux</div>
-                <div class="topic-tag coming-soon">☁️ Cloud</div>
-                <div class="topic-tag coming-soon">🔧 Monitoring</div>
-                <div class="topic-tag coming-soon">📊 Performance</div>
+                <span class="topic-tag coming-soon">🐧 Linux</span>
+                <span class="topic-tag coming-soon">☁️ Cloud</span>
+                <span class="topic-tag coming-soon">🔧 Monitoring</span>
+                <span class="topic-tag coming-soon">📊 Performance</span>
             </div>
         </div>
         <div class="card-footer">
             <span class="progress-indicator coming">Futuro contenido</span>
         </div>
-    </div>
+    </a>
 </div>
 
 <style>
@@ -271,10 +271,62 @@
     @media (max-width: 768px) {
         .knowledge-grid {
             grid-template-columns: 1fr;
+            gap: 15px;
         }
-        
-        .knowledge-card:hover {
-            transform: translateY(-6px) scale(1.01);
+
+        .knowledge-card {
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .card-header h2 {
+            font-size: 1.2em;
+        }
+
+        .card-icon {
+            font-size: 2em;
+            padding: 10px;
+        }
+
+        .card-content p {
+            font-size: 0.9em;
+        }
+
+        .topic-tag {
+            font-size: 0.75em;
+            padding: 6px 10px;
+        }
+
+        .progress-indicator {
+            font-size: 0.8em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .knowledge-card {
+            padding: 10px;
+        }
+
+        .card-header h2 {
+            font-size: 1em;
+        }
+
+        .card-icon {
+            font-size: 1.8em;
+            padding: 8px;
+        }
+
+        .card-content p {
+            font-size: 0.8em;
+        }
+
+        .topic-tag {
+            font-size: 0.7em;
+            padding: 5px 8px;
+        }
+
+        .progress-indicator {
+            font-size: 0.7em;
         }
     }
 </style>

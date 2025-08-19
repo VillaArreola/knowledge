@@ -1,12 +1,11 @@
-
 ---
-// Página de Ciberseguridad integrada al diseño general
+// Página de Sistemas integrada al diseño general
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
-const title = "Ciberseguridad - Índice de Temas";
-const description = "Índice dinámico de todos los temas de ciberseguridad cargado automáticamente";
+const title = "Sistemas - Índice de Temas";
+const description = "Índice dinámico de todos los temas de sistemas cargado automáticamente";
 ---
 
 <!DOCTYPE html>
@@ -29,8 +28,8 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     <Navbar />
 
     <!-- Main Content -->
-    <main class="cyber-main">
-      <div class="cyber-page">
+    <main class="systems-main">
+      <div class="systems-page">
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-background">
@@ -39,17 +38,17 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
             </div>
             <div class="hero-content">
                 <div class="hero-badge">
-                    <span class="badge-icon">🔐</span>
+                    <span class="badge-icon">⚙️</span>
                     <span class="badge-text">Knowledge Base</span>
                 </div>
                 
                 <h1 class="hero-title">
-                    <span class="title-text">Ciberseguridad</span>
+                    <span class="title-text">Sistemas</span>
                 </h1>
                 
                 <p class="hero-description">
-                    Explora conceptos fundamentales, técnicas avanzadas y mejores prácticas 
-                    en seguridad informática. Desde fundamentos hasta especialidades avanzadas.
+                    Explora sistemas operativos, administración, virtualización y infraestructura.
+                    Desde conceptos fundamentales hasta tecnologías empresariales y arquitecturas distribuidas.
                 </p>
                 
                 <div class="hero-stats">
@@ -103,61 +102,61 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
 
 <style is:global>
     /* CSS Variables for consistent theming (scoped) */
-    .cyber-page {
-        --cyber-primary: #3b82f6;
-        --cyber-secondary: #8b5cf6;
-        --cyber-accent: #f59e0b;
-        --cyber-success: #22c55e;
-        --cyber-bg-dark: #0a0a0a;
-        --cyber-text-primary: #ffffff;
-        --cyber-text-secondary: rgba(255, 255, 255, 0.8);
-        --cyber-text-muted: rgba(255, 255, 255, 0.6);
+    .systems-page {
+        --systems-primary: #6366f1;
+        --systems-secondary: #8b5cf6;
+        --systems-accent: #a855f7;
+        --systems-success: #10b981;
+        --systems-bg-dark: #0a0a0a;
+        --systems-text-primary: #ffffff;
+        --systems-text-secondary: rgba(255, 255, 255, 0.8);
+        --systems-text-muted: rgba(255, 255, 255, 0.6);
     }
 
-    /* Global styles for cyber page */
-    .cyber-page {
+    /* Global styles for systems page */
+    .systems-page {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         line-height: 1.6;
-        color: var(--cyber-text-primary);
-        background: var(--cyber-bg-dark);
+        color: var(--systems-text-primary);
+        background: var(--systems-bg-dark);
         overflow-x: hidden;
     }
 
     /* Eliminar todos los puntos de lista */
-    .cyber-page * {
+    .systems-page * {
         list-style: none !important;
         list-style-type: none !important;
     }
 
-    .cyber-page ul, 
-    .cyber-page ol, 
-    .cyber-page li {
+    .systems-page ul, 
+    .systems-page ol, 
+    .systems-page li {
         list-style: none !important;
         list-style-type: none !important;
         margin: 0 !important;
         padding: 0 !important;
     }
 
-    .cyber-page li::marker {
+    .systems-page li::marker {
         display: none !important;
         content: none !important;
     }
 
-    .cyber-page li::before {
+    .systems-page li::before {
         display: none !important;
         content: none !important;
     }
 
     /* Estilos específicos para elementos de lista */
-    .cyber-page .topic-list,
-    .cyber-page .topic-list * {
+    .systems-page .topic-list,
+    .systems-page .topic-list * {
         list-style: none !important;
         list-style-type: none !important;
         list-style-image: none !important;
         list-style-position: outside !important;
     }
 
-    .cyber-main {
+    .systems-main {
         display: block;
         position: relative;
         width: 100%;
@@ -165,7 +164,7 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Hero Section */
-    .cyber-page .hero-section {
+    .systems-page .hero-section {
         position: relative;
         padding: 2rem 1.5rem 2.5rem;
         overflow: hidden;
@@ -175,25 +174,25 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         justify-content: center;
     }
 
-    .cyber-page .hero-background {
+    .systems-page .hero-background {
         position: absolute;
         inset: 0;
         background: linear-gradient(
             135deg,
-            var(--cyber-bg-dark) 0%,
+            var(--systems-bg-dark) 0%,
             #1a0f2e 30%,
-            #2d1b69 50%,
+            #3d1b69 50%,
             #1a0f2e 70%,
-            var(--cyber-bg-dark) 100%
+            var(--systems-bg-dark) 100%
         );
     }
 
-    .cyber-page .hero-grid {
+    .systems-page .hero-grid {
         position: absolute;
         inset: 0;
         background-image: 
-            linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
         background-size: 40px 40px;
         animation: grid-move 20s linear infinite;
     }
@@ -203,7 +202,7 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         100% { transform: translate(50px, 50px); }
     }
 
-    .cyber-page .hero-glow {
+    .systems-page .hero-glow {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -212,8 +211,8 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         height: 70%;
         background: radial-gradient(
             ellipse at center,
-            rgba(139, 92, 246, 0.08) 0%,
-            rgba(59, 130, 246, 0.06) 30%,
+            rgba(99, 102, 241, 0.08) 0%,
+            rgba(139, 92, 246, 0.06) 30%,
             transparent 70%
         );
         animation: glow-pulse 4s ease-in-out infinite alternate;
@@ -224,7 +223,7 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
     }
 
-    .cyber-page .hero-content {
+    .systems-page .hero-content {
         position: relative;
         z-index: 10;
         max-width: 900px;
@@ -233,25 +232,25 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Hero Badge */
-    .cyber-page .hero-badge {
+    .systems-page .hero-badge {
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
         padding: 0.5rem 1rem;
-        background: rgba(59, 130, 246, 0.15);
-        border: 1px solid rgba(59, 130, 246, 0.3);
+        background: rgba(99, 102, 241, 0.15);
+        border: 1px solid rgba(99, 102, 241, 0.3);
         border-radius: 1.25rem;
         backdrop-filter: blur(10px);
         margin-bottom: 1rem;
         font-size: 0.85rem;
         font-weight: 500;
-        color: var(--cyber-text-secondary);
-        box-shadow: 0 2px 10px rgba(59, 130, 246, 0.15);
+        color: var(--systems-text-secondary);
+        box-shadow: 0 2px 10px rgba(99, 102, 241, 0.15);
     }
 
     .badge-icon {
         font-size: 1.25rem;
-        filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
+        filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
     }
 
     .badge-text {
@@ -259,30 +258,30 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Hero Title */
-    .cyber-page .hero-title {
+    .systems-page .hero-title {
         font-size: clamp(2rem, 4.5vw, 3rem);
         font-weight: 800;
         margin-bottom: 1rem;
         letter-spacing: -0.02em;
         line-height: 1.1;
-        color: var(--cyber-text-primary);
+        color: var(--systems-text-primary);
     }
 
-    .cyber-page .title-text {
+    .systems-page .title-text {
         background: linear-gradient(
             135deg,
             #ffffff 0%,
-            #e2e8f0 25%,
-            #cbd5e1 50%,
-            #94a3b8 75%,
-            #64748b 100%
+            #e0e7ff 25%,
+            #c7d2fe 50%,
+            #a5b4fc 75%,
+            #818cf8 100%
         );
         background-size: 300% 300%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         animation: text-shimmer 6s ease-in-out infinite;
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+        text-shadow: 0 0 20px rgba(99, 102, 241, 0.08);
     }
 
     @keyframes text-shimmer {
@@ -291,10 +290,10 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Hero Description */
-    .cyber-page .hero-description {
+    .systems-page .hero-description {
         font-size: clamp(1rem, 1.6vw, 1.125rem);
         line-height: 1.6;
-        color: var(--cyber-text-secondary);
+        color: var(--systems-text-secondary);
         margin-bottom: 1.25rem;
         max-width: 700px;
         margin-left: auto;
@@ -303,7 +302,7 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Hero Stats */
-    .cyber-page .hero-stats {
+    .systems-page .hero-stats {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -311,29 +310,29 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         margin-top: 1rem;
     }
 
-    .cyber-page .stat-item {
+    .systems-page .stat-item {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 0.5rem;
     }
 
-    .cyber-page .stat-number {
+    .systems-page .stat-number {
         font-size: 1.5rem;
         font-weight: 700;
-        color: var(--cyber-primary);
-        text-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+        color: var(--systems-primary);
+        text-shadow: 0 0 12px rgba(99, 102, 241, 0.25);
     }
 
-    .cyber-page .stat-label {
+    .systems-page .stat-label {
         font-size: 0.75rem;
-        color: var(--cyber-text-muted);
+        color: var(--systems-text-muted);
         text-transform: uppercase;
         letter-spacing: 0.1em;
         font-weight: 500;
     }
 
-    .cyber-page .stat-divider {
+    .systems-page .stat-divider {
         width: 2px;
         height: 24px;
         background: linear-gradient(
@@ -345,13 +344,13 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Content Section */
-    .cyber-page .content-section {
+    .systems-page .content-section {
         padding: 4rem 2rem 6rem;
-        background: var(--cyber-bg-dark);
+        background: var(--systems-bg-dark);
         position: relative;
     }
 
-    .cyber-page .content-container {
+    .systems-page .content-container {
         max-width: 1400px;
         margin: 0 auto;
         width: 100%;
@@ -360,51 +359,51 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Section Header */
-    .cyber-page .section-header {
+    .systems-page .section-header {
         text-align: center;
         margin-bottom: 4rem;
     }
 
-    .cyber-page .section-title {
+    .systems-page .section-title {
         font-size: clamp(2rem, 4vw, 2.75rem);
         font-weight: 700;
-        color: var(--cyber-text-primary);
+        color: var(--systems-text-primary);
         margin-bottom: 1rem;
         letter-spacing: -0.025em;
     }
 
-    .cyber-page .section-subtitle {
+    .systems-page .section-subtitle {
         font-size: clamp(1rem, 2vw, 1.25rem);
-        color: var(--cyber-text-secondary);
+        color: var(--systems-text-secondary);
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
     }
 
     /* Loading Animation */
-    .cyber-page .loading-wrapper {
+    .systems-page .loading-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 4rem 2rem;
     }
 
-    .cyber-page .loading-animation {
+    .systems-page .loading-animation {
         text-align: center;
     }
 
-    .cyber-page .loading-dots {
+    .systems-page .loading-dots {
         display: flex;
         gap: 0.5rem;
         margin-bottom: 1rem;
         justify-content: center;
     }
 
-    .cyber-page .dot {
+    .systems-page .dot {
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--cyber-primary), var(--cyber-secondary));
+        background: linear-gradient(135deg, var(--systems-primary), var(--systems-secondary));
         animation: dot-bounce 1.4s infinite ease-in-out;
     }
 
@@ -417,13 +416,13 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         40% { transform: scale(1); opacity: 1; }
     }
 
-    .cyber-page .loading-text {
-        color: var(--cyber-text-muted);
+    .systems-page .loading-text {
+        color: var(--systems-text-muted);
         font-size: 1rem;
     }
 
     /* Index Grid */
-    .cyber-page .index-grid {
+    .systems-page .index-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 1.25rem;
@@ -431,7 +430,7 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Category Sections */
-    .cyber-page .category-section {
+    .systems-page .category-section {
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 0.75rem;
@@ -453,43 +452,43 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         }
     }
 
-    .cyber-page .cyber-category-section::before {
+    .systems-page .systems-category-section::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         height: 3px;
-        background: linear-gradient(90deg, var(--cyber-primary), var(--cyber-secondary));
+        background: linear-gradient(90deg, var(--systems-primary), var(--systems-secondary));
         border-radius: 1.25rem 1.25rem 0 0;
         opacity: 0.8;
     }
 
-    .cyber-page .category-section:hover {
+    .systems-page .category-section:hover {
         background: rgba(255, 255, 255, 0.06);
         border-color: rgba(255, 255, 255, 0.14);
         transform: translateY(-1px);
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
     }
 
-    .cyber-page .category-section h2 {
+    .systems-page .category-section h2 {
         display: flex;
         align-items: center;
         gap: 0.75rem;
         font-size: 1.125rem;
         font-weight: 600;
         margin-bottom: 1rem;
-        color: var(--cyber-text-primary);
+        color: var(--systems-text-primary);
         padding-bottom: 0.75rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         letter-spacing: -0.01em;
     }
 
-    .cyber-page .category-section h2 .icon {
+    .systems-page .category-section h2 .icon {
         font-size: 1.125rem;
         padding: 0.5rem;
-        background: rgba(59, 130, 246, 0.12);
-        border: 1px solid rgba(59, 130, 246, 0.25);
+        background: rgba(99, 102, 241, 0.12);
+        border: 1px solid rgba(99, 102, 241, 0.25);
         border-radius: 0.5rem;
         backdrop-filter: blur(8px);
         display: flex;
@@ -498,7 +497,7 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Topic Lists */
-    .cyber-page .topic-list {
+    .systems-page .topic-list {
         list-style: none !important;
         display: flex;
         flex-direction: column;
@@ -507,7 +506,7 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         padding: 0;
     }
 
-    .cyber-page .topic-list li {
+    .systems-page .topic-list li {
         list-style: none !important;
         list-style-type: none !important;
         margin: 0 !important;
@@ -522,32 +521,32 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         overflow: hidden;
     }
     /* Vista densa para muchas entradas */
-    .cyber-page .topic-list.dense {
+    .systems-page .topic-list.dense {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 0.5rem 0.75rem;
     }
     @media (max-width: 640px) {
-        .cyber-page .topic-list.dense {
+        .systems-page .topic-list.dense {
             grid-template-columns: 1fr;
         }
     }
 
-    .cyber-page .topic-list li::before,
-    .cyber-page .topic-list li::after,
-    .cyber-page .topic-list li::marker {
+    .systems-page .topic-list li::before,
+    .systems-page .topic-list li::after,
+    .systems-page .topic-list li::marker {
         display: none !important;
         content: none !important;
     }
 
     /* Efecto hover en el contenedor li */
-    .cyber-page .topic-list li:hover {
+    .systems-page .topic-list li:hover {
         transform: translateY(-2px);
         transition: transform 0.3s ease;
     }
 
     /* Estilos específicos para topic-item */
-    .cyber-page .topic-item {
+    .systems-page .topic-item {
         list-style: none !important;
         list-style-type: none !important;
         margin: 0 !important;
@@ -562,16 +561,16 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         overflow: hidden;
     }
     /* Ocultos por defecto cuando hay muchos */
-    .cyber-page .topic-item.hidden-item { display: none; }
-    .cyber-page .category-section.expanded .topic-item.hidden-item { display: block; }
+    .systems-page .topic-item.hidden-item { display: none; }
+    .systems-page .category-section.expanded .topic-item.hidden-item { display: block; }
 
     /* Botón Ver más */
-    .cyber-page .section-more {
+    .systems-page .section-more {
         margin-top: 0.75rem;
         display: flex;
         justify-content: center;
     }
-    .cyber-page .show-more-btn {
+    .systems-page .show-more-btn {
         background: rgba(255,255,255,0.06);
         border: 1px solid rgba(255,255,255,0.12);
         color: rgba(255,255,255,0.9);
@@ -582,26 +581,26 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         cursor: pointer;
         transition: all 0.2s ease;
     }
-    .cyber-page .show-more-btn:hover {
+    .systems-page .show-more-btn:hover {
         background: rgba(255,255,255,0.1);
-        border-color: rgba(59,130,246,0.35);
-        box-shadow: 0 6px 18px rgba(59,130,246,0.18);
+        border-color: rgba(99,102,241,0.35);
+        box-shadow: 0 6px 18px rgba(99,102,241,0.18);
     }
 
-    .cyber-page .topic-item::before,
-    .cyber-page .topic-item::after,
-    .cyber-page .topic-item::marker {
+    .systems-page .topic-item::before,
+    .systems-page .topic-item::after,
+    .systems-page .topic-item::marker {
         display: none !important;
         content: none !important;
     }
 
     /* Efecto hover en el contenedor topic-item */
-    .cyber-page .topic-item:hover {
+    .systems-page .topic-item:hover {
         transform: translateY(-1px);
     }
 
     /* Animación de entrada para li */
-    .cyber-page .topic-list li.fade-in {
+    .systems-page .topic-list li.fade-in {
         opacity: 0;
         transform: translateY(20px);
         animation: li-slide-in 0.6s ease forwards;
@@ -618,7 +617,7 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         }
     }
 
-    .cyber-page .topic-link {
+    .systems-page .topic-link {
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -642,120 +641,60 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         margin: 0;
     }
 
-    .cyber-page .topic-link::marker {
+    .systems-page .topic-link::marker {
         display: none !important;
     }
 
     /* Efecto de ondas al hover */
-    .cyber-page .topic-link::before {
+    .systems-page .topic-link::before {
         content: '';
         position: absolute;
         top: 50%;
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+        background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
         transform: translateY(-50%);
         transition: left 0.6s ease;
     }
 
-    .cyber-page .topic-link:hover {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.08));
-        border-color: rgba(59, 130, 246, 0.25);
-        color: var(--cyber-text-primary);
+    .systems-page .topic-link:hover {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
+        border-color: rgba(99, 102, 241, 0.25);
+        color: var(--systems-text-primary);
         transform: translateX(8px) scale(1.01);
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.22), 0 4px 12px rgba(139, 92, 246, 0.18);
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.22), 0 4px 12px rgba(139, 92, 246, 0.18);
     }
 
-    /* Cover hover variants para temas destacados */
-    .cyber-page .topic-link.cover-cia:hover {
-        background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(250, 204, 21, 0.15));
-        box-shadow: 0 15px 40px rgba(244, 63, 94, 0.35), 0 8px 24px rgba(250, 204, 21, 0.25);
-        border-color: rgba(244, 63, 94, 0.5);
-        text-shadow: 0 0 10px rgba(244, 63, 94, 0.7), 0 0 18px rgba(250, 204, 21, 0.5);
-    }
-
-    .cyber-page .topic-link.cover-principios:hover {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(16, 185, 129, 0.16));
-        box-shadow: 0 15px 40px rgba(59, 130, 246, 0.35), 0 8px 24px rgba(16, 185, 129, 0.25);
-        border-color: rgba(59, 130, 246, 0.5);
-        text-shadow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 18px rgba(16, 185, 129, 0.5);
-    }
-
-    .cyber-page .topic-link.cover-riesgos:hover {
-        background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(239, 68, 68, 0.18));
-        box-shadow: 0 15px 40px rgba(245, 158, 11, 0.35), 0 8px 24px rgba(239, 68, 68, 0.25);
-        border-color: rgba(245, 158, 11, 0.5);
-        text-shadow: 0 0 10px rgba(245, 158, 11, 0.7), 0 0 18px rgba(239, 68, 68, 0.5);
-    }
-
-    .cyber-page .topic-link.cover-politicas:hover {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.18));
-        box-shadow: 0 15px 40px rgba(139, 92, 246, 0.35), 0 8px 24px rgba(59, 130, 246, 0.25);
-        border-color: rgba(139, 92, 246, 0.5);
-        text-shadow: 0 0 10px rgba(139, 92, 246, 0.7), 0 0 18px rgba(59, 130, 246, 0.5);
-    }
-
-    .cyber-page .topic-link.cover-formacion:hover {
-        background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(6, 182, 212, 0.18));
-        box-shadow: 0 15px 40px rgba(34, 197, 94, 0.35), 0 8px 24px rgba(6, 182, 212, 0.25);
-        border-color: rgba(34, 197, 94, 0.5);
-        text-shadow: 0 0 10px rgba(34, 197, 94, 0.7), 0 0 18px rgba(6, 182, 212, 0.5);
-    }
-
-    .cyber-page .topic-link.cover-activos:hover {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(2, 132, 199, 0.18));
-        box-shadow: 0 15px 40px rgba(59, 130, 246, 0.35), 0 8px 24px rgba(2, 132, 199, 0.25);
-        border-color: rgba(59, 130, 246, 0.5);
-        text-shadow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 18px rgba(2, 132, 199, 0.5);
-    }
-
-    @keyframes topic-glow {
-        0% {
-            box-shadow: 
-                0 10px 30px rgba(59, 130, 246, 0.4),
-                0 6px 16px rgba(139, 92, 246, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15),
-                0 0 20px rgba(59, 130, 246, 0.2);
-        }
-        100% {
-            box-shadow: 
-                0 15px 40px rgba(59, 130, 246, 0.5),
-                0 8px 20px rgba(139, 92, 246, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 30px rgba(59, 130, 246, 0.3);
-        }
-    }
-
-    .cyber-page .topic-link:hover::before {
+    .systems-page .topic-link:hover::before {
         left: 100%;
     }
 
     /* Animación de pulso al hacer clic */
-    .cyber-page .topic-link:active {
+    .systems-page .topic-link:active {
         transform: translateX(12px) scale(0.98);
         transition: transform 0.1s ease;
     }
 
     /* Efecto de brillo en el texto */
-    .cyber-page .topic-link:hover {
+    .systems-page .topic-link:hover {
         text-shadow: none;
     }
 
     /* Indicador visual al lado derecho */
-    .cyber-page .topic-link::after {
+    .systems-page .topic-link::after {
         content: '→';
         position: absolute;
         right: 0.75rem;
         opacity: 0;
-        color: var(--cyber-primary);
+        color: var(--systems-primary);
         font-size: 0.9rem;
         transition: all 0.3s ease;
         transform: translateX(8px);
         z-index: 2;
     }
 
-    .cyber-page .topic-link:hover::after {
+    .systems-page .topic-link:hover::after {
         opacity: 1;
         transform: translateX(0);
         animation: arrow-pulse 1s ease-in-out infinite;
@@ -855,126 +794,69 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Status Variations */
-    .cyber-page .topic-link.completed {
-        background: rgba(34, 197, 94, 0.1);
-        border-color: rgba(34, 197, 94, 0.3);
-        color: var(--cyber-success);
+    .systems-page .topic-link.completed {
+        background: rgba(16, 185, 129, 0.1);
+        border-color: rgba(16, 185, 129, 0.3);
+        color: var(--systems-success);
         position: relative;
     }
 
-    .cyber-page .topic-link.completed::before {
-        background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.15), transparent);
+    .systems-page .topic-link.completed::before {
+        background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.15), transparent);
     }
 
-    .cyber-page .topic-link.completed::after {
-        background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(16, 185, 129, 0.08));
-    }
-
-    .cyber-page .topic-link.completed::after {
+    .systems-page .topic-link.completed::after {
         content: '✓';
-        color: var(--cyber-success);
+        color: var(--systems-success);
     }
 
-    .cyber-page .topic-link.completed:hover {
-        background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.15));
-        border-color: rgba(34, 197, 94, 0.5);
-        color: var(--cyber-text-primary);
+    .systems-page .topic-link.completed:hover {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.15));
+        border-color: rgba(16, 185, 129, 0.5);
+        color: var(--systems-text-primary);
         transform: translateX(15px) scale(1.03);
         box-shadow: 
-            0 10px 30px rgba(34, 197, 94, 0.5),
-            0 6px 16px rgba(16, 185, 129, 0.4),
+            0 10px 30px rgba(16, 185, 129, 0.5),
+            0 6px 16px rgba(6, 182, 212, 0.4),
             inset 0 1px 0 rgba(255, 255, 255, 0.15),
-            0 0 25px rgba(34, 197, 94, 0.3);
+            0 0 25px rgba(16, 185, 129, 0.3);
         text-shadow: 
-            0 0 10px rgba(34, 197, 94, 0.8),
-            0 0 20px rgba(16, 185, 129, 0.5);
-        animation: topic-glow-success 2s ease-in-out infinite alternate;
+            0 0 10px rgba(16, 185, 129, 0.8),
+            0 0 20px rgba(6, 182, 212, 0.5);
     }
 
-    @keyframes topic-glow-success {
-        0% {
-            box-shadow: 
-                0 10px 30px rgba(34, 197, 94, 0.5),
-                0 6px 16px rgba(16, 185, 129, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15),
-                0 0 25px rgba(34, 197, 94, 0.3);
-        }
-        100% {
-            box-shadow: 
-                0 15px 40px rgba(34, 197, 94, 0.6),
-                0 8px 20px rgba(16, 185, 129, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 35px rgba(34, 197, 94, 0.4);
-        }
-    }
-
-    /* Animación de check mark para completed */
-    .cyber-page .topic-link.completed:hover::after {
-        opacity: 1;
-        animation: success-pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes success-pulse {
-        0%, 100% { 
-            box-shadow: inset 0 0 0 2px rgba(34, 197, 94, 0.3);
-        }
-        50% { 
-            box-shadow: inset 0 0 0 4px rgba(34, 197, 94, 0.5);
-        }
-    }
-
-    .cyber-page .topic-link.interactive {
-        background: rgba(245, 158, 11, 0.1);
-        border-color: rgba(245, 158, 11, 0.3);
-        color: var(--cyber-accent);
+    .systems-page .topic-link.interactive {
+        background: rgba(168, 85, 247, 0.1);
+        border-color: rgba(168, 85, 247, 0.3);
+        color: var(--systems-accent);
         position: relative;
     }
 
-    .cyber-page .topic-link.interactive::before {
-        background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.15), transparent);
+    .systems-page .topic-link.interactive::before {
+        background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.15), transparent);
     }
 
-    .cyber-page .topic-link.interactive::after {
-        background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(251, 191, 36, 0.08));
-    }
-
-    .cyber-page .topic-link.interactive::after {
+    .systems-page .topic-link.interactive::after {
         content: '⚡';
-        color: var(--cyber-accent);
+        color: var(--systems-accent);
     }
 
-    .cyber-page .topic-link.interactive:hover {
-        background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(251, 191, 36, 0.15));
-        border-color: rgba(245, 158, 11, 0.5);
-        color: var(--cyber-text-primary);
+    .systems-page .topic-link.interactive:hover {
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(139, 92, 246, 0.15));
+        border-color: rgba(168, 85, 247, 0.5);
+        color: var(--systems-text-primary);
         transform: translateX(15px) scale(1.03);
         box-shadow: 
-            0 10px 30px rgba(245, 158, 11, 0.5),
-            0 6px 16px rgba(251, 191, 36, 0.4),
+            0 10px 30px rgba(168, 85, 247, 0.5),
+            0 6px 16px rgba(139, 92, 246, 0.4),
             inset 0 1px 0 rgba(255, 255, 255, 0.15),
-            0 0 25px rgba(245, 158, 11, 0.3);
+            0 0 25px rgba(168, 85, 247, 0.3);
         text-shadow: 
-            0 0 10px rgba(245, 158, 11, 0.8),
-            0 0 20px rgba(251, 191, 36, 0.5);
-        animation: interactive-glow 1.5s ease-in-out infinite alternate;
+            0 0 10px rgba(168, 85, 247, 0.8),
+            0 0 20px rgba(139, 92, 246, 0.5);
     }
 
-    @keyframes interactive-glow {
-        0% { 
-            box-shadow: 
-                0 8px 25px rgba(245, 158, 11, 0.4),
-                0 4px 12px rgba(251, 191, 36, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        100% { 
-            box-shadow: 
-                0 12px 35px rgba(245, 158, 11, 0.6),
-                0 6px 18px rgba(251, 191, 36, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-    }
-
-    .cyber-page .topic-link.planned {
+    .systems-page .topic-link.planned {
         background: rgba(148, 163, 184, 0.05);
         border-color: rgba(148, 163, 184, 0.2);
         color: rgba(148, 163, 184, 0.8);
@@ -982,20 +864,16 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         position: relative;
     }
 
-    .cyber-page .topic-link.planned::before {
+    .systems-page .topic-link.planned::before {
         background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.1), transparent);
     }
 
-    .cyber-page .topic-link.planned::after {
-        background: linear-gradient(135deg, rgba(148, 163, 184, 0.05), rgba(148, 163, 184, 0.05));
-    }
-
-    .cyber-page .topic-link.planned::after {
+    .systems-page .topic-link.planned::after {
         content: '⏳';
         color: rgba(148, 163, 184, 0.8);
     }
 
-    .cyber-page .topic-link.planned:hover {
+    .systems-page .topic-link.planned:hover {
         background: rgba(148, 163, 184, 0.08);
         border-color: rgba(148, 163, 184, 0.25);
         transform: translateX(8px) scale(1.01);
@@ -1006,167 +884,106 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         text-shadow: 0 0 6px rgba(148, 163, 184, 0.5);
     }
 
-    /* Efecto de ondas para elementos clickeables */
-    .cyber-page .topic-link.completed:active,
-    .cyber-page .topic-link.interactive:active {
-        transform: translateX(12px) scale(0.98);
-        transition: transform 0.1s ease;
-    }
-
-    .cyber-page .topic-link.planned:active {
-        transform: translateX(6px) scale(0.99);
-        transition: transform 0.1s ease;
-    }
-
-    /* Animaciones adicionales */
-    @keyframes ripple-effect {
-        0% {
-            transform: scale(0);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-
-    @keyframes topic-slide-in {
-        0% {
-            opacity: 0;
-            transform: translateY(20px) translateX(-10px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0) translateX(0);
-        }
-    }
-
-    /* Animación de entrada para topic links */
-    .cyber-page .topic-link.fade-in {
-        opacity: 0;
-        transform: translateY(20px) translateX(-10px);
-        animation: topic-slide-in 0.6s ease forwards;
-    }
-
-    /* Delay escalonado para la animación de entrada */
-    .topic-link:nth-child(1) { animation-delay: 0.1s; }
-    .topic-link:nth-child(2) { animation-delay: 0.2s; }
-    .topic-link:nth-child(3) { animation-delay: 0.3s; }
-    .topic-link:nth-child(4) { animation-delay: 0.4s; }
-    .topic-link:nth-child(5) { animation-delay: 0.5s; }
-    .topic-link:nth-child(n+6) { animation-delay: 0.6s; }
-
     /* Responsive Design */
     @media (max-width: 1024px) {
-        .cyber-page .index-grid {
+        .systems-page .index-grid {
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1rem;
         }
         
-        .cyber-page .hero-stats {
+        .systems-page .hero-stats {
             gap: 1rem;
         }
     }
 
     @media (max-width: 768px) {
-        .cyber-page .hero-section {
+        .systems-page .hero-section {
             padding: 1.5rem 1rem 2rem;
             min-height: 40vh;
         }
 
-        .cyber-page .hero-description {
+        .systems-page .hero-description {
             margin-bottom: 1rem;
         }
 
-        .cyber-page .hero-stats {
+        .systems-page .hero-stats {
             flex-direction: column;
             gap: 0.75rem;
         }
 
-        .cyber-page .stat-divider {
+        .systems-page .stat-divider {
             display: none;
         }
 
-        .cyber-page .content-section {
+        .systems-page .content-section {
             padding: 1.5rem 1rem 2rem;
         }
 
-        .cyber-page .section-header {
+        .systems-page .section-header {
             margin-bottom: 1.5rem;
         }
 
-        .cyber-page .index-grid {
+        .systems-page .index-grid {
             grid-template-columns: 1fr;
             gap: 0.75rem;
         }
 
-        .cyber-page .category-section {
+        .systems-page .category-section {
             padding: 1rem;
         }
     }
 
     @media (max-width: 480px) {
-        .cyber-page .hero-section {
+        .systems-page .hero-section {
             padding: 1rem 0.75rem 1.5rem;
             min-height: 36vh;
         }
 
-            .cyber-page .hero-badge {
+        .systems-page .hero-badge {
             padding: 0.5rem 0.75rem;
             font-size: 0.8rem;
             margin-bottom: 1rem;
         }
 
-        .cyber-page .hero-description {
+        .systems-page .hero-description {
             margin-bottom: 0.75rem;
         }
 
-        .cyber-page .content-section {
+        .systems-page .content-section {
             padding: 1rem 0.75rem 1.5rem;
         }
 
-        .cyber-page .section-header {
+        .systems-page .section-header {
             margin-bottom: 1.25rem;
         }
 
-        .cyber-page .category-section {
+        .systems-page .category-section {
             padding: 0.75rem;
         }
 
-        .cyber-page .category-section h2 {
+        .systems-page .category-section h2 {
             font-size: 1rem;
             gap: 0.5rem;
             margin-bottom: 0.75rem;
         }
 
-        .cyber-page .category-section h2 .icon {
+        .systems-page .category-section h2 .icon {
             font-size: 1rem;
             padding: 0.4rem;
         }
 
-        .cyber-page .topic-link {
+        .systems-page .topic-link {
             padding: 0.6rem 0.75rem;
             font-size: 0.85rem;
         }
     }
 
-    /* Dark mode compatibility */
-    :global(.dark) .hero-title,
-    :global(.dark) .section-title {
-        color: var(--cyber-text-primary);
-    }
-
-    :global(.dark) .hero-description,
-    :global(.dark) .section-subtitle {
-        color: var(--cyber-text-secondary);
-    }
-
     /* CSS ULTRA-ESPECÍFICO PARA ELIMINAR PUNTOS */
-    .cyber-page .category-section ul,
-    .cyber-page .category-section ul li,
-    .cyber-page .topic-list,
-    .cyber-page .topic-list li,
-    .cyber-page .topic-item {
+    .systems-page .category-section ul,
+    .systems-page .category-section ul li,
+    .systems-page .topic-list,
+    .systems-page .topic-list li,
+    .systems-page .topic-item {
         list-style: none !important;
         list-style-type: none !important;
         list-style-image: none !important;
@@ -1176,15 +993,15 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
         display: block !important;
     }
 
-    .cyber-page .category-section ul li::before,
-    .cyber-page .category-section ul li::after,
-    .cyber-page .category-section ul li::marker,
-    .cyber-page .topic-list li::before,
-    .cyber-page .topic-list li::after,
-    .cyber-page .topic-list li::marker,
-    .cyber-page .topic-item::before,
-    .cyber-page .topic-item::after,
-    .cyber-page .topic-item::marker {
+    .systems-page .category-section ul li::before,
+    .systems-page .category-section ul li::after,
+    .systems-page .category-section ul li::marker,
+    .systems-page .topic-list li::before,
+    .systems-page .topic-list li::after,
+    .systems-page .topic-list li::marker,
+    .systems-page .topic-item::before,
+    .systems-page .topic-item::after,
+    .systems-page .topic-item::marker {
         display: none !important;
         content: none !important;
         visibility: hidden !important;
@@ -1194,18 +1011,18 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* OVERRIDE FORZADO PARA WEBKIT */
-    .cyber-page .topic-list li::-webkit-details-marker,
-    .cyber-page .topic-item::-webkit-details-marker {
+    .systems-page .topic-list li::-webkit-details-marker,
+    .systems-page .topic-item::-webkit-details-marker {
         display: none !important;
     }
 
     /* CORRECCIÓN DE COLOR Y SUBRAYADO */
-    .cyber-page .topic-link,
-    .cyber-page .topic-link:link,
-    .cyber-page .topic-link:visited,
-    .cyber-page .topic-link:hover,
-    .cyber-page .topic-link:active,
-    .cyber-page .topic-link:focus {
+    .systems-page .topic-link,
+    .systems-page .topic-link:link,
+    .systems-page .topic-link:visited,
+    .systems-page .topic-link:hover,
+    .systems-page .topic-link:active,
+    .systems-page .topic-link:focus {
         color: rgba(255, 255, 255, 0.85) !important;
         text-decoration: none !important;
         text-decoration-line: none !important;
@@ -1219,49 +1036,49 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
     }
 
     /* Estados específicos para los diferentes tipos */
-    .cyber-page .topic-link.completed,
-    .cyber-page .topic-link.completed:link,
-    .cyber-page .topic-link.completed:visited {
-        color: var(--cyber-success) !important;
+    .systems-page .topic-link.completed,
+    .systems-page .topic-link.completed:link,
+    .systems-page .topic-link.completed:visited {
+        color: var(--systems-success) !important;
         text-decoration: none !important;
     }
 
-    .cyber-page .topic-link.interactive,
-    .cyber-page .topic-link.interactive:link,
-    .cyber-page .topic-link.interactive:visited {
-        color: var(--cyber-accent) !important;
+    .systems-page .topic-link.interactive,
+    .systems-page .topic-link.interactive:link,
+    .systems-page .topic-link.interactive:visited {
+        color: var(--systems-accent) !important;
         text-decoration: none !important;
     }
 
-    .cyber-page .topic-link.planned,
-    .cyber-page .topic-link.planned:link,
-    .cyber-page .topic-link.planned:visited {
+    .systems-page .topic-link.planned,
+    .systems-page .topic-link.planned:link,
+    .systems-page .topic-link.planned:visited {
         color: rgba(148, 163, 184, 0.8) !important;
         text-decoration: none !important;
     }
 
     /* OVERRIDE HOVERS CON COLORES CORRECTOS */
-    .cyber-page .topic-link:hover,
-    .cyber-page .topic-link.completed:hover,
-    .cyber-page .topic-link.interactive:hover,
-    .cyber-page .topic-link.planned:hover {
-        color: var(--cyber-text-primary) !important;
+    .systems-page .topic-link:hover,
+    .systems-page .topic-link.completed:hover,
+    .systems-page .topic-link.interactive:hover,
+    .systems-page .topic-link.planned:hover {
+        color: var(--systems-text-primary) !important;
         text-decoration: none !important;
     }
 
     /* ELIMINACION ABSOLUTA DE UNDERLINES */
-    .cyber-page a.topic-link {
+    .systems-page a.topic-link {
         text-decoration: none !important;
     }
 
-    .cyber-page a.topic-link:before,
-    .cyber-page a.topic-link:after {
+    .systems-page a.topic-link:before,
+    .systems-page a.topic-link:after {
         border-bottom: none !important;
         text-decoration: none !important;
     }
 
     /* Forzar estilo de span para elementos no clickeables */
-    .cyber-page span.topic-link {
+    .systems-page span.topic-link {
         color: rgba(148, 163, 184, 0.8) !important;
         text-decoration: none !important;
         cursor: default !important;
@@ -1270,8 +1087,8 @@ const description = "Índice dinámico de todos los temas de ciberseguridad carg
 
 <script>
 // @ts-nocheck
-// Sistema de carga dinámica desde JSON
-class CyberSecurityIndex {
+// Sistema de carga dinámica desde JSON para Sistemas
+class SystemsIndex {
     constructor() {
         this.searchIndex = null;
         this.sections = null;
@@ -1279,7 +1096,7 @@ class CyberSecurityIndex {
     }
 
     async init() {
-        console.log('🚀 Iniciando CyberSecurityIndex...');
+        console.log('🚀 Iniciando SystemsIndex...');
         try {
             await this.loadSearchIndex();
             console.log('✅ JSON cargado exitosamente');
@@ -1312,7 +1129,7 @@ class CyberSecurityIndex {
     generateSectionsFromPages() {
         const sectionsMap = {};
         this.searchIndex?.forEach((page) => {
-            if (page.category === 'Ciberseguridad' && page.section) {
+            if (page.category === 'Sistemas' && page.section) {
                 if (!sectionsMap[page.section]) {
                     sectionsMap[page.section] = {
                         name: this.sectionNameFromKey(page.section),
@@ -1329,65 +1146,47 @@ class CyberSecurityIndex {
 
     sectionNameFromKey(key) {
         const mapping = {
-            'fundamentos-de-seguridad': 'Fundamentos de Seguridad',
-            'criptografia': 'Criptografía',
-            'normativas': 'Normativas y Compliance',
-            'seguridad-en-redes': 'Seguridad en Redes',
-            'identidad-y-acceso': 'Identidad y Gestión de Acceso',
-            'respuesta-a-incidentes': 'Respuesta a Incidentes',
-            'informatica-forense': 'Informática Forense',
-            'laboratorios': 'Laboratorios y Práctica',
-            'especialidades-avanzadas': 'Especialidades Avanzadas'
+            'sistemas-operativos': 'Sistemas Operativos',
+            'virtualizacion': 'Virtualización',
+            'contenedores': 'Contenedores',
+            'administracion': 'Administración de Sistemas',
+            'monitoreo': 'Monitoreo y Observabilidad',
+            'almacenamiento': 'Almacenamiento',
+            'alta-disponibilidad': 'Alta Disponibilidad',
+            'automatizacion': 'Automatización',
+            'laboratorios-sistemas': 'Laboratorios de Sistemas'
         };
         return mapping[key] || key.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
     }
 
     getSectionIcon(section) {
         const iconMapping = {
-            'fundamentos-de-seguridad': '🛡️',
-            'criptografia': '🔐',
-            'normativas': '📋',
-            'seguridad-en-redes': '🌐',
-            'identidad-y-acceso': '🔑',
-            'respuesta-a-incidentes': '🚨',
-            'informatica-forense': '🔬',
-            'laboratorios': '⚗️',
-            'especialidades-avanzadas': '🎯'
+            'sistemas-operativos': '🖥️',
+            'virtualizacion': '📦',
+            'contenedores': '🐳',
+            'administracion': '⚙️',
+            'monitoreo': '📊',
+            'almacenamiento': '💾',
+            'alta-disponibilidad': '🔗',
+            'automatizacion': '🤖',
+            'laboratorios-sistemas': '🧪'
         };
         return iconMapping[section] || '📚';
     }
 
     getColumnForSection(section) {
         const columnMapping = {
-            'fundamentos-de-seguridad': 1,
-            'criptografia': 1,
-            'normativas': 1,
-            'seguridad-en-redes': 2,
-            'identidad-y-acceso': 2,
-            'respuesta-a-incidentes': 2,
-            'informatica-forense': 3,
-            'laboratorios': 3,
-            'especialidades-avanzadas': 3
+            'sistemas-operativos': 1,
+            'virtualizacion': 1,
+            'contenedores': 1,
+            'administracion': 2,
+            'monitoreo': 2,
+            'almacenamiento': 2,
+            'alta-disponibilidad': 3,
+            'automatizacion': 3,
+            'laboratorios-sistemas': 3
         };
         return columnMapping[section] || 1;
-    }
-
-    // Asigna una clase de realce "cover" según el título del tema
-    getCoverClass(title) {
-        if (!title) return '';
-        const normalized = title
-            .toString()
-            .toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
-
-        if (normalized.includes('cia')) return 'cover-cia';
-        if (normalized.includes('principios')) return 'cover-principios';
-        if (normalized.includes('analisis de riesgos') || normalized.includes('riesgos')) return 'cover-riesgos';
-        if (normalized.includes('politicas')) return 'cover-politicas';
-        if (normalized.includes('concienciacion') || normalized.includes('formacion')) return 'cover-formacion';
-        if (normalized.includes('gestion de activos') || normalized.includes('activos')) return 'cover-activos';
-        return '';
     }
 
     buildIndex() {
@@ -1399,12 +1198,12 @@ class CyberSecurityIndex {
             return;
         }
         
-        // Filtrar solo páginas de ciberseguridad
-        const cyberPages = this.searchIndex?.filter((page) => page.category === 'Ciberseguridad') || [];
-        console.log('📊 Páginas de ciberseguridad encontradas:', cyberPages.length);
+        // Filtrar solo páginas de sistemas
+        const systemsPages = this.searchIndex?.filter((page) => page.category === 'Sistemas') || [];
+        console.log('📊 Páginas de sistemas encontradas:', systemsPages.length);
         
         // Actualizar estadísticas en el hero
-        this.updateHeroStats(cyberPages.length, Object.keys(this.sections || {}).length);
+        this.updateHeroStats(systemsPages.length, Object.keys(this.sections || {}).length);
         
         // Agrupar por columnas
         const columns = { 1: [], 2: [], 3: [] };
@@ -1414,7 +1213,7 @@ class CyberSecurityIndex {
             const columnNum = section?.column || 1;
             if (!columns[columnNum]) columns[columnNum] = [];
             
-            const sectionPages = cyberPages
+            const sectionPages = systemsPages
                 .filter((page) => page.section === sectionKey)
                 .sort((a, b) => (a.order || 999) - (b.order || 999));
             
@@ -1424,6 +1223,20 @@ class CyberSecurityIndex {
                 pages: sectionPages
             });
         });
+
+        // Si no hay páginas, mostrar placeholder
+        if (systemsPages.length === 0) {
+            indexContainer.innerHTML = `
+                <div class="loading-wrapper">
+                    <div class="loading-animation">
+                        <div style="color: #6366f1; font-size: 2rem; margin-bottom: 20px;">📝</div>
+                        <p style="color: #6366f1;">Sección en desarrollo</p>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Los contenidos de sistemas estarán disponibles próximamente</p>
+                    </div>
+                </div>
+            `;
+            return;
+        }
 
         // Construir HTML
         let html = '';
@@ -1490,7 +1303,6 @@ class CyberSecurityIndex {
         requestAnimationFrame(animate);
     }
 
-    // Actualizar el método buildSectionHTML para agregar estilos inline y clases de cover
     buildSectionHTML(section, pages, sectionKey) {
         const total = pages?.length || 0;
         const initialVisible = 12;
@@ -1505,13 +1317,12 @@ class CyberSecurityIndex {
         pages?.forEach((page, idx) => {
             const statusClass = page.status || 'planned';
             const isLink = page.url && (page.status === 'completed' || page.status === 'interactive');
-            const coverClass = this.getCoverClass(page.title || '');
             const hiddenClass = idx >= initialVisible ? 'hidden-item' : '';
             
             if (isLink) {
                 html += `
                     <li class="topic-item ${hiddenClass}" style="list-style: none !important; list-style-type: none !important; margin: 0 !important; padding: 0 !important; display: block;">
-                        <a href="${page.url}" class="topic-link ${statusClass} ${coverClass}" data-title="${page.title || ''}">
+                        <a href="${page.url}" class="topic-link ${statusClass}" data-title="${page.title || ''}">
                             ${page.icon || '📄'} ${page.title || 'Sin título'}
                         </a>
                     </li>
@@ -1519,7 +1330,7 @@ class CyberSecurityIndex {
             } else {
                 html += `
                     <li class="topic-item ${hiddenClass}" style="list-style: none !important; list-style-type: none !important; margin: 0 !important; padding: 0 !important; display: block;">
-                        <span class="topic-link ${statusClass} ${coverClass}" data-title="${page.title || ''}">
+                        <span class="topic-link ${statusClass}" data-title="${page.title || ''}">
                             ${page.icon || '📄'} ${page.title || 'Sin título'}
                         </span>
                     </li>
@@ -1543,7 +1354,6 @@ class CyberSecurityIndex {
     }
 
     animateListItems() {
-        // Animar elementos li con delay escalonado
         const listItems = document.querySelectorAll('.topic-item');
         listItems.forEach((item, index) => {
             item.style.opacity = '0';
@@ -1578,7 +1388,7 @@ class CyberSecurityIndex {
                     ripple.style.cssText = `
                         position: absolute;
                         border-radius: 50%;
-                        background: rgba(59, 130, 246, 0.3);
+                        background: rgba(99, 102, 241, 0.3);
                         width: ${size}px;
                         height: ${size}px;
                         left: ${x}px;
@@ -1642,7 +1452,7 @@ class CyberSecurityIndex {
     // Overlay con lista completa de una sección
     openSectionOverlay(sectionKey) {
         const section = (this.sections && this.sections[sectionKey]) || null;
-        const pages = (this.searchIndex || []).filter(p => p.category === 'Ciberseguridad' && p.section === sectionKey);
+        const pages = (this.searchIndex || []).filter(p => p.category === 'Sistemas' && p.section === sectionKey);
 
         // Crear backdrop
         const backdrop = document.createElement('div');
@@ -1691,12 +1501,11 @@ class CyberSecurityIndex {
 
         const items = pages.map(page => {
             const statusClass = page.status || 'planned';
-            const coverClass = this.getCoverClass(page.title || '');
             const isLink = page.url && (page.status === 'completed' || page.status === 'interactive');
             const content = `${page.icon || '📄'} ${page.title || 'Sin título'}`;
             return isLink 
-                ? `<a class="topic-link ${statusClass} ${coverClass}" href="${page.url}">${content}</a>`
-                : `<span class="topic-link ${statusClass} ${coverClass}">${content}</span>`;
+                ? `<a class="topic-link ${statusClass}" href="${page.url}">${content}</a>`
+                : `<span class="topic-link ${statusClass}">${content}</span>`;
         }).join('');
 
         return `
@@ -1733,7 +1542,6 @@ class CyberSecurityIndex {
 
 // Función de scroll suave al contenido
 function scrollToContent() {
-    // Esperar un poco para que termine la animación del hero
     setTimeout(() => {
         const contentSection = document.querySelector('.content-section');
         if (contentSection) {
@@ -1742,7 +1550,7 @@ function scrollToContent() {
                 block: 'start'
             });
         }
-    }, 2500); // Espera 2.5 segundos después de cargar
+    }, 2500);
 }
 
 // Animación de entrada al hero
@@ -1751,18 +1559,15 @@ function animateHeroEntrance() {
     const heroBackground = document.querySelector('.hero-background');
     
     if (heroContent && heroBackground) {
-        // Iniciar con elementos ocultos
         heroContent.style.opacity = '0';
         heroContent.style.transform = 'translateY(50px)';
         heroBackground.style.opacity = '0';
         
-        // Animar entrada del fondo
         setTimeout(() => {
             heroBackground.style.transition = 'opacity 1s ease';
             heroBackground.style.opacity = '1';
         }, 100);
         
-        // Animar entrada del contenido
         setTimeout(() => {
             heroContent.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
             heroContent.style.opacity = '1';
@@ -1773,13 +1578,8 @@ function animateHeroEntrance() {
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
-    // Animar entrada del hero
     animateHeroEntrance();
-    
-    // Inicializar el índice
-    new CyberSecurityIndex();
-    
-    // Scroll automático al contenido después de la animación
+    new SystemsIndex();
     scrollToContent();
 });
 </script>
