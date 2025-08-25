@@ -1,0 +1,247 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+
+const title = "¿Qué es IAM? | Guía de Gestión de Identidades y Accesos";
+const description = "Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual.";
+---
+
+<WikiLayout title={title} description={description} showHeader={false}>
+<div class="iam-page">
+<div class="container">
+<!-- Sección Principal -->
+<section class="hero">
+<h1>🔐 ¿Qué es IAM?</h1>
+<p class="lead">
+<strong>Identity and Access Management (IAM)</strong> es el conjunto de políticas, tecnologías y procesos que garantizan que <strong>solo las personas autorizadas</strong> accedan a los recursos adecuados, en el momento correcto y con el nivel de privilegio necesario.
+</p>
+<div class="card highlight">
+<p>💡 <strong>IAM</strong> es la columna vertebral de la seguridad digital moderna. Sin él, no puedes controlar quién entra, qué hace ni cómo se audita.</p>
+</div>
+</section>
+
+<!-- Componentes Clave -->
+<section class="components">
+<h2>🔑 Componentes Clave de IAM</h2>
+<div class="grid">
+<div class="card">
+<h3>👤 Identidad</h3>
+<p>Representación digital única de un usuario o entidad (persona, aplicación, dispositivo). Es el "quién" en el sistema.</p>
+</div>
+<div class="card">
+<h3>✅ Autenticación</h3>
+<p>Verifica que una identidad es quien dice ser. Ejemplos: contraseña, autenticación en dos factores (MFA), biometría.</p>
+</div>
+<div class="card">
+<h3>🛡️ Autorización</h3>
+<p>Define qué recursos puede acceder un usuario y con qué permisos (lectura, escritura, administración).</p>
+</div>
+<div class="card">
+<h3>📊 Accounting (AAA)</h3>
+<p>Registro y monitoreo de actividades: quién accedió, cuándo, desde dónde y qué hizo. Esencial para auditorías.</p>
+</div>
+</div>
+</section>
+
+<!-- Objetivos de Seguridad -->
+<section class="objectives">
+<h2>🛡️ Objetivos Principales de IAM</h2>
+<ul class="objective-list">
+<li><strong>Confidencialidad:</strong> Solo usuarios autorizados acceden a información sensible.</li>
+<li><strong>Integridad:</strong> Evita modificaciones no autorizadas en sistemas y datos.</li>
+<li><strong>Disponibilidad:</strong> Garantiza que usuarios legítimos accedan cuando lo necesiten.</li>
+<li><strong>Auditoría:</strong> Todos los accesos deben ser rastreables y revisables.</li>
+</ul>
+</section>
+
+<!-- Identidades Digitales -->
+<section class="identities">
+<h2>🧩 Tipos de Identidades Digitales</h2>
+<div class="identity-grid">
+<div class="identity-type">
+<h3>👥 Humanas</h3>
+<p>Empleados, clientes, contratistas, partners.</p>
+</div>
+<div class="identity-type">
+<h3>🤖 No humanas</h3>
+<p>Aplicaciones, servicios, dispositivos IoT, máquinas.</p>
+</div>
+</div>
+<div class="identity-attributes">
+<h4>🔍 Cada identidad incluye:</h4>
+<ul>
+<li><strong>Credenciales:</strong> Contraseñas, tokens, certificados digitales.</li>
+<li><strong>Roles/Permisos:</strong> Define qué puede hacer (ej. "lector", "admin").</li>
+<li><strong>Atributos:</strong> Nombre, departamento, cargo, ubicación, etc.</li>
+</ul>
+</div>
+</section>
+
+<!-- Ejemplo Real -->
+<section class="example">
+<h2>🎯 Ejemplo Real en una Empresa</h2>
+<div class="scenario">
+<p><strong>Ana</strong> inicia sesión con su usuario y contraseña → <em>(Autenticación)</em></p>
+<p>Su rol le permite leer correos y editar documentos, pero <strong>no administrar usuarios</strong> → <em>(Autorización)</em></p>
+<p>Todos sus accesos quedan registrados en el sistema → <em>(Accounting)</em></p>
+</div>
+</section>
+
+<!-- Consejo Profesional -->
+<section class="tip">
+<div class="card professional-tip">
+<h3>💼 Consejo Profesional</h3>
+<p>En entornos corporativos, una mala gestión de IAM puede causar <strong>fugas de datos, brechas de seguridad o parálisis operativa</strong>. IAM no es solo responsabilidad de TI: es una función crítica de <strong>seguridad, cumplimiento y gobernanza</strong>.</p>
+</div>
+</section>
+</div></div>
+</WikiLayout>
+
+<script>
+// Puedes agregar interactividad aquí si se requiere en el futuro
+// Por ejemplo: colapsar secciones, modo oscuro, etc.
+</script>
+
+<style lang="css">
+.iam-page {
+font-family: 'Segoe UI', system-ui, sans-serif;
+line-height: 1.7;
+color: #333;
+background: #f9f9fb;
+}
+
+.container {
+max-width: 1000px;
+margin: 0 auto;
+padding: 2rem 1.5rem;
+}
+
+.iam-page h1,
+.iam-page h2,
+.iam-page h3 {
+color: #2c3e50;
+margin-bottom: 1rem;
+font-weight: 600;
+}
+
+.iam-page h1 {
+font-size: 2.5rem;
+text-align: center;
+margin-bottom: 1.5rem;
+color: #2980b9;
+}
+
+.iam-page .lead {
+font-size: 1.25rem;
+text-align: center;
+color: #555;
+margin-bottom: 2rem;
+}
+
+.iam-page .card {
+background: white;
+border-radius: 12px;
+padding: 1.5rem;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.iam-page .card:hover {
+transform: translateY(-4px);
+box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.iam-page .highlight {
+background: #d6eaf8;
+border-left: 4px solid #2980b9;
+font-size: 1.1rem;
+}
+
+.iam-page .grid {
+display: grid;
+gap: 1.5rem;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+margin: 2rem 0;
+}
+
+.iam-page .objective-list {
+list-style: none;
+padding: 0;
+}
+
+.iam-page .objective-list li {
+padding: 0.75rem 0;
+border-bottom: 1px solid #eee;
+font-size: 1.1rem;
+}
+
+.iam-page .objective-list li:last-child {
+border-bottom: none;
+}
+
+.iam-page .identity-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+margin: 1.5rem 0;
+}
+
+.iam-page .identity-type {
+background: #f1f8ff;
+padding: 1.2rem;
+border-radius: 10px;
+text-align: center;
+font-weight: 500;
+color: #2c3e50;
+}
+
+.iam-page .identity-attributes {
+margin-top: 1.5rem;
+background: white;
+padding: 1.5rem;
+border-radius: 12px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.iam-page .identity-attributes ul {
+margin-top: 0.5rem;
+color: #555;
+}
+
+.iam-page .scenario {
+background: #ecf0f1;
+padding: 1.5rem;
+border-radius: 12px;
+font-size: 1.1rem;
+line-height: 2;
+}
+
+.iam-page .professional-tip {
+background: #fff8e1;
+border-left: 4px solid #f57c00;
+font-size: 1.1rem;
+color: #333;
+}
+
+@media (max-width: 768px) {
+.iam-page h1 {
+font-size: 2rem;
+}
+
+.iam-page .lead {
+font-size: 1.1rem;
+}
+
+.iam-page .identity-grid {
+grid-template-columns: 1fr;
+}
+
+.container {
+padding: 1.5rem;
+}
+}
+</style>
+
+
+
+
+

@@ -1,0 +1,13 @@
+// === SNIPPET PARA AGREGAR QUIZ A UNA PÁGINA ===
+
+// 1. Agregar estas importaciones al inicio del archivo .astro:
+import Quiz from '../../components/Quiz.astro';
+import quizData from '../../data/quiz/[nombre-del-tema].json';
+
+// 2. Agregar esta línea donde quieras el quiz (antes del cierre de WikiLayout):
+<Quiz questions={quizData.questions} title={quizData.title} />
+
+// 3. Crear el archivo JSON en: src/data/quiz/[nombre-del-tema].json
+// (Usar quiz-template.json como base)
+
+// === FIN DEL SNIPPET ===

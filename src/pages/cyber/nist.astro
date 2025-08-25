@@ -1,5 +1,7 @@
 ---
 import WikiLayout from '../../layouts/WikiLayout.astro';
+import Quiz from '../../components/Quiz.astro';
+import quizData from '../../data/quiz/nist.json';
 ---
 
 <WikiLayout title="NIST Cybersecurity Framework - Guía Completa" description="Guía completa del NIST Cybersecurity Framework 2.0 y sus 6 funciones.">
@@ -192,50 +194,7 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
     </div>
   </div>
 
-  <div class="quiz-section bg-white rounded-2xl p-6 md:p-8 mb-8 shadow-xl">
-    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">❓ Quiz de Evaluación</h2>
-      
-    <div class="quiz-question bg-gray-50 p-5 rounded-lg mb-5 border-l-4 border-blue-500">
-      <h3 class="text-xl font-semibold mb-3">1. ¿Cuál es la nueva función añadida en NIST CSF 2.0?</h3>
-      <ul class="quiz-options list-none mt-4">
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">A. Detect</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, true)">B. Govern ✅</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">C. Respond</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">D. Monitor</li>
-      </ul>
-    </div>
-
-    <div class="quiz-question bg-gray-50 p-5 rounded-lg mb-5 border-l-4 border-blue-500">
-      <h3 class="text-xl font-semibold mb-3">2. La función "Protect" del NIST se enfoca en:</h3>
-      <ul class="quiz-options list-none mt-4">
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">A. Restaurar sistemas tras un ataque</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">B. Detectar amenazas en tiempo real</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, true)">C. Implementar medidas preventivas ✅</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">D. Analizar incidentes de seguridad</li>
-      </ul>
-    </div>
-
-    <div class="quiz-question bg-gray-50 p-5 rounded-lg mb-5 border-l-4 border-blue-500">
-      <h3 class="text-xl font-semibold mb-3">3. Una empresa que hace backups diarios está cumpliendo con cuál función?</h3>
-      <ul class="quiz-options list-none mt-4">
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">A. Identify</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">B. Detect</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, true)">C. Recover ✅</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">D. Protect</li>
-      </ul>
-    </div>
-
-    <div class="quiz-question bg-gray-50 p-5 rounded-lg mb-5 border-l-4 border-blue-500">
-      <h3 class="text-xl font-semibold mb-3">4. ¿Cuántas funciones tiene el NIST CSF 2.0?</h3>
-      <ul class="quiz-options list-none mt-4">
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">A. 5 funciones</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, true)">B. 6 funciones ✅</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">C. 7 funciones</li>
-        <li class="bg-white p-3 md:px-4 md:py-2 my-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 border-2 border-gray-200" onclick="selectAnswer(this, false)">D. 4 funciones</li>
-      </ul>
-    </div>
-  </div>
-
+  <!-- Quiz Interactivo -->
   <div class="benefits-section bg-white rounded-2xl p-6 md:p-8 mb-8 shadow-xl">
     <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">💼 Consejo Profesional</h2>
     <p class="text-gray-700 text-center mb-4">Los frameworks como NIST CSF 2.0 no solo son herramientas técnicas, sino <strong class="font-bold">lenguajes de negocio</strong> que permiten:</p>
@@ -253,34 +212,12 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
     </div>
   </div>
 
+  <!-- Quiz Interactivo -->
+  <Quiz questions={quizData.questions} title={quizData.title} />
+
 </WikiLayout>
 
 <script>
-  function selectAnswer(element, isCorrect) {
-    const siblings = element.parentNode.children;
-    for (let sibling of siblings) {
-      sibling.classList.remove('bg-green-100', 'border-green-500', 'text-green-800', 'bg-red-100', 'border-red-500', 'text-red-800');
-      sibling.classList.add('bg-white', 'border-gray-200', 'text-gray-800');
-    }
-    
-    if (isCorrect) {
-      element.classList.remove('bg-white', 'border-gray-200', 'text-gray-800');
-      element.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
-    } else {
-      element.classList.remove('bg-white', 'border-gray-200', 'text-gray-800');
-      element.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
-      
-      setTimeout(() => {
-        for (let sibling of siblings) {
-          if (sibling.textContent.includes('✅')) {
-            sibling.classList.remove('bg-white', 'border-gray-200', 'text-gray-800');
-            sibling.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
-          }
-        }
-      }, 500);
-    }
-  }
-
   function showIncidentResponse(incidentType) {
     const resultDiv = document.getElementById('incidentResult');
     const contentDiv = document.getElementById('incidentContent');
@@ -345,7 +282,7 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
     };
 
     const scenario = scenarios[incidentType];
-    if (scenario) {
+    if (scenario && resultDiv && contentDiv) {
       contentDiv.innerHTML = `
         <h2 class="text-2xl font-bold text-gray-900 mb-4">${scenario.title}</h2>
         ${scenario.content}

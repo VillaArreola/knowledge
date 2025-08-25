@@ -1,0 +1,60 @@
+{
+  "title": "Quiz de SD-WAN",
+  "questions": [
+    {
+      "question": "¿Qué significa SD-WAN?",
+      "options": [
+        "Software Defined Wide Area Network",
+        "Secure Data Wide Area Network",
+        "System Defined Wireless Area Network",
+        "Simple Data Wide Area Network"
+      ],
+      "correct": 0,
+      "explanation": "SD-WAN significa Software Defined Wide Area Network, que permite gestionar y optimizar el tráfico de red de forma centralizada."
+    },
+    {
+      "question": "¿Cuál es la principal ventaja de SD-WAN sobre las WAN tradicionales?",
+      "options": [
+        "Mayor velocidad de conexión",
+        "Gestión centralizada y automatizada",
+        "Menor costo de hardware",
+        "Mayor seguridad"
+      ],
+      "correct": 1,
+      "explanation": "La gestión centralizada y automatizada es la principal ventaja, permitiendo configurar y monitorear toda la red desde un punto central."
+    },
+    {
+      "question": "¿Qué tipo de conexiones puede utilizar SD-WAN?",
+      "options": [
+        "Solo conexiones MPLS",
+        "Solo conexiones de Internet",
+        "Cualquier tipo de conexión (MPLS, Internet, LTE, etc.)",
+        "Solo conexiones de fibra óptica"
+      ],
+      "correct": 2,
+      "explanation": "SD-WAN puede utilizar cualquier tipo de conexión: MPLS, Internet, LTE, fibra, etc., y gestionarlas de forma inteligente."
+    },
+    {
+      "question": "¿Qué función realiza el controlador SD-WAN?",
+      "options": [
+        "Solo monitorear el tráfico",
+        "Centralizar la gestión y políticas de red",
+        "Proporcionar conectividad física",
+        "Gestionar la seguridad de los endpoints"
+      ],
+      "correct": 1,
+      "explanation": "El controlador SD-WAN centraliza la gestión y políticas de red, permitiendo configurar toda la infraestructura desde un punto único."
+    },
+    {
+      "question": "¿Cuál es un beneficio clave de SD-WAN para empresas con múltiples sucursales?",
+      "options": [
+        "Reducción de costos de conectividad",
+        "Mayor complejidad de gestión",
+        "Dependencia de un solo proveedor",
+        "Menor flexibilidad en la configuración"
+      ],
+      "correct": 0,
+      "explanation": "SD-WAN permite reducir costos de conectividad al poder usar conexiones de Internet más económicas junto con MPLS."
+    }
+  ]
+}

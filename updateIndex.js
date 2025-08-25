@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Paths to directories and files
-const categories = ['redes', 'cyber', 'programacion'];
+const categories = ['redes', 'cyber', 'programacion', 'sistemas'];
 const basePath = path.join(__dirname, 'src', 'pages');
 const categoryIndexPath = path.join(__dirname, 'src', 'components', 'hub-categorias.astro');
 const searchIndexPath = path.join(__dirname, 'public', 'search-index.json');
@@ -83,6 +83,27 @@ function updateRedesAstro(newTopics) {
   console.log('Redes.astro dynamic index updated.');
 }
 
+// Update sistemas.astro dynamic index
+function updateSistemasAstro(newTopics) {
+  const sistemasAstroPath = path.join(basePath, 'sistemas.astro');
+  let sistemasAstroContent = fs.readFileSync(sistemasAstroPath, 'utf-8');
+
+  const newIndexContent = newTopics.map(topic => `
+    <a href="${topic.path}" class="topic-link">
+      <h3>${topic.icon || '📄'} ${topic.title}</h3>
+      <p>${topic.description}</p>
+    </a>
+  `).join('\n');
+
+  sistemasAstroContent = sistemasAstroContent.replace(
+    /<div id="dynamic-index">[\s\S]*?<\/div>/,
+    `<div id="dynamic-index">\n${newIndexContent}\n</div>`
+  );
+
+  fs.writeFileSync(sistemasAstroPath, sistemasAstroContent, 'utf-8');
+  console.log('Sistemas.astro dynamic index updated.');
+}
+
 // Main function
 function main() {
   const newTopics = [];
@@ -104,6 +125,7 @@ function main() {
   updateCategoryIndex(newTopics);
   updateSearchIndex(newTopics);
   updateRedesAstro(newTopics.filter(topic => topic.path.startsWith('/redes')));
+  updateSistemasAstro(newTopics.filter(topic => topic.path.startsWith('/sistemas')));
 }
 
 main();

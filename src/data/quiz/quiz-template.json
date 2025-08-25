@@ -1,0 +1,27 @@
+{
+  "title": "Quiz de [Nombre del Tema]",
+  "questions": [
+    {
+      "question": "¿Pregunta 1 aquí?",
+      "options": [
+        "Opción A",
+        "Opción B", 
+        "Opción C",
+        "Opción D"
+      ],
+      "correct": 0,
+      "explanation": "Explicación de por qué es correcta o incorrecta."
+    },
+    {
+      "question": "¿Pregunta 2 aquí?",
+      "options": [
+        "Opción A",
+        "Opción B", 
+        "Opción C",
+        "Opción D"
+      ],
+      "correct": 1,
+      "explanation": "Explicación de por qué es correcta o incorrecta."
+    }
+  ]
+}

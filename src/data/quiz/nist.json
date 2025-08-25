@@ -1,0 +1,116 @@
+{
+  "title": "Quiz de NIST Cybersecurity Framework",
+  "questions": [
+    {
+      "question": "¿Cuántas funciones tiene el NIST Cybersecurity Framework 2.0?",
+      "options": [
+        "5 funciones (IDPRR)",
+        "6 funciones (GIDPRR)",
+        "4 funciones (IDPR)",
+        "7 funciones (GIDPRRR)"
+      ],
+      "correct": 1,
+      "explanation": "El NIST CSF 2.0 tiene 6 funciones: GOVERN, IDENTIFY, PROTECT, DETECT, RESPOND y RECOVER. La función GOVERN es nueva en la versión 2.0."
+    },
+    {
+      "question": "¿Cuál es la nueva función agregada en NIST CSF 2.0?",
+      "options": [
+        "IDENTIFY",
+        "GOVERN",
+        "PROTECT",
+        "RECOVER"
+      ],
+      "correct": 1,
+      "explanation": "GOVERN es la nueva función agregada en NIST CSF 2.0. Establece políticas, procedimientos y procesos para gestionar y monitorear los riesgos de ciberseguridad."
+    },
+    {
+      "question": "¿Qué significa la técnica mnemotécnica 'GI-PDRR'?",
+      "options": [
+        "Gobierno, Identifico, Protejo, Detecto, Respondo, Recupero",
+        "Gobernar, Identificar, Proteger, Detectar, Responder, Recuperar",
+        "Gestión, Identificación, Protección, Detección, Respuesta, Recuperación",
+        "Gobierno, Identificación, Protección, Detección, Respuesta, Recuperación"
+      ],
+      "correct": 0,
+      "explanation": "GI-PDRR significa 'Gobierno, Identifico, Protejo, Detecto, Respondo, Recupero'. Es una técnica mnemotécnica para recordar las 6 funciones del NIST CSF 2.0."
+    },
+    {
+      "question": "¿Cuál de las siguientes actividades corresponde a la función PROTECT?",
+      "options": [
+        "Análisis de vulnerabilidades",
+        "Cifrado de datos en reposo y tránsito",
+        "Monitoreo de logs y alertas",
+        "Restauración desde backups"
+      ],
+      "correct": 1,
+      "explanation": "El cifrado de datos en reposo y tránsito es una actividad de la función PROTECT, que implementa controles y medidas de seguridad para proteger datos, sistemas y activos críticos."
+    },
+    {
+      "question": "¿Qué función del NIST CSF se enfoca en monitorear continuamente para identificar eventos de ciberseguridad?",
+      "options": [
+        "IDENTIFY",
+        "PROTECT",
+        "DETECT",
+        "RESPOND"
+      ],
+      "correct": 2,
+      "explanation": "La función DETECT se enfoca en monitorear continuamente para identificar eventos de ciberseguridad y actividades anómalas en tiempo real, utilizando herramientas como SIEM e IDS/IPS."
+    },
+    {
+      "question": "¿Cuál es el objetivo principal de un Cybersecurity Framework?",
+      "options": [
+        "Reducir costos de implementación",
+        "Gestionar riesgos de seguridad de forma consistente y estandarizada",
+        "Aumentar la velocidad de respuesta",
+        "Simplificar la documentación"
+      ],
+      "correct": 1,
+      "explanation": "Un Cybersecurity Framework es un modelo estructurado que ayuda a las organizaciones a gestionar riesgos de seguridad de forma consistente y estandarizada, facilitando el cumplimiento y la comunicación."
+    },
+    {
+      "question": "¿Qué función del NIST CSF se encarga de contener, analizar y responder a incidentes de ciberseguridad?",
+      "options": [
+        "DETECT",
+        "RESPOND",
+        "RECOVER",
+        "PROTECT"
+      ],
+      "correct": 1,
+      "explanation": "La función RESPOND se encarga de contener, analizar y responder de manera efectiva a incidentes de ciberseguridad una vez detectados, incluyendo planes de respuesta y análisis forense."
+    },
+    {
+      "question": "¿Cuál de las siguientes es una actividad de la función RECOVER?",
+      "options": [
+        "Desarrollo de políticas de seguridad",
+        "Inventario de servidores y dispositivos",
+        "Configuración de firewalls",
+        "Restauración desde backups"
+      ],
+      "correct": 3,
+      "explanation": "La restauración desde backups es una actividad de la función RECOVER, que restaura las operaciones normales y mejora la capacidad de recuperación después de un incidente."
+    },
+    {
+      "question": "¿Qué herramienta se utiliza principalmente en la función DETECT?",
+      "options": [
+        "Firewalls",
+        "SIEM (Security Information and Event Management)",
+        "Cifrado de datos",
+        "Planes de respaldo"
+      ],
+      "correct": 1,
+      "explanation": "Los sistemas SIEM (Security Information and Event Management) son herramientas principales de la función DETECT, utilizadas para monitorear logs y alertas en tiempo real."
+    },
+    {
+      "question": "¿Por qué es importante el NIST Cybersecurity Framework para las organizaciones?",
+      "options": [
+        "Solo para cumplir regulaciones",
+        "Para estandarizar la gestión de ciberseguridad y facilitar el cumplimiento",
+        "Únicamente para reducir costos",
+        "Solo para mejorar la comunicación"
+      ],
+      "correct": 1,
+      "explanation": "El NIST CSF es importante porque unifica la gestión de ciberseguridad en toda la organización, facilita el cumplimiento con regulaciones como GDPR, HIPAA, SOX, y mejora la comunicación con directivos."
+    }
+  ]
+}
+  

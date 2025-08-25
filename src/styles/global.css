@@ -22,3 +22,276 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #6b7280; /* gris más claro */
 }
+
+/* Quiz Styles - Componente independiente */
+.quiz-section {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+.quiz-section .section-title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quiz-section .emoji {
+  font-size: 1.2rem;
+}
+
+.quiz-question {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quiz-question.animate-in {
+  opacity: 1;
+}
+
+.question-header {
+  margin-bottom: 1rem;
+}
+
+.question-number {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: #374151;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.question-text {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #262626;
+  border: 1px solid #404040;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+  font-size: 0.875rem;
+  color: #ffffff;
+}
+
+.option-btn:hover:not(:disabled) {
+  background: #2d2d2d;
+  border-color: #525252;
+}
+
+.option-btn:disabled {
+  cursor: not-allowed;
+}
+
+.option-btn.correct {
+  background: #1f2937;
+  border-color: #059669;
+  color: #10b981;
+}
+
+.option-btn.incorrect {
+  background: #1f2937;
+  border-color: #dc2626;
+  color: #ef4444;
+}
+
+.option-letter {
+  background: #404040;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+}
+
+.option-btn.correct .option-letter {
+  background: #059669;
+}
+
+.option-btn.incorrect .option-letter {
+  background: #dc2626;
+}
+
+.option-text {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.explanation {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #1f2937;
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.explanation.animate-in {
+  opacity: 1;
+}
+
+.explanation h4 {
+  color: #60a5fa;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.explanation p {
+  color: #d1d5db;
+  line-height: 1.4;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.quiz-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.back-btn {
+  background: #374151;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.back-btn:hover {
+  background: #4b5563;
+}
+
+.next-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.875rem;
+  margin-left: auto;
+}
+
+.next-btn:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.next-btn:disabled,
+.next-btn.disabled {
+  background: #6b7280;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.quiz-results {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.results-content {
+  background: #1f2937;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #374151;
+}
+
+.results-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.results-content p {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.retry-btn {
+  background: #374151;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.retry-btn:hover {
+  background: #4b5563;
+}
+
+/* Responsive Design para Quiz */
+@media (max-width: 768px) {
+  .quiz-section {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .option-btn {
+    padding: 0.625rem;
+  }
+
+  .results-content {
+    padding: 1rem;
+  }
+}

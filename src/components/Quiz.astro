@@ -1,0 +1,247 @@
+---
+export interface Props {
+  questions: Array<{
+    question: string;
+    options: string[];
+    correct: number;
+    explanation: string;
+  }>;
+  title?: string;
+}
+
+const { questions, title = "Quiz de Conocimientos" } = Astro.props;
+---
+
+<section class="quiz-section">
+  <h2 class="section-title">
+    <span class="emoji">🎯</span>
+    {title}
+  </h2>
+  
+  <div class="quiz-container" id="quizContainer">
+    <!-- Quiz questions will be populated by JavaScript -->
+  </div>
+  
+  <div class="quiz-navigation" id="quizNavigation">
+    <button class="back-btn" id="backBtn" style="display: none;">⬅️ Atrás</button>
+    <button class="next-btn" id="nextBtn" style="display: none;">Siguiente ➡️</button>
+  </div>
+  
+  <div class="quiz-results" id="quizResults" style="display: none;">
+    <div class="results-content">
+      <h3 id="resultsTitle"></h3>
+      <p id="resultsMessage"></p>
+      <button class="retry-btn" id="retryBtn">🔄 Intentar de nuevo</button>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ questions }}>
+  // Seleccionar 5 preguntas aleatorias del total disponible
+  function getRandomQuestions(allQuestions, count = 5) {
+    const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+  
+  // Obtener las preguntas aleatorias
+  const selectedQuestions = getRandomQuestions(questions, 5);
+  
+  let currentQuestion = 0;
+  let score = 0;
+  let userAnswers = [];
+
+  // Initialize Quiz
+  function initQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    userAnswers = [];
+    showQuestion();
+  }
+
+  function showQuestion() {
+    const container = document.getElementById('quizContainer');
+    const backBtn = document.getElementById('backBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const question = selectedQuestions[currentQuestion];
+    
+    container.innerHTML = `
+      <div class="quiz-question animate-in">
+        <div class="question-header">
+          <span class="question-number">Pregunta ${currentQuestion + 1} de ${selectedQuestions.length}</span>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${((currentQuestion + 1) / selectedQuestions.length) * 100}%"></div>
+          </div>
+        </div>
+        <h3 class="question-text">${question.question}</h3>
+        <div class="options-container">
+          ${question.options.map((option, index) => `
+            <button class="option-btn" data-option="${index}">
+              <span class="option-letter">${String.fromCharCode(65 + index)}</span>
+              <span class="option-text">${option}</span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    // Show/hide navigation buttons
+    if (backBtn) backBtn.style.display = currentQuestion > 0 ? 'block' : 'none';
+    if (nextBtn) nextBtn.style.display = 'block';
+
+    // Update next button text and state
+    if (nextBtn) {
+      nextBtn.textContent = currentQuestion === selectedQuestions.length - 1 ? '🏁 Ver Resultados' : 'Siguiente ➡️';
+      
+      // Check if current question has been answered
+      const hasAnswered = userAnswers[currentQuestion] !== undefined;
+      nextBtn.disabled = !hasAnswered;
+      nextBtn.classList.toggle('disabled', !hasAnswered);
+    }
+
+    // Add event listeners to options
+    const optionButtons = container.querySelectorAll('.option-btn');
+    optionButtons.forEach((button, index) => {
+      button.addEventListener('click', () => selectAnswer(index));
+    });
+
+    // If returning to a previously answered question, show the previous answer
+    if (userAnswers[currentQuestion] !== undefined) {
+      const selectedIndex = userAnswers[currentQuestion];
+      optionButtons.forEach((option, index) => {
+        option.disabled = true;
+        if (index === question.correct) {
+          option.classList.add('correct');
+        } else if (index === selectedIndex && selectedIndex !== question.correct) {
+          option.classList.add('incorrect');
+        }
+      });
+
+      // Show explanation for previously answered question
+      const explanationDiv = document.createElement('div');
+      explanationDiv.className = 'explanation animate-in';
+      explanationDiv.innerHTML = `
+        <div class="explanation-content">
+          <h4>${selectedIndex === question.correct ? '✅ ¡Correcto!' : '❌ Incorrecto'}</h4>
+          <p>${question.explanation}</p>
+        </div>
+      `;
+      container.appendChild(explanationDiv);
+    }
+  }
+
+  function selectAnswer(selectedIndex) {
+    userAnswers[currentQuestion] = selectedIndex;
+    const question = selectedQuestions[currentQuestion];
+    const options = document.querySelectorAll('.option-btn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    // Disable all options
+    options.forEach((option, index) => {
+      option.disabled = true;
+      if (index === question.correct) {
+        option.classList.add('correct');
+      } else if (index === selectedIndex && selectedIndex !== question.correct) {
+        option.classList.add('incorrect');
+      }
+    });
+
+    // Show explanation
+    const container = document.getElementById('quizContainer');
+    const explanationDiv = document.createElement('div');
+    explanationDiv.className = 'explanation animate-in';
+    explanationDiv.innerHTML = `
+      <div class="explanation-content">
+        <h4>${selectedIndex === question.correct ? '✅ ¡Correcto!' : '❌ Incorrecto'}</h4>
+        <p>${question.explanation}</p>
+      </div>
+    `;
+    container.appendChild(explanationDiv);
+
+    // Enable next button since question has been answered
+    if (nextBtn) {
+      nextBtn.disabled = false;
+      nextBtn.classList.remove('disabled');
+    }
+
+    if (selectedIndex === question.correct) {
+      score++;
+    }
+  }
+
+  function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion < selectedQuestions.length) {
+      showQuestion();
+    } else {
+      showResults();
+    }
+  }
+
+  function previousQuestion() {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      showQuestion();
+    }
+  }
+
+  function showResults() {
+    const container = document.getElementById('quizContainer');
+    const resultsDiv = document.getElementById('quizResults');
+    const navigationDiv = document.getElementById('quizNavigation');
+    const percentage = Math.round((score / selectedQuestions.length) * 100);
+    
+    let title, message;
+    if (percentage >= 80) {
+      title = "🏆 ¡Excelente!";
+      message = `Has dominado el tema con ${score}/${selectedQuestions.length} respuestas correctas (${percentage}%).`;
+    } else if (percentage >= 60) {
+      title = "👍 Bien hecho";
+      message = `Buen trabajo, has obtenido ${score}/${selectedQuestions.length} respuestas correctas (${percentage}%). ¡Sigue practicando!`;
+    } else {
+      title = "📚 Sigue estudiando";
+      message = `Has obtenido ${score}/${selectedQuestions.length} respuestas correctas (${percentage}%). Te recomendamos revisar el material nuevamente.`;
+    }
+    
+    const resultsTitle = document.getElementById('resultsTitle');
+    const resultsMessage = document.getElementById('resultsMessage');
+    if (resultsTitle) resultsTitle.textContent = title;
+    if (resultsMessage) resultsMessage.textContent = message;
+    if (container) container.style.display = 'none';
+    if (navigationDiv) navigationDiv.style.display = 'none';
+    if (resultsDiv) resultsDiv.style.display = 'block';
+  }
+
+  function restartQuiz() {
+    const quizContainer = document.getElementById('quizContainer');
+    const quizResults = document.getElementById('quizResults');
+    const navigationDiv = document.getElementById('quizNavigation');
+
+    if (quizContainer) quizContainer.style.display = 'block';
+    if (quizResults) quizResults.style.display = 'none';
+    if (navigationDiv) navigationDiv.style.display = 'block';
+
+    initQuiz();
+  }
+
+  // Initialize quiz when page loads
+  document.addEventListener('DOMContentLoaded', initQuiz);
+
+  // Add event listeners for navigation buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    const backBtn = document.getElementById('backBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const retryBtn = document.getElementById('retryBtn');
+    
+    if (backBtn) {
+      backBtn.addEventListener('click', previousQuestion);
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', nextQuestion);
+    }
+    
+    if (retryBtn) {
+      retryBtn.addEventListener('click', restartQuiz);
+    }
+  });
+</script>

@@ -1,0 +1,66 @@
+{
+    "title": "Quiz de 4.1 - Conceptos Fundamentales de IAM",
+    "questions": [
+      {
+        "question": "¿Qué componente de IAM verifica la identidad de un usuario?",
+        "options": ["Autorización", "Autenticación", "Accounting", "Identidad digital"],
+        "correct": 1,
+        "explanation": "La autenticación verifica que un usuario sea quien dice ser mediante credenciales."
+      },
+      {
+        "question": "¿Cuál es la función de la autorización en IAM?",
+        "options": ["Verificar credenciales", "Restringir o permitir el acceso a recursos", "Registrar acciones del usuario", "Generar identidades"],
+        "correct": 1,
+        "explanation": "La autorización determina a qué recursos tiene acceso un usuario y con qué privilegios."
+      },
+      {
+        "question": "¿Qué parte del modelo AAA registra quién accedió a qué recursos y cuándo?",
+        "options": ["Autenticación", "Auditoría", "Autorización", "Accounting"],
+        "correct": 3,
+        "explanation": "Accounting se encarga del registro de accesos y uso de recursos, útil para auditorías."
+      },
+      {
+        "question": "¿Qué describe mejor a una identidad digital?",
+        "options": ["Una contraseña", "Un rol", "La representación única de un usuario o entidad", "Un token de acceso"],
+        "correct": 2,
+        "explanation": "Una identidad digital representa de forma única a un usuario o dispositivo en el sistema."
+      },
+      {
+        "question": "¿Cuál NO es un objetivo principal de un sistema IAM?",
+        "options": ["Disponibilidad", "Integridad", "Velocidad de la red", "Confidencialidad"],
+        "correct": 2,
+        "explanation": "IAM se enfoca en seguridad (CIA), no en rendimiento de red."
+      },
+      {
+        "question": "¿Cuál es un ejemplo de autenticación multifactor?",
+        "options": ["Usuario y contraseña", "Huella digital", "Token + contraseña", "Correo electrónico"],
+        "correct": 2,
+        "explanation": "Autenticación multifactor combina al menos dos factores distintos (algo que sabes + algo que tienes, etc.)."
+      },
+      {
+        "question": "¿Qué término describe a un conjunto de permisos asignados a una identidad?",
+        "options": ["Autorización", "Privilegios", "Rol", "Token"],
+        "correct": 2,
+        "explanation": "Un rol agrupa permisos que luego se asignan a identidades para simplificar la gestión."
+      },
+      {
+        "question": "¿Qué componente de IAM asegura que una persona pueda acceder solo a lo necesario?",
+        "options": ["Principio de mínimo privilegio", "Tokenización", "AAA", "Auditoría"],
+        "correct": 0,
+        "explanation": "El principio de mínimo privilegio restringe los accesos al mínimo necesario para realizar tareas."
+      },
+      {
+        "question": "¿Cuál de los siguientes es un identificador común de identidad digital?",
+        "options": ["ID biométrico", "Nombre de usuario", "Contraseña", "Nivel de autorización"],
+        "correct": 1,
+        "explanation": "El nombre de usuario identifica de forma única a una identidad en el sistema."
+      },
+      {
+        "question": "¿Qué aspecto de IAM permite investigar actividades sospechosas en el sistema?",
+        "options": ["Autorización", "Auditoría", "Control de acceso", "Federación de identidades"],
+        "correct": 1,
+        "explanation": "La auditoría revisa los registros de acceso para detectar anomalías o violaciones."
+      }
+    ]
+  }
+  

@@ -1,0 +1,126 @@
+{
+  "title": "Quiz de Control Objectives",
+  "questions": [
+    {
+      "question": "¿Cuál de los siguientes es un objetivo de control válido?",
+      "options": [
+        "Instalar antivirus",
+        "Lograr disponibilidad de datos",
+        "Ejecutar un backup",
+        "Comprar licencias"
+      ],
+      "correct": 1,
+      "explanation": "Un objetivo de control define el resultado deseado, no la implementación específica."
+    },
+    {
+      "question": "¿Cuál es la diferencia entre un control y un objetivo de control?",
+      "options": [
+        "Son lo mismo",
+        "El control es el resultado, el objetivo es el medio",
+        "El objetivo define el resultado deseado, el control lo implementa",
+        "El objetivo es técnico, el control es estratégico"
+      ],
+      "correct": 2,
+      "explanation": "El objetivo establece QUÉ queremos lograr, el control establece CÓMO lo implementamos."
+    },
+    {
+      "question": "Una contramedida es:",
+      "options": [
+        "Un objetivo abstracto",
+        "Una forma de recuperar datos",
+        "Un control diseñado para enfrentar una amenaza específica",
+        "Un método para auditar sistemas"
+      ],
+      "correct": 2,
+      "explanation": "Las contramedidas son controles específicamente diseñados para mitigar amenazas identificadas."
+    },
+    {
+      "question": "¿Qué buscan lograr principalmente los objetivos de control?",
+      "options": [
+        "Reducir costos de implementación",
+        "Reducir vulnerabilidades, prevenir explotación y minimizar impacto",
+        "Aumentar la velocidad de respuesta",
+        "Simplificar la gestión de seguridad"
+      ],
+      "correct": 1,
+      "explanation": "Los objetivos de control buscan reducir vulnerabilidades, prevenir explotación y minimizar el impacto cuando ocurren incidentes."
+    },
+    {
+      "question": "¿Por qué es importante definir objetivos de control antes de implementar controles?",
+      "options": [
+        "Para cumplir con regulaciones",
+        "Para clarificar qué resultado se quiere lograr y medir la efectividad",
+        "Para reducir costos",
+        "Para simplificar la documentación"
+      ],
+      "correct": 1,
+      "explanation": "Definir objetivos clarifica qué resultado se quiere lograr y permite medir la efectividad de los controles implementados."
+    },
+    {
+      "question": "¿Cuál es el propósito principal de los controles de seguridad?",
+      "options": [
+        "Aumentar la complejidad del sistema",
+        "Proteger activos y reducir riesgos",
+        "Cumplir con auditorías externas",
+        "Reducir costos operativos"
+      ],
+      "correct": 1,
+      "explanation": "Los controles de seguridad están diseñados para proteger activos críticos y reducir los riesgos de seguridad."
+    },
+    {
+      "question": "¿Qué tipo de control es un firewall?",
+      "options": [
+        "Control preventivo",
+        "Control correctivo",
+        "Control de detección",
+        "Control de recuperación"
+      ],
+      "correct": 0,
+      "explanation": "Un firewall es un control preventivo que bloquea amenazas antes de que puedan afectar el sistema."
+    },
+    {
+      "question": "¿Cuál es la diferencia entre un control técnico y uno administrativo?",
+      "options": [
+        "Los técnicos son más caros",
+        "Los técnicos se implementan en software/hardware, los administrativos en políticas y procedimientos",
+        "Los administrativos son más efectivos",
+        "No hay diferencia significativa"
+      ],
+      "correct": 1,
+      "explanation": "Los controles técnicos se implementan en tecnología (software/hardware), mientras que los administrativos se basan en políticas, procedimientos y capacitación."
+    },
+    {
+      "question": "¿Qué significa la sigla CIA en seguridad de la información?",
+      "options": [
+        "Confidencialidad, Integridad, Autenticación",
+        "Confidencialidad, Integridad, Disponibilidad",
+        "Control, Integración, Acceso",
+        "Cifrado, Identificación, Autorización"
+      ],
+      "correct": 1,
+      "explanation": "CIA se refiere a Confidencialidad (mantener la información privada), Integridad (mantener la información precisa) y Disponibilidad (mantener la información accesible)."
+    },
+    {
+      "question": "¿Cuál es el objetivo de un control de detección?",
+      "options": [
+        "Prevenir incidentes de seguridad",
+        "Identificar cuando ocurre un incidente",
+        "Recuperar sistemas después de un incidente",
+        "Reducir costos de seguridad"
+      ],
+      "correct": 1,
+      "explanation": "Los controles de detección están diseñados para identificar y alertar cuando ocurre un incidente de seguridad."
+    },
+    {
+      "question": "¿Por qué es importante la documentación de controles?",
+      "options": [
+        "Para cumplir con regulaciones",
+        "Para facilitar auditorías y mantenimiento",
+        "Para reducir costos",
+        "Para simplificar la implementación"
+      ],
+      "correct": 1,
+      "explanation": "La documentación facilita auditorías, mantenimiento, capacitación y asegura que los controles se implementen correctamente."
+    }
+  ]
+}

@@ -1118,7 +1118,7 @@ class SystemsIndex {
             
             const data = await response.json();
             this.searchIndex = data.pages;
-            this.sections = data.sections || this.generateSectionsFromPages();
+            this.sections = this.generateSectionsFromPages();
             console.log('Índice de búsqueda cargado:', this.searchIndex.length, 'páginas');
         } catch (error) {
             console.error('Error cargando índice de búsqueda:', error);
@@ -1149,7 +1149,7 @@ class SystemsIndex {
             'sistemas-operativos': 'Sistemas Operativos',
             'virtualizacion': 'Virtualización',
             'contenedores': 'Contenedores',
-            'administracion': 'Administración de Sistemas',
+            'gobernanza': 'Gobernanza',
             'monitoreo': 'Monitoreo y Observabilidad',
             'almacenamiento': 'Almacenamiento',
             'alta-disponibilidad': 'Alta Disponibilidad',
@@ -1164,7 +1164,7 @@ class SystemsIndex {
             'sistemas-operativos': '🖥️',
             'virtualizacion': '📦',
             'contenedores': '🐳',
-            'administracion': '⚙️',
+            'gobernanza': '🏛️',
             'monitoreo': '📊',
             'almacenamiento': '💾',
             'alta-disponibilidad': '🔗',
@@ -1179,7 +1179,7 @@ class SystemsIndex {
             'sistemas-operativos': 1,
             'virtualizacion': 1,
             'contenedores': 1,
-            'administracion': 2,
+            'gobernanza': 1,
             'monitoreo': 2,
             'almacenamiento': 2,
             'alta-disponibilidad': 3,
