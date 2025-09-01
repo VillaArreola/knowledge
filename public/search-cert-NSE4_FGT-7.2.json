@@ -1,0 +1,88 @@
+{
+  "certification": {
+    "name": "Fortinet NSE 4",
+    "code": "NSE4_FGT-7.2",
+    "icon": "🏰",
+    "description": "Certificación de FortiGate Security",
+    "vendor": "Fortinet",
+    "domains": [
+      "Security Fabric",
+      "Firewall Policies",
+      "User Authentication",
+      "SSL VPN",
+      "IPsec VPN",
+      "Security Profiles"
+    ],
+    "weight": 1
+  },
+  "topics": [
+    {
+      "title": "Firewall - Cortafuegos de Red",
+      "slug": "firewall",
+      "icon": "🔥",
+      "status": "completed",
+      "order": 1,
+      "description": "Sistemas de protección perimetral para redes corporativas",
+      "tags": [
+        "firewall",
+        "cortafuegos",
+        "seguridad",
+        "redes",
+        "perimetro"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 4.2,
+          "domain": "Security Architecture"
+        },
+        {
+          "code": "NSE4_FGT-7.2",
+          "weight": 4.5,
+          "domain": "Security Fabric"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "redes-seguras",
+      "url": "/ciberseguridad/redes-seguras/firewall",
+      "searchContent": "Firewall - Cortafuegos de Red Sistemas de protección perimetral para redes corporativas firewall cortafuegos seguridad redes perimetro",
+      "certificationWeight": 4.5,
+      "certificationDomain": "Security Fabric"
+    },
+    {
+      "title": "PKI - Infraestructura de Clave Pública",
+      "slug": "pki",
+      "icon": "🔐",
+      "status": "completed",
+      "order": 2,
+      "description": "Infraestructura para gestión de certificados digitales y claves públicas",
+      "tags": [
+        "PKI",
+        "certificados",
+        "claves públicas",
+        "CA",
+        "infraestructura",
+        "seguridad"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 3.6,
+          "domain": "Cryptography and PKI"
+        },
+        {
+          "code": "NSE4_FGT-7.2",
+          "weight": 4.1,
+          "domain": "Security Fabric"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/pki",
+      "searchContent": "PKI - Infraestructura de Clave Pública Infraestructura para gestión de certificados digitales y claves públicas PKI certificados claves públicas CA infraestructura seguridad",
+      "certificationWeight": 4.1,
+      "certificationDomain": "Security Fabric"
+    }
+  ],
+  "lastUpdated": "2025-08-30T15:29:15.621Z"
+}

@@ -1,0 +1,22 @@
+{
+  "title": "NIST - Framework de Ciberseguridad",
+  "slug": "nist",
+  "icon": "📋",
+  "status": "completed",
+  "order": 2,
+  "description": "Framework de ciberseguridad del NIST para organizaciones",
+  "tags": [
+    "NIST",
+    "framework",
+    "ciberseguridad",
+    "estándares",
+    "compliance"
+  ],
+  "certifications": [
+    {
+      "code": "SY0-701",
+      "weight": 5.1,
+      "domain": "Security Frameworks"
+    }
+  ]
+}

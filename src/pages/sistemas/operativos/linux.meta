@@ -1,0 +1,8 @@
+title=Linux - Sistema Operativo
+slug=linux
+icon=🐧
+status=completed
+order=1
+description=Sistema operativo de código abierto basado en Unix
+tags=Linux,Unix,sistema operativo,open source,servidor
+certifications=CLF-C02:3.5:Technology

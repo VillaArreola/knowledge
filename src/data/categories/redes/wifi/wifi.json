@@ -1,0 +1,25 @@
+{
+  "title": "WiFi",
+  "slug": "wifi",
+  "icon": "📶",
+  "status": "completed",
+  "order": 1,
+  "description": "Redes inalámbricas y conectividad WiFi",
+  "tags": ["wifi", "inalámbrico", "802.11", "wireless", "redes", "conectividad"],
+  "content": {
+    "sections": [
+      {
+        "title": "¿Qué es WiFi?",
+        "content": "WiFi es una tecnología de red inalámbrica que permite conectar dispositivos a Internet sin cables, utilizando ondas de radio."
+      },
+      {
+        "title": "Estándares WiFi",
+        "content": "802.11a, 802.11b, 802.11g, 802.11n, 802.11ac, 802.11ax (WiFi 6), 802.11be (WiFi 7)."
+      },
+      {
+        "title": "Seguridad WiFi",
+        "content": "WEP, WPA, WPA2, WPA3, Autenticación, Cifrado, Gestión de claves."
+      }
+    ]
+  }
+}

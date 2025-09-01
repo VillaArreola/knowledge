@@ -1,0 +1,170 @@
+---
+// Metadatos para el sistema de búsqueda y certificaciones
+const metadata = {
+  title: "CIA - Confidencialidad, Integridad, Disponibilidad",
+  slug: "cia",
+  icon: "🛡️",
+  status: "completed",
+  order: 1,
+  description: "Los tres pilares fundamentales de la seguridad de la información",
+  tags: ["CIA", "confidencialidad", "integridad", "disponibilidad", "seguridad", "fundamentos"],
+  certifications: [
+    {
+      name: "CompTIA Security+",
+      code: "SY0-701",
+      weight: 4.5,
+      domain: "General Security Concepts"
+    }
+  ],
+  content: {
+    sections: [
+      {
+        title: "¿Qué es CIA?",
+        content: "CIA es el acrónimo de los tres pilares fundamentales de la seguridad de la información: Confidencialidad, Integridad y Disponibilidad. Estos principios forman la base de cualquier programa de seguridad informática."
+      },
+      {
+        title: "Confidencialidad",
+        content: "Garantiza que la información solo sea accesible a personas autorizadas. Incluye técnicas como cifrado, autenticación y control de acceso."
+      },
+      {
+        title: "Integridad",
+        content: "Asegura que la información no sea modificada de manera no autorizada. Incluye técnicas como hashing, firmas digitales y control de versiones."
+      },
+      {
+        title: "Disponibilidad",
+        content: "Garantiza que la información esté disponible cuando sea necesaria. Incluye técnicas como redundancia, backups y alta disponibilidad."
+      }
+    ]
+  }
+};
+
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+
+const title = metadata.title;
+const description = metadata.description;
+---
+
+<WikiLayout title={title} description={description}>
+  <div class="content-wrapper">
+    <header class="topic-header">
+      <h1>{metadata.icon} {metadata.title}</h1>
+      <p class="topic-description">{metadata.description}</p>
+      
+      {metadata.certifications && metadata.certifications.length > 0 && (
+        <div class="certifications-badge">
+          <span class="badge-label">Certificaciones:</span>
+          {metadata.certifications.map(cert => (
+            <span class="cert-badge">
+              {cert.name} (Peso: {cert.weight})
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="content-sections">
+      {metadata.content.sections.map(section => (
+        <section class="content-section">
+          <h2>{section.title}</h2>
+          <p>{section.content}</p>
+        </section>
+      ))}
+    </div>
+
+    <footer class="topic-footer">
+      <div class="tags">
+        {metadata.tags.map(tag => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    </footer>
+  </div>
+</WikiLayout>
+
+<style>
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .topic-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .topic-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #1e293b;
+  }
+  
+  .topic-description {
+    font-size: 1.2rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+  }
+  
+  .certifications-badge {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .badge-label {
+    font-weight: 600;
+    color: #475569;
+  }
+  
+  .cert-badge {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .content-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .content-section h2 {
+    color: #1e293b;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+  }
+  
+  .content-section p {
+    line-height: 1.7;
+    color: #374151;
+    font-size: 1.1rem;
+  }
+  
+  .topic-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .tag {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    border: 1px solid #e2e8f0;
+  }
+</style>

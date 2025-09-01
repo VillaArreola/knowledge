@@ -1,0 +1,47 @@
+{
+  "certification": {
+    "name": "Microsoft AI-900",
+    "code": "AI-900",
+    "icon": "🤖",
+    "description": "Fundamentos de Azure AI",
+    "vendor": "Microsoft",
+    "domains": [
+      "AI Fundamentals",
+      "Machine Learning",
+      "Computer Vision",
+      "Natural Language Processing",
+      "Conversational AI"
+    ],
+    "weight": 1
+  },
+  "topics": [
+    {
+      "title": "Algoritmos - Fundamentos de Programación",
+      "slug": "algoritmos",
+      "icon": "⚡",
+      "status": "completed",
+      "order": 1,
+      "description": "Conjunto de instrucciones para resolver problemas computacionales",
+      "tags": [
+        "algoritmos",
+        "programacion",
+        "logica",
+        "resolucion problemas"
+      ],
+      "certifications": [
+        {
+          "code": "AI-900",
+          "weight": 2.1,
+          "domain": "Machine Learning Concepts"
+        }
+      ],
+      "category": "Programacion",
+      "section": "fundamentos",
+      "url": "/programacion/fundamentos/algoritmos",
+      "searchContent": "Algoritmos - Fundamentos de Programación Conjunto de instrucciones para resolver problemas computacionales algoritmos programacion logica resolucion problemas",
+      "certificationWeight": 2.1,
+      "certificationDomain": "Machine Learning Concepts"
+    }
+  ],
+  "lastUpdated": "2025-08-30T15:29:15.627Z"
+}

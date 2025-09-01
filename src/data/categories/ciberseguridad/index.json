@@ -1,0 +1,71 @@
+{
+  "name": "Ciberseguridad",
+  "slug": "ciberseguridad",
+  "icon": "🛡️",
+  "description": "Fundamentos, técnicas y herramientas de seguridad informática",
+  "sections": [
+    {
+      "name": "Fundamentos de Seguridad",
+      "slug": "fundamentos",
+      "icon": "🛡️",
+      "description": "Conceptos básicos y principios de seguridad",
+      "order": 1
+    },
+    {
+      "name": "Seguridad en Redes",
+      "slug": "redes",
+      "icon": "🌐",
+      "description": "Protección de infraestructura de red",
+      "order": 2
+    },
+    {
+      "name": "Informática Forense",
+      "slug": "forense",
+      "icon": "🔬",
+      "description": "Análisis forense digital e investigación",
+      "order": 3
+    },
+    {
+      "name": "Criptografía",
+      "slug": "criptografia",
+      "icon": "🔒",
+      "description": "Técnicas de cifrado y protección de datos",
+      "order": 4
+    },
+    {
+      "name": "Identidad y Gestión de Acceso",
+      "slug": "iam",
+      "icon": "👤",
+      "description": "Gestión de identidades y control de acceso",
+      "order": 5
+    },
+    {
+      "name": "Laboratorios y Práctica",
+      "slug": "laboratorios",
+      "icon": "🧪",
+      "description": "Entornos prácticos y ejercicios",
+      "order": 6
+    },
+    {
+      "name": "Normativas y Compliance",
+      "slug": "normativas",
+      "icon": "📜",
+      "description": "Marco normativo y cumplimiento",
+      "order": 7
+    },
+    {
+      "name": "Respuesta a Incidentes",
+      "slug": "incidentes",
+      "icon": "🚨",
+      "description": "Gestión y respuesta a incidentes de seguridad",
+      "order": 8
+    },
+    {
+      "name": "Especialidades Avanzadas",
+      "slug": "especialidades",
+      "icon": "🎯",
+      "description": "Temas especializados y avanzados",
+      "order": 9
+    }
+  ]
+}

@@ -6,21 +6,7 @@ export interface Props {
   certTitle: string;
 }
 
-type RawSearchPage = {
-  title?: string;
-  url?: string;
-  category?: string;
-  section?: string;
-  icon?: string;
-  status?: string;
-  order?: number;
-  Certificado?: string;
-  certificado?: string;
-  lession?: string | number;
-  lesson?: string | number;
-};
-
-type PageItem = {
+type CertificationTopic = {
   title: string;
   url: string;
   category?: string;
@@ -28,44 +14,89 @@ type PageItem = {
   icon?: string;
   status?: string;
   order?: number;
-  certificado?: string;
-  lession?: string | number;
+  certificationWeight?: number;
+  certificationDomain?: string;
+  description?: string;
+};
+
+type CertificationData = {
+  certification: {
+    name: string;
+    code: string;
+    icon: string;
+    description: string;
+    vendor: string;
+    domains: string[];
+    weight: number;
+  };
+  topics: CertificationTopic[];
+  lastUpdated: string;
+};
+
+type FallbackCertification = {
+  name: string;
+  code: string;
+  icon: string;
+  description: string;
+  vendor: string;
 };
 
 const { code, certTitle } = Astro.props as Props;
 
-const fileUrl = new URL('../../public/search-index.json', import.meta.url);
-const jsonText = await readFile(fileUrl, 'utf-8');
-const data: { pages?: RawSearchPage[] } = JSON.parse(jsonText);
-
-const pages: PageItem[] = (data?.pages ?? []).map((p: RawSearchPage): PageItem => ({
-  title: p.title ?? '',
-  url: p.url ?? '#',
-  category: p.category,
-  section: p.section,
-  icon: p.icon,
-  status: p.status,
-  order: p.order ?? 0,
-  certificado: p.Certificado || p.certificado || '',
-  lession: p.lession ?? p.lesson
-}));
-
-function parseLesson(val: string | number | undefined): number {
-  if (val === undefined || val === null) return Number.MAX_SAFE_INTEGER;
-  const n = Number(String(val).replace(/[^0-9.]/g, ''));
-  return Number.isNaN(n) ? Number.MAX_SAFE_INTEGER : n;
+// Intentar cargar el índice específico de la certificación
+let certData: CertificationData | null = null;
+try {
+  const certIndexUrl = new URL(`../../public/search-cert-${code}.json`, import.meta.url);
+  const jsonText = await readFile(certIndexUrl, 'utf-8');
+  certData = JSON.parse(jsonText);
+} catch (error) {
+  console.warn(`No se encontró índice específico para certificación ${code}:`, error);
 }
 
-const matched: PageItem[] = pages.filter((p: PageItem) =>
-  (p.certificado ?? '').toLowerCase().includes(certTitle.toLowerCase()) ||
-  (p.section ?? '').toLowerCase().includes(code.toLowerCase()) ||
-  (p.url ?? '').toLowerCase().includes(code.toLowerCase())
-);
+// Si no hay índice específico, intentar con el índice global (fallback)
+let fallbackTopics: CertificationTopic[] = [];
+if (!certData) {
+  try {
+    const fileUrl = new URL('../../public/search-index.json', import.meta.url);
+    const jsonText = await readFile(fileUrl, 'utf-8');
+    const data: { pages?: any[] } = JSON.parse(jsonText);
+    
+    fallbackTopics = (data?.pages ?? []).filter((p: any) => {
+      return p.certifications?.some((cert: any) => cert.code === code) ||
+             p.certificado?.toLowerCase().includes(certTitle.toLowerCase()) ||
+             p.section?.toLowerCase().includes(code.toLowerCase()) ||
+             p.url?.toLowerCase().includes(code.toLowerCase());
+    }).map((p: any) => ({
+      title: p.title || '',
+      url: p.url || '#',
+      category: p.category,
+      section: p.section,
+      icon: p.icon,
+      status: p.status,
+      order: p.order || 0,
+      certificationWeight: p.certifications?.find((cert: any) => cert.code === code)?.weight || 0,
+      certificationDomain: p.certifications?.find((cert: any) => cert.code === code)?.domain || '',
+      description: p.description
+    }));
+  } catch (error) {
+    console.error('Error cargando índice global:', error);
+  }
+}
 
-const lessons: PageItem[] = matched.sort((a: PageItem, b: PageItem) => {
-  const la = parseLesson(a.lession);
-  const lb = parseLesson(b.lession);
-  if (la !== lb) return la - lb;
+const topics = certData?.topics || fallbackTopics;
+const certification: CertificationData['certification'] | FallbackCertification = certData?.certification || { 
+  name: certTitle, 
+  code, 
+  icon: '🏆', 
+  description: '', 
+  vendor: '' 
+};
+
+// Ordenar por peso de certificación (descendente) y luego por orden
+const lessons = topics.sort((a, b) => {
+  const weightA = a.certificationWeight || 0;
+  const weightB = b.certificationWeight || 0;
+  if (weightA !== weightB) return weightB - weightA;
   if ((a.order ?? 0) !== (b.order ?? 0)) return (a.order ?? 0) - (b.order ?? 0);
   return (a.title ?? '').localeCompare(b.title ?? '');
 });
@@ -74,24 +105,41 @@ const lessons: PageItem[] = matched.sort((a: PageItem, b: PageItem) => {
 <div class="cert-page">
   <header class="cert-hero">
     <div class="cert-code">{code}</div>
-    <h1 class="cert-title">{certTitle}</h1>
-    <p class="cert-sub">Guía de estudio por lecciones</p>
+    <h1 class="cert-title">{certification.name}</h1>
+    <p class="cert-sub">{certification.description || 'Guía de estudio por lecciones'}</p>
+    {certification.vendor && (
+      <p class="cert-vendor">Vendor: {certification.vendor}</p>
+    )}
   </header>
 
   {lessons.length === 0 ? (
-    <div class="empty">No se encontraron lecciones para este certificado.</div>
+    <div class="empty">
+      <p>No se encontraron lecciones para este certificado.</p>
+      <p class="empty-hint">Los temas aparecerán aquí cuando se agreguen a esta certificación.</p>
+    </div>
   ) : (
     <section class="lessons">
-      {lessons.map((item: PageItem) => (
+      {lessons.map((item: CertificationTopic) => (
         <a class="lesson" href={item.url}>
           <div class="lesson-left">
             <span class="lesson-icon">{item.icon || '📘'}</span>
             <div class="lesson-info">
-              <h3 class="lesson-title">{item.lession ? `Lección ${item.lession}: ` : ''}{item.title}</h3>
-              <p class="lesson-meta">{item.category} • {item.section}</p>
+              <h3 class="lesson-title">{item.title}</h3>
+              <p class="lesson-meta">
+                {item.category} • {item.section}
+                {item.certificationDomain && (
+                  <span class="lesson-domain"> • {item.certificationDomain}</span>
+                )}
+              </p>
+              {item.description && (
+                <p class="lesson-description">{item.description}</p>
+              )}
             </div>
           </div>
           <div class="lesson-right">
+            {item.certificationWeight && (
+              <span class="cert-weight">Peso: {item.certificationWeight}</span>
+            )}
             <span class={`status ${item.status}`}>{item.status || 'planned'}</span>
             <span class="arrow">→</span>
           </div>
@@ -106,23 +154,28 @@ const lessons: PageItem[] = matched.sort((a: PageItem, b: PageItem) => {
   .cert-hero { text-align: center; margin: 12px 0 24px; }
   .cert-code { display:inline-block; padding:6px 12px; border:1px solid rgba(148,163,184,.3); border-radius:999px; font-size:.85rem; color:#475569; background:rgba(241,245,249,.6) }
   .cert-title { font-size:1.8rem; margin:10px 0 6px; color:#0f172a }
-  .cert-sub { color:#64748b; }
+  .cert-sub { color:#64748b; margin-bottom: 8px; }
+  .cert-vendor { color:#64748b; font-size: 0.9rem; margin: 0; }
   .lessons { display:flex; flex-direction:column; gap:10px; max-width:900px; margin:0 auto; }
   .lesson { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border:1px solid rgba(148,163,184,.25); background:linear-gradient(135deg, rgba(255,255,255,.85), rgba(248,250,252,.9)); border-radius:14px; text-decoration:none; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
   .lesson:hover { transform: translateY(-2px); box-shadow:0 8px 24px rgba(15,23,42,.08); border-color: rgba(148,163,184,.45); }
-  .lesson-left { display:flex; align-items:center; gap:12px; }
+  .lesson-left { display:flex; align-items:center; gap:12px; flex: 1; }
   .lesson-icon { font-size:1.4rem }
-  .lesson-info { display:flex; flex-direction:column }
+  .lesson-info { display:flex; flex-direction:column; flex: 1; }
   .lesson-title { margin:0; color:#0f172a; font-size:1rem }
   .lesson-meta { margin:2px 0 0; color:#64748b; font-size:.85rem }
+  .lesson-domain { color: #3b82f6; font-weight: 500; }
+  .lesson-description { margin: 4px 0 0; color:#64748b; font-size:.8rem; line-height: 1.4; }
   .lesson-right { display:flex; align-items:center; gap:10px }
+  .cert-weight { padding:4px 8px; border-radius:6px; font-size:.75rem; background:rgba(59,130,246,.1); color:#1d4ed8; border:1px solid rgba(59,130,246,.2); }
   .status { padding:4px 10px; border-radius:999px; font-size:.75rem; text-transform:uppercase; letter-spacing:.02em; border:1px solid rgba(148,163,184,.35); color:#475569; background:rgba(241,245,249,.6) }
   .status.completed { background: rgba(34,197,94,.15); color:#166534; border-color: rgba(34,197,94,.35) }
   .status.interactive { background: rgba(59,130,246,.15); color:#1d4ed8; border-color: rgba(59,130,246,.35) }
   .status.planned { background: rgba(148,163,184,.2); color:#334155 }
   .arrow { color:#334155; font-size:1.25rem }
   .empty { text-align:center; color:#64748b; padding:40px 0 }
-  @media (max-width: 640px) { .lesson { padding:12px } .cert-title{font-size:1.5rem} }
+  .empty-hint { font-size: 0.9rem; color: #94a3b8; margin-top: 8px; }
+  @media (max-width: 640px) { .lesson { padding:12px } .cert-title{font-size:1.5rem} .lesson-right { flex-direction: column; align-items: flex-end; } }
 </style>
 
 

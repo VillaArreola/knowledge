@@ -1,0 +1,164 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+
+const title = "AWS - Amazon Web Services";
+const description = "Fundamentos de AWS, servicios principales y arquitectura en la nube";
+---
+
+<WikiLayout title={title} description={description} showHeader={false}>
+<div class="aws-page">
+<div class="container">
+<!-- Sección Principal -->
+<section class="hero">
+<h1>☁️ Amazon Web Services (AWS)</h1>
+<p class="lead">
+<strong>AWS</strong> es la plataforma de computación en la nube más grande del mundo, ofreciendo más de 200 servicios completos desde centros de datos globales.
+</p>
+<div class="card highlight">
+<p>💡 AWS es líder en la nube pública con más del 30% del mercado global de infraestructura como servicio (IaaS).</p>
+</div>
+</section>
+
+<!-- Servicios Principales -->
+<section class="services">
+<h2>🔧 Servicios Principales de AWS</h2>
+<div class="grid">
+<div class="card">
+<h3>🖥️ EC2 - Elastic Compute Cloud</h3>
+<p>Servicio de computación en la nube que permite alquilar servidores virtuales.</p>
+</div>
+<div class="card">
+<h3>💾 S3 - Simple Storage Service</h3>
+<p>Almacenamiento de objetos escalable para datos y aplicaciones.</p>
+</div>
+<div class="card">
+<h3>🌐 VPC - Virtual Private Cloud</h3>
+<p>Red privada virtual para aislar recursos en la nube.</p>
+</div>
+<div class="card">
+<h3>🗄️ RDS - Relational Database Service</h3>
+<p>Servicio de bases de datos relacionales administradas.</p>
+</div>
+</div>
+</section>
+
+<!-- Ventajas de AWS -->
+<section class="benefits">
+<h2>✅ Ventajas de AWS</h2>
+<ul class="benefits-list">
+<li><strong>Escalabilidad:</strong> Crece o reduce recursos según demanda</li>
+<li><strong>Confiabilidad:</strong> 99.99% de disponibilidad garantizada</li>
+<li><strong>Seguridad:</strong> Múltiples capas de seguridad y cumplimiento</li>
+<li><strong>Costos:</strong> Paga solo por lo que uses</li>
+<li><strong>Global:</strong> Presencia en más de 25 regiones</li>
+</ul>
+</section>
+
+<!-- Consejo Profesional -->
+<section class="tip">
+<div class="card professional-tip">
+<h3>💼 Consejo Profesional</h3>
+<p>AWS ofrece una capa gratuita generosa para comenzar. Aprovecha los servicios gratuitos para aprender y experimentar antes de escalar a producción.</p>
+</div>
+</section>
+</div></div>
+</WikiLayout>
+
+<style lang="css">
+.aws-page {
+font-family: 'Segoe UI', system-ui, sans-serif;
+line-height: 1.7;
+color: #333;
+background: #f9f9fb;
+}
+
+.container {
+max-width: 1000px;
+margin: 0 auto;
+padding: 2rem 1.5rem;
+}
+
+.aws-page h1,
+.aws-page h2,
+.aws-page h3 {
+color: #2c3e50;
+margin-bottom: 1rem;
+font-weight: 600;
+}
+
+.aws-page h1 {
+font-size: 2.5rem;
+text-align: center;
+margin-bottom: 1.5rem;
+color: #ff9900;
+}
+
+.aws-page .lead {
+font-size: 1.25rem;
+text-align: center;
+color: #555;
+margin-bottom: 2rem;
+}
+
+.aws-page .card {
+background: white;
+border-radius: 12px;
+padding: 1.5rem;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aws-page .card:hover {
+transform: translateY(-4px);
+box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.aws-page .highlight {
+background: #fff8e1;
+border-left: 4px solid #ff9900;
+font-size: 1.1rem;
+}
+
+.aws-page .grid {
+display: grid;
+gap: 1.5rem;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+margin: 2rem 0;
+}
+
+.aws-page .benefits-list {
+list-style: none;
+padding: 0;
+}
+
+.aws-page .benefits-list li {
+padding: 0.75rem 0;
+border-bottom: 1px solid #eee;
+font-size: 1.1rem;
+}
+
+.aws-page .benefits-list li:last-child {
+border-bottom: none;
+}
+
+.aws-page .professional-tip {
+background: #fff8e1;
+border-left: 4px solid #ff9900;
+font-size: 1.1rem;
+color: #333;
+}
+
+@media (max-width: 768px) {
+.aws-page h1 {
+font-size: 2rem;
+}
+
+.aws-page .lead {
+font-size: 1.1rem;
+}
+
+.container {
+padding: 1.5rem;
+}
+}
+</style>

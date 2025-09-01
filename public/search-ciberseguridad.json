@@ -1,0 +1,198 @@
+{
+  "pages": [
+    {
+      "title": "Criptografía - Fundamentos de Seguridad Digital",
+      "slug": "criptografia",
+      "icon": "🔒",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de criptografía y técnicas de encriptación para proteger información",
+      "tags": [
+        "criptografía",
+        "encriptación",
+        "seguridad",
+        "algoritmos",
+        "claves"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 3.6,
+          "domain": "Cryptography and PKI"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/criptografia",
+      "searchContent": "Criptografía - Fundamentos de Seguridad Digital Fundamentos de criptografía y técnicas de encriptación para proteger información criptografía encriptación seguridad algoritmos claves"
+    },
+    {
+      "title": "Laboratorio Interactivo de Criptografía",
+      "slug": "interactivo",
+      "icon": "🧪",
+      "status": "completed",
+      "order": 2,
+      "description": "Prácticas interactivas para aprender criptografía de forma hands-on",
+      "tags": [
+        "laboratorio",
+        "interactivo",
+        "práctica",
+        "criptografía",
+        "hands-on"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 3.6,
+          "domain": "Cryptography and PKI"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/interactivo",
+      "searchContent": "Laboratorio Interactivo de Criptografía Prácticas interactivas para aprender criptografía de forma hands-on laboratorio interactivo práctica criptografía hands-on"
+    },
+    {
+      "title": "PKI - Infraestructura de Clave Pública",
+      "slug": "pki",
+      "icon": "🔐",
+      "status": "completed",
+      "order": 2,
+      "description": "Infraestructura para gestión de certificados digitales y claves públicas",
+      "tags": [
+        "PKI",
+        "certificados",
+        "claves públicas",
+        "CA",
+        "infraestructura",
+        "seguridad"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 3.6,
+          "domain": "Cryptography and PKI"
+        },
+        {
+          "code": "NSE4_FGT-7.2",
+          "weight": 4.1,
+          "domain": "Security Fabric"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/pki",
+      "searchContent": "PKI - Infraestructura de Clave Pública Infraestructura para gestión de certificados digitales y claves públicas PKI certificados claves públicas CA infraestructura seguridad"
+    },
+    {
+      "title": "CIA - Confidencialidad, Integridad, Disponibilidad",
+      "slug": "cia",
+      "icon": "🛡️",
+      "status": "completed",
+      "order": 1,
+      "description": "Los tres pilares fundamentales de la seguridad de la información",
+      "tags": [
+        "CIA",
+        "confidencialidad",
+        "integridad",
+        "disponibilidad",
+        "seguridad",
+        "fundamentos"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 4.5,
+          "domain": "General Security Concepts"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "fundamentos",
+      "url": "/ciberseguridad/fundamentos/cia",
+      "searchContent": "CIA - Confidencialidad, Integridad, Disponibilidad Los tres pilares fundamentales de la seguridad de la información CIA confidencialidad integridad disponibilidad seguridad fundamentos"
+    },
+    {
+      "title": "Control de Ciberseguridad",
+      "slug": "control-ciberseguridad",
+      "icon": "🎛️",
+      "status": "completed",
+      "order": 3,
+      "description": "Controles y medidas de seguridad para proteger sistemas y datos",
+      "tags": [
+        "control",
+        "medidas",
+        "seguridad",
+        "protección",
+        "controles"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 1.5,
+          "domain": "Security Controls"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "fundamentos",
+      "url": "/ciberseguridad/fundamentos/control-ciberseguridad",
+      "searchContent": "Control de Ciberseguridad Controles y medidas de seguridad para proteger sistemas y datos control medidas seguridad protección controles"
+    },
+    {
+      "title": "NIST - Framework de Ciberseguridad",
+      "slug": "nist",
+      "icon": "📋",
+      "status": "completed",
+      "order": 2,
+      "description": "Framework de ciberseguridad del NIST para organizaciones",
+      "tags": [
+        "NIST",
+        "framework",
+        "ciberseguridad",
+        "estándares",
+        "compliance"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 5.1,
+          "domain": "Security Frameworks"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "fundamentos",
+      "url": "/ciberseguridad/fundamentos/nist",
+      "searchContent": "NIST - Framework de Ciberseguridad Framework de ciberseguridad del NIST para organizaciones NIST framework ciberseguridad estándares compliance"
+    },
+    {
+      "title": "Firewall - Cortafuegos de Red",
+      "slug": "firewall",
+      "icon": "🔥",
+      "status": "completed",
+      "order": 1,
+      "description": "Sistemas de protección perimetral para redes corporativas",
+      "tags": [
+        "firewall",
+        "cortafuegos",
+        "seguridad",
+        "redes",
+        "perimetro"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 4.2,
+          "domain": "Security Architecture"
+        },
+        {
+          "code": "NSE4_FGT-7.2",
+          "weight": 4.5,
+          "domain": "Security Fabric"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "redes-seguras",
+      "url": "/ciberseguridad/redes-seguras/firewall",
+      "searchContent": "Firewall - Cortafuegos de Red Sistemas de protección perimetral para redes corporativas firewall cortafuegos seguridad redes perimetro"
+    }
+  ]
+}

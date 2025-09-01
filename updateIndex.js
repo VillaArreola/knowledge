@@ -12,7 +12,8 @@ const basePath = path.join(__dirname, 'src', 'pages');
 const categoryIndexPath = path.join(__dirname, 'src', 'components', 'hub-categorias.astro');
 const searchIndexPath = path.join(__dirname, 'public', 'search-index.json');
 
-// Function to get .astro files in a directory
+// Function to get .astro files in a directo
+// ry
 function getAstroFiles(dir) {
   return fs.readdirSync(dir)
     .filter(file => file.endsWith('.astro'))
@@ -37,29 +38,15 @@ function updateCategoryIndex(newTopics) {
   console.log('Category index updated.');
 }
 
-// Update search index
-function updateSearchIndex(newTopics) {
-  let searchIndexContent;
-  try {
-    searchIndexContent = JSON.parse(fs.readFileSync(searchIndexPath, 'utf-8'));
-    if (!searchIndexContent.pages || !Array.isArray(searchIndexContent.pages)) {
-      throw new Error('search-index.json does not have a valid pages array');
-    }
-  } catch (error) {
-    console.error('Error reading or parsing search-index.json:', error.message);
-    searchIndexContent = { pages: [] }; // Initialize as an empty object with pages key if invalid
-  }
-
-  newTopics.forEach(topic => {
-    searchIndexContent.pages.push({
-      title: topic.title,
-      description: topic.description,
-      url: topic.path
-    });
-  });
-
-  fs.writeFileSync(searchIndexPath, JSON.stringify(searchIndexContent, null, 2), 'utf-8');
-  console.log('Search index updated.');
+// Update search index - Now uses the new structure
+async function updateSearchIndex(newTopics) {
+  console.log('🔄 Actualizando índices de búsqueda con nueva estructura...');
+  
+  // Importar y ejecutar el nuevo sistema de generación
+  const { generateSearchSystem } = await import('./src/scripts/generateSearchSystem.cjs');
+  generateSearchSystem();
+  
+  console.log('✅ Índices de búsqueda actualizados con nueva estructura.');
 }
 
 // Update redes.astro dynamic index
@@ -105,7 +92,7 @@ function updateSistemasAstro(newTopics) {
 }
 
 // Main function
-function main() {
+async function main() {
   const newTopics = [];
 
   categories.forEach(category => {
@@ -123,7 +110,7 @@ function main() {
   });
 
   updateCategoryIndex(newTopics);
-  updateSearchIndex(newTopics);
+  await updateSearchIndex(newTopics);
   updateRedesAstro(newTopics.filter(topic => topic.path.startsWith('/redes')));
   updateSistemasAstro(newTopics.filter(topic => topic.path.startsWith('/sistemas')));
 }

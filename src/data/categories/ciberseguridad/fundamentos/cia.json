@@ -1,0 +1,23 @@
+{
+  "title": "CIA - Confidencialidad, Integridad, Disponibilidad",
+  "slug": "cia",
+  "icon": "🛡️",
+  "status": "completed",
+  "order": 1,
+  "description": "Los tres pilares fundamentales de la seguridad de la información",
+  "tags": [
+    "CIA",
+    "confidencialidad",
+    "integridad",
+    "disponibilidad",
+    "seguridad",
+    "fundamentos"
+  ],
+  "certifications": [
+    {
+      "code": "SY0-701",
+      "weight": 4.5,
+      "domain": "General Security Concepts"
+    }
+  ]
+}

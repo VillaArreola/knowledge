@@ -1,0 +1,141 @@
+{
+  "pages": [
+    {
+      "title": "IAM - Gestión de Identidades y Accesos",
+      "slug": "iam",
+      "icon": "🔐",
+      "status": "completed",
+      "order": 1,
+      "description": "Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual",
+      "tags": [
+        "IAM",
+        "identidad",
+        "acceso",
+        "gestión",
+        "seguridad",
+        "autenticación",
+        "autorización"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 4.3,
+          "domain": "Identity and Access Management"
+        },
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "gobernanza",
+      "url": "/sistemas/gobernanza/iam",
+      "searchContent": "IAM - Gestión de Identidades y Accesos Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual IAM identidad acceso gestión seguridad autenticación autorización"
+    },
+    {
+      "title": "Linux - Sistema Operativo",
+      "slug": "linux",
+      "icon": "🐧",
+      "status": "completed",
+      "order": 1,
+      "description": "Sistema operativo de código abierto basado en Unix",
+      "tags": [
+        "Linux",
+        "Unix",
+        "sistema operativo",
+        "open source",
+        "servidor"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "operativos",
+      "url": "/sistemas/operativos/linux",
+      "searchContent": "Linux - Sistema Operativo Sistema operativo de código abierto basado en Unix Linux Unix sistema operativo open source servidor"
+    },
+    {
+      "title": "prueba",
+      "slug": "prueba1",
+      "icon": "🖥️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
+      "tags": [
+        "virtualización",
+        "VM",
+        "hipervisor",
+        "contenedores",
+        "cloud"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "virtualizacion",
+      "url": "/sistemas/virtualizacion/prueba1",
+      "searchContent": "prueba Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
+    },
+    {
+      "title": "Virtualización - Gestión de Máquinas Virtuales",
+      "slug": "virtualizacion",
+      "icon": "🖥️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
+      "tags": [
+        "virtualización",
+        "VM",
+        "hipervisor",
+        "contenedores",
+        "cloud"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "virtualizacion",
+      "url": "/sistemas/virtualizacion/virtualizacion",
+      "searchContent": "Virtualización - Gestión de Máquinas Virtuales Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
+    },
+    {
+      "title": "Virtualización en Vmware",
+      "slug": "vmware",
+      "icon": "🖥️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
+      "tags": [
+        "virtualización",
+        "VM",
+        "hipervisor",
+        "contenedores",
+        "cloud"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "virtualizacion",
+      "url": "/sistemas/virtualizacion/vmware",
+      "searchContent": "Virtualización en Vmware Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
+    }
+  ]
+}

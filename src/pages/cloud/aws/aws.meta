@@ -1,0 +1,8 @@
+title=AWS - Amazon Web Services
+slug=aws
+icon=☁️
+status=completed
+order=1
+description=Fundamentos de AWS, servicios principales y arquitectura en la nube
+tags=AWS,cloud,computación,servicios,infraestructura
+certifications=CLF-C02:3.1:Cloud Concepts

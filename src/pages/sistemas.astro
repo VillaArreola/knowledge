@@ -2,6 +2,7 @@
 // Página de Sistemas integrada al diseño general
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import CategorySearch from "../components/CategorySearch.astro";
 import "../styles/global.css";
 
 const title = "Sistemas - Índice de Temas";
@@ -68,12 +69,15 @@ const description = "Índice dinámico de todos los temas de sistemas cargado au
         <!-- Content Grid -->
         <section class="content-section">
             <div class="content-container">
-                <div class="section-header">
-                    <h2 class="section-title">Contenido Organizado</h2>
-                    <p class="section-subtitle">
-                        Navega por los diferentes temas organizados por categorías especializadas
-                    </p>
-                </div>
+                                 <div class="section-header">
+                     <h2 class="section-title">Contenido Organizado</h2>
+                     <p class="section-subtitle">
+                         Navega por los diferentes temas organizados por categorías especializadas
+                     </p>
+                     
+                     <!-- Búsqueda por categoría -->
+                     <CategorySearch category="sistemas" placeholder="Buscar en Sistemas..." />
+                 </div>
                 
                 <!-- Dynamic Index -->
                 <div class="index-grid" id="dynamic-index">
@@ -1111,7 +1115,7 @@ class SystemsIndex {
 
     async loadSearchIndex() {
         try {
-            const response = await fetch('/search-index.json');
+            const response = await fetch('/search-sistemas.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -1119,9 +1123,9 @@ class SystemsIndex {
             const data = await response.json();
             this.searchIndex = data.pages;
             this.sections = this.generateSectionsFromPages();
-            console.log('Índice de búsqueda cargado:', this.searchIndex.length, 'páginas');
+            console.log('Índice de sistemas cargado:', this.searchIndex.length, 'páginas');
         } catch (error) {
-            console.error('Error cargando índice de búsqueda:', error);
+            console.error('Error cargando índice de sistemas:', error);
             throw error;
         }
     }

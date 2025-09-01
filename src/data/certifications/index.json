@@ -1,0 +1,96 @@
+{
+  "certifications": [
+    {
+      "name": "CompTIA Security+",
+      "code": "SY0-701",
+      "icon": "🛡️",
+      "description": "Certificación fundamental de ciberseguridad",
+      "vendor": "CompTIA",
+      "domains": [
+        "General Security Concepts",
+        "Threats, Vulnerabilities, and Mitigations", 
+        "Security Architecture",
+        "Security Operations",
+        "Security Program Management and Oversight",
+        "Cryptography and PKI"
+      ],
+      "weight": 1.0
+    },
+    {
+      "name": "Fortinet NSE 4",
+      "code": "NSE4_FGT-7.2",
+      "icon": "🏰",
+      "description": "Certificación de FortiGate Security",
+      "vendor": "Fortinet",
+      "domains": [
+        "Security Fabric",
+        "Firewall Policies",
+        "User Authentication",
+        "SSL VPN",
+        "IPsec VPN",
+        "Security Profiles"
+      ],
+      "weight": 1.0
+    },
+    {
+      "name": "Cisco CCNA",
+      "code": "200-301",
+      "icon": "🌐",
+      "description": "Certificación de redes Cisco",
+      "vendor": "Cisco",
+      "domains": [
+        "Network Fundamentals",
+        "Network Access",
+        "IP Connectivity",
+        "IP Services",
+        "Security Fundamentals",
+        "Automation and Programmability"
+      ],
+      "weight": 1.0
+    },
+    {
+      "name": "Microsoft AI-900",
+      "code": "AI-900",
+      "icon": "🤖",
+      "description": "Fundamentos de Azure AI",
+      "vendor": "Microsoft",
+      "domains": [
+        "AI Fundamentals",
+        "Machine Learning",
+        "Computer Vision",
+        "Natural Language Processing",
+        "Conversational AI"
+      ],
+      "weight": 1.0
+    },
+    {
+      "name": "CompTIA Cloud+",
+      "code": "CV0-003",
+      "icon": "☁️",
+      "description": "Certificación de tecnologías cloud",
+      "vendor": "CompTIA",
+      "domains": [
+        "Cloud Architecture and Design",
+        "Cloud Security",
+        "Cloud Deployment",
+        "Operations and Support",
+        "Troubleshooting"
+      ],
+      "weight": 1.0
+    },
+    {
+      "name": "Certified Fraud Examiner",
+      "code": "CFE",
+      "icon": "🔍",
+      "description": "Certificación en investigación de fraude",
+      "vendor": "ACFE",
+      "domains": [
+        "Financial Transactions and Fraud Schemes",
+        "Law",
+        "Investigation",
+        "Fraud Prevention and Deterrence"
+      ],
+      "weight": 1.0
+    }
+  ]
+}

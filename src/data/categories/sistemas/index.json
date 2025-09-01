@@ -1,0 +1,15 @@
+{
+  "name": "Sistemas",
+  "slug": "sistemas",
+  "icon": "⚙️",
+  "description": "Administración de sistemas, infraestructura y gobernanza tecnológica",
+  "sections": [
+    {
+      "name": "Gobernanza",
+      "slug": "gobernanza",
+      "icon": "🏛️",
+      "description": "Políticas, procedimientos y control de sistemas",
+      "order": 1
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Control de Ciberseguridad",
+  "slug": "control-ciberseguridad",
+  "icon": "🎛️",
+  "status": "completed",
+  "order": 3,
+  "description": "Controles y medidas de seguridad para proteger sistemas y datos",
+  "tags": [
+    "control",
+    "medidas",
+    "seguridad",
+    "protección",
+    "controles"
+  ],
+  "certifications": [
+    {
+      "code": "SY0-701",
+      "weight": 1.5,
+      "domain": "Security Controls"
+    }
+  ]
+}

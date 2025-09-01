@@ -1,0 +1,23 @@
+{
+  "title": "TCP/IP - Protocolo de Internet",
+  "slug": "tcp-ip",
+  "icon": "🌐",
+  "status": "completed",
+  "order": 1,
+  "description": "Protocolo fundamental de comunicación en redes",
+  "tags": [
+    "TCP",
+    "IP",
+    "protocolo",
+    "redes",
+    "internet",
+    "comunicacion"
+  ],
+  "certifications": [
+    {
+      "code": "200-301",
+      "weight": 4.8,
+      "domain": "Network Fundamentals"
+    }
+  ]
+}

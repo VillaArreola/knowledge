@@ -1,0 +1,8 @@
+title=Firewall - Cortafuegos de Red
+slug=firewall
+icon=🔥
+status=completed
+order=1
+description=Sistemas de protección perimetral para redes corporativas
+tags=firewall,cortafuegos,seguridad,redes,perimetro
+certifications=SY0-701:4.2:Security Architecture,NSE4_FGT-7.2:4.5:Security Fabric

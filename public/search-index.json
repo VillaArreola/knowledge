@@ -1,1170 +1,421 @@
 {
   "pages": [
     {
-      "title": "SDWan",
-      "url": "/redes/sdwan",
-      "category": "Redes",
-      "section": "sdwan",
-      "icon": "🌐",
-      "status": "completed",
-      "order": 1,
-      "tags": [
-        "cifrado",
-        "AES",
-        "DES",
-        "encriptación",
-        "algoritmos",
-        "seguridad"
-      ],
-      "description": "Fundamentos de criptografía, algoritmos de cifrado y protección de datos"
-    },
-    {
-      "title": "IAM",
-      "url": "/sistemas/gobernanza/iam",
-      "category": "Sistemas",
-      "section": "gobernanza",
+      "title": "IAM - Gestión de Identidades y Accesos",
+      "slug": "iam",
       "icon": "🔐",
       "status": "completed",
       "order": 1,
+      "description": "Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual",
       "tags": [
         "IAM",
         "identidad",
         "acceso",
         "gestión",
         "seguridad",
-        "gobernanza"
+        "autenticación",
+        "autorización"
       ],
-      "description": "Gestión de identidades y acceso en sistemas informáticos"
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 4.3,
+          "domain": "Identity and Access Management"
+        },
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "gobernanza",
+      "url": "/sistemas/gobernanza/iam",
+      "searchContent": "IAM - Gestión de Identidades y Accesos Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual IAM identidad acceso gestión seguridad autenticación autorización"
     },
     {
-      "title": "Criptografía",
-      "url": "/cyber/criptografia",
+      "title": "Linux - Sistema Operativo",
+      "slug": "linux",
+      "icon": "🐧",
+      "status": "completed",
+      "order": 1,
+      "description": "Sistema operativo de código abierto basado en Unix",
+      "tags": [
+        "Linux",
+        "Unix",
+        "sistema operativo",
+        "open source",
+        "servidor"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "operativos",
+      "url": "/sistemas/operativos/linux",
+      "searchContent": "Linux - Sistema Operativo Sistema operativo de código abierto basado en Unix Linux Unix sistema operativo open source servidor"
+    },
+    {
+      "title": "prueba",
+      "slug": "prueba1",
+      "icon": "🖥️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
+      "tags": [
+        "virtualización",
+        "VM",
+        "hipervisor",
+        "contenedores",
+        "cloud"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "virtualizacion",
+      "url": "/sistemas/virtualizacion/prueba1",
+      "searchContent": "prueba Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
+    },
+    {
+      "title": "Virtualización - Gestión de Máquinas Virtuales",
+      "slug": "virtualizacion",
+      "icon": "🖥️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
+      "tags": [
+        "virtualización",
+        "VM",
+        "hipervisor",
+        "contenedores",
+        "cloud"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "virtualizacion",
+      "url": "/sistemas/virtualizacion/virtualizacion",
+      "searchContent": "Virtualización - Gestión de Máquinas Virtuales Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
+    },
+    {
+      "title": "Virtualización en Vmware",
+      "slug": "vmware",
+      "icon": "🖥️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
+      "tags": [
+        "virtualización",
+        "VM",
+        "hipervisor",
+        "contenedores",
+        "cloud"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "virtualizacion",
+      "url": "/sistemas/virtualizacion/vmware",
+      "searchContent": "Virtualización en Vmware Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
+    },
+    {
+      "title": "Criptografía - Fundamentos de Seguridad Digital",
+      "slug": "criptografia",
+      "icon": "🔒",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de criptografía y técnicas de encriptación para proteger información",
+      "tags": [
+        "criptografía",
+        "encriptación",
+        "seguridad",
+        "algoritmos",
+        "claves"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 3.6,
+          "domain": "Cryptography and PKI"
+        }
+      ],
       "category": "Ciberseguridad",
       "section": "criptografia",
-      "icon": "🔐",
-      "status": "completed",
-      "order": 1,
-      "tags": [
-        "cifrado",
-        "AES",
-        "DES",
-        "encriptación",
-        "algoritmos",
-        "seguridad"
-      ],
-      "description": "Fundamentos de criptografía, algoritmos de cifrado y protección de datos"
+      "url": "/ciberseguridad/criptografia/criptografia",
+      "searchContent": "Criptografía - Fundamentos de Seguridad Digital Fundamentos de criptografía y técnicas de encriptación para proteger información criptografía encriptación seguridad algoritmos claves"
     },
     {
-      "title": "CIA Triad",
-      "url": "/cyber/CIA",
+      "title": "Laboratorio Interactivo de Criptografía",
+      "slug": "interactivo",
+      "icon": "🧪",
+      "status": "completed",
+      "order": 2,
+      "description": "Prácticas interactivas para aprender criptografía de forma hands-on",
+      "tags": [
+        "laboratorio",
+        "interactivo",
+        "práctica",
+        "criptografía",
+        "hands-on"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 3.6,
+          "domain": "Cryptography and PKI"
+        }
+      ],
       "category": "Ciberseguridad",
-      "section": "fundamentos-de-seguridad",
-      "icon": "🔺",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/interactivo",
+      "searchContent": "Laboratorio Interactivo de Criptografía Prácticas interactivas para aprender criptografía de forma hands-on laboratorio interactivo práctica criptografía hands-on"
+    },
+    {
+      "title": "PKI - Infraestructura de Clave Pública",
+      "slug": "pki",
+      "icon": "🔐",
+      "status": "completed",
+      "order": 2,
+      "description": "Infraestructura para gestión de certificados digitales y claves públicas",
+      "tags": [
+        "PKI",
+        "certificados",
+        "claves públicas",
+        "CA",
+        "infraestructura",
+        "seguridad"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 3.6,
+          "domain": "Cryptography and PKI"
+        },
+        {
+          "code": "NSE4_FGT-7.2",
+          "weight": 4.1,
+          "domain": "Security Fabric"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/pki",
+      "searchContent": "PKI - Infraestructura de Clave Pública Infraestructura para gestión de certificados digitales y claves públicas PKI certificados claves públicas CA infraestructura seguridad"
+    },
+    {
+      "title": "CIA - Confidencialidad, Integridad, Disponibilidad",
+      "slug": "cia",
+      "icon": "🛡️",
       "status": "completed",
       "order": 1,
+      "description": "Los tres pilares fundamentales de la seguridad de la información",
       "tags": [
+        "CIA",
         "confidencialidad",
         "integridad",
         "disponibilidad",
         "seguridad",
-        "triada"
+        "fundamentos"
       ],
-      "description": "Los tres pilares fundamentales de la seguridad informática"
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 4.5,
+          "domain": "General Security Concepts"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "fundamentos",
+      "url": "/ciberseguridad/fundamentos/cia",
+      "searchContent": "CIA - Confidencialidad, Integridad, Disponibilidad Los tres pilares fundamentales de la seguridad de la información CIA confidencialidad integridad disponibilidad seguridad fundamentos"
     },
     {
-      "title": "PKI",
-      "url": "/cyber/pki",
-      "category": "Ciberseguridad",
-      "section": "criptografia",
-      "icon": "🔑",
+      "title": "Control de Ciberseguridad",
+      "slug": "control-ciberseguridad",
+      "icon": "🎛️",
       "status": "completed",
-      "order": 2,
+      "order": 3,
+      "description": "Controles y medidas de seguridad para proteger sistemas y datos",
       "tags": [
-        "infraestructura",
-        "clave publica",
-        "certificados",
-        "PKI",
-        "llaves"
+        "control",
+        "medidas",
+        "seguridad",
+        "protección",
+        "controles"
       ],
-      "description": "Infraestructura de Clave Pública y gestión de certificados digitales"
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 1.5,
+          "domain": "Security Controls"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "fundamentos",
+      "url": "/ciberseguridad/fundamentos/control-ciberseguridad",
+      "searchContent": "Control de Ciberseguridad Controles y medidas de seguridad para proteger sistemas y datos control medidas seguridad protección controles"
     },
     {
-      "title": "NIST Framework",
-      "url": "/cyber/nist",
-      "category": "Ciberseguridad",
-      "section": "normativas",
+      "title": "NIST - Framework de Ciberseguridad",
+      "slug": "nist",
       "icon": "📋",
       "status": "completed",
-      "order": 1,
+      "order": 2,
+      "description": "Framework de ciberseguridad del NIST para organizaciones",
       "tags": [
-        "framework",
         "NIST",
+        "framework",
+        "ciberseguridad",
         "estándares",
-        "mejores prácticas",
-        "normativas"
-      ],
-      "description": "Marco de trabajo y estándares de seguridad del NIST"
-    },
-    {
-      "title": "Laboratorio Interactivo",
-      "url": "/cyber/interactivo",
-      "category": "Ciberseguridad",
-      "section": "laboratorios",
-      "icon": "🎮",
-      "status": "interactive",
-      "order": 1,
-      "tags": [
-        "laboratorio",
-        "práctica",
-        "interactivo",
-        "herramientas",
-        "ejercicios"
-      ],
-      "description": "Herramientas interactivas para practicar criptografía y seguridad"
-    },
-    {
-      "title": "Principios de Seguridad",
-      "url": "/cyber/principios",
-      "category": "Ciberseguridad",
-      "section": "fundamentos-de-seguridad",
-      "icon": "🎯",
-      "status": "planned",
-      "order": 2,
-      "tags": [
-        "principios",
-        "defensa",
-        "menor privilegio",
-        "arquitectura"
-      ],
-      "description": "Defensa en profundidad, menor privilegio, fallo seguro y más"
-    },
-    {
-      "title": "Análisis de Riesgos",
-      "url": "/cyber/riesgos",
-      "category": "Ciberseguridad",
-      "section": "fundamentos-de-seguridad",
-      "icon": "🔍",
-      "status": "planned",
-      "order": 3,
-      "tags": [
-        "riesgos",
-        "gestión",
-        "evaluación",
-        "análisis"
-      ],
-      "description": "Identificación, evaluación y gestión de riesgos de seguridad"
-    },
-    {
-      "title": "Políticas de Seguridad",
-      "url": "/cyber/politicas",
-      "category": "Ciberseguridad",
-      "section": "fundamentos-de-seguridad",
-      "icon": "📋",
-      "status": "planned",
-      "order": 4,
-      "tags": [
-        "políticas",
-        "procedimientos",
-        "governance"
-      ],
-      "description": "Desarrollo e implementación de políticas y procedimientos"
-    },
-    {
-      "title": "Concienciación y Formación",
-      "url": "/cyber/formacion",
-      "category": "Ciberseguridad",
-      "section": "fundamentos-de-seguridad",
-      "icon": "🎓",
-      "status": "planned",
-      "order": 5,
-      "tags": [
-        "formación",
-        "concienciación",
-        "training"
-      ],
-      "description": "Programas de concienciación y formación en seguridad"
-    },
-    {
-      "title": "Gestión de Activos",
-      "url": "/cyber/activos",
-      "category": "Ciberseguridad",
-      "section": "fundamentos-de-seguridad",
-      "icon": "🔐",
-      "status": "planned",
-      "order": 6,
-      "tags": [
-        "activos",
-        "inventario",
-        "clasificación"
-      ],
-      "description": "Inventario y clasificación de activos de información"
-    },
-    {
-      "title": "Criptografía Cuántica",
-      "url": "/cyber/cuantica",
-      "category": "Ciberseguridad",
-      "section": "criptografia",
-      "icon": "📱",
-      "status": "planned",
-      "order": 3,
-      "tags": [
-        "cuántica",
-        "futuro",
-        "post-quantum"
-      ],
-      "description": "Amenazas y oportunidades de la computación cuántica"
-    },
-    {
-      "title": "Blockchain y Criptografía",
-      "url": "/cyber/blockchain",
-      "category": "Ciberseguridad",
-      "section": "criptografia",
-      "icon": "🔗",
-      "status": "planned",
-      "order": 4,
-      "tags": [
-        "blockchain",
-        "DLT",
-        "distributed"
-      ],
-      "description": "Aplicaciones criptográficas en tecnologías distribuidas"
-    },
-    {
-      "title": "Steganografía",
-      "url": "/cyber/steganografia",
-      "category": "Ciberseguridad",
-      "section": "criptografia",
-      "icon": "🛡️",
-      "status": "planned",
-      "order": 5,
-      "tags": [
-        "steganografía",
-        "ocultación",
-        "covert"
-      ],
-      "description": "Técnicas de ocultación de información"
-    },
-    {
-      "title": "Cifrado de Disco",
-      "url": "/cyber/cifrado-disco",
-      "category": "Ciberseguridad",
-      "section": "criptografia",
-      "icon": "💾",
-      "status": "planned",
-      "order": 6,
-      "tags": [
-        "cifrado",
-        "disco",
-        "FDE",
-        "BitLocker"
-      ],
-      "description": "Cifrado completo de disco y protección de datos en reposo"
-    },
-    {
-      "title": "ISO 27001/27002",
-      "url": "/cyber/iso27001",
-      "category": "Ciberseguridad",
-      "section": "normativas",
-      "icon": "🛡️",
-      "status": "planned",
-      "order": 2,
-      "tags": [
-        "ISO",
-        "SGSI",
-        "gestión",
-        "estándares"
-      ],
-      "description": "Sistemas de gestión de seguridad de la información"
-    },
-    {
-      "title": "PCI DSS",
-      "url": "/cyber/pci-dss",
-      "category": "Ciberseguridad",
-      "section": "normativas",
-      "icon": "💳",
-      "status": "planned",
-      "order": 3,
-      "tags": [
-        "PCI",
-        "pagos",
-        "tarjetas",
         "compliance"
       ],
-      "description": "Estándar de seguridad para datos de tarjetas de pago"
-    },
-    {
-      "title": "HIPAA",
-      "url": "/cyber/hipaa",
-      "category": "Ciberseguridad",
-      "section": "normativas",
-      "icon": "🏥",
-      "status": "planned",
-      "order": 4,
-      "tags": [
-        "HIPAA",
-        "sanitario",
-        "salud",
-        "privacidad"
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 5.1,
+          "domain": "Security Frameworks"
+        }
       ],
-      "description": "Protección de información sanitaria en Estados Unidos"
+      "category": "Ciberseguridad",
+      "section": "fundamentos",
+      "url": "/ciberseguridad/fundamentos/nist",
+      "searchContent": "NIST - Framework de Ciberseguridad Framework de ciberseguridad del NIST para organizaciones NIST framework ciberseguridad estándares compliance"
     },
     {
-      "title": "GDPR",
-      "url": "/cyber/gdpr",
-      "category": "Ciberseguridad",
-      "section": "normativas",
-      "icon": "🇪🇺",
-      "status": "planned",
-      "order": 5,
-      "tags": [
-        "GDPR",
-        "privacidad",
-        "Europa",
-        "datos"
-      ],
-      "description": "Reglamento General de Protección de Datos europeo"
-    },
-    {
-      "title": "SOX",
-      "url": "/cyber/sox",
-      "category": "Ciberseguridad",
-      "section": "normativas",
-      "icon": "💼",
-      "status": "planned",
-      "order": 6,
-      "tags": [
-        "SOX",
-        "Sarbanes-Oxley",
-        "financiero",
-        "auditoría"
-      ],
-      "description": "Ley Sarbanes-Oxley para transparencia financiera"
-    },
-    {
-      "title": "COBIT",
-      "url": "/cyber/cobit",
-      "category": "Ciberseguridad",
-      "section": "normativas",
-      "icon": "🎯",
-      "status": "planned",
-      "order": 7,
-      "tags": [
-        "COBIT",
-        "gobierno",
-        "TI",
-        "framework"
-      ],
-      "description": "Framework de gobierno y gestión de TI"
-    },
-    {
-      "title": "Firewalls y IDS/IPS",
-      "url": "/cyber/firewalls",
-      "category": "Ciberseguridad",
-      "section": "seguridad-en-redes",
+      "title": "Firewall - Cortafuegos de Red",
+      "slug": "firewall",
       "icon": "🔥",
-      "status": "planned",
-      "order": 1,
-      "tags": [
-        "firewall",
-        "IDS",
-        "IPS",
-        "detección",
-        "prevención"
-      ],
-      "description": "Sistemas de detección y prevención de intrusiones"
-    },
-    {
-      "title": "VPN y Túneles Seguros",
-      "url": "/cyber/vpn",
-      "category": "Ciberseguridad",
-      "section": "seguridad-en-redes",
-      "icon": "🛡️",
-      "status": "planned",
-      "order": 2,
-      "tags": [
-        "VPN",
-        "túneles",
-        "IPSec",
-        "WireGuard"
-      ],
-      "description": "Redes privadas virtuales y comunicaciones seguras"
-    },
-    {
-      "title": "Seguridad WiFi",
-      "url": "/cyber/wifi",
-      "category": "Ciberseguridad",
-      "section": "seguridad-en-redes",
-      "icon": "📶",
-      "status": "planned",
-      "order": 3,
-      "tags": [
-        "WiFi",
-        "WPA3",
-        "802.1X",
-        "inalámbrico"
-      ],
-      "description": "WPA3, autenticación 802.1X y redes inalámbricas seguras"
-    },
-    {
-      "title": "Seguridad Web",
-      "url": "/cyber/web-security",
-      "category": "Ciberseguridad",
-      "section": "seguridad-en-redes",
-      "icon": "🕸️",
-      "status": "planned",
-      "order": 4,
-      "tags": [
-        "web",
-        "HTTPS",
-        "HSTS",
-        "CSP"
-      ],
-      "description": "HTTPS, HSTS, CSP y protección de aplicaciones web"
-    },
-    {
-      "title": "Seguridad en la Nube",
-      "url": "/cyber/cloud-security",
-      "category": "Ciberseguridad",
-      "section": "seguridad-en-redes",
-      "icon": "☁️",
-      "status": "planned",
-      "order": 5,
-      "tags": [
-        "cloud",
-        "AWS",
-        "Azure",
-        "GCP"
-      ],
-      "description": "AWS, Azure, GCP - Modelos de responsabilidad compartida"
-    },
-    {
-      "title": "Seguridad en IoT",
-      "url": "/cyber/iot-security",
-      "category": "Ciberseguridad",
-      "section": "seguridad-en-redes",
-      "icon": "🌍",
-      "status": "planned",
-      "order": 6,
-      "tags": [
-        "IoT",
-        "dispositivos",
-        "embedded"
-      ],
-      "description": "Seguridad en dispositivos del Internet de las Cosas"
-    },
-    {
-      "title": "Seguridad en 5G",
-      "url": "/cyber/5g-security",
-      "category": "Ciberseguridad",
-      "section": "seguridad-en-redes",
-      "icon": "📡",
-      "status": "planned",
-      "order": 7,
-      "tags": [
-        "5G",
-        "redes móviles",
-        "telecomunicaciones"
-      ],
-      "description": "Aspectos de seguridad en redes 5G"
-    },
-    {
-      "title": "Autenticación Multifactor",
-      "url": "/cyber/mfa",
-      "category": "Ciberseguridad",
-      "section": "identidad-y-acceso",
-      "icon": "🔐",
-      "status": "planned",
-      "order": 1,
-      "tags": [
-        "MFA",
-        "2FA",
-        "FIDO2",
-        "biometría"
-      ],
-      "description": "2FA, FIDO2, biometría y métodos de autenticación fuertes"
-    },
-    {
-      "title": "SSO y Federación",
-      "url": "/cyber/sso",
-      "category": "Ciberseguridad",
-      "section": "identidad-y-acceso",
-      "icon": "🎫",
-      "status": "planned",
-      "order": 2,
-      "tags": [
-        "SSO",
-        "SAML",
-        "OAuth",
-        "OpenID"
-      ],
-      "description": "SAML, OAuth 2.0, OpenID Connect y gestión federada"
-    },
-    {
-      "title": "Active Directory",
-      "url": "/cyber/active-directory",
-      "category": "Ciberseguridad",
-      "section": "identidad-y-acceso",
-      "icon": "📁",
-      "status": "planned",
-      "order": 3,
-      "tags": [
-        "AD",
-        "LDAP",
-        "dominio",
-        "GPO"
-      ],
-      "description": "Gestión de dominio, GPO y servicios de directorio"
-    },
-    {
-      "title": "Gestión de Privilegios",
-      "url": "/cyber/pam",
-      "category": "Ciberseguridad",
-      "section": "identidad-y-acceso",
-      "icon": "⚠️",
-      "status": "planned",
-      "order": 4,
-      "tags": [
-        "PAM",
-        "privilegios",
-        "cuentas",
-        "administración"
-      ],
-      "description": "PAM, cuentas privilegiadas y control de acceso"
-    },
-    {
-      "title": "Gestión de Credenciales",
-      "url": "/cyber/credenciales",
-      "category": "Ciberseguridad",
-      "section": "identidad-y-acceso",
-      "icon": "🔑",
-      "status": "planned",
-      "order": 5,
-      "tags": [
-        "credenciales",
-        "passwords",
-        "vault"
-      ],
-      "description": "Gestión segura de credenciales y secretos"
-    },
-    {
-      "title": "Identity Governance",
-      "url": "/cyber/identity-governance",
-      "category": "Ciberseguridad",
-      "section": "identidad-y-acceso",
-      "icon": "👁️",
-      "status": "planned",
-      "order": 6,
-      "tags": [
-        "governance",
-        "identidad",
-        "acceso",
-        "IGA"
-      ],
-      "description": "Gobierno de identidades y gestión del ciclo de vida"
-    },
-    {
-      "title": "SOC y SIEM",
-      "url": "/cyber/soc-siem",
-      "category": "Ciberseguridad",
-      "section": "respuesta-a-incidentes",
-      "icon": "📊",
-      "status": "planned",
-      "order": 1,
-      "tags": [
-        "SOC",
-        "SIEM",
-        "monitoreo",
-        "eventos"
-      ],
-      "description": "Centros de operaciones de seguridad y gestión de eventos"
-    },
-    {
-      "title": "Threat Hunting",
-      "url": "/cyber/threat-hunting",
-      "category": "Ciberseguridad",
-      "section": "respuesta-a-incidentes",
-      "icon": "🔍",
-      "status": "planned",
-      "order": 2,
-      "tags": [
-        "hunting",
-        "proactivo",
-        "amenazas",
-        "búsqueda"
-      ],
-      "description": "Búsqueda proactiva de amenazas y técnicas de caza"
-    },
-    {
-      "title": "Análisis de Malware",
-      "url": "/cyber/malware-analysis",
-      "category": "Ciberseguridad",
-      "section": "respuesta-a-incidentes",
-      "icon": "🧬",
-      "status": "planned",
-      "order": 3,
-      "tags": [
-        "malware",
-        "análisis",
-        "ingeniería inversa"
-      ],
-      "description": "Ingeniería inversa y análisis de código malicioso"
-    },
-    {
-      "title": "Planes de Contingencia",
-      "url": "/cyber/contingencia",
-      "category": "Ciberseguridad",
-      "section": "respuesta-a-incidentes",
-      "icon": "📋",
-      "status": "planned",
-      "order": 4,
-      "tags": [
-        "BCP",
-        "DRP",
-        "continuidad",
-        "recuperación"
-      ],
-      "description": "BCP, DRP y gestión de continuidad del negocio"
-    },
-    {
-      "title": "Gestión de Crisis",
-      "url": "/cyber/crisis",
-      "category": "Ciberseguridad",
-      "section": "respuesta-a-incidentes",
-      "icon": "🚨",
-      "status": "planned",
-      "order": 5,
-      "tags": [
-        "crisis",
-        "gestión",
-        "comunicación",
-        "respuesta"
-      ],
-      "description": "Gestión y comunicación durante crisis de seguridad"
-    },
-    {
-      "title": "Documentación de Incidentes",
-      "url": "/cyber/documentacion-incidentes",
-      "category": "Ciberseguridad",
-      "section": "respuesta-a-incidentes",
-      "icon": "📝",
-      "status": "planned",
-      "order": 6,
-      "tags": [
-        "documentación",
-        "incidentes",
-        "reporting",
-        "lecciones"
-      ],
-      "description": "Documentación y lecciones aprendidas de incidentes"
-    },
-    {
-      "title": "Adquisición de Evidencias",
-      "url": "/cyber/evidencias",
-      "category": "Ciberseguridad",
-      "section": "informatica-forense",
-      "icon": "💾",
-      "status": "planned",
-      "order": 1,
-      "tags": [
-        "evidencias",
-        "imaging",
-        "forense",
-        "adquisición"
-      ],
-      "description": "Técnicas de imagen forense y preservación de evidencias"
-    },
-    {
-      "title": "Análisis de Memoria",
-      "url": "/cyber/memoria-analysis",
-      "category": "Ciberseguridad",
-      "section": "informatica-forense",
-      "icon": "🔍",
-      "status": "planned",
-      "order": 2,
-      "tags": [
-        "memoria",
-        "volatility",
-        "RAM",
-        "análisis"
-      ],
-      "description": "Volcados de memoria RAM y análisis de artefactos"
-    },
-    {
-      "title": "Forense Móvil",
-      "url": "/cyber/forense-movil",
-      "category": "Ciberseguridad",
-      "section": "informatica-forense",
-      "icon": "📱",
-      "status": "planned",
-      "order": 3,
-      "tags": [
-        "móvil",
-        "iOS",
-        "Android",
-        "forense"
-      ],
-      "description": "Investigación en dispositivos iOS y Android"
-    },
-    {
-      "title": "Forense de Redes",
-      "url": "/cyber/forense-redes",
-      "category": "Ciberseguridad",
-      "section": "informatica-forense",
-      "icon": "🌐",
-      "status": "planned",
-      "order": 4,
-      "tags": [
-        "redes",
-        "wireshark",
-        "tráfico",
-        "logs"
-      ],
-      "description": "Análisis de tráfico y logs de red"
-    },
-    {
-      "title": "Forense en la Nube",
-      "url": "/cyber/forense-cloud",
-      "category": "Ciberseguridad",
-      "section": "informatica-forense",
-      "icon": "☁️",
-      "status": "planned",
-      "order": 5,
-      "tags": [
-        "cloud",
-        "forense",
-        "AWS",
-        "Azure"
-      ],
-      "description": "Investigación forense en entornos de nube"
-    },
-    {
-      "title": "Cadena de Custodia",
-      "url": "/cyber/cadena-custodia",
-      "category": "Ciberseguridad",
-      "section": "informatica-forense",
-      "icon": "⚖️",
-      "status": "planned",
-      "order": 6,
-      "tags": [
-        "custodia",
-        "legal",
-        "evidencia",
-        "procedimientos"
-      ],
-      "description": "Procedimientos legales y cadena de custodia"
-    },
-    {
-      "title": "Ethical Hacking",
-      "url": "/cyber/ethical-hacking",
-      "category": "Ciberseguridad",
-      "section": "laboratorios",
-      "icon": "🏴‍☠️",
-      "status": "planned",
-      "order": 2,
-      "tags": [
-        "pentesting",
-        "ético",
-        "hacking",
-        "pruebas"
-      ],
-      "description": "Penetration testing y técnicas de hacking ético"
-    },
-    {
-      "title": "Capture The Flag",
-      "url": "/cyber/ctf",
-      "category": "Ciberseguridad",
-      "section": "laboratorios",
-      "icon": "🎯",
-      "status": "planned",
-      "order": 3,
-      "tags": [
-        "CTF",
-        "desafíos",
-        "competiciones",
-        "práctica"
-      ],
-      "description": "Desafíos y competiciones de ciberseguridad"
-    },
-    {
-      "title": "Entorno de Pruebas",
-      "url": "/cyber/lab-vms",
-      "category": "Ciberseguridad",
-      "section": "laboratorios",
-      "icon": "🔬",
-      "status": "planned",
-      "order": 4,
-      "tags": [
-        "VMs",
-        "práctica",
-        "laboratorio",
-        "virtualización"
-      ],
-      "description": "Máquinas virtuales y laboratorios de práctica"
-    },
-    {
-      "title": "Blue Team Labs",
-      "url": "/cyber/blue-team",
-      "category": "Ciberseguridad",
-      "section": "laboratorios",
-      "icon": "🧪",
-      "status": "planned",
-      "order": 5,
-      "tags": [
-        "blue team",
-        "defensa",
-        "monitoreo",
-        "detección"
-      ],
-      "description": "Laboratorios de defensa y detección de amenazas"
-    },
-    {
-      "title": "Red Team Exercises",
-      "url": "/cyber/red-team",
-      "category": "Ciberseguridad",
-      "section": "laboratorios",
-      "icon": "⚔️",
-      "status": "planned",
-      "order": 6,
-      "tags": [
-        "red team",
-        "ataque",
-        "simulación",
-        "ejercicios"
-      ],
-      "description": "Ejercicios de simulación de ataques"
-    },
-    {
-      "title": "Seguridad Industrial",
-      "url": "/cyber/ot-scada",
-      "category": "Ciberseguridad",
-      "section": "especialidades-avanzadas",
-      "icon": "🏭",
-      "status": "planned",
-      "order": 1,
-      "tags": [
-        "industrial",
-        "OT",
-        "SCADA",
-        "control"
-      ],
-      "description": "Seguridad en sistemas de control industrial"
-    },
-    {
-      "title": "Seguridad Automotriz",
-      "url": "/cyber/automotive",
-      "category": "Ciberseguridad",
-      "section": "especialidades-avanzadas",
-      "icon": "🚗",
-      "status": "planned",
-      "order": 2,
-      "tags": [
-        "automotriz",
-        "vehicular",
-        "CAN",
-        "automotive"
-      ],
-      "description": "Seguridad en sistemas vehiculares y automotrices"
-    },
-    {
-      "title": "AI/ML Security",
-      "url": "/cyber/ai-ml-security",
-      "category": "Ciberseguridad",
-      "section": "especialidades-avanzadas",
-      "icon": "🤖",
-      "status": "planned",
-      "order": 3,
-      "tags": [
-        "AI",
-        "ML",
-        "inteligencia artificial",
-        "machine learning"
-      ],
-      "description": "Seguridad en sistemas de inteligencia artificial"
-    },
-    {
-      "title": "DevSecOps",
-      "url": "/cyber/devsecops",
-      "category": "Ciberseguridad",
-      "section": "especialidades-avanzadas",
-      "icon": "📱",
-      "status": "planned",
-      "order": 4,
-      "tags": [
-        "DevSecOps",
-        "desarrollo",
-        "CI/CD",
-        "seguridad"
-      ],
-      "description": "Integración de seguridad en el desarrollo"
-    },
-    {
-      "title": "Gaming Security",
-      "url": "/cyber/gaming-security",
-      "category": "Ciberseguridad",
-      "section": "especialidades-avanzadas",
-      "icon": "🎮",
-      "status": "planned",
-      "order": 5,
-      "tags": [
-        "gaming",
-        "juegos",
-        "anti-cheat",
-        "seguridad"
-      ],
-      "description": "Seguridad en videojuegos y plataformas gaming"
-    },
-    {
-      "title": "Threat Intelligence",
-      "url": "/cyber/threat-intelligence",
-      "category": "Ciberseguridad",
-      "section": "especialidades-avanzadas",
-      "icon": "🌐",
-      "status": "planned",
-      "order": 6,
-      "tags": [
-        "threat intelligence",
-        "CTI",
-        "amenazas",
-        "inteligencia"
-      ],
-      "description": "Inteligencia de amenazas y análisis predictivo"
-    },
-    {
-      "title": "Dashboard",
-      "url": "/",
-      "category": "General",
-      "section": "inicio",
-      "icon": "🏠",
       "status": "completed",
       "order": 1,
+      "description": "Sistemas de protección perimetral para redes corporativas",
       "tags": [
-        "inicio",
-        "dashboard",
-        "principal",
-        "home",
-        "categorías"
+        "firewall",
+        "cortafuegos",
+        "seguridad",
+        "redes",
+        "perimetro"
       ],
-      "description": "Panel principal con categorías de conocimiento y certificaciones"
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 4.2,
+          "domain": "Security Architecture"
+        },
+        {
+          "code": "NSE4_FGT-7.2",
+          "weight": 4.5,
+          "domain": "Security Fabric"
+        }
+      ],
+      "category": "Ciberseguridad",
+      "section": "redes-seguras",
+      "url": "/ciberseguridad/redes-seguras/firewall",
+      "searchContent": "Firewall - Cortafuegos de Red Sistemas de protección perimetral para redes corporativas firewall cortafuegos seguridad redes perimetro"
     },
     {
-      "title": "SDWAN",
-      "description": "Learn about sdwan",
-      "url": "/redes/sdwan.astro"
+      "title": "TCP/IP - Protocolo de Internet",
+      "slug": "tcp-ip",
+      "icon": "🌐",
+      "status": "completed",
+      "order": 1,
+      "description": "Protocolo fundamental de comunicación en redes",
+      "tags": [
+        "TCP",
+        "IP",
+        "protocolo",
+        "redes",
+        "internet",
+        "comunicacion"
+      ],
+      "certifications": [
+        {
+          "code": "200-301",
+          "weight": 4.8,
+          "domain": "Network Fundamentals"
+        }
+      ],
+      "category": "Redes",
+      "section": "fundamentos",
+      "url": "/redes/fundamentos/tcp-ip",
+      "searchContent": "TCP/IP - Protocolo de Internet Protocolo fundamental de comunicación en redes TCP IP protocolo redes internet comunicacion"
     },
     {
-      "title": "SWITCHING",
-      "description": "Learn about switching",
-      "url": "/redes/switching.astro"
+      "title": "Algoritmos - Fundamentos de Programación",
+      "slug": "algoritmos",
+      "icon": "⚡",
+      "status": "completed",
+      "order": 1,
+      "description": "Conjunto de instrucciones para resolver problemas computacionales",
+      "tags": [
+        "algoritmos",
+        "programacion",
+        "logica",
+        "resolucion problemas"
+      ],
+      "certifications": [
+        {
+          "code": "AI-900",
+          "weight": 2.1,
+          "domain": "Machine Learning Concepts"
+        }
+      ],
+      "category": "Programacion",
+      "section": "fundamentos",
+      "url": "/programacion/fundamentos/algoritmos",
+      "searchContent": "Algoritmos - Fundamentos de Programación Conjunto de instrucciones para resolver problemas computacionales algoritmos programacion logica resolucion problemas"
     },
     {
-      "title": "WIFI",
-      "description": "Learn about wifi",
-      "url": "/redes/wifi.astro"
-    },
-    {
-      "title": "CIA",
-      "description": "Learn about CIA",
-      "url": "/cyber/CIA.astro"
-    },
-    {
-      "title": "CONTROL CIBERSEGURIDAD",
-      "description": "Learn about control ciberseguridad",
-      "url": "/cyber/control-ciberseguridad.astro"
-    },
-    {
-      "title": "CRIPTOGRAFIA",
-      "description": "Learn about criptografia",
-      "url": "/cyber/criptografia.astro"
-    },
-    {
-      "title": "INTERACTIVO",
-      "description": "Learn about interactivo",
-      "url": "/cyber/interactivo.astro"
-    },
-    {
-      "title": "NIST",
-      "description": "Learn about nist",
-      "url": "/cyber/nist.astro"
-    },
-    {
-      "title": "PKI",
-      "description": "Learn about pki",
-      "url": "/cyber/pki.astro"
-    },
-    {
-      "title": "IAM",
-      "description": "Learn about IAM",
-      "url": "/sistemas/IAM.astro"
-    },
-    {
-      "title": "SISTEMAS OPERATIVOS",
-      "description": "Learn about sistemas operativos",
-      "url": "/sistemas/sistemas-operativos.astro"
-    },
-    {
-      "title": "SDWAN",
-      "description": "Learn about sdwan",
-      "url": "/redes/sdwan.astro"
-    },
-    {
-      "title": "SWITCHING",
-      "description": "Learn about switching",
-      "url": "/redes/switching.astro"
-    },
-    {
-      "title": "WIFI",
-      "description": "Learn about wifi",
-      "url": "/redes/wifi.astro"
-    },
-    {
-      "title": "CIA",
-      "description": "Learn about CIA",
-      "url": "/cyber/CIA.astro"
-    },
-    {
-      "title": "CONTROL CIBERSEGURIDAD",
-      "description": "Learn about control ciberseguridad",
-      "url": "/cyber/control-ciberseguridad.astro"
-    },
-    {
-      "title": "CRIPTOGRAFIA",
-      "description": "Learn about criptografia",
-      "url": "/cyber/criptografia.astro"
-    },
-    {
-      "title": "INTERACTIVO",
-      "description": "Learn about interactivo",
-      "url": "/cyber/interactivo.astro"
-    },
-    {
-      "title": "NIST",
-      "description": "Learn about nist",
-      "url": "/cyber/nist.astro"
-    },
-    {
-      "title": "PKI",
-      "description": "Learn about pki",
-      "url": "/cyber/pki.astro"
-    },
-    {
-      "title": "ADMINISTRACION SISTEMAS",
-      "description": "Learn about administracion sistemas",
-      "url": "/sistemas/administracion-sistemas.astro"
-    },
-    {
-      "title": "IAM",
-      "description": "Learn about IAM",
-      "url": "/sistemas/IAM.astro"
-    },
-    {
-      "title": "SDWAN",
-      "description": "Learn about sdwan",
-      "url": "/redes/sdwan.astro"
-    },
-    {
-      "title": "SWITCHING",
-      "description": "Learn about switching",
-      "url": "/redes/switching.astro"
-    },
-    {
-      "title": "WIFI",
-      "description": "Learn about wifi",
-      "url": "/redes/wifi.astro"
-    },
-    {
-      "title": "CIA",
-      "description": "Learn about CIA",
-      "url": "/cyber/CIA.astro"
-    },
-    {
-      "title": "CONTROL CIBERSEGURIDAD",
-      "description": "Learn about control ciberseguridad",
-      "url": "/cyber/control-ciberseguridad.astro"
-    },
-    {
-      "title": "CRIPTOGRAFIA",
-      "description": "Learn about criptografia",
-      "url": "/cyber/criptografia.astro"
-    },
-    {
-      "title": "INTERACTIVO",
-      "description": "Learn about interactivo",
-      "url": "/cyber/interactivo.astro"
-    },
-    {
-      "title": "NIST",
-      "description": "Learn about nist",
-      "url": "/cyber/nist.astro"
-    },
-    {
-      "title": "PKI",
-      "description": "Learn about pki",
-      "url": "/cyber/pki.astro"
+      "title": "AWS - Amazon Web Services",
+      "slug": "aws",
+      "icon": "☁️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de AWS, servicios principales y arquitectura en la nube",
+      "tags": [
+        "AWS",
+        "cloud",
+        "computación",
+        "servicios",
+        "infraestructura"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.1,
+          "domain": "Cloud Concepts"
+        }
+      ],
+      "category": "Cloud",
+      "section": "aws",
+      "url": "/cloud/aws/aws",
+      "searchContent": "AWS - Amazon Web Services Fundamentos de AWS, servicios principales y arquitectura en la nube AWS cloud computación servicios infraestructura"
     }
   ],
-  "sections": {
-    "fundamentos-de-seguridad": {
-      "name": "Fundamentos de Seguridad",
-      "icon": "🛡️",
-      "description": "Conceptos básicos y principios esenciales de la ciberseguridad",
-      "column": 1,
-      "order": 1
-    },
-    "criptografia": {
-      "name": "Criptografía",
-      "icon": "🔒",
-      "description": "Técnicas y métodos para proteger la información mediante cifrado",
-      "column": 1,
-      "order": 2
-    },
-    "normativas": {
-      "name": "Normativas y Compliance",
-      "icon": "📜",
-      "description": "Estándares, marcos de trabajo y cumplimiento normativo",
-      "column": 1,
-      "order": 3
-    },
-    "seguridad-en-redes": {
-      "name": "Seguridad en Redes",
-      "icon": "🌐",
-      "description": "Protección de infraestructuras y comunicaciones de red",
-      "column": 2,
-      "order": 1
-    },
-    "identidad-y-acceso": {
-      "name": "Identidad y Gestión de Acceso",
-      "icon": "👤",
-      "description": "Autenticación, autorización y gestión de identidades",
-      "column": 2,
-      "order": 2
-    },
-    "respuesta-a-incidentes": {
-      "name": "Respuesta a Incidentes",
-      "icon": "🚨",
-      "description": "Detección, análisis y respuesta ante incidentes de seguridad",
-      "column": 2,
-      "order": 3
-    },
-    "informatica-forense": {
-      "name": "Informática Forense",
-      "icon": "🔬",
-      "description": "Investigación digital y análisis forense de evidencias",
-      "column": 3,
-      "order": 1
-    },
-    "laboratorios": {
-      "name": "Laboratorios y Práctica",
-      "icon": "🧪",
-      "description": "Entornos de práctica y ejercicios interactivos",
-      "column": 3,
-      "order": 2
-    },
-    "especialidades-avanzadas": {
-      "name": "Especialidades Avanzadas",
-      "icon": "🎯",
-      "description": "Especialidades emergentes y tecnologías avanzadas",
-      "column": 3,
-      "order": 3
-    }
-  }
+  "categories": [
+    "sistemas",
+    "ciberseguridad",
+    "redes",
+    "programacion",
+    "cloud"
+  ],
+  "lastUpdated": "2025-08-30T15:29:15.583Z"
 }

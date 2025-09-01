@@ -1,0 +1,33 @@
+{
+  "title": "Switching",
+  "slug": "switching",
+  "icon": "🔀",
+  "status": "completed",
+  "order": 1,
+  "description": "Conmutación de paquetes, VLANs y gestión de switches",
+  "tags": ["switching", "switches", "VLANs", "conmutación", "redes", "layer 2"],
+  "certifications": [
+    {
+      "name": "Cisco CCNA",
+      "code": "200-301",
+      "weight": 4.2,
+      "domain": "Network Access"
+    }
+  ],
+  "content": {
+    "sections": [
+      {
+        "title": "¿Qué es Switching?",
+        "content": "El switching es el proceso de conmutación de paquetes de datos entre dispositivos de red utilizando direcciones MAC para determinar el destino."
+      },
+      {
+        "title": "Tipos de Switches",
+        "content": "Switches no gestionados, Switches gestionados, Switches de capa 2, Switches de capa 3, Switches PoE."
+      },
+      {
+        "title": "VLANs",
+        "content": "Las VLANs (Virtual Local Area Networks) permiten segmentar una red física en múltiples redes lógicas independientes."
+      }
+    ]
+  }
+}

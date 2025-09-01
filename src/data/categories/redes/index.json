@@ -1,0 +1,36 @@
+{
+  "name": "Redes",
+  "slug": "redes",
+  "icon": "🌐",
+  "description": "Infraestructura de redes, conmutación, enrutamiento y conectividad",
+  "sections": [
+    {
+      "name": "Switching",
+      "slug": "switching",
+      "icon": "🔀",
+      "description": "Conmutación de paquetes y gestión de VLANs",
+      "order": 1
+    },
+    {
+      "name": "Routing",
+      "slug": "routing",
+      "icon": "🛣️",
+      "description": "Enrutamiento y protocolos de red",
+      "order": 2
+    },
+    {
+      "name": "WiFi",
+      "slug": "wifi",
+      "icon": "📶",
+      "description": "Redes inalámbricas y conectividad WiFi",
+      "order": 3
+    },
+    {
+      "name": "SD-WAN",
+      "slug": "sdwan",
+      "icon": "☁️",
+      "description": "Redes definidas por software para WAN",
+      "order": 4
+    }
+  ]
+}

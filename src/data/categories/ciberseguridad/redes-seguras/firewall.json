@@ -1,0 +1,27 @@
+{
+  "title": "Firewall - Cortafuegos de Red",
+  "slug": "firewall",
+  "icon": "🔥",
+  "status": "completed",
+  "order": 1,
+  "description": "Sistemas de protección perimetral para redes corporativas",
+  "tags": [
+    "firewall",
+    "cortafuegos",
+    "seguridad",
+    "redes",
+    "perimetro"
+  ],
+  "certifications": [
+    {
+      "code": "SY0-701",
+      "weight": 4.2,
+      "domain": "Security Architecture"
+    },
+    {
+      "code": "NSE4_FGT-7.2",
+      "weight": 4.5,
+      "domain": "Security Fabric"
+    }
+  ]
+}

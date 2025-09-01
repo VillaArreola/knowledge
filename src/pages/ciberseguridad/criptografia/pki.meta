@@ -1,0 +1,8 @@
+title=PKI - Infraestructura de Clave Pública
+slug=pki
+icon=🔐
+status=completed
+order=2
+description=Infraestructura para gestión de certificados digitales y claves públicas
+tags=PKI,certificados,claves públicas,CA,infraestructura,seguridad
+certifications=SY0-701:3.6:Cryptography and PKI,NSE4_FGT-7.2:4.1:Security Fabric

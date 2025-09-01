@@ -1,0 +1,30 @@
+{
+  "pages": [
+    {
+      "title": "AWS - Amazon Web Services",
+      "slug": "aws",
+      "icon": "☁️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de AWS, servicios principales y arquitectura en la nube",
+      "tags": [
+        "AWS",
+        "cloud",
+        "computación",
+        "servicios",
+        "infraestructura"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.1,
+          "domain": "Cloud Concepts"
+        }
+      ],
+      "category": "Cloud",
+      "section": "aws",
+      "url": "/cloud/aws/aws",
+      "searchContent": "AWS - Amazon Web Services Fundamentos de AWS, servicios principales y arquitectura en la nube AWS cloud computación servicios infraestructura"
+    }
+  ]
+}

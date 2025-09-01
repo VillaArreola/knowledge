@@ -1,0 +1,29 @@
+{
+  "title": "IAM - Gestión de Identidades y Accesos",
+  "slug": "iam",
+  "icon": "🔐",
+  "status": "completed",
+  "order": 1,
+  "description": "Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual",
+  "tags": [
+    "IAM",
+    "identidad",
+    "acceso",
+    "gestión",
+    "seguridad",
+    "autenticación",
+    "autorización"
+  ],
+  "certifications": [
+    {
+      "code": "SY0-701",
+      "weight": 4.3,
+      "domain": "Identity and Access Management"
+    },
+    {
+      "code": "CLF-C02",
+      "weight": 3.5,
+      "domain": "Technology"
+    }
+  ]
+}

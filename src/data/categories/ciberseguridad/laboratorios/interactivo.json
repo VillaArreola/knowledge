@@ -1,0 +1,25 @@
+{
+  "title": "Laboratorios Interactivos",
+  "slug": "interactivo",
+  "icon": "🧪",
+  "status": "completed",
+  "order": 1,
+  "description": "Entornos prácticos y ejercicios interactivos de ciberseguridad",
+  "tags": ["laboratorios", "práctica", "interactivo", "ejercicios", "hands-on", "ciberseguridad"],
+  "content": {
+    "sections": [
+      {
+        "title": "¿Qué son los Laboratorios Interactivos?",
+        "content": "Los laboratorios interactivos son entornos controlados donde puedes practicar técnicas de ciberseguridad de forma segura y guiada."
+      },
+      {
+        "title": "Tipos de Laboratorios",
+        "content": "Entornos virtuales, Máquinas virtuales, Contenedores Docker, Plataformas CTF (Capture The Flag), Entornos de pentesting."
+      },
+      {
+        "title": "Beneficios",
+        "content": "Aprendizaje práctico, Experiencia real, Desarrollo de habilidades, Preparación para certificaciones, Networking con otros profesionales."
+      }
+    ]
+  }
+}

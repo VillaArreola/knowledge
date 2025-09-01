@@ -1,0 +1,50 @@
+{
+  "certification": {
+    "name": "Cisco CCNA",
+    "code": "200-301",
+    "icon": "🌐",
+    "description": "Certificación de redes Cisco",
+    "vendor": "Cisco",
+    "domains": [
+      "Network Fundamentals",
+      "Network Access",
+      "IP Connectivity",
+      "IP Services",
+      "Security Fundamentals",
+      "Automation and Programmability"
+    ],
+    "weight": 1
+  },
+  "topics": [
+    {
+      "title": "TCP/IP - Protocolo de Internet",
+      "slug": "tcp-ip",
+      "icon": "🌐",
+      "status": "completed",
+      "order": 1,
+      "description": "Protocolo fundamental de comunicación en redes",
+      "tags": [
+        "TCP",
+        "IP",
+        "protocolo",
+        "redes",
+        "internet",
+        "comunicacion"
+      ],
+      "certifications": [
+        {
+          "code": "200-301",
+          "weight": 4.8,
+          "domain": "Network Fundamentals"
+        }
+      ],
+      "category": "Redes",
+      "section": "fundamentos",
+      "url": "/redes/fundamentos/tcp-ip",
+      "searchContent": "TCP/IP - Protocolo de Internet Protocolo fundamental de comunicación en redes TCP IP protocolo redes internet comunicacion",
+      "certificationWeight": 4.8,
+      "certificationDomain": "Network Fundamentals"
+    }
+  ],
+  "lastUpdated": "2025-08-30T15:29:15.623Z"
+}

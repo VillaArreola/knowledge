@@ -1,0 +1,36 @@
+{
+  "name": "Programación",
+  "slug": "programacion",
+  "icon": "💻",
+  "description": "Desarrollo de software, lenguajes de programación y tecnologías web",
+  "sections": [
+    {
+      "name": "Fundamentos",
+      "slug": "fundamentos",
+      "icon": "📚",
+      "description": "Conceptos básicos de programación y algoritmos",
+      "order": 1
+    },
+    {
+      "name": "Desarrollo Web",
+      "slug": "web",
+      "icon": "🌐",
+      "description": "Tecnologías y frameworks para desarrollo web",
+      "order": 2
+    },
+    {
+      "name": "Backend",
+      "slug": "backend",
+      "icon": "⚙️",
+      "description": "Desarrollo del lado del servidor",
+      "order": 3
+    },
+    {
+      "name": "Frontend",
+      "slug": "frontend",
+      "icon": "🎨",
+      "description": "Desarrollo de interfaces de usuario",
+      "order": 4
+    }
+  ]
+}

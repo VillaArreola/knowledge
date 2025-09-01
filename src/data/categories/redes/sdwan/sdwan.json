@@ -1,0 +1,25 @@
+{
+  "title": "SD-WAN",
+  "slug": "sdwan",
+  "icon": "☁️",
+  "status": "completed",
+  "order": 1,
+  "description": "Redes definidas por software para WAN",
+  "tags": ["SD-WAN", "software-defined", "WAN", "redes", "virtualización", "orquestación"],
+  "content": {
+    "sections": [
+      {
+        "title": "¿Qué es SD-WAN?",
+        "content": "SD-WAN (Software-Defined Wide Area Network) es una tecnología que permite gestionar y orquestar redes WAN de forma centralizada mediante software."
+      },
+      {
+        "title": "Ventajas",
+        "content": "Reducción de costos, Flexibilidad, Gestión centralizada, Mejor rendimiento, Seguridad integrada, Automatización."
+      },
+      {
+        "title": "Componentes",
+        "content": "Controlador central, Dispositivos edge, Orquestador, Analytics, Políticas de tráfico."
+      }
+    ]
+  }
+}

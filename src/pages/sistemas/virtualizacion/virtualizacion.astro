@@ -1,0 +1,287 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+
+const title = "Virtualización - Gestión de Máquinas Virtuales";
+const description = "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales";
+---
+
+<WikiLayout title={title} description={description} showHeader={false}>
+<div class="virtualization-page">
+<div class="container">
+<!-- Sección Principal -->
+<section class="hero">
+<h1>🖥️ ¿Qué es la Virtualización?</h1>
+<p class="lead">
+<strong>Virtualización</strong> es la tecnología que permite crear versiones virtuales de recursos informáticos como hardware, sistemas operativos, dispositivos de almacenamiento y redes, permitiendo ejecutar múltiples entornos en una sola máquina física.
+</p>
+<div class="card highlight">
+<p>💡 La virtualización es la base de la computación en la nube moderna. Sin ella, no existirían los servicios cloud como AWS, Azure o Google Cloud.</p>
+</div>
+</section>
+
+<!-- Tipos de Virtualización -->
+<section class="types">
+<h2>🔧 Tipos de Virtualización</h2>
+<div class="grid">
+<div class="card">
+<h3>🖥️ Virtualización de Hardware</h3>
+<p>Permite ejecutar múltiples sistemas operativos en una sola máquina física mediante hipervisores.</p>
+</div>
+<div class="card">
+<h3>📦 Virtualización de Aplicaciones</h3>
+<p>Aísla aplicaciones del sistema operativo subyacente, permitiendo compatibilidad y portabilidad.</p>
+</div>
+<div class="card">
+<h3>🌐 Virtualización de Red</h3>
+<p>Divide el ancho de banda disponible en canales independientes que pueden asignarse a servidores o dispositivos.</p>
+</div>
+<div class="card">
+<h3>💾 Virtualización de Almacenamiento</h3>
+<p>Agrupa múltiples dispositivos de almacenamiento físico en un solo dispositivo de almacenamiento administrado.</p>
+</div>
+</div>
+</section>
+
+<!-- Hipervisores -->
+<section class="hypervisors">
+<h2>⚙️ Tipos de Hipervisores</h2>
+<div class="hypervisor-types">
+<div class="type-1">
+<h3>🟢 Tipo 1 - Bare Metal</h3>
+<p>Se ejecuta directamente sobre el hardware físico. Ejemplos: VMware ESXi, Microsoft Hyper-V, Citrix XenServer.</p>
+<ul>
+<li>Mejor rendimiento</li>
+<li>Menor overhead</li>
+<li>Ideal para entornos empresariales</li>
+</ul>
+</div>
+<div class="type-2">
+<h3>🟡 Tipo 2 - Hosted</h3>
+<p>Se ejecuta sobre un sistema operativo host. Ejemplos: VMware Workstation, VirtualBox, Parallels.</p>
+<ul>
+<li>Fácil de instalar y usar</li>
+<li>Ideal para desarrollo y pruebas</li>
+<li>Mayor overhead</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- Ventajas -->
+<section class="benefits">
+<h2>✅ Ventajas de la Virtualización</h2>
+<ul class="benefits-list">
+<li><strong>Consolidación:</strong> Múltiples servidores en una sola máquina física</li>
+<li><strong>Flexibilidad:</strong> Fácil creación, clonación y migración de VMs</li>
+<li><strong>Aislamiento:</strong> Cada VM opera independientemente</li>
+<li><strong>Recuperación:</strong> Backups y restauración simplificados</li>
+<li><strong>Eficiencia:</strong> Mejor utilización de recursos hardware</li>
+</ul>
+</section>
+
+<!-- Ejemplo Práctico -->
+<section class="example">
+<h2>🎯 Ejemplo Real en una Empresa</h2>
+<div class="scenario">
+<p><strong>Antes:</strong> 10 servidores físicos para diferentes aplicaciones → Alto costo de hardware y energía</p>
+<p><strong>Después:</strong> 2 servidores físicos con 5 VMs cada uno → 80% reducción en costos</p>
+<p><strong>Beneficio:</strong> Misma funcionalidad, menor mantenimiento, mayor flexibilidad</p>
+</div>
+</section>
+
+<!-- Contenedores vs VMs -->
+<section class="comparison">
+<h2>📦 Contenedores vs Máquinas Virtuales</h2>
+<div class="comparison-grid">
+<div class="vm">
+<h3>🖥️ Máquinas Virtuales</h3>
+<ul>
+<li>Incluye sistema operativo completo</li>
+<li>Mayor overhead</li>
+<li>Mejor aislamiento</li>
+<li>Ideal para aplicaciones legacy</li>
+</ul>
+</div>
+<div class="container">
+<h3>📦 Contenedores</h3>
+<ul>
+<li>Comparte kernel del host</li>
+<li>Menor overhead</li>
+<li>Aislamiento ligero</li>
+<li>Ideal para microservicios</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- Consejo Profesional -->
+<section class="tip">
+<div class="card professional-tip">
+<h3>💼 Consejo Profesional</h3>
+<p>La virtualización no es solo para grandes empresas. Incluso para desarrolladores individuales, herramientas como Docker y VirtualBox pueden mejorar significativamente el flujo de trabajo y la portabilidad de aplicaciones.</p>
+</div>
+</section>
+</div></div>
+</WikiLayout>
+
+<script>
+// Puedes agregar interactividad aquí si se requiere en el futuro
+</script>
+
+<style lang="css">
+.virtualization-page {
+font-family: 'Segoe UI', system-ui, sans-serif;
+line-height: 1.7;
+color: #333;
+background: #f9f9fb;
+}
+
+.container {
+max-width: 1000px;
+margin: 0 auto;
+padding: 2rem 1.5rem;
+}
+
+.virtualization-page h1,
+.virtualization-page h2,
+.virtualization-page h3 {
+color: #2c3e50;
+margin-bottom: 1rem;
+font-weight: 600;
+}
+
+.virtualization-page h1 {
+font-size: 2.5rem;
+text-align: center;
+margin-bottom: 1.5rem;
+color: #2980b9;
+}
+
+.virtualization-page .lead {
+font-size: 1.25rem;
+text-align: center;
+color: #555;
+margin-bottom: 2rem;
+}
+
+.virtualization-page .card {
+background: white;
+border-radius: 12px;
+padding: 1.5rem;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.virtualization-page .card:hover {
+transform: translateY(-4px);
+box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.virtualization-page .highlight {
+background: #d6eaf8;
+border-left: 4px solid #2980b9;
+font-size: 1.1rem;
+}
+
+.virtualization-page .grid {
+display: grid;
+gap: 1.5rem;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+margin: 2rem 0;
+}
+
+.virtualization-page .hypervisor-types {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+margin: 2rem 0;
+}
+
+.virtualization-page .type-1,
+.virtualization-page .type-2 {
+background: white;
+padding: 1.5rem;
+border-radius: 12px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.virtualization-page .type-1 {
+border-left: 4px solid #27ae60;
+}
+
+.virtualization-page .type-2 {
+border-left: 4px solid #f39c12;
+}
+
+.virtualization-page .benefits-list {
+list-style: none;
+padding: 0;
+}
+
+.virtualization-page .benefits-list li {
+padding: 0.75rem 0;
+border-bottom: 1px solid #eee;
+font-size: 1.1rem;
+}
+
+.virtualization-page .benefits-list li:last-child {
+border-bottom: none;
+}
+
+.virtualization-page .scenario {
+background: #ecf0f1;
+padding: 1.5rem;
+border-radius: 12px;
+font-size: 1.1rem;
+line-height: 2;
+}
+
+.virtualization-page .comparison-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+margin: 2rem 0;
+}
+
+.virtualization-page .vm,
+.virtualization-page .container {
+background: white;
+padding: 1.5rem;
+border-radius: 12px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.virtualization-page .vm {
+border-left: 4px solid #3498db;
+}
+
+.virtualization-page .container {
+border-left: 4px solid #e74c3c;
+}
+
+.virtualization-page .professional-tip {
+background: #fff8e1;
+border-left: 4px solid #f57c00;
+font-size: 1.1rem;
+color: #333;
+}
+
+@media (max-width: 768px) {
+.virtualization-page h1 {
+font-size: 2rem;
+}
+
+.virtualization-page .lead {
+font-size: 1.1rem;
+}
+
+.virtualization-page .hypervisor-types,
+.virtualization-page .comparison-grid {
+grid-template-columns: 1fr;
+}
+
+.container {
+padding: 1.5rem;
+}
+}
+</style>

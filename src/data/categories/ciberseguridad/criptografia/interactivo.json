@@ -1,0 +1,22 @@
+{
+  "title": "Laboratorio Interactivo de Criptografía",
+  "slug": "interactivo",
+  "icon": "🧪",
+  "status": "completed",
+  "order": 2,
+  "description": "Prácticas interactivas para aprender criptografía de forma hands-on",
+  "tags": [
+    "laboratorio",
+    "interactivo",
+    "práctica",
+    "criptografía",
+    "hands-on"
+  ],
+  "certifications": [
+    {
+      "code": "SY0-701",
+      "weight": 3.6,
+      "domain": "Cryptography and PKI"
+    }
+  ]
+}

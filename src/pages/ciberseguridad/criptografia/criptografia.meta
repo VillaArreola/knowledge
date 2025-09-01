@@ -1,0 +1,8 @@
+title=Criptografía - Fundamentos de Seguridad Digital
+slug=criptografia
+icon=🔒
+status=completed
+order=1
+description=Fundamentos de criptografía y técnicas de encriptación para proteger información
+tags=criptografía,encriptación,seguridad,algoritmos,claves
+certifications=SY0-701:3.6:Cryptography and PKI

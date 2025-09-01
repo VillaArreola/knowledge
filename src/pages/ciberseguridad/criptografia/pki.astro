@@ -1,5 +1,5 @@
 ---
-import WikiLayout from '../../layouts/WikiLayout.astro';
+import WikiLayout from '../../../layouts/WikiLayout.astro';
 ---
 
 <WikiLayout title="PKI - Infraestructura de Clave Pública" description="Guía completa sobre PKI: componentes, certificados y proceso de implementación">
@@ -155,64 +155,6 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
             </div>
         </div>
 
-        <!-- Quiz Section -->
-        <div class="content-card quiz-section animate-slide-up">
-            <div class="card-header">
-                <h2>🧠 Quiz de Conocimientos</h2>
-            </div>
-            
-            <div id="quiz-container">
-                <div class="quiz-question active">
-                    <h3>¿Cuál es la función principal de la CA?</h3>
-                    <div class="quiz-options">
-                        <button class="quiz-option" data-correct="false">Verificar la identidad del solicitante</button>
-                        <button class="quiz-option" data-correct="true">Emitir y firmar certificados digitales</button>
-                        <button class="quiz-option" data-correct="false">Almacenar certificados</button>
-                        <button class="quiz-option" data-correct="false">Revocar certificados únicamente</button>
-                    </div>
-                </div>
-                
-                <div class="quiz-question">
-                    <h3>¿Qué estándar siguen los certificados digitales?</h3>
-                    <div class="quiz-options">
-                        <button class="quiz-option" data-correct="false">X.508 v2</button>
-                        <button class="quiz-option" data-correct="true">X.509 v3</button>
-                        <button class="quiz-option" data-correct="false">SSL/TLS</button>
-                        <button class="quiz-option" data-correct="false">RSA-2048</button>
-                    </div>
-                </div>
-                
-                <div class="quiz-question">
-                    <h3>¿Cuál NO es una garantía de la PKI?</h3>
-                    <div class="quiz-options">
-                        <button class="quiz-option" data-correct="false">Autenticidad</button>
-                        <button class="quiz-option" data-correct="false">Confidencialidad</button>
-                        <button class="quiz-option" data-correct="true">Velocidad de transmisión</button>
-                        <button class="quiz-option" data-correct="false">No repudio</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="quiz-controls">
-                <button id="prevBtn" class="quiz-btn secondary" disabled>Anterior</button>
-                <div class="quiz-progress">
-                    <span id="currentQ">1</span> / <span id="totalQ">3</span>
-                </div>
-                <button id="nextBtn" class="quiz-btn primary">Siguiente</button>
-            </div>
-            
-            <div id="quiz-results" class="quiz-results hidden">
-                <div class="results-content">
-                    <h3>¡Quiz Completado!</h3>
-                    <div class="score-display">
-                        <span id="score">0</span> / <span id="total">3</span>
-                    </div>
-                    <p id="feedback"></p>
-                    <button id="restartBtn" class="quiz-btn primary">Reiniciar Quiz</button>
-                </div>
-            </div>
-        </div>
-
         <!-- Hierarchy Section -->
         <div class="content-card animate-slide-up">
             <div class="card-header">
@@ -248,141 +190,6 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
     </div>
 </WikiLayout>
 
-<script>
-    // Quiz functionality
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
-    const totalQuestions = 3;
-
-    const questions = document.querySelectorAll('.quiz-question');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const currentQSpan = document.getElementById('currentQ');
-    const resultsDiv = document.getElementById('quiz-results');
-
-    function showQuestion(index) {
-        questions.forEach((q, i) => {
-            q.classList.toggle('active', i === index);
-        });
-        
-        currentQSpan.textContent = index + 1;
-        prevBtn.disabled = index === 0;
-        
-        if (index === totalQuestions - 1) {
-            nextBtn.textContent = 'Finalizar';
-        } else {
-            nextBtn.textContent = 'Siguiente';
-        }
-        
-        answered = false;
-        nextBtn.disabled = true;
-    }
-
-    function handleAnswerClick(e) {
-        if (answered) return;
-        
-        const options = e.target.closest('.quiz-question').querySelectorAll('.quiz-option');
-        const isCorrect = e.target.dataset.correct === 'true';
-        
-        options.forEach(opt => {
-            opt.disabled = true;
-            if (opt.dataset.correct === 'true') {
-                opt.classList.add('correct');
-            } else if (opt === e.target && !isCorrect) {
-                opt.classList.add('incorrect');
-            }
-        });
-        
-        if (isCorrect) score++;
-        answered = true;
-        nextBtn.disabled = false;
-    }
-
-    function showResults() {
-        resultsDiv.classList.remove('hidden');
-        document.getElementById('score').textContent = score;
-        document.getElementById('total').textContent = totalQuestions;
-        
-        const percentage = (score / totalQuestions) * 100;
-        const feedback = document.getElementById('feedback');
-        
-        if (percentage >= 80) {
-            feedback.textContent = '¡Excelente! Dominas los conceptos de PKI.';
-            feedback.className = 'excellent';
-        } else if (percentage >= 60) {
-            feedback.textContent = 'Bien, pero puedes mejorar revisando algunos conceptos.';
-            feedback.className = 'good';
-        } else {
-            feedback.textContent = 'Te recomendamos revisar el contenido nuevamente.';
-            feedback.className = 'needs-improvement';
-        }
-    }
-
-    function restartQuiz() {
-        currentQuestion = 0;
-        score = 0;
-        answered = false;
-        
-        questions.forEach(q => {
-            const options = q.querySelectorAll('.quiz-option');
-            options.forEach(opt => {
-                opt.disabled = false;
-                opt.classList.remove('correct', 'incorrect');
-            });
-        });
-        
-        resultsDiv.classList.add('hidden');
-        showQuestion(0);
-    }
-
-    // Event listeners
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('quiz-option')) {
-            handleAnswerClick(e);
-        }
-    });
-
-    nextBtn.addEventListener('click', () => {
-        if (currentQuestion < totalQuestions - 1) {
-            currentQuestion++;
-            showQuestion(currentQuestion);
-        } else {
-            showResults();
-        }
-    });
-
-    prevBtn.addEventListener('click', () => {
-        if (currentQuestion > 0) {
-            currentQuestion--;
-            showQuestion(currentQuestion);
-        }
-    });
-
-    document.getElementById('restartBtn').addEventListener('click', restartQuiz);
-
-    // Scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.animate-slide-up').forEach(el => {
-        observer.observe(el);
-    });
-
-    // Initialize
-    showQuestion(0);
-</script>
-
 <style>
     /* Hero Section */
     .hero-section {
@@ -400,16 +207,6 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
         bottom: 0;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         opacity: 0.9;
-    }
-
-    .hero-bg::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     }
 
     .security-icon {
@@ -450,18 +247,11 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
         margin-bottom: 2rem;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
-        opacity: 0;
-        transform: translateY(30px);
     }
 
     .content-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .content-card.visible {
-        opacity: 1;
-        transform: translateY(0);
     }
 
     .card-header h2 {
@@ -525,22 +315,6 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
-    }
-
-    .component-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 0.1;
-        z-index: 0;
-    }
-
-    .component-card > * {
-        position: relative;
-        z-index: 1;
     }
 
     .ca-card {
@@ -694,156 +468,6 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
         font-weight: bold;
     }
 
-    /* Quiz Styles */
-    .quiz-section {
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    }
-
-    .quiz-question {
-        display: none;
-        margin-bottom: 2rem;
-    }
-
-    .quiz-question.active {
-        display: block;
-        animation: fadeInSlide 0.5s ease;
-    }
-
-    @keyframes fadeInSlide {
-        from {
-            opacity: 0;
-            transform: translateX(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    .quiz-question h3 {
-        font-size: 1.3rem;
-        margin-bottom: 1.5rem;
-        color: #667eea;
-    }
-
-    .quiz-options {
-        display: grid;
-        gap: 1rem;
-    }
-
-    .quiz-option {
-        padding: 1rem 1.5rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        color: white;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-align: left;
-    }
-
-    .quiz-option:hover:not(:disabled) {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: #667eea;
-        transform: translateX(5px);
-    }
-
-    .quiz-option.correct {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        border-color: #4facfe;
-        color: #1a1a1a;
-        font-weight: 600;
-    }
-
-    .quiz-option.incorrect {
-        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        border-color: #fa709a;
-        color: #1a1a1a;
-        font-weight: 600;
-    }
-
-    .quiz-controls {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 2rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .quiz-btn {
-        padding: 0.75rem 2rem;
-        border-radius: 25px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        border: none;
-    }
-
-    .quiz-btn.primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
-
-    .quiz-btn.primary:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    }
-
-    .quiz-btn.secondary {
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .quiz-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-
-    .quiz-progress {
-        font-weight: 600;
-        color: #667eea;
-    }
-
-    /* Quiz Results */
-    .quiz-results {
-        text-align: center;
-        padding: 2rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 15px;
-        margin-top: 2rem;
-    }
-
-    .quiz-results.hidden {
-        display: none;
-    }
-
-    .results-content h3 {
-        font-size: 2rem;
-        color: #667eea;
-        margin-bottom: 1rem;
-    }
-
-    .score-display {
-        font-size: 3rem;
-        font-weight: 700;
-        margin: 1rem 0;
-        background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .quiz-results p {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-    }
-
-    .excellent { color: #4facfe; }
-    .good { color: #ffd89b; }
-    .needs-improvement { color: #fa709a; }
-
     /* Hierarchy Diagram */
     .hierarchy-diagram {
         display: flex;
@@ -986,37 +610,5 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
             flex-direction: column;
             gap: 1rem;
         }
-
-        .quiz-controls {
-            flex-direction: column;
-            gap: 1rem;
-        }
     }
-
-    /* Animation utilities */
-    .animate-slide-up {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.6s ease;
-    }
-
-    .animate-slide-up.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* Loading animation for interactive elements */
-    @keyframes shimmer {
-        0% {
-            background-position: -200px 0;
-        }
-        100% {
-            background-position: calc(200px + 100%) 0;
-        }
-    }
-
-    .loading {
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-        background-size: 200px 100%;
-        animation: shimmer 1.5s infinite;
-    }
+</style>

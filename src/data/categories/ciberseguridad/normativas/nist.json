@@ -1,0 +1,25 @@
+{
+  "title": "NIST Cybersecurity Framework",
+  "slug": "nist",
+  "icon": "📋",
+  "status": "completed",
+  "order": 1,
+  "description": "Marco de ciberseguridad del Instituto Nacional de Estándares y Tecnología",
+  "tags": ["NIST", "marco", "ciberseguridad", "normativas", "estándares", "compliance"],
+  "content": {
+    "sections": [
+      {
+        "title": "¿Qué es el NIST Cybersecurity Framework?",
+        "content": "El NIST Cybersecurity Framework es un conjunto de estándares, mejores prácticas y recomendaciones para gestionar y reducir los riesgos de ciberseguridad."
+      },
+      {
+        "title": "Funciones Principales",
+        "content": "Identify (Identificar), Protect (Proteger), Detect (Detectar), Respond (Responder), Recover (Recuperar)."
+      },
+      {
+        "title": "Implementación",
+        "content": "Evaluación del estado actual, Definición del estado objetivo, Análisis de brechas, Plan de acción, Implementación y monitoreo."
+      }
+    ]
+  }
+}

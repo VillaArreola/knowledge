@@ -1,0 +1,8 @@
+title=Laboratorio Interactivo de Criptografía
+slug=interactivo
+icon=🧪
+status=completed
+order=2
+description=Prácticas interactivas para aprender criptografía de forma hands-on
+tags=laboratorio,interactivo,práctica,criptografía,hands-on
+certifications=SY0-701:3.6:Cryptography and PKI

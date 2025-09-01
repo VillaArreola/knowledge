@@ -1,0 +1,219 @@
+---
+// Componente de búsqueda por categoría
+export interface Props {
+    category: string;
+    placeholder?: string;
+}
+
+const { category, placeholder = "Buscar en esta categoría..." } = Astro.props;
+---
+
+<div class="category-search">
+    <div class="search-container">
+        <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder={placeholder}
+            data-category={category}
+        />
+        <div class="search-icon">🔍</div>
+    </div>
+    
+    <div id="search-results" class="search-results" style="display: none;">
+        <!-- Los resultados se cargan dinámicamente -->
+    </div>
+</div>
+
+<style>
+    .category-search {
+        margin: 1rem 0;
+    }
+    
+    .search-container {
+        position: relative;
+        max-width: 400px;
+    }
+    
+    .search-input {
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+        font-size: 0.9rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.2s ease;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+    }
+    
+    .search-results {
+        margin-top: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        backdrop-filter: blur(10px);
+    }
+    
+    .search-result-item {
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+        margin-bottom: 0.5rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    
+    .search-result-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(99, 102, 241, 0.3);
+    }
+    
+    .search-result-item:last-child {
+        margin-bottom: 0;
+    }
+    
+    .search-result-title {
+        font-weight: 600;
+        color: white;
+        margin-bottom: 0.25rem;
+    }
+    
+    .search-result-description {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .no-results {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-style: italic;
+        padding: 1rem;
+    }
+</style>
+
+<script>
+class CategorySearch {
+    constructor() {
+        this.searchInput = document.getElementById('search-input');
+        this.resultsContainer = document.getElementById('search-results');
+        this.category = this.searchInput.dataset.category;
+        this.searchData = null;
+        this.debounceTimer = null;
+        
+        this.init();
+    }
+    
+    async init() {
+        await this.loadSearchData();
+        this.setupEventListeners();
+    }
+    
+    async loadSearchData() {
+        try {
+            const response = await fetch(`/search-${this.category}.json`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            this.searchData = await response.json();
+            console.log(`Búsqueda cargada para ${this.category}:`, this.searchData.pages.length, 'temas');
+        } catch (error) {
+            console.error(`Error cargando búsqueda de ${this.category}:`, error);
+            this.searchData = { pages: [] };
+        }
+    }
+    
+    setupEventListeners() {
+        this.searchInput.addEventListener('input', (e) => {
+            clearTimeout(this.debounceTimer);
+            this.debounceTimer = setTimeout(() => {
+                this.performSearch(e.target.value);
+            }, 300);
+        });
+        
+        this.searchInput.addEventListener('focus', () => {
+            if (this.searchInput.value.trim()) {
+                this.showResults();
+            }
+        });
+        
+        // Cerrar resultados al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!this.searchInput.contains(e.target) && !this.resultsContainer.contains(e.target)) {
+                this.hideResults();
+            }
+        });
+    }
+    
+    performSearch(query) {
+        if (!query.trim()) {
+            this.hideResults();
+            return;
+        }
+        
+        const results = this.searchData.pages.filter(page => {
+            const searchText = `${page.title} ${page.description} ${page.tags?.join(' ') || ''}`.toLowerCase();
+            return searchText.includes(query.toLowerCase());
+        });
+        
+        this.displayResults(results, query);
+    }
+    
+    displayResults(results, query) {
+        if (results.length === 0) {
+            this.resultsContainer.innerHTML = `
+                <div class="no-results">
+                    No se encontraron resultados para "${query}"
+                </div>
+            `;
+        } else {
+            const resultsHTML = results.slice(0, 8).map(page => `
+                <div class="search-result-item" onclick="window.location.href='${page.url}'">
+                    <div class="search-result-title">
+                        ${page.icon || '📄'} ${page.title}
+                    </div>
+                    <div class="search-result-description">
+                        ${page.description}
+                    </div>
+                </div>
+            `).join('');
+            
+            this.resultsContainer.innerHTML = resultsHTML;
+        }
+        
+        this.showResults();
+    }
+    
+    showResults() {
+        this.resultsContainer.style.display = 'block';
+    }
+    
+    hideResults() {
+        this.resultsContainer.style.display = 'none';
+    }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('search-input')) {
+        new CategorySearch();
+    }
+});
+</script>
