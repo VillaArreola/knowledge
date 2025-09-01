@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import CategorySearch from "../components/CategorySearch.astro";
 import "../styles/global.css";
+import "../styles/cloud.css";
 
 const title = "Cloud - Índice de Temas";
 const description = "Índice dinámico de todos los temas de cloud cargado automáticamente";
@@ -447,7 +448,6 @@ document.addEventListener('DOMContentLoaded', function() {
     scrollToContent();
 });
 </script>
-
 <style>
 /* Estilos específicos para Cloud */
 .cloud-main {
@@ -606,19 +606,20 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 0 20px;
 }
 
-.section-header {
+/* Header de la sección de contenido principal */
+.content-section .section-header {
     text-align: center;
     margin-bottom: 60px;
 }
 
-.section-title {
+.content-section .section-title {
     font-size: 2.5rem;
     font-weight: 700;
     color: #1f2937;
     margin-bottom: 16px;
 }
 
-.section-subtitle {
+.content-section .section-subtitle {
     font-size: 1.1rem;
     color: #6b7280;
     margin-bottom: 40px;
@@ -644,14 +645,15 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translateY(-2px);
 }
 
-.section-header {
+/* Header de cada sección individual */
+.index-section .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
 }
 
-.section-title {
+.index-section .section-title {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -662,7 +664,7 @@ document.addEventListener('DOMContentLoaded', function() {
     font-size: 1.5rem;
 }
 
-.section-title h3 {
+.index-section .section-title h3 {
     font-size: 1.25rem;
     font-weight: 600;
     color: #1f2937;
@@ -814,10 +816,11 @@ document.addEventListener('DOMContentLoaded', function() {
         grid-template-columns: 1fr;
     }
     
-    .section-header {
+    .index-section .section-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
     }
 }
 </style>
+

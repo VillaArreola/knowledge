@@ -1,587 +1,224 @@
-<!-- Floating Tech Panels Hub -->
-<div class="tech-hub-container">
-    <!-- Partículas de fondo -->
-    <div class="particles-background">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-    
-    <!-- Grid hexagonal -->
-    <div class="hexagon-grid" id="categories-grid">
+<!-- Categories Hub - Clean & Simple -->
+<div class="categories-container">
+    <div class="clean-grid" id="categories-grid">
         <!-- Ciberseguridad -->
-        <div class="hex-panel cyber" data-category="cyber">
-            <div class="hex-shape">
-                <div class="hex-border"></div>
-                <div class="hex-content">
-                    <div class="panel-header">
-                        <div class="tech-icon">🔐</div>
-                        <div class="scan-line"></div>
-                    </div>
-                    <h3 class="panel-title">CIBERSEGURIDAD</h3>
-                    <div class="status-bar">
-                        <div class="status-indicator active"></div>
-                        <span class="status-text">7 MÓDULOS ACTIVOS</span>
-                    </div>
-                    <div class="sub-modules">
-                        <div class="module">🛡️ FUNDAMENTOS</div>
-                        <div class="module">🔒 CRIPTOGRAFÍA</div>
-                        <div class="module">🌐 REDES SEGURAS</div>
-                        <div class="module">🔬 FORENSE</div>
-                    </div>
-                    <div class="access-code">SEC_001</div>
+        <a class="clean-card cyber" href="/ciberseguridad">
+            <div class="card-content">
+                <div class="card-icon">🔐</div>
+                <h3>CIBERSEGURIDAD</h3>
+                <div class="topics-list">
+                    <span>FUNDAMENTOS</span>
+                    <span>CRIPTOGRAFÍA</span>
+                    <span>REDES SEGURAS</span>
+                    <span>FORENSE</span>
                 </div>
-                <a href="/ciberseguridad" class="panel-link"></a>
             </div>
-        </div>
-
+        </a>
+        
         <!-- Redes -->
-        <div class="hex-panel networks" data-category="networks">
-            <div class="hex-shape">
-                <div class="hex-border"></div>
-                <div class="hex-content">
-                    <div class="panel-header">
-                        <div class="tech-icon">🌐</div>
-                        <div class="scan-line"></div>
-                    </div>
-                    <h3 class="panel-title">REDES</h3>
-                    <div class="status-bar">
-                        <div class="status-indicator active"></div>
-                        <span class="status-text">4 MÓDULOS ACTIVOS</span>
-                    </div>
-                    <div class="sub-modules">
-                        <div class="module">📡 FUNDAMENTOS</div>
-                        <div class="module">🏗️ ARQUITECTURA</div>
-                        <div class="module">📋 PROTOCOLOS</div>
-                        <div class="module">📶 WIFI</div>
-                    </div>
-                    <div class="access-code">NET_002</div>
+        <a class="clean-card networks" href="/redes">
+            <div class="card-content">
+                <div class="card-icon">🌐</div>
+                <h3>REDES</h3>
+                <div class="topics-list">
+                    <span>FUNDAMENTOS</span>
+                    <span>ARQUITECTURA</span>
+                    <span>PROTOCOLOS</span>
+                    <span>WIFI</span>
                 </div>
-                <a href="/redes" class="panel-link"></a>
             </div>
-        </div>
-
-        <!-- Programación -->
-        <div class="hex-panel programming" data-category="programming">
-            <div class="hex-shape">
-                <div class="hex-border"></div>
-                <div class="hex-content">
-                    <div class="panel-header">
-                        <div class="tech-icon">💻</div>
-                        <div class="scan-line"></div>
-                    </div>
-                    <h3 class="panel-title">PROGRAMACIÓN</h3>
-                    <div class="status-bar">
-                        <div class="status-indicator active"></div>
-                        <span class="status-text">4 MÓDULOS ACTIVOS</span>
-                    </div>
-                    <div class="sub-modules">
-                        <div class="module">🧮 FUNDAMENTOS</div>
-                        <div class="module">🐍 LENGUAJES</div>
-                        <div class="module">⚡ DEV WEB</div>
-                        <div class="module">🔄 DEVOPS</div>
-                    </div>
-                    <div class="access-code">DEV_003</div>
-                </div>
-                <a href="/programacion" class="panel-link"></a>
-            </div>
-        </div>
-
-        <!-- Sistemas -->
-        <div class="hex-panel systems" data-category="systems">
-            <div class="hex-shape">
-                <div class="hex-border"></div>
-                <div class="hex-content">
-                    <div class="panel-header">
-                        <div class="tech-icon">⚙️</div>
-                        <div class="scan-line"></div>
-                    </div>
-                    <h3 class="panel-title">SISTEMAS</h3>
-                    <div class="status-bar">
-                        <div class="status-indicator active"></div>
-                        <span class="status-text">4 MÓDULOS ACTIVOS</span>
-                    </div>
-                    <div class="sub-modules">
-                        <div class="module">🔐 GOBERNANZA</div>
-                        <div class="module">🐧 S. OPERATIVOS</div>
-                        <div class="module">🖥️ VIRTUALIZACIÓN</div>
-                        <div class="module">⚙️ ADMINISTRACIÓN</div>
-                    </div>
-                    <div class="access-code">SYS_004</div>
-                </div>
-                <a href="/sistemas" class="panel-link"></a>
-            </div>
-        </div>
-
+        </a>
+        
         <!-- Cloud -->
-        <div class="hex-panel cloud" data-category="cloud">
-            <div class="hex-shape">
-                <div class="hex-border"></div>
-                <div class="hex-content">
-                    <div class="panel-header">
-                        <div class="tech-icon">☁️</div>
-                        <div class="scan-line"></div>
-                    </div>
-                    <h3 class="panel-title">CLOUD</h3>
-                    <div class="status-bar">
-                        <div class="status-indicator active"></div>
-                        <span class="status-text">4 MÓDULOS ACTIVOS</span>
-                    </div>
-                    <div class="sub-modules">
-                        <div class="module">☁️ AWS</div>
-                        <div class="module pending">🔷 AZURE</div>
-                        <div class="module pending">🔵 GOOGLE CLOUD</div>
-                        <div class="module pending">🏗️ ARQUITECTURA</div>
-                    </div>
-                    <div class="access-code">CLD_005</div>
+        <a class="clean-card cloud" href="/cloud">
+            <div class="card-content">
+                <div class="card-icon">☁️</div>
+                <h3>CLOUD</h3>
+                <div class="topics-list">
+                    <span>AWS</span>
+                    <span>AZURE</span>
+                    <span>GOOGLE CLOUD</span>
+                    <span>ARQUITECTURA</span>
                 </div>
-                <a href="/cloud" class="panel-link"></a>
             </div>
-        </div>
+        </a>
+        
+        <!-- Programación -->
+        <a class="clean-card programming" href="/programacion">
+            <div class="card-content">
+                <div class="card-icon">💻</div>
+                <h3>PROGRAMACIÓN</h3>
+                <div class="topics-list">
+                    <span>FUNDAMENTOS</span>
+                    <span>LENGUAJES</span>
+                    <span>DEV WEB</span>
+                    <span>DEVOPS</span>
+                </div>
+            </div>
+        </a>
+        
+        <!-- Sistemas -->
+        <a class="clean-card systems" href="/sistemas">
+            <div class="card-content">
+                <div class="card-icon">⚙️</div>
+                <h3>SISTEMAS</h3>
+                <div class="topics-list">
+                    <span>GOBERNANZA</span>
+                    <span>S. OPERATIVOS</span>
+                    <span>VIRTUALIZACIÓN</span>
+                    <span>ADMINISTRACIÓN</span>
+                </div>
+            </div>
+        </a>
     </div>
-    
-    <!-- Líneas de conexión -->
-    <svg class="connection-lines">
-        <defs>
-            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#00ffff;stop-opacity:0"/>
-                <stop offset="50%" style="stop-color:#00ffff;stop-opacity:1"/>
-                <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0"/>
-            </linearGradient>
-        </defs>
-    </svg>
 </div>
 
-<script>
-// Animaciones de entrada escalonadas
-document.addEventListener('DOMContentLoaded', () => {
-    const panels = document.querySelectorAll('.hex-panel');
-    
-    panels.forEach((panel, index) => {
-        panel.style.animationDelay = `${index * 0.2}s`;
-        panel.classList.add('animate-in');
-    });
-
-    // Efecto de escaneo aleatorio
-    setInterval(() => {
-        const randomPanel = panels[Math.floor(Math.random() * panels.length)];
-        const scanLine = randomPanel.querySelector('.scan-line');
-        if (scanLine) {
-            scanLine.classList.add('scanning');
-            setTimeout(() => {
-                scanLine.classList.remove('scanning');
-            }, 2000);
-        }
-    }, 3000);
-
-    // Partículas flotantes
-    const particles = document.querySelectorAll('.particle');
-    particles.forEach((particle, index) => {
-        particle.style.animationDelay = `${Math.random() * 5}s`;
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-    });
-});
-</script>
-
 <style>
-    /* Container principal */
-    .tech-hub-container {
-        position: relative;
+    /* Clean Container */
+    .categories-container {
         width: 100%;
-        min-height: 100vh;
-        background: 
-            radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(0, 255, 127, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
-            linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-        overflow: hidden;
-        padding: 2rem;
+        padding: 3rem 0;
+        background: #fafafa;
     }
 
-    /* Partículas de fondo */
-    .particles-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .particle {
-        position: absolute;
-        width: 2px;
-        height: 2px;
-        background: #00ffff;
-        border-radius: 50%;
-        box-shadow: 0 0 10px #00ffff;
-        animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-        0%, 100% { 
-            transform: translateY(0px) rotate(0deg); 
-            opacity: 0.3;
-        }
-        50% { 
-            transform: translateY(-20px) rotate(180deg); 
-            opacity: 1;
-        }
-    }
-
-    /* Grid hexagonal */
-    .hexagon-grid {
+    /* Clean Grid */
+    .clean-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 3rem;
-        max-width: 1400px;
+        gap: 24px;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 2rem 0;
-        position: relative;
-        z-index: 2;
+        padding: 0 20px;
     }
 
-    /* Panel hexagonal */
-    .hex-panel {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 1;
-        max-width: 320px;
-        margin: 0 auto;
-        opacity: 0;
-        transform: translateY(50px) scale(0.8);
-        animation: slideInUp 0.8s ease-out forwards;
-    }
-
-    @keyframes slideInUp {
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    }
-
-    .hex-shape {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        background: linear-gradient(135deg, 
-            rgba(0, 255, 255, 0.05) 0%, 
-            rgba(0, 255, 127, 0.08) 50%, 
-            rgba(255, 0, 255, 0.05) 100%);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(0, 255, 255, 0.2);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: pointer;
-    }
-
-    .hex-panel:hover .hex-shape {
-        transform: scale(1.05) rotateZ(2deg);
-        background: linear-gradient(135deg, 
-            rgba(0, 255, 255, 0.15) 0%, 
-            rgba(0, 255, 127, 0.18) 50%, 
-            rgba(255, 0, 255, 0.15) 100%);
-        border-color: rgba(0, 255, 255, 0.6);
-        box-shadow: 
-            0 0 30px rgba(0, 255, 255, 0.3),
-            inset 0 0 30px rgba(0, 255, 255, 0.1);
-    }
-
-    /* Borde hexagonal animado */
-    .hex-border {
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        background: linear-gradient(45deg, 
-            transparent 30%, 
-            rgba(0, 255, 255, 0.5) 50%, 
-            transparent 70%);
-        background-size: 200% 200%;
-        animation: borderFlow 3s ease-in-out infinite;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .hex-panel:hover .hex-border {
-        opacity: 1;
-    }
-
-    @keyframes borderFlow {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-    }
-
-    /* Contenido del panel */
-    .hex-content {
-        position: absolute;
-        top: 15%;
-        left: 15%;
-        right: 15%;
-        bottom: 15%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 1rem;
-        z-index: 3;
-    }
-
-    .panel-header {
-        position: relative;
-        margin-bottom: 1rem;
-    }
-
-    .tech-icon {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
-        animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-    }
-
-    .scan-line {
-        position: absolute;
-        top: 0;
-        left: -50%;
-        width: 200%;
-        height: 2px;
-        background: linear-gradient(90deg, 
-            transparent 0%, 
-            #00ffff 50%, 
-            transparent 100%);
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    .scan-line.scanning {
-        animation: scan 2s ease-in-out;
-    }
-
-    @keyframes scan {
-        0% {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        50% {
-            opacity: 1;
-            transform: translateY(60px);
-        }
-        100% {
-            opacity: 0;
-            transform: translateY(140px);
-        }
-    }
-
-    .panel-title {
-        font-family: 'Courier New', monospace;
-        font-size: 1rem;
-        font-weight: bold;
-        color: #00ffff;
-        letter-spacing: 2px;
-        margin: 0 0 1rem 0;
-        text-shadow: 0 0 10px #00ffff;
-    }
-
-    .status-bar {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .status-indicator {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #00ff00;
-        box-shadow: 0 0 10px #00ff00;
-        animation: statusBlink 2s ease-in-out infinite;
-    }
-
-    .status-indicator.active {
-        background: #00ff00;
-        box-shadow: 0 0 10px #00ff00;
-    }
-
-    @keyframes statusBlink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.3; }
-    }
-
-    .status-text {
-        font-family: 'Courier New', monospace;
-        font-size: 0.6rem;
-        color: #00ff7f;
-        letter-spacing: 1px;
-    }
-
-    .sub-modules {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-        margin-bottom: 1rem;
-        width: 100%;
-    }
-
-    .module {
-        font-family: 'Courier New', monospace;
-        font-size: 0.65rem;
-        color: #00ff7f;
-        padding: 0.2rem 0.5rem;
-        background: rgba(0, 255, 127, 0.1);
-        border: 1px solid rgba(0, 255, 127, 0.3);
-        border-radius: 3px;
-        text-align: left;
-        transition: all 0.3s ease;
-    }
-
-    .module.pending {
-        color: #ffaa00;
-        background: rgba(255, 170, 0, 0.1);
-        border-color: rgba(255, 170, 0, 0.3);
-    }
-
-    .access-code {
-        font-family: 'Courier New', monospace;
-        font-size: 0.7rem;
-        color: #ff00ff;
-        background: rgba(255, 0, 255, 0.1);
-        border: 1px solid rgba(255, 0, 255, 0.3);
-        padding: 0.3rem 0.8rem;
-        border-radius: 10px;
-        letter-spacing: 1px;
-        margin-top: auto;
-    }
-
-    .panel-link {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 5;
+    /* Clean Card */
+    .clean-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 32px;
         text-decoration: none;
+        color: #374151;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
     }
 
-    /* Colores específicos por categoría */
-    .hex-panel.cyber:hover .hex-shape {
-        border-color: rgba(255, 0, 0, 0.6);
-        box-shadow: 
-            0 0 30px rgba(255, 0, 0, 0.3),
-            inset 0 0 30px rgba(255, 0, 0, 0.1);
-    }
-
-    .hex-panel.networks:hover .hex-shape {
-        border-color: rgba(0, 123, 255, 0.6);
-        box-shadow: 
-            0 0 30px rgba(0, 123, 255, 0.3),
-            inset 0 0 30px rgba(0, 123, 255, 0.1);
-    }
-
-    .hex-panel.programming:hover .hex-shape {
-        border-color: rgba(138, 43, 226, 0.6);
-        box-shadow: 
-            0 0 30px rgba(138, 43, 226, 0.3),
-            inset 0 0 30px rgba(138, 43, 226, 0.1);
-    }
-
-    .hex-panel.systems:hover .hex-shape {
-        border-color: rgba(0, 255, 0, 0.6);
-        box-shadow: 
-            0 0 30px rgba(0, 255, 0, 0.3),
-            inset 0 0 30px rgba(0, 255, 0, 0.1);
-    }
-
-    .hex-panel.cloud:hover .hex-shape {
-        border-color: rgba(0, 191, 255, 0.6);
-        box-shadow: 
-            0 0 30px rgba(0, 191, 255, 0.3),
-            inset 0 0 30px rgba(0, 191, 255, 0.1);
-    }
-
-    /* Líneas de conexión */
-    .connection-lines {
+    .clean-card::before {
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
+        right: 0;
+        height: 3px;
+        background: #3b82f6;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
     }
 
-    /* Responsive */
-    @media (max-width: 1200px) {
-        .hexagon-grid {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
+    .clean-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-color: #d1d5db;
     }
 
+    .clean-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    /* Card Content */
+    .card-content {
+        text-align: center;
+    }
+
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        opacity: 0.8;
+    }
+
+    .card-content h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #111827;
+        margin: 0 0 24px 0;
+        letter-spacing: 0.5px;
+    }
+
+    .topics-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .topics-list span {
+        padding: 8px 16px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        color: #6b7280;
+        transition: all 0.2s ease;
+    }
+
+    .clean-card:hover .topics-list span {
+        background: #f3f4f6;
+        border-color: #d1d5db;
+        color: #374151;
+    }
+
+    /* Category-specific accents */
+    .cyber::before { background: #ef4444; }
+    .networks::before { background: #10b981; }
+    .cloud::before { background: #3b82f6; }
+    .programming::before { background: #8b5cf6; }
+    .systems::before { background: #f59e0b; }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-        .tech-hub-container {
-            padding: 1rem;
-        }
-        
-        .hexagon-grid {
+        .clean-grid {
             grid-template-columns: 1fr;
-            gap: 2rem;
-            max-width: 300px;
+            gap: 20px;
+            padding: 0 16px;
         }
         
-        .hex-panel {
-            max-width: 280px;
+        .clean-card {
+            padding: 24px;
         }
         
-        .tech-icon {
-            font-size: 2rem;
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
         }
         
-        .panel-title {
-            font-size: 0.9rem;
+        .card-content h3 {
+            font-size: 1.125rem;
+            margin-bottom: 20px;
         }
         
-        .module {
-            font-size: 0.6rem;
+        .topics-list span {
+            font-size: 0.8rem;
+            padding: 6px 12px;
         }
     }
 
     @media (max-width: 480px) {
-        .hex-panel {
-            max-width: 250px;
+        .categories-container {
+            padding: 2rem 0;
         }
         
-        .tech-icon {
-            font-size: 1.8rem;
+        .clean-card {
+            padding: 20px;
         }
         
-        .panel-title {
-            font-size: 0.8rem;
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
         }
         
-        .module {
-            font-size: 0.55rem;
-            padding: 0.15rem 0.4rem;
-        }
-        
-        .access-code {
-            font-size: 0.6rem;
-            padding: 0.2rem 0.6rem;
+        .card-content h3 {
+            font-size: 1rem;
+            margin-bottom: 16px;
         }
     }
 </style>

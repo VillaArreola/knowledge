@@ -934,51 +934,72 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .tab-switcher {
         display: flex;
-        background: linear-gradient(90deg, rgba(248,249,250,0.8) 0%, rgba(233,236,239,0.6) 100%);
-        border-bottom: 1px solid rgba(233,236,239,0.5);
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(248,250,252,0.05) 100%);
+        border-radius: 20px;
+        padding: 8px;
         position: relative;
         z-index: 1;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        max-width: 400px;
+        margin: 0 auto 30px;
     }
 
     .tab-btn {
         flex: 1;
-        padding: 20px;
-        background: none;
+        padding: 16px 24px;
+        background: transparent;
         border: none;
-        font-size: 1.1em;
+        font-size: 1rem;
         font-weight: 600;
-        color: #6c757d;
+        color: #64748b;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
+        border-radius: 16px;
+        margin: 0 4px;
+        overflow: hidden;
+    }
+
+    .tab-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(248,250,252,0.05) 100%);
+        border-radius: 16px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     .tab-btn.active {
-        color: #667eea;
+        color: #1e293b;
         background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.9) 100%);
-        backdrop-filter: blur(8px);
+        backdrop-filter: blur(20px);
         border: 1px solid rgba(255,255,255,0.3);
-        border-bottom: none;
         box-shadow: 
-            0 -2px 8px rgba(102,126,234,0.1),
+            0 8px 32px rgba(0,0,0,0.1),
+            0 2px 8px rgba(0,0,0,0.05),
             inset 0 1px 0 rgba(255,255,255,0.9);
+        transform: translateY(-2px);
     }
 
-    .tab-btn.active::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
-        box-shadow: 0 2px 8px rgba(102,126,234,0.3);
+    .tab-btn.active::before {
+        opacity: 1;
     }
 
     .tab-btn:hover:not(.active) {
-        background: linear-gradient(135deg, rgba(233,236,239,0.8) 0%, rgba(203,213,224,0.6) 100%);
-        color: #495057;
-        backdrop-filter: blur(6px);
+        color: #475569;
+        background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(248,250,252,0.2) 100%);
+        backdrop-filter: blur(10px);
+        transform: translateY(-1px);
+    }
+
+    .tab-btn:active {
+        transform: translateY(0);
     }
 
     .tab-content {
@@ -1025,10 +1046,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .tab-switcher {
             flex-direction: column;
+            max-width: 300px;
+            margin: 0 auto 20px;
         }
         
         .tab-btn {
-            padding: 15px;
+            padding: 14px 20px;
+            margin: 2px;
+            font-size: 0.95rem;
         }
         
         .tab-content {
