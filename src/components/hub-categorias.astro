@@ -1,607 +1,587 @@
-<!-- Hub de Categorías de Conocimiento -->
-<div class="categories-container">
-    <div class="categories-grid" id="categories-grid">
+<!-- Floating Tech Panels Hub -->
+<div class="tech-hub-container">
+    <!-- Partículas de fondo -->
+    <div class="particles-background">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <!-- Grid hexagonal -->
+    <div class="hexagon-grid" id="categories-grid">
         <!-- Ciberseguridad -->
-        <div class="category-card cyber">
-            <div class="card-header">
-                <div class="card-icon">🔐</div>
-                <h2>Ciberseguridad</h2>
-            </div>
-            <div class="card-content">
-                <p>Fundamentos de seguridad, criptografía y protección de sistemas</p>
-                <div class="topics-grid">
-                    <span class="topic-tag completed">🛡️ Fundamentos</span>
-                    <span class="topic-tag completed">🔒 Criptografía</span>
-                    <span class="topic-tag completed">🌐 Redes Seguras</span>
-                    <span class="topic-tag completed">🔬 Forense</span>
+        <div class="hex-panel cyber" data-category="cyber">
+            <div class="hex-shape">
+                <div class="hex-border"></div>
+                <div class="hex-content">
+                    <div class="panel-header">
+                        <div class="tech-icon">🔐</div>
+                        <div class="scan-line"></div>
+                    </div>
+                    <h3 class="panel-title">CIBERSEGURIDAD</h3>
+                    <div class="status-bar">
+                        <div class="status-indicator active"></div>
+                        <span class="status-text">7 MÓDULOS ACTIVOS</span>
+                    </div>
+                    <div class="sub-modules">
+                        <div class="module">🛡️ FUNDAMENTOS</div>
+                        <div class="module">🔒 CRIPTOGRAFÍA</div>
+                        <div class="module">🌐 REDES SEGURAS</div>
+                        <div class="module">🔬 FORENSE</div>
+                    </div>
+                    <div class="access-code">SEC_001</div>
                 </div>
+                <a href="/ciberseguridad" class="panel-link"></a>
             </div>
-            <div class="card-footer">
-                <span class="progress-indicator active">7 temas completados</span>
-            </div>
-            <a href="/ciberseguridad" class="card-overlay"></a>
         </div>
 
         <!-- Redes -->
-        <div class="category-card networks">
-            <div class="card-header">
-                <div class="card-icon">🌐</div>
-                <h2>Redes</h2>
-            </div>
-            <div class="card-content">
-                <p>Protocolos, configuración y administración de redes</p>
-                <div class="topics-grid">
-                    <span class="topic-tag completed">📡 Fundamentos</span>
-                    <span class="topic-tag completed">🏗️ Arquitectura</span>
-                    <span class="topic-tag completed">📋 Protocolos</span>
-                    <span class="topic-tag completed">📶 WiFi</span>
+        <div class="hex-panel networks" data-category="networks">
+            <div class="hex-shape">
+                <div class="hex-border"></div>
+                <div class="hex-content">
+                    <div class="panel-header">
+                        <div class="tech-icon">🌐</div>
+                        <div class="scan-line"></div>
+                    </div>
+                    <h3 class="panel-title">REDES</h3>
+                    <div class="status-bar">
+                        <div class="status-indicator active"></div>
+                        <span class="status-text">4 MÓDULOS ACTIVOS</span>
+                    </div>
+                    <div class="sub-modules">
+                        <div class="module">📡 FUNDAMENTOS</div>
+                        <div class="module">🏗️ ARQUITECTURA</div>
+                        <div class="module">📋 PROTOCOLOS</div>
+                        <div class="module">📶 WIFI</div>
+                    </div>
+                    <div class="access-code">NET_002</div>
                 </div>
+                <a href="/redes" class="panel-link"></a>
             </div>
-            <div class="card-footer">
-                <span class="progress-indicator active">1 tema completado</span>
-            </div>
-            <a href="/redes" class="card-overlay"></a>
         </div>
 
         <!-- Programación -->
-        <div class="category-card programming">
-            <div class="card-header">
-                <div class="card-icon">💻</div>
-                <h2>Programación</h2>
-            </div>
-            <div class="card-content">
-                <p>Lenguajes, frameworks y desarrollo de aplicaciones</p>
-                <div class="topics-grid">
-                    <span class="topic-tag completed">🧮 Fundamentos</span>
-                    <span class="topic-tag completed">🐍 Lenguajes</span>
-                    <span class="topic-tag completed">⚡ Desarrollo Web</span>
-                    <span class="topic-tag completed">🔄 DevOps</span>
+        <div class="hex-panel programming" data-category="programming">
+            <div class="hex-shape">
+                <div class="hex-border"></div>
+                <div class="hex-content">
+                    <div class="panel-header">
+                        <div class="tech-icon">💻</div>
+                        <div class="scan-line"></div>
+                    </div>
+                    <h3 class="panel-title">PROGRAMACIÓN</h3>
+                    <div class="status-bar">
+                        <div class="status-indicator active"></div>
+                        <span class="status-text">4 MÓDULOS ACTIVOS</span>
+                    </div>
+                    <div class="sub-modules">
+                        <div class="module">🧮 FUNDAMENTOS</div>
+                        <div class="module">🐍 LENGUAJES</div>
+                        <div class="module">⚡ DEV WEB</div>
+                        <div class="module">🔄 DEVOPS</div>
+                    </div>
+                    <div class="access-code">DEV_003</div>
                 </div>
+                <a href="/programacion" class="panel-link"></a>
             </div>
-            <div class="card-footer">
-                <span class="progress-indicator active">1 tema completado</span>
-            </div>
-            <a href="/programacion" class="card-overlay"></a>
         </div>
 
         <!-- Sistemas -->
-        <div class="category-card systems">
-            <div class="card-header">
-                <div class="card-icon">⚙️</div>
-                <h2>Sistemas</h2>
-            </div>
-            <div class="card-content">
-                <p>Administración de servidores e infraestructura</p>
-                <div class="topics-grid">
-                    <span class="topic-tag completed">🔐 Gobernanza</span>
-                    <span class="topic-tag completed">🐧 Sistemas Operativos</span>
-                    <span class="topic-tag completed">🖥️ Virtualización</span>
-                    <span class="topic-tag completed">⚙️ Administración</span>
+        <div class="hex-panel systems" data-category="systems">
+            <div class="hex-shape">
+                <div class="hex-border"></div>
+                <div class="hex-content">
+                    <div class="panel-header">
+                        <div class="tech-icon">⚙️</div>
+                        <div class="scan-line"></div>
+                    </div>
+                    <h3 class="panel-title">SISTEMAS</h3>
+                    <div class="status-bar">
+                        <div class="status-indicator active"></div>
+                        <span class="status-text">4 MÓDULOS ACTIVOS</span>
+                    </div>
+                    <div class="sub-modules">
+                        <div class="module">🔐 GOBERNANZA</div>
+                        <div class="module">🐧 S. OPERATIVOS</div>
+                        <div class="module">🖥️ VIRTUALIZACIÓN</div>
+                        <div class="module">⚙️ ADMINISTRACIÓN</div>
+                    </div>
+                    <div class="access-code">SYS_004</div>
                 </div>
+                <a href="/sistemas" class="panel-link"></a>
             </div>
-            <div class="card-footer">
-                <span class="progress-indicator active">5 temas completados</span>
-            </div>
-            <a href="/sistemas" class="card-overlay"></a>
         </div>
 
         <!-- Cloud -->
-        <div class="category-card cloud">
-            <div class="card-header">
-                <div class="card-icon">☁️</div>
-                <h2>Cloud</h2>
-            </div>
-            <div class="card-content">
-                <p>Servicios en la nube, AWS, Azure y arquitecturas cloud</p>
-                <div class="topics-grid">
-                    <span class="topic-tag completed">☁️ AWS</span>
-                    <span class="topic-tag coming-soon">🔷 Azure</span>
-                    <span class="topic-tag coming-soon">🔵 Google Cloud</span>
-                    <span class="topic-tag coming-soon">🏗️ Arquitectura</span>
+        <div class="hex-panel cloud" data-category="cloud">
+            <div class="hex-shape">
+                <div class="hex-border"></div>
+                <div class="hex-content">
+                    <div class="panel-header">
+                        <div class="tech-icon">☁️</div>
+                        <div class="scan-line"></div>
+                    </div>
+                    <h3 class="panel-title">CLOUD</h3>
+                    <div class="status-bar">
+                        <div class="status-indicator active"></div>
+                        <span class="status-text">4 MÓDULOS ACTIVOS</span>
+                    </div>
+                    <div class="sub-modules">
+                        <div class="module">☁️ AWS</div>
+                        <div class="module pending">🔷 AZURE</div>
+                        <div class="module pending">🔵 GOOGLE CLOUD</div>
+                        <div class="module pending">🏗️ ARQUITECTURA</div>
+                    </div>
+                    <div class="access-code">CLD_005</div>
                 </div>
+                <a href="/cloud" class="panel-link"></a>
             </div>
-            <div class="card-footer">
-                <span class="progress-indicator active">1 tema completado</span>
-            </div>
-            <a href="/cloud" class="card-overlay"></a>
         </div>
     </div>
+    
+    <!-- Líneas de conexión -->
+    <svg class="connection-lines">
+        <defs>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#00ffff;stop-opacity:0"/>
+                <stop offset="50%" style="stop-color:#00ffff;stop-opacity:1"/>
+                <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0"/>
+            </linearGradient>
+        </defs>
+    </svg>
 </div>
 
 <script>
-// Función simple para cargar categorías
-async function loadCategories() {
-    console.log('🚀 Iniciando carga de categorías...');
-    const grid = document.getElementById('categories-grid');
-    if (!grid) {
-        console.error('❌ No se encontró el elemento categories-grid');
-        return;
-    }
-    console.log('✅ Elemento grid encontrado');
-
-    const categories = [
-        { 
-            name: 'Ciberseguridad', 
-            slug: 'ciberseguridad', 
-            icon: '🔐', 
-            color: 'cyber',
-            jsonFile: 'search-ciberseguridad.json'
-        },
-        { 
-            name: 'Redes', 
-            slug: 'redes', 
-            icon: '🌐', 
-            color: 'networks',
-            jsonFile: 'search-redes.json'
-        },
-        { 
-            name: 'Programación', 
-            slug: 'programacion', 
-            icon: '💻', 
-            color: 'programming',
-            jsonFile: 'search-programacion.json'
-        },
-        { 
-            name: 'Sistemas', 
-            slug: 'sistemas', 
-            icon: '⚙️', 
-            color: 'systems',
-            jsonFile: 'search-sistemas.json'
-        },
-        { 
-            name: 'Cloud', 
-            slug: 'cloud', 
-            icon: '☁️', 
-            color: 'cloud',
-            jsonFile: 'search-cloud.json'
-        }
-    ];
-
-    try {
-        // Cargar datos de cada categoría
-        for (const category of categories) {
-            try {
-                const response = await fetch(`/${category.jsonFile}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    category.topics = data.pages || [];
-                    category.topicsCount = category.topics.length;
-                    category.completedCount = category.topics.filter(t => t.status === 'completed').length;
-                } else {
-                    category.topics = [];
-                    category.topicsCount = 0;
-                    category.completedCount = 0;
-                }
-            } catch (error) {
-                console.warn(`No se pudo cargar ${category.jsonFile}:`, error.message);
-                category.topics = [];
-                category.topicsCount = 0;
-                category.completedCount = 0;
-            }
-        }
-
-        console.log('✅ HTML generado, aplicando al DOM...');
-        console.log('🎉 Manteniendo diseño estático por ahora');
-
-    } catch (error) {
-        console.error('❌ Error cargando categorías:', error);
-        // No cambiar el contenido si hay error, mantener el fallback
-    }
-}
-
-// Inicializar cuando el DOM esté listo
-console.log('📋 Script de categorías cargado, esperando DOM...');
+// Animaciones de entrada escalonadas
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🎯 DOM listo, iniciando carga de categorías...');
-    loadCategories();
+    const panels = document.querySelectorAll('.hex-panel');
+    
+    panels.forEach((panel, index) => {
+        panel.style.animationDelay = `${index * 0.2}s`;
+        panel.classList.add('animate-in');
+    });
+
+    // Efecto de escaneo aleatorio
+    setInterval(() => {
+        const randomPanel = panels[Math.floor(Math.random() * panels.length)];
+        const scanLine = randomPanel.querySelector('.scan-line');
+        if (scanLine) {
+            scanLine.classList.add('scanning');
+            setTimeout(() => {
+                scanLine.classList.remove('scanning');
+            }, 2000);
+        }
+    }, 3000);
+
+    // Partículas flotantes
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach((particle, index) => {
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+    });
 });
 </script>
 
 <style>
     /* Container principal */
-    .categories-container {
+    .tech-hub-container {
+        position: relative;
         width: 100%;
-        margin: 0;
-        padding: 0;
+        min-height: 100vh;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(0, 255, 127, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+            linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        overflow: hidden;
+        padding: 2rem;
     }
 
-    /* Grid de categorías - Layout mejorado */
-    .categories-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 24px;
-        margin: 0;
-        padding: 0;
+    /* Partículas de fondo */
+    .particles-background {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
     }
-    
-    /* Cards de categorías */
-    .category-card {
-        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.98) 100%);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.25);
-        border-radius: 20px;
-        padding: 28px;
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    .particle {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #00ffff;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #00ffff;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { 
+            transform: translateY(0px) rotate(0deg); 
+            opacity: 0.3;
+        }
+        50% { 
+            transform: translateY(-20px) rotate(180deg); 
+            opacity: 1;
+        }
+    }
+
+    /* Grid hexagonal */
+    .hexagon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem 0;
         position: relative;
-        box-shadow: 
-            0 8px 32px rgba(0,0,0,0.08),
-            0 2px 8px rgba(0,0,0,0.04);
+        z-index: 2;
+    }
+
+    /* Panel hexagonal */
+    .hex-panel {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        max-width: 320px;
+        margin: 0 auto;
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+        animation: slideInUp 0.8s ease-out forwards;
+    }
+
+    @keyframes slideInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .hex-shape {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        background: linear-gradient(135deg, 
+            rgba(0, 255, 255, 0.05) 0%, 
+            rgba(0, 255, 127, 0.08) 50%, 
+            rgba(255, 0, 255, 0.05) 100%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 255, 255, 0.2);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
     }
 
-    .category-card::before {
-        content: '';
+    .hex-panel:hover .hex-shape {
+        transform: scale(1.05) rotateZ(2deg);
+        background: linear-gradient(135deg, 
+            rgba(0, 255, 255, 0.15) 0%, 
+            rgba(0, 255, 127, 0.18) 50%, 
+            rgba(255, 0, 255, 0.15) 100%);
+        border-color: rgba(0, 255, 255, 0.6);
+        box-shadow: 
+            0 0 30px rgba(0, 255, 255, 0.3),
+            inset 0 0 30px rgba(0, 255, 255, 0.1);
+    }
+
+    /* Borde hexagonal animado */
+    .hex-border {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        background: linear-gradient(45deg, 
+            transparent 30%, 
+            rgba(0, 255, 255, 0.5) 50%, 
+            transparent 70%);
+        background-size: 200% 200%;
+        animation: borderFlow 3s ease-in-out infinite;
         opacity: 0;
         transition: opacity 0.3s ease;
-        z-index: 2;
     }
 
-    .category-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 
-            0 20px 40px rgba(0,0,0,0.12),
-            0 8px 16px rgba(0,0,0,0.08);
-    }
-
-    .category-card:hover::before {
+    .hex-panel:hover .hex-border {
         opacity: 1;
     }
 
-    /* Overlay para hacer toda la card clickeable */
-    .card-overlay {
+    @keyframes borderFlow {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    /* Contenido del panel */
+    .hex-content {
+        position: absolute;
+        top: 15%;
+        left: 15%;
+        right: 15%;
+        bottom: 15%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1rem;
+        z-index: 3;
+    }
+
+    .panel-header {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .tech-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+
+    .scan-line {
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 200%;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            #00ffff 50%, 
+            transparent 100%);
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    .scan-line.scanning {
+        animation: scan 2s ease-in-out;
+    }
+
+    @keyframes scan {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(60px);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(140px);
+        }
+    }
+
+    .panel-title {
+        font-family: 'Courier New', monospace;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #00ffff;
+        letter-spacing: 2px;
+        margin: 0 0 1rem 0;
+        text-shadow: 0 0 10px #00ffff;
+    }
+
+    .status-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .status-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #00ff00;
+        box-shadow: 0 0 10px #00ff00;
+        animation: statusBlink 2s ease-in-out infinite;
+    }
+
+    .status-indicator.active {
+        background: #00ff00;
+        box-shadow: 0 0 10px #00ff00;
+    }
+
+    @keyframes statusBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+    }
+
+    .status-text {
+        font-family: 'Courier New', monospace;
+        font-size: 0.6rem;
+        color: #00ff7f;
+        letter-spacing: 1px;
+    }
+
+    .sub-modules {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+
+    .module {
+        font-family: 'Courier New', monospace;
+        font-size: 0.65rem;
+        color: #00ff7f;
+        padding: 0.2rem 0.5rem;
+        background: rgba(0, 255, 127, 0.1);
+        border: 1px solid rgba(0, 255, 127, 0.3);
+        border-radius: 3px;
+        text-align: left;
+        transition: all 0.3s ease;
+    }
+
+    .module.pending {
+        color: #ffaa00;
+        background: rgba(255, 170, 0, 0.1);
+        border-color: rgba(255, 170, 0, 0.3);
+    }
+
+    .access-code {
+        font-family: 'Courier New', monospace;
+        font-size: 0.7rem;
+        color: #ff00ff;
+        background: rgba(255, 0, 255, 0.1);
+        border: 1px solid rgba(255, 0, 255, 0.3);
+        padding: 0.3rem 0.8rem;
+        border-radius: 10px;
+        letter-spacing: 1px;
+        margin-top: auto;
+    }
+
+    .panel-link {
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
         text-decoration: none;
     }
 
-    /* Header de la card */
-    .card-header {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 2;
-    }
-
-    .card-icon {
-        width: 56px;
-        height: 56px;
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 26px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-        flex-shrink: 0;
-    }
-
-    .card-header h2 {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: #1f2937;
-        margin: 0;
-        line-height: 1.2;
-        flex: 1;
-    }
-
-    /* Contenido de la card */
-    .card-content {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        position: relative;
-        z-index: 2;
-    }
-
-    .card-content p {
-        color: #4b5563;
-        line-height: 1.6;
-        margin: 0;
-        font-size: 1rem;
-    }
-
-    .topics-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 0;
-    }
-
-    .topic-tag {
-        padding: 8px 14px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        display: inline-block;
-        white-space: nowrap;
-        border: 1px solid transparent;
-        position: relative;
-        z-index: 3;
-        cursor: default;
-    }
-
-    .topic-tag.completed {
-        background: #ecfdf5;
-        color: #065f46;
-        border-color: #a7f3d0;
-    }
-
-    .topic-tag.interactive {
-        background: #eff6ff;
-        color: #1e40af;
-        border-color: #93c5fd;
-    }
-
-    .topic-tag.coming-soon {
-        background: #fef3c7;
-        color: #92400e;
-        border-color: #fcd34d;
-        opacity: 0.7;
-    }
-
-    .topic-tag.planned {
-        background: #f3f4f6;
-        color: #6b7280;
-        border-color: #d1d5db;
-        opacity: 0.6;
-    }
-
-    /* Footer de la card */
-    .card-footer {
-        border-top: 1px solid rgba(0,0,0,0.1);
-        padding-top: 16px;
-        margin-top: 20px;
-        position: relative;
-        z-index: 2;
-    }
-
-    .progress-indicator {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #059669;
-    }
-
-    .progress-indicator.active {
-        color: #059669;
-    }
-
-    .progress-indicator.empty {
-        color: #6b7280;
-        font-style: italic;
-    }
-
     /* Colores específicos por categoría */
-    .category-card.cyber::before {
-        background: linear-gradient(90deg, #dc2626, #ef4444);
-    }
-    
-    .category-card.cyber .card-icon {
-        background: linear-gradient(135deg, #dc2626, #ef4444);
-        color: white;
+    .hex-panel.cyber:hover .hex-shape {
+        border-color: rgba(255, 0, 0, 0.6);
+        box-shadow: 
+            0 0 30px rgba(255, 0, 0, 0.3),
+            inset 0 0 30px rgba(255, 0, 0, 0.1);
     }
 
-    .category-card.networks::before {
-        background: linear-gradient(90deg, #2563eb, #3b82f6);
-    }
-    
-    .category-card.networks .card-icon {
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        color: white;
+    .hex-panel.networks:hover .hex-shape {
+        border-color: rgba(0, 123, 255, 0.6);
+        box-shadow: 
+            0 0 30px rgba(0, 123, 255, 0.3),
+            inset 0 0 30px rgba(0, 123, 255, 0.1);
     }
 
-    .category-card.programming::before {
-        background: linear-gradient(90deg, #7c3aed, #8b5cf6);
-    }
-    
-    .category-card.programming .card-icon {
-        background: linear-gradient(135deg, #7c3aed, #8b5cf6);
-        color: white;
+    .hex-panel.programming:hover .hex-shape {
+        border-color: rgba(138, 43, 226, 0.6);
+        box-shadow: 
+            0 0 30px rgba(138, 43, 226, 0.3),
+            inset 0 0 30px rgba(138, 43, 226, 0.1);
     }
 
-    .category-card.systems::before {
-        background: linear-gradient(90deg, #059669, #10b981);
-    }
-    
-    .category-card.systems .card-icon {
-        background: linear-gradient(135deg, #059669, #10b981);
-        color: white;
+    .hex-panel.systems:hover .hex-shape {
+        border-color: rgba(0, 255, 0, 0.6);
+        box-shadow: 
+            0 0 30px rgba(0, 255, 0, 0.3),
+            inset 0 0 30px rgba(0, 255, 0, 0.1);
     }
 
-    .category-card.cloud::before {
-        background: linear-gradient(90deg, #0891b2, #06b6d4);
-    }
-    
-    .category-card.cloud .card-icon {
-        background: linear-gradient(135deg, #0891b2, #06b6d4);
-        color: white;
+    .hex-panel.cloud:hover .hex-shape {
+        border-color: rgba(0, 191, 255, 0.6);
+        box-shadow: 
+            0 0 30px rgba(0, 191, 255, 0.3),
+            inset 0 0 30px rgba(0, 191, 255, 0.1);
     }
 
-    /* Estados de carga */
-    .loading-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 200px;
-        grid-column: 1 / -1;
+    /* Líneas de conexión */
+    .connection-lines {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
     }
 
-    .loading-animation {
-        text-align: center;
-    }
-
-    .loading-dots {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 16px;
-    }
-
-    .dot {
-        width: 8px;
-        height: 8px;
-        background: #6366f1;
-        border-radius: 50%;
-        animation: dotPulse 1.4s ease-in-out infinite both;
-    }
-
-    .dot-1 { animation-delay: -0.32s; }
-    .dot-2 { animation-delay: -0.16s; }
-    .dot-3 { animation-delay: 0s; }
-
-    @keyframes dotPulse {
-        0%, 80%, 100% { transform: scale(0); }
-        40% { transform: scale(1); }
-    }
-
-    .loading-text {
-        color: #6b7280;
-        font-size: 0.9rem;
-    }
-
-    .error-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 200px;
-        grid-column: 1 / -1;
-    }
-
-    .error-animation {
-        text-align: center;
-    }
-
-    /* Responsive Design */
+    /* Responsive */
     @media (max-width: 1200px) {
-        .categories-grid {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-    }
-
-    @media (max-width: 1024px) {
-        .categories-grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 18px;
-        }
-        
-        .category-card {
-            padding: 24px;
+        .hexagon-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
     }
 
     @media (max-width: 768px) {
-        .categories-grid {
+        .tech-hub-container {
+            padding: 1rem;
+        }
+        
+        .hexagon-grid {
             grid-template-columns: 1fr;
-            gap: 16px;
-            margin: 0;
+            gap: 2rem;
+            max-width: 300px;
         }
-
-        .category-card {
-            padding: 20px;
+        
+        .hex-panel {
+            max-width: 280px;
         }
-
-        .card-header {
-            gap: 14px;
-            margin-bottom: 18px;
+        
+        .tech-icon {
+            font-size: 2rem;
         }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
+        
+        .panel-title {
+            font-size: 0.9rem;
         }
-
-        .card-header h2 {
-            font-size: 1.4rem;
-        }
-
-        .card-content {
-            gap: 14px;
-        }
-
-        .card-content p {
-            font-size: 0.95rem;
-        }
-
-        .topics-grid {
-            gap: 6px;
-        }
-
-        .topic-tag {
-            font-size: 0.8rem;
-            padding: 6px 12px;
-        }
-
-        .card-footer {
-            padding-top: 14px;
-        }
-
-        .progress-indicator {
-            font-size: 0.85rem;
+        
+        .module {
+            font-size: 0.6rem;
         }
     }
 
     @media (max-width: 480px) {
-        .categories-grid {
-            gap: 12px;
-            margin: 0;
+        .hex-panel {
+            max-width: 250px;
         }
-
-        .category-card {
-            padding: 18px;
-            border-radius: 16px;
+        
+        .tech-icon {
+            font-size: 1.8rem;
         }
-
-        .card-header {
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .card-icon {
-            width: 46px;
-            height: 46px;
-            font-size: 22px;
-        }
-
-        .card-header h2 {
-            font-size: 1.3rem;
-        }
-
-        .card-content {
-            gap: 12px;
-        }
-
-        .card-content p {
-            font-size: 0.9rem;
-        }
-
-        .topics-grid {
-            gap: 5px;
-        }
-
-        .topic-tag {
-            font-size: 0.75rem;
-            padding: 5px 10px;
-        }
-
-        .card-footer {
-            padding-top: 12px;
-        }
-
-        .progress-indicator {
+        
+        .panel-title {
             font-size: 0.8rem;
+        }
+        
+        .module {
+            font-size: 0.55rem;
+            padding: 0.15rem 0.4rem;
+        }
+        
+        .access-code {
+            font-size: 0.6rem;
+            padding: 0.2rem 0.6rem;
         }
     }
 </style>
