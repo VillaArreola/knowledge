@@ -295,3 +295,5 @@ html {
     padding: 1rem;
   }
 }
+
+/* Los estilos de búsqueda ahora están en el componente CategorySearch.astro */

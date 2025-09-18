@@ -76,8 +76,67 @@ const description = "Índice dinámico de todos los temas de cloud cargado autom
                         Navega por los diferentes temas organizados por categorías especializadas
                     </p>
                     
-                    <!-- Búsqueda por categoría -->
-                    <CategorySearch category="cloud" placeholder="Buscar en Cloud..." />
+                                    <!-- Búsqueda por categoría -->
+                <div class="cloud-search">
+                    <CategorySearch 
+                        category="cloud" 
+                        placeholder="Buscar en Cloud..." 
+                        theme="light"
+                        className="cloud-theme"
+                    />
+                </div>
+
+                <style>
+                    .cloud-search {
+                        --search-bg-color: white;
+                        --search-text-color: #1f2937;
+                        --search-border-color: #e5e7eb;
+                        --search-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                        --search-focus-border-color: #6366f1;
+                        --search-focus-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 8px 25px rgba(0, 0, 0, 0.1);
+                        --search-icon-color: #6366f1;
+                        --results-bg-color: white;
+                        --results-border-color: #e5e7eb;
+                        --results-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                        --result-item-bg: #f9fafb;
+                        --result-item-border: #f3f4f6;
+                        --result-item-hover-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                        --result-item-hover-border: #6366f1;
+                        --result-item-hover-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+                        --result-title-color: #111827;
+                        --result-description-color: #4b5563;
+                        --result-hover-text-color: white;
+                        margin: 2rem auto 3rem auto;
+                        max-width: 500px;
+                    }
+
+                    .cloud-search :global(.search-input) {
+                        font-size: 1rem;
+                        padding: 1rem 1rem 1rem 3rem;
+                        border-radius: 1rem;
+                    }
+
+                    .cloud-search :global(.search-icon) {
+                        font-size: 1.1rem;
+                        left: 1rem;
+                    }
+
+                    .cloud-search :global(.search-results) {
+                        border-radius: 1rem;
+                    }
+
+                    @media (max-width: 768px) {
+                        .cloud-search {
+                            margin: 1.5rem auto 2rem auto;
+                            padding: 0 1rem;
+                        }
+
+                        .cloud-search :global(.search-input) {
+                            font-size: 16px;
+                            padding: 0.875rem 0.875rem 0.875rem 2.75rem;
+                        }
+                    }
+                </style>
                 </div>
                 
                 <!-- Dynamic Index -->
@@ -612,6 +671,8 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-bottom: 60px;
 }
 
+/* Los estilos de búsqueda están ahora en cloud.css */
+
 .content-section .section-title {
     font-size: 2.5rem;
     font-weight: 700;
@@ -821,6 +882,8 @@ document.addEventListener('DOMContentLoaded', function() {
         align-items: flex-start;
         gap: 12px;
     }
+    
+    /* Los estilos responsivos de búsqueda están en cloud.css */
 }
 </style>
 

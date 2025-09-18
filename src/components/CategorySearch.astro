@@ -3,12 +3,19 @@
 export interface Props {
     category: string;
     placeholder?: string;
+    theme?: 'light' | 'dark';
+    className?: string;
 }
 
-const { category, placeholder = "Buscar en esta categoría..." } = Astro.props;
+const { 
+    category, 
+    placeholder = "Buscar en esta categoría...",
+    theme = 'light',
+    className = ''
+} = Astro.props;
 ---
 
-<div class="category-search">
+<div class={`category-search theme-${theme} ${className}`}>
     <div class="search-container">
         <input 
             type="text" 
@@ -25,88 +32,138 @@ const { category, placeholder = "Buscar en esta categoría..." } = Astro.props;
     </div>
 </div>
 
-<style>
-    .category-search {
-        margin: 1rem 0;
-    }
-    
+<style is:global>
+/* Estilos GLOBALES para el componente de búsqueda */
+.category-search {
+    margin: 1rem 0;
+}
+
+.search-container {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 2px solid var(--search-border-color, #e5e7eb);
+    border-radius: 0.75rem;
+    background: var(--search-bg-color, white);
+    color: var(--search-text-color, #1f2937);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: var(--search-shadow, 0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--search-focus-border-color, #6366f1);
+    box-shadow: var(--search-focus-shadow, 0 0 0 4px rgba(99, 102, 241, 0.15));
+    transform: translateY(-1px);
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--search-icon-color, #6b7280);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+
+.search-result-item:hover .search-result-title,
+.search-result-item:hover .search-result-description {
+    color: var(--result-hover-text-color, white);
+}
+
+/* Tema claro (por defecto) */
+.theme-light {
+    --search-bg-color: white;
+    --search-text-color: #1f2937;
+    --search-border-color: #e5e7eb;
+    --search-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --search-focus-border-color: #6366f1;
+    --search-focus-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    --search-icon-color: #6b7280;
+    --results-bg-color: white;
+    --results-border-color: #e5e7eb;
+    --results-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --result-item-bg: #f9fafb;
+    --result-item-border: #f3f4f6;
+    --result-item-hover-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    --result-item-hover-border: #6366f1;
+    --result-item-hover-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+    --result-title-color: #111827;
+    --result-description-color: #4b5563;
+    --result-hover-text-color: white;
+}
+
+/* Tema oscuro */
+.theme-dark {
+    --search-bg-color: #1f2937;
+    --search-text-color: #f3f4f6;
+    --search-border-color: #374151;
+    --search-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --search-focus-border-color: #6366f1;
+    --search-focus-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+    --search-icon-color: #9ca3af;
+    --results-bg-color: #1f2937;
+    --results-border-color: #374151;
+    --results-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --result-item-bg: #111827;
+    --result-item-border: #374151;
+    --result-item-hover-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    --result-item-hover-border: #6366f1;
+    --result-item-hover-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    --result-title-color: #f3f4f6;
+    --result-description-color: #9ca3af;
+    --result-hover-text-color: white;
+}
+
+/* Estado de carga */
+.search-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    color: var(--search-text-color, #6b7280);
+    font-size: 0.9rem;
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--search-border-color, #e5e7eb);
+    border-top: 2px solid var(--search-focus-border-color, #6366f1);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
     .search-container {
-        position: relative;
-        max-width: 400px;
+        max-width: 100%;
     }
     
     .search-input {
-        width: 100%;
-        padding: 0.75rem 1rem 0.75rem 2.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 0.5rem;
-        background: rgba(255, 255, 255, 0.05);
-        color: white;
-        font-size: 0.9rem;
-        backdrop-filter: blur(10px);
-        transition: all 0.2s ease;
-    }
-    
-    .search-input:focus {
-        outline: none;
-        border-color: #6366f1;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-    }
-    
-    .search-icon {
-        position: absolute;
-        left: 0.75rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 0.9rem;
+        font-size: 16px;
     }
     
     .search-results {
-        margin-top: 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 0.5rem;
-        padding: 1rem;
-        backdrop-filter: blur(10px);
+        margin-top: 0.5rem;
+        max-height: 300px;
     }
-    
-    .search-result-item {
-        padding: 0.75rem;
-        border-radius: 0.375rem;
-        margin-bottom: 0.5rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        transition: all 0.2s ease;
-        cursor: pointer;
-    }
-    
-    .search-result-item:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(99, 102, 241, 0.3);
-    }
-    
-    .search-result-item:last-child {
-        margin-bottom: 0;
-    }
-    
-    .search-result-title {
-        font-weight: 600;
-        color: white;
-        margin-bottom: 0.25rem;
-    }
-    
-    .search-result-description {
-        font-size: 0.85rem;
-        color: rgba(255, 255, 255, 0.7);
-    }
-    
-    .no-results {
-        text-align: center;
-        color: rgba(255, 255, 255, 0.6);
-        font-style: italic;
-        padding: 1rem;
-    }
+}
 </style>
 
 <script>
@@ -124,6 +181,53 @@ class CategorySearch {
     async init() {
         await this.loadSearchData();
         this.setupEventListeners();
+        this.applyInputStyles();
+    }
+    
+    applyInputStyles() {
+        // Aplicar estilos al campo de entrada
+        this.searchInput.style.width = '100%';
+        this.searchInput.style.padding = '0.75rem 1rem 0.75rem 2.5rem';
+        this.searchInput.style.border = '2px solid #e5e7eb';
+        this.searchInput.style.borderRadius = '0.75rem';
+        this.searchInput.style.background = 'white';
+        this.searchInput.style.color = '#1f2937';
+        this.searchInput.style.fontSize = '0.95rem';
+        this.searchInput.style.fontWeight = '500';
+        this.searchInput.style.transition = 'all 0.3s ease';
+        this.searchInput.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.05)';
+        
+        // Aplicar estilos al contenedor
+        const container = this.searchInput.parentElement;
+        container.style.position = 'relative';
+        container.style.maxWidth = '400px';
+        container.style.margin = '0 auto';
+        
+        // Aplicar estilos al icono
+        const icon = container.querySelector('.search-icon');
+        if (icon) {
+            icon.style.position = 'absolute';
+            icon.style.left = '0.75rem';
+            icon.style.top = '50%';
+            icon.style.transform = 'translateY(-50%)';
+            icon.style.color = '#6b7280';
+            icon.style.fontSize = '1rem';
+            icon.style.pointerEvents = 'none';
+        }
+        
+        // Eventos de focus
+        this.searchInput.addEventListener('focus', () => {
+            this.searchInput.style.outline = 'none';
+            this.searchInput.style.borderColor = '#6366f1';
+            this.searchInput.style.boxShadow = '0 0 0 4px rgba(99, 102, 241, 0.15)';
+            this.searchInput.style.transform = 'translateY(-1px)';
+        });
+        
+        this.searchInput.addEventListener('blur', () => {
+            this.searchInput.style.borderColor = '#e5e7eb';
+            this.searchInput.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.05)';
+            this.searchInput.style.transform = 'translateY(0)';
+        });
     }
     
     async loadSearchData() {
@@ -168,12 +272,28 @@ class CategorySearch {
             return;
         }
         
-        const results = this.searchData.pages.filter(page => {
-            const searchText = `${page.title} ${page.description} ${page.tags?.join(' ') || ''}`.toLowerCase();
-            return searchText.includes(query.toLowerCase());
-        });
+        // Mostrar estado de carga
+        this.showLoadingState();
         
-        this.displayResults(results, query);
+        // Simular un pequeño delay para mejor UX
+        setTimeout(() => {
+            const results = this.searchData.pages.filter(page => {
+                const searchText = `${page.title} ${page.description} ${page.tags?.join(' ') || ''}`.toLowerCase();
+                return searchText.includes(query.toLowerCase());
+            });
+            
+            this.displayResults(results, query);
+        }, 150);
+    }
+    
+    showLoadingState() {
+        this.resultsContainer.innerHTML = `
+            <div class="search-loading">
+                <div class="loading-spinner"></div>
+                <span>Buscando...</span>
+            </div>
+        `;
+        this.showResults();
     }
     
     displayResults(results, query) {
@@ -203,6 +323,96 @@ class CategorySearch {
     
     showResults() {
         this.resultsContainer.style.display = 'block';
+        // Aplicar estilos completos al contenedor de resultados
+        this.resultsContainer.style.marginTop = '0.75rem';
+        this.resultsContainer.style.background = 'white';
+        this.resultsContainer.style.border = '2px solid #e5e7eb';
+        this.resultsContainer.style.borderRadius = '0.75rem';
+        this.resultsContainer.style.padding = '0.75rem';
+        this.resultsContainer.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+        this.resultsContainer.style.zIndex = '1000';
+        this.resultsContainer.style.maxHeight = '400px';
+        this.resultsContainer.style.overflowY = 'auto';
+        this.resultsContainer.style.position = 'relative';
+        
+        // Aplicar estilos CSS a todos los elementos dentro del contenedor
+        const style = document.createElement('style');
+        style.textContent = `
+            #search-results .search-result-item {
+                padding: 0.875rem !important;
+                border-radius: 0.5rem !important;
+                margin-bottom: 0.5rem !important;
+                background: #f9fafb !important;
+                border: 1px solid #f3f4f6 !important;
+                transition: all 0.3s ease !important;
+                cursor: pointer !important;
+            }
+            #search-results .search-result-item:hover {
+                background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+                border-color: #6366f1 !important;
+                transform: translateY(-2px) !important;
+                box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25) !important;
+            }
+            #search-results .search-result-title {
+                font-weight: 600 !important;
+                color: #111827 !important;
+                margin-bottom: 0.375rem !important;
+                transition: color 0.3s ease !important;
+                font-size: 0.95rem !important;
+                line-height: 1.4 !important;
+            }
+            #search-results .search-result-description {
+                font-size: 0.875rem !important;
+                color: #4b5563 !important;
+                transition: color 0.3s ease !important;
+                line-height: 1.5 !important;
+            }
+            #search-results .search-result-item:hover .search-result-title,
+            #search-results .search-result-item:hover .search-result-description {
+                color: white !important;
+            }
+            #search-results .no-results {
+                text-align: center !important;
+                color: #6b7280 !important;
+                font-style: italic !important;
+                padding: 1.5rem !important;
+                background: #f9fafb !important;
+                border-radius: 0.5rem !important;
+                border: 1px solid #f3f4f6 !important;
+                font-size: 0.9rem !important;
+            }
+            #search-results .search-loading {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 0.75rem !important;
+                padding: 1.5rem !important;
+                color: #6b7280 !important;
+                font-size: 0.9rem !important;
+            }
+            #search-results .loading-spinner {
+                width: 20px !important;
+                height: 20px !important;
+                border: 2px solid #e5e7eb !important;
+                border-top: 2px solid #6366f1 !important;
+                border-radius: 50% !important;
+                animation: spin 1s linear infinite !important;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        
+        // Eliminar estilos previos si existen
+        const existingStyle = document.getElementById('search-results-styles');
+        if (existingStyle) {
+            existingStyle.remove();
+        }
+        
+        // Agregar los nuevos estilos
+        style.id = 'search-results-styles';
+        document.head.appendChild(style);
     }
     
     hideResults() {
