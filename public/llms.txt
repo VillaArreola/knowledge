@@ -1,0 +1,51 @@
+# Knowledge Base - kb.villaarreola.com
+
+> Base de conocimiento técnico personal sobre redes, sistemas, ciberseguridad, cloud y programación. Contiene notas de estudio, guías prácticas y preparación para certificaciones de TI.
+
+## Categorías principales
+
+- [Redes](https://kb.villaarreola.com/redes): Infraestructura de redes, conmutación, enrutamiento y conectividad
+- [Sistemas](https://kb.villaarreola.com/sistemas): Sistemas operativos, virtualización y gobernanza de TI
+- [Ciberseguridad](https://kb.villaarreola.com/ciberseguridad): Fundamentos de seguridad, criptografía, normativas y redes seguras
+- [Cloud](https://kb.villaarreola.com/cloud): Computación en la nube con enfoque en AWS
+- [Programación](https://kb.villaarreola.com/programacion): Fundamentos de programación y algoritmos
+
+## Certificaciones
+
+- [Cisco 200-301 (CCNA)](https://kb.villaarreola.com/cert/200-301): Guía de estudio para la certificación CCNA de Cisco
+- [Microsoft AI-900](https://kb.villaarreola.com/cert/AI-900): Fundamentos de inteligencia artificial en Azure
+- [AWS CLF-C02](https://kb.villaarreola.com/cert/CLF-C02): AWS Certified Cloud Practitioner
+- [CompTIA SY0-701 (Security+)](https://kb.villaarreola.com/cert/SY0-701): Certificación de seguridad CompTIA
+- [Fortinet NSE4 FGT-7.2](https://kb.villaarreola.com/cert/NSE4_FGT-7.2): Administración de FortiGate
+- [CFE](https://kb.villaarreola.com/cert/CFE): Certified Fraud Examiner
+
+## Redes
+
+- [Switching](https://kb.villaarreola.com/redes/switching): Conmutación de paquetes y gestión de VLANs
+- [WiFi](https://kb.villaarreola.com/redes/wifi): Redes inalámbricas y estándares 802.11
+- [SD-WAN](https://kb.villaarreola.com/redes/sdwan): Software-Defined WAN, conceptos y configuración
+- [TCP/IP Fundamentos](https://kb.villaarreola.com/redes/fundamentos/tcp-ip): Modelo TCP/IP, direccionamiento y protocolos
+
+## Sistemas
+
+- [IAM](https://kb.villaarreola.com/sistemas/gobernanza/iam): Gestión de identidades y accesos
+- [Linux](https://kb.villaarreola.com/sistemas/operativos/linux): Administración de sistemas Linux
+- [Virtualización](https://kb.villaarreola.com/sistemas/virtualizacion/virtualizacion): Conceptos de virtualización
+- [VMware](https://kb.villaarreola.com/sistemas/virtualizacion/vmware): Administración de entornos VMware
+
+## Ciberseguridad
+
+- [Criptografía](https://kb.villaarreola.com/ciberseguridad/criptografia/criptografia): Fundamentos de criptografía simétrica y asimétrica
+- [PKI](https://kb.villaarreola.com/ciberseguridad/criptografia/pki): Infraestructura de clave pública
+- [Triada CIA](https://kb.villaarreola.com/ciberseguridad/fundamentos/cia): Confidencialidad, Integridad y Disponibilidad
+- [NIST](https://kb.villaarreola.com/ciberseguridad/fundamentos/nist): Marco de ciberseguridad NIST
+- [Controles de Ciberseguridad](https://kb.villaarreola.com/ciberseguridad/fundamentos/control-ciberseguridad): Controles técnicos y administrativos
+- [Firewall](https://kb.villaarreola.com/ciberseguridad/redes-seguras/firewall): Configuración y tipos de firewalls
+
+## Cloud
+
+- [AWS](https://kb.villaarreola.com/cloud/aws/aws): Servicios principales de Amazon Web Services
+
+## Programación
+
+- [Algoritmos](https://kb.villaarreola.com/programacion/fundamentos/algoritmos): Estructuras de datos y algoritmos fundamentales
