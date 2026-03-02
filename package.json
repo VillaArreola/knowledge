@@ -5,18 +5,22 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "generate": "node src/scripts/generateSimple.cjs",
-    "update": "npm run generate && npm run build"
+    "update": "npm run generate && npm run build",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/sitemap": "^3.7.0",
     "@tailwindcss/vite": "^4.1.11",
     "typescript": "^5.9.2"
   },
   "devDependencies": {
-    "astro": "^5.18.0"
+    "astro": "^5.18.0",
+    "wrangler": "^4.69.0"
   }
 }
