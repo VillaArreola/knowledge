@@ -5,10 +5,21 @@ import '../styles/global.css';
 export interface Props {
   title: string;
   description?: string;
-  showHeader?: boolean; // Add a prop to control the visibility of the header
+  image?: string;
+  canonicalURL?: string;
+  showHeader?: boolean;
 }
 
-const { title, description = "Knowledge Base", showHeader = true } = Astro.props;
+const {
+  title,
+  description = "Base de conocimiento técnico personal sobre redes, sistemas, ciberseguridad, cloud y programación.",
+  image = "/android-chrome-512x512.png",
+  canonicalURL = Astro.url.href,
+  showHeader = true,
+} = Astro.props;
+
+const SITE_NAME = "Knowledge Base";
+const SITE_URL  = "https://kb.villaarreola.com";
 ---
 
 <!DOCTYPE html>
@@ -16,10 +27,35 @@ const { title, description = "Knowledge Base", showHeader = true } = Astro.props
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title} | Knowledge Base</title>
+  <title>{title} | {SITE_NAME}</title>
   <meta name="description" content={description}>
+  <link rel="canonical" href={canonicalURL}>
+
+  <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#1e293b">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content={SITE_NAME}>
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:title" content={`${title} | ${SITE_NAME}`}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={`${SITE_URL}${image}`}>
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content={`${title} | ${SITE_NAME}`}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={`${SITE_URL}${image}`}>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +71,10 @@ const { title, description = "Knowledge Base", showHeader = true } = Astro.props
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
             <div class="flex items-center space-x-4">
-              <h1 class="text-2xl text-white font-bold gradient-text">🎓 Knowledge</h1>
+              <h1 class="text-2xl text-white font-bold gradient-text flex items-center gap-2">
+                <img src="/android-chrome-192x192.png" alt="Knowledge Base" class="w-7 h-7 rounded" />
+                Knowledge
+              </h1>
             </div>
             
             <div class="flex items-center space-x-4">
