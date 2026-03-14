@@ -7,16 +7,23 @@
     "build": "astro build",
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
+    "notion-sync": "node src/scripts/notionSync.cjs",
+    "publish-content": "npm run notion-pull -- --force && npm run notion-sync -- --force && npm run update",
     "generate": "node src/scripts/generateSimple.cjs",
     "update": "npm run generate && npm run build",
     "deploy": "npm run build && wrangler deploy",
+    "notion-pull": "node src/scripts/notionPull.cjs",
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/sitemap": "^3.7.0",
+    "@notionhq/client": "^5.12.0",
     "@tailwindcss/vite": "^4.1.11",
+    "dotenv": "^17.3.1",
+    "marked": "^17.0.4",
+    "notion-to-md": "^3.1.9",
     "typescript": "^5.9.2"
   },
   "devDependencies": {

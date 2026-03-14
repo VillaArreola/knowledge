@@ -1,0 +1,11 @@
+{
+  "title": "Data",
+  "slug": "Dato",
+  "icon": "📄",
+  "status": "completed",
+  "order": 1,
+  "description": "🎯 Objetivo Portafolio técnico público con visualización interactiva del homelab. Permite navegar la topología de infraestructura, exportar diagramas y conversa",
+  "tags": [
+    "TCP/IP"
+  ]
+}

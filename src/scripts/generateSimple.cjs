@@ -44,7 +44,10 @@ function generateSimpleSystem() {
     const categoryIndexes = {};
     const certificationIndexes = {};
     
-    const categories = ['sistemas', 'ciberseguridad', 'redes', 'programacion', 'cloud'];
+    const siteConfigData = JSON.parse(
+        fs.readFileSync(path.join(__dirname, '../data/site-config.json'), 'utf-8')
+    );
+    const categories = siteConfigData.categories.map(c => c.slug);
     
     // Cargar configuración de certificaciones
     const certificationsConfigPath = path.join(__dirname, '../data/certifications/index.json');

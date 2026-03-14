@@ -1,143 +1,6 @@
 {
   "pages": [
     {
-      "title": "IAM - Gestión de Identidades y Accesos",
-      "slug": "iam",
-      "icon": "🔐",
-      "status": "completed",
-      "order": 1,
-      "description": "Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual",
-      "tags": [
-        "IAM",
-        "identidad",
-        "acceso",
-        "gestión",
-        "seguridad",
-        "autenticación",
-        "autorización"
-      ],
-      "certifications": [
-        {
-          "code": "SY0-701",
-          "weight": 4.3,
-          "domain": "Identity and Access Management"
-        },
-        {
-          "code": "CLF-C02",
-          "weight": 3.5,
-          "domain": "Technology"
-        }
-      ],
-      "category": "Sistemas",
-      "section": "gobernanza",
-      "url": "/sistemas/gobernanza/iam",
-      "searchContent": "IAM - Gestión de Identidades y Accesos Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual IAM identidad acceso gestión seguridad autenticación autorización"
-    },
-    {
-      "title": "Linux - Sistema Operativo",
-      "slug": "linux",
-      "icon": "🐧",
-      "status": "completed",
-      "order": 1,
-      "description": "Sistema operativo de código abierto basado en Unix",
-      "tags": [
-        "Linux",
-        "Unix",
-        "sistema operativo",
-        "open source",
-        "servidor"
-      ],
-      "certifications": [
-        {
-          "code": "CLF-C02",
-          "weight": 3.5,
-          "domain": "Technology"
-        }
-      ],
-      "category": "Sistemas",
-      "section": "operativos",
-      "url": "/sistemas/operativos/linux",
-      "searchContent": "Linux - Sistema Operativo Sistema operativo de código abierto basado en Unix Linux Unix sistema operativo open source servidor"
-    },
-    {
-      "title": "prueba",
-      "slug": "prueba1",
-      "icon": "🖥️",
-      "status": "completed",
-      "order": 1,
-      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
-      "tags": [
-        "virtualización",
-        "VM",
-        "hipervisor",
-        "contenedores",
-        "cloud"
-      ],
-      "certifications": [
-        {
-          "code": "CLF-C02",
-          "weight": 3.5,
-          "domain": "Technology"
-        }
-      ],
-      "category": "Sistemas",
-      "section": "virtualizacion",
-      "url": "/sistemas/virtualizacion/prueba1",
-      "searchContent": "prueba Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
-    },
-    {
-      "title": "Virtualización - Gestión de Máquinas Virtuales",
-      "slug": "virtualizacion",
-      "icon": "🖥️",
-      "status": "completed",
-      "order": 1,
-      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
-      "tags": [
-        "virtualización",
-        "VM",
-        "hipervisor",
-        "contenedores",
-        "cloud"
-      ],
-      "certifications": [
-        {
-          "code": "CLF-C02",
-          "weight": 3.5,
-          "domain": "Technology"
-        }
-      ],
-      "category": "Sistemas",
-      "section": "virtualizacion",
-      "url": "/sistemas/virtualizacion/virtualizacion",
-      "searchContent": "Virtualización - Gestión de Máquinas Virtuales Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
-    },
-    {
-      "title": "Virtualización en Vmware",
-      "slug": "vmware",
-      "icon": "🖥️",
-      "status": "completed",
-      "order": 1,
-      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
-      "tags": [
-        "virtualización",
-        "VM",
-        "hipervisor",
-        "contenedores",
-        "cloud"
-      ],
-      "certifications": [
-        {
-          "code": "CLF-C02",
-          "weight": 3.5,
-          "domain": "Technology"
-        }
-      ],
-      "category": "Sistemas",
-      "section": "virtualizacion",
-      "url": "/sistemas/virtualizacion/vmware",
-      "searchContent": "Virtualización en Vmware Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
-    },
-    {
       "title": "Criptografía - Fundamentos de Seguridad Digital",
       "slug": "criptografia",
       "icon": "🔒",
@@ -332,6 +195,36 @@
       "searchContent": "Firewall - Cortafuegos de Red Sistemas de protección perimetral para redes corporativas firewall cortafuegos seguridad redes perimetro"
     },
     {
+      "title": "Sin título",
+      "slug": "homelab",
+      "icon": "🖌️",
+      "status": "completed",
+      "order": 1,
+      "description": "test",
+      "tags": [
+        "PKI"
+      ],
+      "category": "Ciberseguridad",
+      "section": "redes-seguras",
+      "url": "/ciberseguridad/redes-seguras/homelab",
+      "searchContent": "Sin título test PKI"
+    },
+    {
+      "title": "Sin título",
+      "slug": "bit",
+      "icon": "🖍️",
+      "status": "completed",
+      "order": 1,
+      "description": "test",
+      "tags": [
+        "Firewall"
+      ],
+      "category": "Redes",
+      "section": "firewall",
+      "url": "/redes/firewall/bit",
+      "searchContent": "Sin título test Firewall"
+    },
+    {
       "title": "TCP/IP - Protocolo de Internet",
       "slug": "tcp-ip",
       "icon": "🌐",
@@ -357,6 +250,173 @@
       "section": "fundamentos",
       "url": "/redes/fundamentos/tcp-ip",
       "searchContent": "TCP/IP - Protocolo de Internet Protocolo fundamental de comunicación en redes TCP IP protocolo redes internet comunicacion"
+    },
+    {
+      "title": "Sin título",
+      "slug": "sistem",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Contenido sobre Sin título",
+      "tags": [
+        "Redes"
+      ],
+      "category": "Sistemas",
+      "section": "cloud",
+      "url": "/sistemas/cloud/sistem",
+      "searchContent": "Sin título Contenido sobre Sin título Redes"
+    },
+    {
+      "title": "IAM - Gestión de Identidades y Accesos",
+      "slug": "iam",
+      "icon": "🔐",
+      "status": "completed",
+      "order": 1,
+      "description": "Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual",
+      "tags": [
+        "IAM",
+        "identidad",
+        "acceso",
+        "gestión",
+        "seguridad",
+        "autenticación",
+        "autorización"
+      ],
+      "certifications": [
+        {
+          "code": "SY0-701",
+          "weight": 4.3,
+          "domain": "Identity and Access Management"
+        },
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "gobernanza",
+      "url": "/sistemas/gobernanza/iam",
+      "searchContent": "IAM - Gestión de Identidades y Accesos Descubre qué es IAM, cómo funciona, sus componentes clave y su importancia en la seguridad digital actual IAM identidad acceso gestión seguridad autenticación autorización"
+    },
+    {
+      "title": "Linux - Sistema Operativo",
+      "slug": "linux",
+      "icon": "🐧",
+      "status": "completed",
+      "order": 1,
+      "description": "Sistema operativo de código abierto basado en Unix",
+      "tags": [
+        "Linux",
+        "Unix",
+        "sistema operativo",
+        "open source",
+        "servidor"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "operativos",
+      "url": "/sistemas/operativos/linux",
+      "searchContent": "Linux - Sistema Operativo Sistema operativo de código abierto basado en Unix Linux Unix sistema operativo open source servidor"
+    },
+    {
+      "title": "prueba",
+      "slug": "prueba1",
+      "icon": "🖥️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
+      "tags": [
+        "virtualización",
+        "VM",
+        "hipervisor",
+        "contenedores",
+        "cloud"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "virtualizacion",
+      "url": "/sistemas/virtualizacion/prueba1",
+      "searchContent": "prueba Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
+    },
+    {
+      "title": "Virtualización - Gestión de Máquinas Virtuales",
+      "slug": "virtualizacion",
+      "icon": "🖥️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
+      "tags": [
+        "virtualización",
+        "VM",
+        "hipervisor",
+        "contenedores",
+        "cloud"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "virtualizacion",
+      "url": "/sistemas/virtualizacion/virtualizacion",
+      "searchContent": "Virtualización - Gestión de Máquinas Virtuales Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
+    },
+    {
+      "title": "Virtualización en Vmware",
+      "slug": "vmware",
+      "icon": "🖥️",
+      "status": "completed",
+      "order": 1,
+      "description": "Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales",
+      "tags": [
+        "virtualización",
+        "VM",
+        "hipervisor",
+        "contenedores",
+        "cloud"
+      ],
+      "certifications": [
+        {
+          "code": "CLF-C02",
+          "weight": 3.5,
+          "domain": "Technology"
+        }
+      ],
+      "category": "Sistemas",
+      "section": "virtualizacion",
+      "url": "/sistemas/virtualizacion/vmware",
+      "searchContent": "Virtualización en Vmware Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales virtualización VM hipervisor contenedores cloud"
+    },
+    {
+      "title": "Sin título",
+      "slug": "openciti",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Contenido sobre Sin título",
+      "tags": [
+        "Automatización"
+      ],
+      "category": "Programacion",
+      "section": "azure",
+      "url": "/programacion/azure/openciti",
+      "searchContent": "Sin título Contenido sobre Sin título Automatización"
     },
     {
       "title": "Algoritmos - Fundamentos de Programación",
@@ -408,14 +468,72 @@
       "section": "aws",
       "url": "/cloud/aws/aws",
       "searchContent": "AWS - Amazon Web Services Fundamentos de AWS, servicios principales y arquitectura en la nube AWS cloud computación servicios infraestructura"
+    },
+    {
+      "title": "Sin título",
+      "slug": "whonix",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Contenido sobre Sin título",
+      "tags": [
+        "S3",
+        "EC2"
+      ],
+      "category": "Cloud",
+      "section": "security",
+      "url": "/cloud/security/whonix",
+      "searchContent": "Sin título Contenido sobre Sin título S3 EC2"
+    },
+    {
+      "title": "Sin título",
+      "slug": "robots",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Contenido sobre Sin título",
+      "category": "Robotica",
+      "section": "ai",
+      "url": "/robotica/ai/robots",
+      "searchContent": "Sin título Contenido sobre Sin título "
+    },
+    {
+      "title": "Sin título",
+      "slug": "arduino",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Contenido sobre Sin título",
+      "category": "Arduino",
+      "section": "firewall",
+      "url": "/arduino/firewall/arduino",
+      "searchContent": "Sin título Contenido sobre Sin título "
+    },
+    {
+      "title": "Data",
+      "slug": "Dato",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "🎯 Objetivo Portafolio técnico público con visualización interactiva del homelab. Permite navegar la topología de infraestructura, exportar diagramas y conversa",
+      "tags": [
+        "TCP/IP"
+      ],
+      "category": "Datacenters",
+      "section": "fundamentos",
+      "url": "/datacenters/fundamentos/Dato",
+      "searchContent": "Data 🎯 Objetivo Portafolio técnico público con visualización interactiva del homelab. Permite navegar la topología de infraestructura, exportar diagramas y conversa TCP/IP"
     }
   ],
   "categories": [
-    "sistemas",
     "ciberseguridad",
     "redes",
+    "sistemas",
     "programacion",
-    "cloud"
+    "cloud",
+    "robotica",
+    "arduino",
+    "datacenters"
   ],
-  "lastUpdated": "2025-08-30T15:29:15.583Z"
+  "lastUpdated": "2026-03-14T13:29:01.044Z"
 }

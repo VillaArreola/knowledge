@@ -1,6 +1,21 @@
 {
   "pages": [
     {
+      "title": "Sin título",
+      "slug": "openciti",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Contenido sobre Sin título",
+      "tags": [
+        "Automatización"
+      ],
+      "category": "Programacion",
+      "section": "azure",
+      "url": "/programacion/azure/openciti",
+      "searchContent": "Sin título Contenido sobre Sin título Automatización"
+    },
+    {
       "title": "Algoritmos - Fundamentos de Programación",
       "slug": "algoritmos",
       "icon": "⚡",

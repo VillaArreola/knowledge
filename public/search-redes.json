@@ -1,6 +1,21 @@
 {
   "pages": [
     {
+      "title": "Sin título",
+      "slug": "bit",
+      "icon": "🖍️",
+      "status": "completed",
+      "order": 1,
+      "description": "test",
+      "tags": [
+        "Firewall"
+      ],
+      "category": "Redes",
+      "section": "firewall",
+      "url": "/redes/firewall/bit",
+      "searchContent": "Sin título test Firewall"
+    },
+    {
       "title": "TCP/IP - Protocolo de Internet",
       "slug": "tcp-ip",
       "icon": "🌐",

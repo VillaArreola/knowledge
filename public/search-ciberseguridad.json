@@ -193,6 +193,21 @@
       "section": "redes-seguras",
       "url": "/ciberseguridad/redes-seguras/firewall",
       "searchContent": "Firewall - Cortafuegos de Red Sistemas de protección perimetral para redes corporativas firewall cortafuegos seguridad redes perimetro"
+    },
+    {
+      "title": "Sin título",
+      "slug": "homelab",
+      "icon": "🖌️",
+      "status": "completed",
+      "order": 1,
+      "description": "test",
+      "tags": [
+        "PKI"
+      ],
+      "category": "Ciberseguridad",
+      "section": "redes-seguras",
+      "url": "/ciberseguridad/redes-seguras/homelab",
+      "searchContent": "Sin título test PKI"
     }
   ]
 }

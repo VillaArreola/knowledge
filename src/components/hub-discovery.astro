@@ -1,0 +1,409 @@
+---
+import siteConfig from '../data/site-config.json';
+const categories = siteConfig.categories;
+---
+
+<section class="discovery">
+
+  <!-- Row 1: Categories (build-time links) -->
+  <div class="disc-row">
+    <span class="disc-label">Categorías</span>
+    <div class="disc-chips">
+      {categories.map((cat: { slug: string; icon: string; name: string }) => (
+        <a href={`/${cat.slug}`} class="cat-chip">
+          <span>{cat.icon}</span>
+          <span>{cat.name}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- Row 2: Tags (runtime, filled by JS) -->
+  <div class="disc-row">
+    <span class="disc-label">Tecnologías</span>
+    <div class="disc-chips" id="tagChips">
+      <span class="chips-loading">…</span>
+    </div>
+  </div>
+
+  <!-- Row 3: Certifications (runtime, filled by JS) -->
+  <div class="disc-row">
+    <span class="disc-label">Certificaciones</span>
+    <div class="disc-chips" id="certChips">
+      <span class="chips-loading">…</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- Filtered results area (hidden by default) -->
+<div id="filteredResults" class="filtered-results" style="display:none">
+  <div class="filter-header">
+    <span id="filterLabel" class="filter-label-text"></span>
+    <button id="clearFilter" class="clear-filter-btn">✕ Quitar filtro</button>
+  </div>
+  <div class="filtered-grid" id="filteredGrid"></div>
+</div>
+
+<script>
+let discoveryIndex: Array<{
+  url: string;
+  title: string;
+  icon: string;
+  description: string;
+  category: string;
+  tags?: string[];
+  certifications?: Array<{ code: string; weight: number; domain: string }>;
+}> = [];
+let activeFilter: { type: 'tag' | 'cert'; value: string } | null = null;
+
+async function initDiscovery() {
+  try {
+    const res = await fetch('/search-index.json');
+    const data = await res.json();
+    discoveryIndex = data.pages;
+
+    // Tags: count frequency → top 20
+    const tagFreq: Record<string, number> = {};
+    discoveryIndex.forEach(p => p.tags?.forEach((t: string) => { tagFreq[t] = (tagFreq[t] || 0) + 1; }));
+    const topTags = Object.entries(tagFreq)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 20)
+      .map(([t]) => t);
+
+    // Certs: unique codes
+    const certSet = new Set<string>();
+    discoveryIndex.forEach(p => p.certifications?.forEach((c: { code: string }) => certSet.add(c.code)));
+
+    renderChips('tagChips', topTags, 'tag');
+    renderChips('certChips', [...certSet], 'cert');
+  } catch (e) {
+    const tagEl = document.getElementById('tagChips');
+    const certEl = document.getElementById('certChips');
+    if (tagEl) tagEl.innerHTML = '';
+    if (certEl) certEl.innerHTML = '';
+  }
+}
+
+function renderChips(containerId: string, items: string[], type: 'tag' | 'cert') {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+
+  if (items.length === 0) return;
+
+  items.forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = type === 'tag' ? 'tag-chip' : 'cert-chip';
+    const tagIcon = `<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:3px;opacity:0.75"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`;
+    btn.innerHTML = type === 'tag' ? `${tagIcon}${item}` : item;
+    btn.dataset.type = type;
+    btn.dataset.value = item;
+    btn.addEventListener('click', () => {
+      if (activeFilter?.type === type && activeFilter?.value === item) {
+        clearFilterFn();
+      } else {
+        applyFilter(type, item);
+      }
+    });
+    container.appendChild(btn);
+  });
+}
+
+function applyFilter(type: 'tag' | 'cert', value: string) {
+  activeFilter = { type, value };
+
+  // Update active state on chips
+  document.querySelectorAll('.tag-chip, .cert-chip').forEach(btn => {
+    const el = btn as HTMLButtonElement;
+    el.classList.toggle('active', el.dataset.type === type && el.dataset.value === value);
+  });
+
+  const results = discoveryIndex.filter(p =>
+    type === 'tag'
+      ? p.tags?.includes(value)
+      : p.certifications?.some((c: { code: string }) => c.code === value)
+  );
+
+  renderFilteredResults(results, type === 'tag' ? `#${value}` : value);
+
+  // Emit event for homepage to sync with search
+  document.dispatchEvent(new CustomEvent('discovery:filter', { detail: { results, label: value } }));
+}
+
+function renderFilteredResults(pages: typeof discoveryIndex, label: string) {
+  const container = document.getElementById('filteredResults');
+  const grid = document.getElementById('filteredGrid');
+  const labelEl = document.getElementById('filterLabel');
+  if (!container || !grid || !labelEl) return;
+
+  labelEl.textContent = `${pages.length} página${pages.length !== 1 ? 's' : ''} con ${label}`;
+  grid.innerHTML = '';
+
+  const catColors: Record<string, { color: string; glow: string }> = {
+    ciberseguridad: { color: '#f87171', glow: 'rgba(248,113,113,0.15)' },
+    redes:          { color: '#60a5fa', glow: 'rgba(96,165,250,0.15)'  },
+    sistemas:       { color: '#a78bfa', glow: 'rgba(167,139,250,0.15)' },
+    programacion:   { color: '#34d399', glow: 'rgba(52,211,153,0.15)'  },
+    cloud:          { color: '#38bdf8', glow: 'rgba(56,189,248,0.15)'  },
+    arduino:        { color: '#fb923c', glow: 'rgba(251,146,60,0.15)'  },
+    datacenters:    { color: '#94a3b8', glow: 'rgba(148,163,184,0.15)' },
+    robotica:       { color: '#f472b6', glow: 'rgba(244,114,182,0.15)' },
+  };
+
+  if (pages.length === 0) {
+    grid.innerHTML = '<p class="no-filter-results">No hay páginas con este filtro.</p>';
+  } else {
+    pages.forEach(page => {
+      const acc = catColors[page.category] ?? { color: '#93c5fd', glow: 'rgba(59,130,246,0.15)' };
+      const a = document.createElement('a');
+      a.href = page.url;
+      a.className = 'recent-card';
+      a.style.borderLeft = `3px solid ${acc.color}`;
+      a.style.setProperty('--card-glow', acc.glow);
+      a.innerHTML = `
+        <span class="r-icon">${page.icon}</span>
+        <div class="r-body">
+          <span class="r-name">${page.title}</span>
+          <span class="r-desc">${page.description || ''}</span>
+        </div>
+        <span class="r-badge" style="color:${acc.color};border-color:color-mix(in srgb,${acc.color} 30%,transparent);background:color-mix(in srgb,${acc.color} 10%,transparent)">${page.category}</span>
+      `;
+      grid.appendChild(a);
+    });
+  }
+
+  container.style.display = 'block';
+
+  // Hide recent section
+  const recentSection = document.getElementById('recentSection');
+  if (recentSection) recentSection.style.display = 'none';
+}
+
+function clearFilterFn() {
+  activeFilter = null;
+
+  document.querySelectorAll('.tag-chip, .cert-chip').forEach(btn => btn.classList.remove('active'));
+
+  const container = document.getElementById('filteredResults');
+  if (container) container.style.display = 'none';
+
+  const recentSection = document.getElementById('recentSection');
+  if (recentSection) recentSection.style.display = '';
+
+  document.dispatchEvent(new CustomEvent('discovery:clear'));
+}
+
+// Expose for external use (search sync)
+(window as any).__discoveryShowResults = (pages: typeof discoveryIndex, label: string) => {
+  renderFilteredResults(pages, label);
+};
+(window as any).__discoveryClear = clearFilterFn;
+
+document.addEventListener('DOMContentLoaded', () => {
+  initDiscovery();
+  document.getElementById('clearFilter')?.addEventListener('click', clearFilterFn);
+});
+</script>
+
+<style>
+.discovery {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.11);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.4),
+    0 2px 8px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.disc-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.disc-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(148,163,184,0.5);
+  white-space: nowrap;
+  padding-top: 6px;
+  min-width: 90px;
+}
+
+.disc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chips-loading {
+  color: rgba(148,163,184,0.3);
+  font-size: 0.8rem;
+}
+
+.cat-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.cat-chip:hover {
+  background: rgba(255,255,255,0.12);
+  color: #f1f5f9;
+}
+
+:global(.tag-chip),
+:global(.cert-chip) {
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: transparent;
+  color: rgba(148,163,184,0.8);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+:global(.tag-chip:hover) {
+  background: rgba(59,130,246,0.15);
+  color: #93c5fd;
+  border-color: rgba(59,130,246,0.4);
+}
+:global(.cert-chip:hover) {
+  background: rgba(16,185,129,0.15);
+  color: #6ee7b7;
+  border-color: rgba(16,185,129,0.4);
+}
+:global(.tag-chip.active) {
+  background: rgba(59,130,246,0.25);
+  color: #bfdbfe;
+  border-color: rgba(59,130,246,0.6);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 5px 13px;
+  box-shadow: 0 0 10px rgba(59,130,246,0.25);
+}
+:global(.cert-chip.active) {
+  background: rgba(16,185,129,0.25);
+  color: #6ee7b7;
+  border-color: rgba(16,185,129,0.6);
+}
+
+/* Filtered results */
+.filtered-results {
+  margin-bottom: 32px;
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.filter-label-text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(148,163,184,0.5);
+}
+
+.clear-filter-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(148,163,184,0.6);
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.clear-filter-btn:hover {
+  background: rgba(255,255,255,0.06);
+  color: #f1f5f9;
+}
+
+.filtered-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+}
+
+.no-filter-results {
+  color: rgba(148,163,184,0.5);
+  font-size: 0.85rem;
+}
+
+/* Cards created dynamically by JS — must use :global() to escape Astro scoping */
+:global(.recent-card) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+:global(.recent-card:hover) {
+  background: rgba(255,255,255,0.055);
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--card-glow, rgba(0,0,0,0.2));
+}
+:global(.r-icon) { font-size: 1.2rem; flex-shrink: 0; }
+:global(.r-body) { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+:global(.r-name) {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+:global(.r-desc) {
+  font-size: 0.72rem;
+  color: rgba(148,163,184,0.7);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+:global(.r-badge) {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(100,116,139,0.8);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+@media (max-width: 640px) {
+  .filtered-grid { grid-template-columns: 1fr; }
+  .disc-row { flex-direction: column; gap: 8px; }
+  .disc-label { padding-top: 0; }
+}
+</style>

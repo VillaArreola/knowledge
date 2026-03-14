@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "name": "Sin título",
+    "slug": "whonix",
+    "category": "cloud",
+    "section": "security",
+    "icon": "📄",
+    "description": "",
+    "tags": [
+      "S3",
+      "EC2"
+    ],
+    "certifications": "",
+    "order": 1,
+    "mode": "markdown",
+    "notionUrl": "https://www.notion.so/Whonix-en-VirtualBox-1-266eacb61cc242a298ef896563bb375b"
+  },
+  "markdownBody": ""
+}

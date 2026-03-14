@@ -25,6 +25,22 @@
       "section": "aws",
       "url": "/cloud/aws/aws",
       "searchContent": "AWS - Amazon Web Services Fundamentos de AWS, servicios principales y arquitectura en la nube AWS cloud computación servicios infraestructura"
+    },
+    {
+      "title": "Sin título",
+      "slug": "whonix",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Contenido sobre Sin título",
+      "tags": [
+        "S3",
+        "EC2"
+      ],
+      "category": "Cloud",
+      "section": "security",
+      "url": "/cloud/security/whonix",
+      "searchContent": "Sin título Contenido sobre Sin título S3 EC2"
     }
   ]
 }

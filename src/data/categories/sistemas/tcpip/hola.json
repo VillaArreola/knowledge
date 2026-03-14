@@ -1,0 +1,8 @@
+{
+  "title": "Sin título",
+  "slug": "hola",
+  "icon": "📄",
+  "status": "completed",
+  "order": 1,
+  "description": "sh npm create astro@latest -- --template minimal text / ├── public/ ├── src/ │ └── pages/ │ └── index.astro └── package.json"
+}

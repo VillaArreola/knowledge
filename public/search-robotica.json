@@ -1,0 +1,16 @@
+{
+  "pages": [
+    {
+      "title": "Sin título",
+      "slug": "robots",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Contenido sobre Sin título",
+      "category": "Robotica",
+      "section": "ai",
+      "url": "/robotica/ai/robots",
+      "searchContent": "Sin título Contenido sobre Sin título "
+    }
+  ]
+}

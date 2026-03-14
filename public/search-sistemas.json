@@ -1,6 +1,21 @@
 {
   "pages": [
     {
+      "title": "Sin título",
+      "slug": "sistem",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Contenido sobre Sin título",
+      "tags": [
+        "Redes"
+      ],
+      "category": "Sistemas",
+      "section": "cloud",
+      "url": "/sistemas/cloud/sistem",
+      "searchContent": "Sin título Contenido sobre Sin título Redes"
+    },
+    {
       "title": "IAM - Gestión de Identidades y Accesos",
       "slug": "iam",
       "icon": "🔐",

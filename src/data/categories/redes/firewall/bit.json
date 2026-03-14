@@ -1,0 +1,11 @@
+{
+  "title": "Sin título",
+  "slug": "bit",
+  "icon": "🖍️",
+  "status": "completed",
+  "order": 1,
+  "description": "test",
+  "tags": [
+    "Firewall"
+  ]
+}

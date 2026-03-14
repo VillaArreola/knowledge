@@ -1,0 +1,235 @@
+{
+  "notionDbId": "323ec7e74fc080ffae7e000b0afbdf13",
+  "categories": [
+    {
+      "slug": "ciberseguridad",
+      "name": "Ciberseguridad",
+      "icon": "🔒",
+      "defaultSection": null,
+      "color": {
+        "headerGradient": "from-indigo-600 to-purple-700",
+        "cardAccent": "border-indigo-400",
+        "badge": "indigo"
+      },
+      "sections": [
+        {
+          "slug": "fundamentos",
+          "name": "Fundamentos de Seguridad",
+          "icon": "🛡️",
+          "column": 1
+        },
+        {
+          "slug": "criptografia",
+          "name": "Criptografía",
+          "icon": "🔐",
+          "column": 1
+        },
+        {
+          "slug": "redes-seguras",
+          "name": "Redes Seguras",
+          "icon": "🌐",
+          "column": 2
+        }
+      ]
+    },
+    {
+      "slug": "redes",
+      "name": "Redes",
+      "icon": "🌐",
+      "defaultSection": "fundamentos",
+      "color": {
+        "headerGradient": "from-blue-600 to-cyan-700",
+        "cardAccent": "border-blue-400",
+        "badge": "blue"
+      },
+      "sections": [
+        {
+          "slug": "fundamentos",
+          "name": "Fundamentos de Redes",
+          "icon": "📡",
+          "column": 1
+        },
+        {
+          "slug": "protocolos",
+          "name": "Protocolos de Comunicación",
+          "icon": "🔗",
+          "column": 2
+        },
+        {
+          "slug": "seguridad-redes",
+          "name": "Seguridad en Redes",
+          "icon": "🛡️",
+          "column": 2
+        },
+        {
+          "slug": "firewall",
+          "name": "Firewall",
+          "icon": "📄",
+          "column": 2
+        }
+      ]
+    },
+    {
+      "slug": "sistemas",
+      "name": "Sistemas",
+      "icon": "⚙️",
+      "defaultSection": null,
+      "color": {
+        "headerGradient": "from-slate-600 to-gray-700",
+        "cardAccent": "border-slate-400",
+        "badge": "slate"
+      },
+      "sections": [
+        {
+          "slug": "operativos",
+          "name": "Sistemas Operativos",
+          "icon": "🖥️",
+          "column": 1
+        },
+        {
+          "slug": "virtualizacion",
+          "name": "Virtualización",
+          "icon": "📦",
+          "column": 1
+        },
+        {
+          "slug": "gobernanza",
+          "name": "Gobernanza",
+          "icon": "🏛️",
+          "column": 2
+        },
+        {
+          "slug": "monitorizacion",
+          "name": "Monitorización y Logging",
+          "icon": "📊",
+          "column": 2
+        },
+        {
+          "slug": "cloud",
+          "name": "Cloud",
+          "icon": "📄",
+          "column": 2
+        },
+        {
+          "slug": "firewall",
+          "name": "Firewall",
+          "icon": "📄",
+          "column": 2
+        },
+        {
+          "slug": "tcpip",
+          "name": "Tcpip",
+          "icon": "📄",
+          "column": 2
+        }
+      ]
+    },
+    {
+      "slug": "programacion",
+      "name": "Programación",
+      "icon": "💻",
+      "defaultSection": "fundamentos",
+      "color": {
+        "headerGradient": "from-green-600 to-teal-700",
+        "cardAccent": "border-green-400",
+        "badge": "green"
+      },
+      "sections": [
+        {
+          "slug": "fundamentos",
+          "name": "Fundamentos",
+          "icon": "📚",
+          "column": 1
+        },
+        {
+          "slug": "azure",
+          "name": "Azure",
+          "icon": "📄",
+          "column": 2
+        }
+      ]
+    },
+    {
+      "slug": "cloud",
+      "name": "Cloud",
+      "icon": "☁️",
+      "defaultSection": "aws",
+      "color": {
+        "headerGradient": "from-orange-500 to-amber-600",
+        "cardAccent": "border-orange-400",
+        "badge": "orange"
+      },
+      "sections": [
+        {
+          "slug": "aws",
+          "name": "Amazon Web Services",
+          "icon": "☁️",
+          "column": 1
+        },
+        {
+          "slug": "security",
+          "name": "Security",
+          "icon": "📄",
+          "column": 2
+        }
+      ]
+    },
+    {
+      "slug": "robotica",
+      "name": "Robótica",
+      "icon": "🤖",
+      "defaultSection": "ai",
+      "color": {
+        "headerGradient": "from-purple-600 to-violet-700",
+        "cardAccent": "border-purple-400",
+        "badge": "purple"
+      },
+      "sections": [
+        {
+          "slug": "ai",
+          "name": "Inteligencia Artificial",
+          "icon": "🧠",
+          "column": 2
+        }
+      ]
+    },
+    {
+      "slug": "arduino",
+      "name": "Arduino",
+      "icon": "📁",
+      "defaultSection": "firewall",
+      "color": {
+        "headerGradient": "from-gray-600 to-gray-700",
+        "cardAccent": "border-gray-400",
+        "badge": "gray"
+      },
+      "sections": [
+        {
+          "slug": "firewall",
+          "name": "Firewall",
+          "icon": "📄",
+          "column": 2
+        }
+      ]
+    },
+    {
+      "slug": "datacenters",
+      "name": "Datacenters",
+      "icon": "📁",
+      "defaultSection": "fundamentos",
+      "color": {
+        "headerGradient": "from-gray-600 to-gray-700",
+        "cardAccent": "border-gray-400",
+        "badge": "gray"
+      },
+      "sections": [
+        {
+          "slug": "fundamentos",
+          "name": "Fundamentos",
+          "icon": "📄",
+          "column": 2
+        }
+      ]
+    }
+  ]
+}

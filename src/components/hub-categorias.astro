@@ -1,224 +1,164 @@
-<!-- Categories Hub - Clean & Simple -->
-<div class="categories-container">
-    <div class="clean-grid" id="categories-grid">
-        <!-- Ciberseguridad -->
-        <a class="clean-card cyber" href="/ciberseguridad">
-            <div class="card-content">
-                <div class="card-icon">🔐</div>
-                <h3>CIBERSEGURIDAD</h3>
-                <div class="topics-list">
-                    <span>FUNDAMENTOS</span>
-                    <span>CRIPTOGRAFÍA</span>
-                    <span>REDES SEGURAS</span>
-                    <span>FORENSE</span>
-                </div>
-            </div>
-        </a>
-        
-        <!-- Redes -->
-        <a class="clean-card networks" href="/redes">
-            <div class="card-content">
-                <div class="card-icon">🌐</div>
-                <h3>REDES</h3>
-                <div class="topics-list">
-                    <span>FUNDAMENTOS</span>
-                    <span>ARQUITECTURA</span>
-                    <span>PROTOCOLOS</span>
-                    <span>WIFI</span>
-                </div>
-            </div>
-        </a>
-        
-        <!-- Cloud -->
-        <a class="clean-card cloud" href="/cloud">
-            <div class="card-content">
-                <div class="card-icon">☁️</div>
-                <h3>CLOUD</h3>
-                <div class="topics-list">
-                    <span>AWS</span>
-                    <span>AZURE</span>
-                    <span>GOOGLE CLOUD</span>
-                    <span>ARQUITECTURA</span>
-                </div>
-            </div>
-        </a>
-        
-        <!-- Programación -->
-        <a class="clean-card programming" href="/programacion">
-            <div class="card-content">
-                <div class="card-icon">💻</div>
-                <h3>PROGRAMACIÓN</h3>
-                <div class="topics-list">
-                    <span>FUNDAMENTOS</span>
-                    <span>LENGUAJES</span>
-                    <span>DEV WEB</span>
-                    <span>DEVOPS</span>
-                </div>
-            </div>
-        </a>
-        
-        <!-- Sistemas -->
-        <a class="clean-card systems" href="/sistemas">
-            <div class="card-content">
-                <div class="card-icon">⚙️</div>
-                <h3>SISTEMAS</h3>
-                <div class="topics-list">
-                    <span>GOBERNANZA</span>
-                    <span>S. OPERATIVOS</span>
-                    <span>VIRTUALIZACIÓN</span>
-                    <span>ADMINISTRACIÓN</span>
-                </div>
-            </div>
-        </a>
-    </div>
+---
+import siteConfig from '../data/site-config.json';
+
+const categories = siteConfig.categories || [];
+
+const accentByBadge: Record<string, { color: string; glow: string }> = {
+  indigo:  { color: '#818cf8', glow: 'rgba(129,140,248,0.2)' },
+  blue:    { color: '#60a5fa', glow: 'rgba(96,165,250,0.2)'  },
+  slate:   { color: '#94a3b8', glow: 'rgba(148,163,184,0.2)' },
+  green:   { color: '#4ade80', glow: 'rgba(74,222,128,0.2)'  },
+  orange:  { color: '#fb923c', glow: 'rgba(251,146,60,0.2)'  },
+  purple:  { color: '#c084fc', glow: 'rgba(192,132,252,0.2)' },
+  gray:    { color: '#9ca3af', glow: 'rgba(156,163,175,0.2)' },
+};
+
+function getAccent(category: { color?: { badge?: string } }) {
+  return accentByBadge[category?.color?.badge ?? ''] ?? accentByBadge.blue;
+}
+---
+
+<div class="cat-grid">
+  {categories.map((cat) => {
+    const acc = getAccent(cat);
+    return (
+      <a
+        class="cat-card"
+        href={`/${cat.slug}`}
+        style={`--accent: ${acc.color}; --glow: ${acc.glow};`}
+      >
+        <div class="cat-top">
+          <span class="cat-icon">{cat.icon || '📁'}</span>
+          <span class="cat-name">{cat.name}</span>
+          <span class="cat-count">{cat.sections?.length ?? 0}</span>
+        </div>
+        {cat.sections && cat.sections.length > 0 && (
+          <div class="cat-sections">
+            {cat.sections.slice(0, 4).map((sec) => (
+              <span class="sec-chip">{sec.icon} {sec.name}</span>
+            ))}
+            {cat.sections.length > 4 && (
+              <span class="sec-chip sec-more">+{cat.sections.length - 4}</span>
+            )}
+          </div>
+        )}
+        <div class="cat-arrow">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
+    );
+  })}
 </div>
 
 <style>
-    /* Clean Container */
-    .categories-container {
-        width: 100%;
-        padding: 3rem 0;
-        background: #fafafa;
-    }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
 
-    /* Clean Grid */
-    .clean-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 24px;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
+  .cat-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
 
-    /* Clean Card */
-    .clean-card {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 32px;
-        text-decoration: none;
-        color: #374151;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
+  .cat-card:hover {
+    background: rgba(255,255,255,0.06);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 8px 24px var(--glow);
+    transform: translateY(-2px);
+  }
 
-    .clean-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: #3b82f6;
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-    }
+  .cat-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-    .clean-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        border-color: #d1d5db;
-    }
+  .cat-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
 
-    .clean-card:hover::before {
-        transform: scaleX(1);
-    }
+  .cat-name {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    letter-spacing: 0.01em;
+  }
 
-    /* Card Content */
-    .card-content {
-        text-align: center;
-    }
+  .cat-count {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    padding: 2px 7px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
 
-    .card-icon {
-        font-size: 3rem;
-        margin-bottom: 20px;
-        opacity: 0.8;
-    }
+  .cat-sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
 
-    .card-content h3 {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #111827;
-        margin: 0 0 24px 0;
-        letter-spacing: 0.5px;
-    }
+  .sec-chip {
+    font-size: 0.7rem;
+    color: rgba(148,163,184,0.8);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 3px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
 
-    .topics-list {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
+  .cat-card:hover .sec-chip {
+    color: rgba(203,213,225,0.9);
+  }
 
-    .topics-list span {
-        padding: 8px 16px;
-        background: #f9fafb;
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
-        font-size: 0.875rem;
-        color: #6b7280;
-        transition: all 0.2s ease;
-    }
+  .sec-more {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+  }
 
-    .clean-card:hover .topics-list span {
-        background: #f3f4f6;
-        border-color: #d1d5db;
-        color: #374151;
-    }
+  .cat-arrow {
+    position: absolute;
+    right: 14px;
+    bottom: 16px;
+    color: rgba(100,116,139,0.5);
+    transition: color 0.2s, transform 0.2s;
+  }
 
-    /* Category-specific accents */
-    .cyber::before { background: #ef4444; }
-    .networks::before { background: #10b981; }
-    .cloud::before { background: #3b82f6; }
-    .programming::before { background: #8b5cf6; }
-    .systems::before { background: #f59e0b; }
+  .cat-card:hover .cat-arrow {
+    color: var(--accent);
+    transform: translateX(3px);
+  }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .clean-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-            padding: 0 16px;
-        }
-        
-        .clean-card {
-            padding: 24px;
-        }
-        
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
-        
-        .card-content h3 {
-            font-size: 1.125rem;
-            margin-bottom: 20px;
-        }
-        
-        .topics-list span {
-            font-size: 0.8rem;
-            padding: 6px 12px;
-        }
+  @media (max-width: 640px) {
+    .cat-grid {
+      grid-template-columns: 1fr 1fr;
     }
+    .cat-sections { display: none; }
+  }
 
-    @media (max-width: 480px) {
-        .categories-container {
-            padding: 2rem 0;
-        }
-        
-        .clean-card {
-            padding: 20px;
-        }
-        
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 12px;
-        }
-        
-        .card-content h3 {
-            font-size: 1rem;
-            margin-bottom: 16px;
-        }
-    }
+  @media (max-width: 400px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
 </style>
