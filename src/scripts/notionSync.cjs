@@ -86,7 +86,61 @@ function buildAstro({ title, description, pageFile, notionJsonPath }) {
   const layoutPath = getImportPath(pageFile, path.join(ROOT, 'src', 'layouts', 'WikiLayout.astro'));
   const notionImportPath = getImportPath(pageFile, notionJsonPath);
 
-  return `---\nimport WikiLayout from '${layoutPath}';\nimport notionData from '${notionImportPath}';\nimport { marked } from 'marked';\n\nconst body = (notionData.markdownBody || '').trim();\nconst hasBody = body.length > 0;\n\nconst metadata = notionData.metadata || {};\nconst notionUrl = metadata.notionUrl || '';\nconst tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];\nconst fallbackLines = [\n  '## Contenido pendiente',\n  '',\n  'Esta entrada existe en el indice, pero la pagina de Notion aun no tiene bloques de contenido para convertir a Markdown.',\n  '',\n  metadata.description ? '**Descripcion:** ' + metadata.description : '',\n  tags.length ? '**Tags:** ' + tags.join(', ') : '',\n  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',\n].filter(Boolean);\n\nconst markdownHtml = hasBody\n  ? marked(body)\n  : marked(fallbackLines.join('\\n'));\n---\n\n<WikiLayout title="${title}" description="${description}">\n  <div class="prose prose-slate dark:prose-invert max-w-none">\n    <Fragment set:html={markdownHtml} />\n  </div>\n</WikiLayout>\n`;
+  return `---
+import WikiLayout from '${layoutPath}';
+import notionData from '${notionImportPath}';
+import { marked } from 'marked';
+
+const body = (notionData.markdownBody || '').trim();
+const hasBody = body.length > 0;
+
+const metadata = notionData.metadata || {};
+const notionUrl = metadata.notionUrl || '';
+const pageIcon = metadata.icon || '📄';
+const pageName = metadata.name || '';
+const pageDesc = metadata.description || '';
+const tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];
+const category = metadata.category || '';
+const section = metadata.section || '';
+const rawCerts = typeof metadata.certifications === 'string' ? metadata.certifications : '';
+const certCodes = rawCerts.split(',').map(c => c.split(':')[0].trim()).filter(Boolean);
+
+const fallbackLines = [
+  '## Contenido pendiente',
+  '',
+  'Esta entrada existe en el indice, pero la pagina de Notion aun no tiene bloques de contenido para convertir a Markdown.',
+  '',
+  metadata.description ? '**Descripcion:** ' + metadata.description : '',
+  tags.length ? '**Tags:** ' + tags.join(', ') : '',
+  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',
+].filter(Boolean);
+
+const markdownHtml = hasBody
+  ? marked(body)
+  : marked(fallbackLines.join('\\n'));
+---
+
+<WikiLayout title="${title}" description="${description}">
+  <div class="doc-page">
+    <header class="doc-header">
+      {(category || section) && (
+        <div class="doc-breadcrumb">{category}{section ? \` / \${section}\` : ''}</div>
+      )}
+      <h1 class="doc-title">{pageIcon} {pageName}</h1>
+      {pageDesc && <p class="doc-description">{pageDesc}</p>}
+      {(tags.length > 0 || certCodes.length > 0) && (
+        <div class="doc-meta-row">
+          {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+          {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+        </div>
+      )}
+    </header>
+    <div class="doc-content">
+      <Fragment set:html={markdownHtml} />
+    </div>
+  </div>
+</WikiLayout>
+`;
 }
 
 function buildMeta({ name, slug, icon, description, tags, order }) {
@@ -104,7 +158,11 @@ function buildMeta({ name, slug, icon, description, tags, order }) {
   return `${lines.join('\n')}\n`;
 }
 
-function shouldSkip(pagePath, legacyMdPath) {
+function shouldSkip(pagePath, legacyMdPath, mode) {
+  if (mode === 'enriched') {
+    console.log(`⭐ skip (enriched) ${toPosix(path.relative(ROOT, pagePath))}`);
+    return true; // always skip enriched pages, even with --force
+  }
   if (FORCE) return false;
   if (fs.existsSync(pagePath)) return true;
   if (fs.existsSync(legacyMdPath)) return true;
@@ -168,7 +226,8 @@ function main() {
     const metaPath = path.join(PAGES_ROOT, category, section, `${slug}.meta`);
     const legacyMdPath = path.join(CONTENT_ROOT, category, section, `${slug}.md`);
 
-    if (shouldSkip(pagePath, legacyMdPath)) {
+    const mode = cleanLine(metadata.mode || 'markdown');
+    if (shouldSkip(pagePath, legacyMdPath, mode)) {
       skipped += 1;
       if (LIST_MODE) {
         console.log(`⏭️  skip ${toPosix(path.relative(ROOT, pagePath))}`);

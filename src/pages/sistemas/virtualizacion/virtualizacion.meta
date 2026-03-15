@@ -1,8 +1,0 @@
-title=Virtualización - Gestión de Máquinas Virtuales
-slug=virtualizacion
-icon=🖥️
-status=completed
-order=1
-description=Fundamentos de virtualización, tipos de hipervisores y gestión de máquinas virtuales
-tags=virtualización,VM,hipervisor,contenedores,cloud
-certifications=CLF-C02:3.5:Technology

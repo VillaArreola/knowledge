@@ -1,13 +1,13 @@
 ---
-import Navbar from '../components/Navbar.astro';
 import '../styles/global.css';
+import siteConfig from '../data/site-config.json';
 
 export interface Props {
   title: string;
   description?: string;
   image?: string;
   canonicalURL?: string;
-  showHeader?: boolean;
+  hasDualMode?: boolean;
 }
 
 const {
@@ -15,11 +15,20 @@ const {
   description = "Base de conocimiento técnico personal sobre redes, sistemas, ciberseguridad, cloud y programación.",
   image = "/android-chrome-512x512.png",
   canonicalURL = Astro.url.href,
-  showHeader = true,
+  hasDualMode = false,
 } = Astro.props;
 
 const SITE_NAME = "Knowledge Base";
 const SITE_URL  = "https://kb.villaarreola.com";
+
+// Build slug → name map for breadcrumb labels
+const catMap: Record<string, { name: string; sections: Record<string, string> }> = {};
+for (const cat of siteConfig.categories) {
+  catMap[cat.slug] = { name: cat.name, sections: {} };
+  for (const sec of (cat.sections || [])) {
+    catMap[cat.slug].sections[sec.slug] = sec.name;
+  }
+}
 ---
 
 <!DOCTYPE html>
@@ -37,7 +46,7 @@ const SITE_URL  = "https://kb.villaarreola.com";
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#1e293b">
+  <meta name="theme-color" content="#0f172a">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -56,110 +65,729 @@ const SITE_URL  = "https://kb.villaarreola.com";
   <meta name="twitter:description" content={description}>
   <meta name="twitter:image" content={`${SITE_URL}${image}`}>
 
-  <!-- Google Fonts -->
+  <!-- Fonts: Outfit (display) + JetBrains Mono (code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Apply saved theme before paint to avoid flash -->
+  <script is:inline>
+    (function () {
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.classList.toggle('dark', t === 'dark');
+    })();
+  </script>
 </head>
 
-<body class="h-full bg-gray-50 dark:bg-gray-900">
+<body class="h-full bg-slate-950 text-slate-100 antialiased">
   <div class="min-h-screen flex flex-col">
-    <!-- Header con search -->
-    {showHeader && (
-      <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <div class="flex items-center space-x-4">
-              <h1 class="text-2xl text-white font-bold gradient-text flex items-center gap-2">
-                <img src="/android-chrome-192x192.png" alt="Knowledge Base" class="w-7 h-7 rounded" />
-                Knowledge
-              </h1>
-            </div>
-            
-            <div class="flex items-center space-x-4">
-              <div class="relative">
-                <input 
-                  type="search" 
-                  placeholder="Buscar conocimiento..." 
-                  class="w-64 pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                >
-                <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-              </div>
-              <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">
-                <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                </svg>
-                <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                </svg>
-              </button>
-            </div>
+
+    <div id="kb-page-bar"
+         class="view-mode-bar"
+         data-dual-mode={hasDualMode ? 'true' : 'false'}
+         data-page-title={title}
+         data-cat-map={JSON.stringify(catMap)}>
+      <div class="view-mode-inner">
+        <a href="/" class="bar-brand" aria-label="Knowledge Base">
+          <img src="/android-chrome-192x192.png" alt="Knowledge Base" class="bar-brand-icon" />
+          <span class="bar-brand-text">Knowledge Base</span>
+        </a>
+
+        <nav class="page-breadcrumb" aria-label="Ubicación actual"></nav>
+
+        <div class="page-tools">
+          <div class="bar-search-wrap">
+            <label class="bar-search" for="kbPageSearch" aria-label="Buscar en la base de conocimiento">
+              <svg class="bar-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-5.2-5.2m1.7-4.3a6 6 0 11-12 0 6 6 0 0112 0z" />
+              </svg>
+              <input id="kbPageSearch" type="text" placeholder="Buscar en la KB..." autocomplete="off" />
+            </label>
+            <div id="kbBarSearchResults" class="kb-bar-search-results" style="display:none"></div>
+          </div>
+
+          <a href="https://cheats.villaarreola.com" class="bar-link-btn" target="_blank" rel="noopener" title="Cheat Sheets">🔎</a>
+          <a href="https://ctf.villaarreola.com" class="bar-link-btn" target="_blank" rel="noopener" title="CTF WriteUps">📝</a>
+
+          <button id="kb-theme-toggle" class="bar-theme-btn" aria-label="Cambiar tema claro/oscuro">
+            <svg class="icon-sun" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="icon-moon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </button>
+
+          <div class="mode-toggle">
+            <button class="mode-btn" data-view="markdown">Markdown</button>
+            <button class="mode-btn" data-view="enriched">Interactivo</button>
           </div>
         </div>
-      </header>
-    )}
+      </div>
+    </div>
 
-    <!-- Navbar con categorías -->
-    <Navbar />
+    <!-- Toast notification -->
+    <div id="kb-toast" role="status" aria-live="polite"></div>
 
     <!-- Main Content -->
-    <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+    <main class="flex-1 w-full max-w-5xl mx-auto px-3 sm:px-5 lg:px-8 py-5 sm:py-8">
+      <article class="wiki-card">
         <slot />
-      </div>
+      </article>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-800 text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 class="text-lg font-semibold gradient-text mb-4">📚 Knowledge Base</h3>
-            <p class="text-slate-300">Tu repositorio personal de conocimiento en tecnología.</p>
-          </div>
-          
-          <div>
-            <h4 class="font-semibold mb-4">🔗 Enlaces Rápidos</h4>
-            <ul class="space-y-2 text-slate-300">
-              <li><a href="/redes/wifi" class="hover:text-white transition-colors duration-200">Redes WiFi</a></li>
-              <li><a href="/ciberseguridad/virus" class="hover:text-white transition-colors duration-200">Ciberseguridad</a></li>
-              <li><a href="/programacion/javascript" class="hover:text-white transition-colors duration-200">Programación</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 class="font-semibold mb-4">ℹ️ Información</h4>
-            <ul class="space-y-2 text-slate-300">
-              <li><a href="/about" class="hover:text-white transition-colors duration-200">Acerca de</a></li>
-              <li><a href="/contact" class="hover:text-white transition-colors duration-200">Contacto</a></li>
-              <li><a href="/sitemap" class="hover:text-white transition-colors duration-200">Mapa del Sitio</a></li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="border-t border-slate-700 mt-8 pt-8 text-center text-slate-400">
-          <p>&copy; 2024 Knowledge Base. Construido con ❤️ usando Astro + Tailwind CSS</p>
-        </div>
+    <!-- Footer (slim) -->
+    <footer class="wiki-footer">
+      <div class="wiki-footer-inner">
+        <span>&copy; {new Date().getFullYear()} Knowledge Base</span>
+        <nav class="wiki-footer-links">
+          <a href="/">Inicio</a>
+          <a href="https://cheats.villaarreola.com" target="_blank" rel="noopener">Cheat Sheets</a>
+          <a href="https://ctf.villaarreola.com" target="_blank" rel="noopener">CTF</a>
+        </nav>
       </div>
     </footer>
   </div>
 
-  <script>
-    // Dark mode toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    html.classList.toggle('dark', savedTheme === 'dark');
-    
-    themeToggle?.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
-      localStorage.setItem('theme', newTheme);
-    });
+  <script is:inline>
+    (function () {
+      var bar = document.getElementById('kb-page-bar');
+      if (!bar) return;
+
+      var isDualMode = bar.dataset.dualMode === 'true';
+      var pageTitle  = bar.dataset.pageTitle || '';
+      var catMap = {};
+      try { catMap = JSON.parse(bar.dataset.catMap || '{}'); } catch (e) {}
+
+      // ── Breadcrumb ─────────────────────────────────────────
+      var bc = bar.querySelector('.page-breadcrumb');
+      if (bc) {
+        var parts = window.location.pathname.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
+        if (parts.length > 0) {
+          var html = '';
+          var path = '';
+          var catEntry = catMap[parts[0]] || null;
+          for (var i = 0; i < parts.length; i++) {
+            if (i > 0) html += '<span class="bc-sep">›</span>';
+            path += '/' + parts[i];
+            var isLast = i === parts.length - 1;
+            var label;
+            if (i === 0) {
+              label = catEntry ? catEntry.name : cap(parts[i]);
+            } else if (i === 1 && catEntry) {
+              label = catEntry.sections[parts[i]] || cap(parts[i]);
+            } else if (isLast) {
+              label = pageTitle.replace(/^[^\w\s\u00C0-\u024F]+\s*/, '').trim() || cap(parts[i]);
+            } else {
+              label = cap(parts[i]);
+            }
+            if (isLast) {
+              html += '<span class="bc-item bc-current">' + esc(label) + '</span>';
+            } else {
+              html += '<a class="bc-item" href="' + path + '">' + esc(label) + '</a>';
+            }
+          }
+          bc.innerHTML = html;
+        }
+      }
+
+      // ── Toast ──────────────────────────────────────────────
+      var toast = document.getElementById('kb-toast');
+      var toastTimer;
+      function showToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add('visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove('visible'); }, 2500);
+      }
+
+      // ── View switching ─────────────────────────────────────
+      var saved = localStorage.getItem('kb-view-mode') || 'enriched';
+
+      // ── Theme toggle in unified bar ────────────────────────
+      var themeToggle = document.getElementById('kb-theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          var isDark = document.documentElement.classList.toggle('dark');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+      }
+
+      // ── Page bar search (standalone) ───────────────────────
+      var barSearchInput = document.getElementById('kbPageSearch');
+      var barSearchResults = document.getElementById('kbBarSearchResults');
+      var barSearchWrap = bar ? bar.querySelector('.bar-search-wrap') : null;
+      var searchIndex = [];
+
+      function loadSearchIndex() {
+        if (searchIndex.length > 0) return Promise.resolve(searchIndex);
+        return fetch('/search-index.json')
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            searchIndex = (data && data.pages) ? data.pages : [];
+            return searchIndex;
+          })
+          .catch(function () {
+            searchIndex = [];
+            return searchIndex;
+          });
+      }
+
+      function hideBarSearchResults() {
+        if (!barSearchResults) return;
+        barSearchResults.style.display = 'none';
+        barSearchResults.innerHTML = '';
+      }
+
+      function renderBarSearchResults(results) {
+        if (!barSearchResults) return;
+
+        if (!results.length) {
+          barSearchResults.innerHTML = '<div class="kb-search-empty">Sin resultados</div>';
+          barSearchResults.style.display = 'block';
+          return;
+        }
+
+        var html = '';
+        for (var i = 0; i < results.length; i++) {
+          var page = results[i];
+          html +=
+            '<a class="kb-search-item" href="' + page.url + '">' +
+              '<span class="kb-search-item-title">' + esc((page.icon || '📄') + ' ' + (page.title || 'Sin título')) + '</span>' +
+              '<span class="kb-search-item-meta">' + esc((page.category || '') + (page.section ? ' / ' + page.section : '')) + '</span>' +
+            '</a>';
+        }
+
+        barSearchResults.innerHTML = html;
+        barSearchResults.style.display = 'block';
+      }
+
+      if (barSearchInput && barSearchResults) {
+        loadSearchIndex();
+
+        barSearchInput.addEventListener('input', function () {
+          var query = barSearchInput.value.trim().toLowerCase();
+          if (query.length < 2) {
+            hideBarSearchResults();
+            return;
+          }
+
+          loadSearchIndex().then(function (pages) {
+            var matches = pages
+              .filter(function (p) {
+                var tags = Array.isArray(p.tags) ? p.tags.join(' ') : '';
+                var haystack = ((p.title || '') + ' ' + (p.description || '') + ' ' + tags + ' ' + (p.category || '') + ' ' + (p.section || '')).toLowerCase();
+                return haystack.indexOf(query) !== -1;
+              })
+              .slice(0, 6);
+
+            renderBarSearchResults(matches);
+          });
+        });
+
+        barSearchInput.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            var first = barSearchResults.querySelector('.kb-search-item');
+            if (first && first.getAttribute('href')) {
+              window.location.href = first.getAttribute('href');
+            }
+          } else if (e.key === 'Escape') {
+            hideBarSearchResults();
+          }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (!barSearchWrap) return;
+          if (!barSearchWrap.contains(e.target)) {
+            hideBarSearchResults();
+          }
+        });
+      }
+
+      function setActiveBtn(v) {
+        document.querySelectorAll('.mode-btn').forEach(function (btn) {
+          btn.classList.toggle('active', btn.dataset.view === v);
+        });
+      }
+
+      function applyView(v) {
+        if (!isDualMode) {
+          setActiveBtn('markdown');
+          if (v === 'enriched') showToast('No disponible para esta sección');
+          return;
+        }
+        document.querySelectorAll('[data-view]').forEach(function (el) {
+          el.style.display = el.dataset.view === v ? '' : 'none';
+        });
+        setActiveBtn(v);
+        localStorage.setItem('kb-view-mode', v);
+      }
+
+      // Init
+      isDualMode ? applyView(saved) : setActiveBtn('markdown');
+
+      document.querySelectorAll('.mode-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { applyView(btn.dataset.view); });
+      });
+
+      function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1).replace(/-/g, ' '); }
+      function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    })();
   </script>
 </body>
 </html>
+
+<style>
+  body {
+    font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+  }
+
+  /* ── Wiki content card ─────────────────────────────── */
+  .wiki-card {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 0.875rem;
+    padding: 1.25rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (min-width: 640px) {
+    .wiki-card { padding: 1.75rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .wiki-card { padding: 2.25rem; }
+  }
+
+  /* ── Page bar (breadcrumb + mode toggle) ───────────── */
+  .view-mode-bar {
+    background:
+      linear-gradient(90deg, rgba(12, 19, 34, 0.92), rgba(16, 25, 44, 0.9) 45%, rgba(17, 33, 54, 0.92)),
+      radial-gradient(900px 140px at 30% -30px, rgba(56, 189, 248, 0.14), transparent 65%);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    backdrop-filter: blur(14px);
+  }
+
+  .view-mode-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0.56rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .bar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    text-decoration: none;
+    color: #e2e8f0;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 999px;
+    padding: 0.22rem 0.52rem 0.22rem 0.26rem;
+    flex-shrink: 0;
+  }
+
+  .bar-brand-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 0.35rem;
+  }
+
+  .bar-brand-text {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  /* Breadcrumb */
+  .page-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .bc-item {
+    font-size: 0.8rem;
+    color: rgba(148, 163, 184, 0.72);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+  }
+
+  .bc-item:hover { color: #cbd5e1; }
+
+  .bc-current {
+    font-size: 0.88rem;
+    color: rgba(241, 245, 249, 0.94);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 520px;
+  }
+
+  .bc-sep {
+    font-size: 0.74rem;
+    color: rgba(148, 163, 184, 0.45);
+    user-select: none;
+  }
+
+  .page-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .bar-search-wrap {
+    position: relative;
+  }
+
+  .bar-search {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    height: 2rem;
+    padding: 0 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    background: linear-gradient(120deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.68));
+    color: rgba(148, 163, 184, 0.78);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .bar-search:focus-within {
+    border-color: rgba(34, 211, 238, 0.55);
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.16);
+  }
+
+  .bar-search-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+
+  .bar-search input {
+    width: 11.5rem;
+    border: none;
+    background: transparent;
+    color: #e2e8f0;
+    font-size: 0.78rem;
+    font-family: 'JetBrains Mono', monospace;
+    outline: none;
+  }
+
+  .bar-search input::placeholder {
+    color: rgba(148, 163, 184, 0.66);
+  }
+
+  .kb-bar-search-results {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    left: 0;
+    width: min(24rem, calc(100vw - 2rem));
+    max-height: 20rem;
+    overflow-y: auto;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: linear-gradient(120deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.95));
+    box-shadow: 0 16px 35px rgba(2, 6, 23, 0.55);
+    z-index: 80;
+  }
+
+  .kb-search-item {
+    display: block;
+    text-decoration: none;
+    padding: 0.58rem 0.72rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  }
+
+  .kb-search-item:last-child {
+    border-bottom: none;
+  }
+
+  .kb-search-item:hover {
+    background: rgba(99, 102, 241, 0.17);
+  }
+
+  .kb-search-item-title {
+    display: block;
+    font-size: 0.78rem;
+    color: #e2e8f0;
+    font-weight: 600;
+  }
+
+  .kb-search-item-meta {
+    display: block;
+    margin-top: 0.1rem;
+    font-size: 0.68rem;
+    color: rgba(148, 163, 184, 0.86);
+    text-transform: capitalize;
+  }
+
+  .kb-search-empty {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.74rem;
+    color: rgba(148, 163, 184, 0.85);
+  }
+
+  .bar-link-btn,
+  .bar-theme-btn {
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.23);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    color: rgba(226, 232, 240, 0.9);
+    text-decoration: none;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .bar-link-btn:hover,
+  .bar-theme-btn:hover {
+    border-color: rgba(125, 211, 252, 0.55);
+    background: rgba(56, 189, 248, 0.18);
+  }
+
+  .icon-sun { display: none; }
+  .icon-moon { display: block; }
+  :global(html.dark) .icon-sun { display: block; }
+  :global(html.dark) .icon-moon { display: none; }
+
+  /* Mode toggle group */
+  .mode-toggle {
+    display: flex;
+    gap: 0.34rem;
+    flex-shrink: 0;
+    padding: 0.16rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    background: linear-gradient(120deg, rgba(15, 23, 42, 0.72), rgba(30, 41, 59, 0.48));
+  }
+
+  .mode-btn {
+    padding: 0.34rem 0.82rem;
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    background: transparent;
+    color: rgba(148, 163, 184, 0.8);
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: 'Outfit', 'Segoe UI', sans-serif;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+
+  .mode-btn:hover {
+    background: rgba(148, 163, 184, 0.13);
+    color: #e2e8f0;
+  }
+
+  .mode-btn.active {
+    background: linear-gradient(120deg, rgba(99, 102, 241, 0.34), rgba(34, 211, 238, 0.25));
+    border-color: rgba(125, 211, 252, 0.5);
+    color: #dbeafe;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.18);
+  }
+
+  @media (max-width: 1024px) {
+    .bar-search input {
+      width: 9.5rem;
+    }
+
+    .bc-current {
+      max-width: 380px;
+    }
+
+    .bar-brand-text {
+      display: none;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .view-mode-inner {
+      flex-wrap: wrap;
+      row-gap: 0.45rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .bar-brand {
+      order: 1;
+    }
+
+    .page-breadcrumb {
+      flex-basis: 100%;
+      order: 2;
+    }
+
+    .page-tools {
+      width: auto;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      order: 3;
+    }
+
+    .bar-search-wrap {
+      display: none;
+    }
+
+    .mode-toggle {
+      padding: 0;
+      border: none;
+      background: transparent;
+      gap: 0.25rem;
+    }
+
+    .mode-btn {
+      padding: 0.24rem 0.56rem;
+      font-size: 0.72rem;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 23, 42, 0.42);
+    }
+
+    .bc-current {
+      max-width: calc(100vw - 2rem);
+      font-size: 0.78rem;
+    }
+
+    .bc-item {
+      font-size: 0.72rem;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .bar-brand {
+      display: none;
+    }
+
+    .page-tools {
+      grid-template-columns: minmax(0, 1fr) auto auto auto;
+      gap: 0.32rem;
+    }
+
+    .view-mode-inner {
+      padding-left: 0.6rem;
+      padding-right: 0.6rem;
+    }
+
+    .bar-link-btn,
+    .bar-theme-btn {
+      width: 1.85rem;
+      height: 1.85rem;
+    }
+
+    .mode-btn {
+      font-size: 0.7rem;
+      padding: 0.22rem 0.5rem;
+    }
+
+    .mode-toggle {
+      width: auto;
+      justify-content: flex-end;
+    }
+
+    .page-breadcrumb {
+      gap: 0.2rem;
+    }
+
+    .bc-item {
+      font-size: 0.68rem;
+    }
+
+    .bc-current {
+      font-size: 0.72rem;
+    }
+  }
+
+  /* Toast */
+  #kb-toast {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(0.5rem);
+    background: rgba(30, 41, 59, 0.96);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    color: #e2e8f0;
+    font-size: 0.83rem;
+    font-family: 'Outfit', sans-serif;
+    padding: 0.5rem 1.1rem;
+    border-radius: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+
+  #kb-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── Footer ────────────────────────────────────────── */
+  .wiki-footer {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border-top: 1px solid rgba(148, 163, 184, 0.08);
+    padding: 1.25rem 0;
+    margin-top: auto;
+  }
+
+  .wiki-footer-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: rgba(148, 163, 184, 0.5);
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .wiki-footer-inner {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  .wiki-footer-links {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .wiki-footer-links a {
+    color: rgba(148, 163, 184, 0.5);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .wiki-footer-links a:hover {
+    color: #94a3b8;
+  }
+</style>

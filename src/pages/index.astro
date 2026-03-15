@@ -34,6 +34,17 @@ const recentPages = searchData.pages.slice(-8).reverse();
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Apply theme before paint -->
+  <script is:inline>
+    (function () {
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.classList.toggle('dark', t === 'dark');
+    })();
+  </script>
 </head>
 <body>
     <Navbar />
@@ -41,8 +52,19 @@ const recentPages = searchData.pages.slice(-8).reverse();
     <div class="page-wrapper">
         <main class="main-content">
 
-            <!-- ── Filter bar: view toggle + tag chips ── -->
-            <div class="filter-bar">
+            <!-- ── Filter bar ── -->
+            <!-- Mobile trigger -->
+            <div class="mobile-filter-trigger">
+              <button id="filterToggle" class="filter-toggle-btn" aria-expanded="false" aria-controls="filterPanel">
+                <span id="filterSummary" class="filter-summary-text">📚 Categorías</span>
+                <svg class="chevron-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Filter panel (always visible on desktop, toggleable on mobile) -->
+            <div id="filterPanel" class="filter-panel" aria-hidden="true">
               <div class="view-toggle">
                 <button class="toggle-btn active" data-tab="categories">📚 Categorías</button>
                 <button class="toggle-btn" data-tab="certifications">🎓 Paths</button>
@@ -147,6 +169,30 @@ async function init() {
   }
 }
 
+// ── Mobile filter panel toggle ─────────────────────────────────────────────
+function updateFilterSummary() {
+  const summaryEl = document.getElementById('filterSummary');
+  if (!summaryEl) return;
+  const tabLabel = activeView === 'certifications' ? '🎓 Paths' : '📚 Categorías';
+  summaryEl.textContent = activeTag ? `${tabLabel} · #${activeTag}` : tabLabel;
+}
+
+function openFilterPanel() {
+  const panel = document.getElementById('filterPanel')!;
+  const btn = document.getElementById('filterToggle')!;
+  panel.classList.add('open');
+  btn.setAttribute('aria-expanded', 'true');
+  panel.setAttribute('aria-hidden', 'false');
+}
+
+function closeFilterPanel() {
+  const panel = document.getElementById('filterPanel')!;
+  const btn = document.getElementById('filterToggle')!;
+  panel.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+  panel.setAttribute('aria-hidden', 'true');
+}
+
 // ── Tag filter ────────────────────────────────────────────────────────────
 function toggleTag(tag: string, btn: HTMLButtonElement) {
   if (activeTag === tag) {
@@ -160,6 +206,8 @@ function toggleTag(tag: string, btn: HTMLButtonElement) {
 
   const results = searchIndex.filter(p => p.tags?.includes(tag));
   showFiltered(results, `#${tag}`);
+  updateFilterSummary();
+  closeFilterPanel();
 }
 
 function showFiltered(pages: typeof searchIndex, label: string) {
@@ -179,9 +227,6 @@ function showFiltered(pages: typeof searchIndex, label: string) {
     sistemas:       { color: '#a78bfa', glow: 'rgba(167,139,250,0.15)' },
     programacion:   { color: '#34d399', glow: 'rgba(52,211,153,0.15)'  },
     cloud:          { color: '#38bdf8', glow: 'rgba(56,189,248,0.15)'  },
-    arduino:        { color: '#fb923c', glow: 'rgba(251,146,60,0.15)'  },
-    datacenters:    { color: '#94a3b8', glow: 'rgba(148,163,184,0.15)' },
-    robotica:       { color: '#f472b6', glow: 'rgba(244,114,182,0.15)' },
   };
 
   if (pages.length === 0) {
@@ -214,6 +259,7 @@ function clearFilter() {
   document.querySelectorAll('.tag-chip').forEach(b => b.classList.remove('active'));
   document.getElementById('filteredResults')!.style.display = 'none';
   document.getElementById('tabContent')!.style.display = '';
+  updateFilterSummary();
 }
 
 // ── Tab switching ─────────────────────────────────────────────────────────
@@ -223,6 +269,8 @@ function switchTab(name: string) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelector<HTMLElement>(`[data-tab="${name}"]`)!.classList.add('active');
   document.getElementById(`${name}-tab`)!.classList.add('active');
+  updateFilterSummary();
+  closeFilterPanel();
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────
@@ -234,6 +282,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('clearFilter')!.addEventListener('click', clearFilter);
+
+  // Mobile filter panel toggle
+  document.getElementById('filterToggle')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const panel = document.getElementById('filterPanel')!;
+    if (panel.classList.contains('open')) {
+      closeFilterPanel();
+    } else {
+      openFilterPanel();
+    }
+  });
+
+  // Close panel when clicking outside
+  document.addEventListener('click', (e) => {
+    const panel = document.getElementById('filterPanel');
+    const trigger = document.getElementById('filterToggle');
+    if (panel?.classList.contains('open') &&
+        !panel.contains(e.target as Node) &&
+        !trigger?.contains(e.target as Node)) {
+      closeFilterPanel();
+    }
+  });
 });
 </script>
 
@@ -245,19 +315,80 @@ document.addEventListener('DOMContentLoaded', () => {
             repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px),
             linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         min-height: 100vh;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
     }
 
     .page-wrapper { min-height: calc(100vh - 64px); }
 
     .main-content {
-        padding: 28px 40px 48px;
+        padding: 16px 12px 32px;
         max-width: 960px;
         margin: 0 auto;
     }
 
-    /* ── Filter bar ── */
-    .filter-bar {
+    @media (min-width: 480px) {
+        .main-content { padding: 20px 20px 40px; }
+    }
+
+    @media (min-width: 768px) {
+        .main-content { padding: 28px 32px 48px; }
+    }
+
+    /* ── Mobile filter trigger (hidden on desktop) ── */
+    .mobile-filter-trigger {
+        display: none;
+        margin-bottom: 10px;
+    }
+
+    .filter-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px 14px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 10px;
+        color: #e2e8f0;
+        font-size: 0.85rem;
+        font-weight: 600;
+        font-family: 'Outfit', system-ui, sans-serif;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+        gap: 8px;
+    }
+
+    .filter-toggle-btn:hover {
+        background: rgba(255,255,255,0.07);
+        border-color: rgba(255,255,255,0.18);
+    }
+
+    .filter-toggle-btn[aria-expanded="true"] {
+        border-color: rgba(99,102,241,0.5);
+        background: rgba(99,102,241,0.08);
+    }
+
+    .filter-summary-text {
+        flex: 1;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .chevron-icon {
+        flex-shrink: 0;
+        color: rgba(148,163,184,0.6);
+        transition: transform 0.2s ease;
+    }
+
+    .filter-toggle-btn[aria-expanded="true"] .chevron-icon {
+        transform: rotate(180deg);
+    }
+
+    /* ── Filter panel ── */
+    .filter-panel {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
@@ -265,6 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
         margin-bottom: 20px;
     }
 
+    /* ── View toggle ── */
     .view-toggle {
         display: flex;
         gap: 4px;
@@ -279,9 +411,11 @@ document.addEventListener('DOMContentLoaded', () => {
         color: rgba(148,163,184,0.7);
         font-size: 0.78rem;
         font-weight: 600;
+        font-family: 'Outfit', system-ui, sans-serif;
         cursor: pointer;
         transition: all 0.15s;
         white-space: nowrap;
+        min-height: 32px;
     }
 
     .toggle-btn:hover {
@@ -312,6 +446,55 @@ document.addEventListener('DOMContentLoaded', () => {
     .tags-loading {
         font-size: 0.75rem;
         color: rgba(148,163,184,0.3);
+    }
+
+    /* ── Mobile styles (≤ 640px) ── */
+    @media (max-width: 640px) {
+        .mobile-filter-trigger {
+            display: block;
+        }
+
+        .filter-panel {
+            display: none;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            padding: 14px;
+            background: rgba(15,23,42,0.95);
+            border: 1px solid rgba(99,102,241,0.25);
+            border-radius: 10px;
+            margin-bottom: 16px;
+            animation: slideDown 0.18s ease-out;
+        }
+
+        .filter-panel.open {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .view-toggle {
+            width: 100%;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            justify-content: center;
+            text-align: center;
+            padding: 9px 10px;
+        }
+
+        .filter-sep {
+            width: 100%;
+            height: 1px;
+        }
+
+        .tag-chips-row {
+            gap: 6px;
+        }
     }
 
     :global(.tag-chip) {
@@ -475,6 +658,59 @@ document.addEventListener('DOMContentLoaded', () => {
         align-self: flex-start;
     }
 
+    /* ── Cards en mobile: grid de 2 col, texto visible ── */
+    @media (max-width: 640px) {
+        .recent-card {
+            display: grid;
+            grid-template-columns: 1.4rem 1fr;
+            grid-template-rows: auto auto;
+            gap: 0 10px;
+            align-items: start;
+            padding: 12px;
+            min-height: 52px;
+        }
+
+        .r-icon {
+            grid-column: 1;
+            grid-row: 1 / 3;
+            align-self: start;
+            padding-top: 2px;
+            font-size: 1.1rem;
+        }
+
+        .r-body {
+            grid-column: 2;
+            grid-row: 1;
+            gap: 2px;
+        }
+
+        .r-badge {
+            grid-column: 2;
+            grid-row: 2;
+            align-self: start;
+            margin-top: 5px;
+            font-size: 0.62rem;
+        }
+
+        .r-name {
+            white-space: normal;
+            overflow: visible;
+            text-overflow: unset;
+            font-size: 0.875rem;
+            line-height: 1.35;
+        }
+
+        .r-desc {
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 0.73rem;
+            line-height: 1.4;
+        }
+    }
+
       /* Dynamic cards in #filteredGrid are created by JS and need global selectors */
       :global(#filteredGrid .recent-card) {
         display: flex;
@@ -536,17 +772,60 @@ document.addEventListener('DOMContentLoaded', () => {
         align-self: flex-start;
       }
 
-    @media (max-width: 768px) {
-        .main-content { padding: 20px 20px 32px; }
-        .filter-sep { display: none; }
-    }
-
     @media (max-width: 640px) {
         .recent-grid, .filtered-grid { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 480px) {
-        .main-content { padding: 16px 12px 24px; }
+    /* ── Filtered grid cards en mobile (JS-generated, requieren :global) ── */
+    @media (max-width: 640px) {
+        :global(#filteredGrid .recent-card) {
+            display: grid;
+            grid-template-columns: 1.4rem 1fr;
+            grid-template-rows: auto auto;
+            gap: 0 10px;
+            align-items: start;
+            padding: 12px;
+            min-height: 52px;
+        }
+
+        :global(#filteredGrid .r-icon) {
+            grid-column: 1;
+            grid-row: 1 / 3;
+            align-self: start;
+            padding-top: 2px;
+            font-size: 1.1rem;
+        }
+
+        :global(#filteredGrid .r-body) {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        :global(#filteredGrid .r-badge) {
+            grid-column: 2;
+            grid-row: 2;
+            align-self: start;
+            margin-top: 5px;
+            font-size: 0.62rem;
+        }
+
+        :global(#filteredGrid .r-name) {
+            white-space: normal;
+            overflow: visible;
+            text-overflow: unset;
+            font-size: 0.875rem;
+            line-height: 1.35;
+        }
+
+        :global(#filteredGrid .r-desc) {
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 0.73rem;
+            line-height: 1.4;
+        }
     }
 </style>
 

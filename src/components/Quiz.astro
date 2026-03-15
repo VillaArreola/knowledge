@@ -44,7 +44,7 @@ const { questions, title = "Quiz de Conocimientos" } = Astro.props;
   }
   
   // Obtener las preguntas aleatorias
-  const selectedQuestions = getRandomQuestions(questions, 5);
+  let selectedQuestions = getRandomQuestions(questions, 5);
   
   let currentQuestion = 0;
   let score = 0;
@@ -220,6 +220,7 @@ const { questions, title = "Quiz de Conocimientos" } = Astro.props;
     if (quizResults) quizResults.style.display = 'none';
     if (navigationDiv) navigationDiv.style.display = 'block';
 
+    selectedQuestions = getRandomQuestions(questions, 5);
     initQuiz();
   }
 

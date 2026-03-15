@@ -173,63 +173,6 @@
           "column": 2
         }
       ]
-    },
-    {
-      "slug": "robotica",
-      "name": "Robotica",
-      "icon": "📁",
-      "defaultSection": "ai",
-      "color": {
-        "headerGradient": "from-gray-600 to-gray-700",
-        "cardAccent": "border-gray-400",
-        "badge": "gray"
-      },
-      "sections": [
-        {
-          "slug": "ai",
-          "name": "Ai",
-          "icon": "📄",
-          "column": 2
-        }
-      ]
-    },
-    {
-      "slug": "arduino",
-      "name": "Arduino",
-      "icon": "📁",
-      "defaultSection": "firewall",
-      "color": {
-        "headerGradient": "from-gray-600 to-gray-700",
-        "cardAccent": "border-gray-400",
-        "badge": "gray"
-      },
-      "sections": [
-        {
-          "slug": "firewall",
-          "name": "Firewall",
-          "icon": "📄",
-          "column": 2
-        }
-      ]
-    },
-    {
-      "slug": "datacenters",
-      "name": "Datacenters",
-      "icon": "📁",
-      "defaultSection": "fundamentos",
-      "color": {
-        "headerGradient": "from-gray-600 to-gray-700",
-        "cardAccent": "border-gray-400",
-        "badge": "gray"
-      },
-      "sections": [
-        {
-          "slug": "fundamentos",
-          "name": "Fundamentos",
-          "icon": "📄",
-          "column": 2
-        }
-      ]
     }
   ]
 }

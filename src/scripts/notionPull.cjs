@@ -35,6 +35,8 @@ const CLEANUP_MODE = process.argv.includes('--cleanup');
 const AUTO_CLEANUP = !process.argv.includes('--no-cleanup');
 const CATEGORY_FILTER = process.argv.find(a => !a.startsWith('-') && a !== process.argv[0] && a !== process.argv[1]);
 
+const IMAGES_ROOT = path.join(process.cwd(), 'public', 'images', 'notion');
+
 // ─── Notion clients ─────────────────────────────────────────────────────────
 
 const notion = new Client({ auth: NOTION_API_KEY });
@@ -109,6 +111,69 @@ function buildOutputPath(category, section, slug) {
 
 function ensureDir(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
+}
+
+// ─── Image download helpers ─────────────────────────────────────────────────
+
+async function downloadFile(url, destPath) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
+  if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
+  const buffer = Buffer.from(await response.arrayBuffer());
+  fs.writeFileSync(destPath, buffer);
+}
+
+function deriveFilename(url, usedNames) {
+  let rawPath = '';
+  try { rawPath = new URL(url).pathname; } catch { rawPath = url.split('?')[0]; }
+  let base = path.posix.basename(rawPath).replace(/[^a-zA-Z0-9._-]/g, '_') || 'image';
+  if (!path.extname(base)) base += '.png';
+
+  if (!usedNames.has(base)) { usedNames.add(base); return base; }
+
+  const ext = path.extname(base);
+  const stem = base.slice(0, -ext.length);
+  let n = 2, candidate;
+  do { candidate = `${stem}-${n++}${ext}`; } while (usedNames.has(candidate));
+  usedNames.add(candidate);
+  return candidate;
+}
+
+async function downloadNotionImages(markdownBody, category, section, slug, force) {
+  const IMAGE_RE = /!\[([^\]]*)\]\((https:\/\/prod-files-secure\.s3[^)]+)\)/g;
+  const replacements = [];
+  let match;
+  while ((match = IMAGE_RE.exec(markdownBody)) !== null) {
+    replacements.push({ original: match[0], alt: match[1], url: match[2] });
+  }
+  if (replacements.length === 0) return markdownBody;
+
+  const imageDir = path.join(IMAGES_ROOT, category, section, slug);
+  fs.mkdirSync(imageDir, { recursive: true });
+
+  let result = markdownBody;
+  const usedNames = new Set();
+
+  for (const { original, alt, url } of replacements) {
+    const filename = deriveFilename(url, usedNames);
+    const localPath = path.join(imageDir, filename);
+    const localUrl = `/images/notion/${category}/${section}/${slug}/${filename}`;
+
+    if (!force && fs.existsSync(localPath)) {
+      result = result.split(original).join(`![${alt}](${localUrl})`);
+      continue;
+    }
+
+    try {
+      await downloadFile(url, localPath);
+      console.log(`      📥  Imagen guardada: ${localUrl}`);
+      result = result.split(original).join(`![${alt}](${localUrl})`);
+    } catch (err) {
+      console.warn(`      ⚠️  No se pudo descargar imagen: ${url.substring(0, 80)}... (${err.message})`);
+      // Leave original S3 URL in place — don't break the page
+    }
+  }
+
+  return result;
 }
 
 // ─── Site-config auto-update (DB mode) ───────────────────────────────────────
@@ -303,10 +368,11 @@ async function processAllFromDB() {
     }
 
     console.log(`   ⬇  ${category}/${section}/${slug} — obteniendo markdown...`);
-    const markdownBody = await fetchMarkdown(pageId);
+    let markdownBody = await fetchMarkdown(pageId);
     if (!markdownBody.trim()) {
       console.warn(`   ⚠️  ${category}/${section}/${slug} sin contenido en bloques de Notion (markdownBody vacío)`);
     }
+    markdownBody = await downloadNotionImages(markdownBody, category, section, slug, FORCE);
 
     const data = {
       metadata: { name, slug, category, section, icon, description, tags, certifications, order, mode, notionUrl: pageUrl },
@@ -352,6 +418,12 @@ async function cleanupDB() {
         console.log(`      ✔ src/pages/${category}/${section}/${slug}${ext}`);
         removed++;
       }
+    }
+
+    const imagePageDir = path.join(IMAGES_ROOT, category, section, slug);
+    if (fs.existsSync(imagePageDir)) {
+      fs.rmSync(imagePageDir, { recursive: true, force: true });
+      console.log(`      ✔ public/images/notion/${category}/${section}/${slug}/`);
     }
   }
 
