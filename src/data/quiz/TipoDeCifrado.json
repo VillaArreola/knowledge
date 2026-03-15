@@ -1,0 +1,60 @@
+{
+  "title": "Quiz: Tipos de Cifrado",
+  "questions": [
+    {
+      "question": "¿Qué es un cifrado?",
+      "options": [
+        "Un método para convertir texto plano en texto cifrado usando un algoritmo y clave",
+        "Un tipo de antivirus",
+        "Un protocolo de red",
+        "Un sistema de autenticación"
+      ],
+      "correct": 0,
+      "explanation": "Un cifrado es un método para convertir información legible (texto plano) en un formato ilegible (texto cifrado) usando un algoritmo y una clave secreta."
+    },
+    {
+      "question": "¿En qué consiste el cifrado por sustitución?",
+      "options": [
+        "Cada letra se reemplaza por otra según una regla",
+        "Las letras se reordenan en posiciones",
+        "Se usa una clave del mismo tamaño que el mensaje",
+        "Se aplica un algoritmo de hash"
+      ],
+      "correct": 0,
+      "explanation": "En el cifrado por sustitución, cada letra del texto plano se reemplaza por otra según una regla definida por la clave, como en el cifrado César."
+    },
+    {
+      "question": "¿Cuál es una característica del One-Time Pad?",
+      "options": [
+        "La clave debe ser del mismo tamaño que el mensaje",
+        "Usa la misma clave para todos los mensajes",
+        "Es un cifrado por transposición",
+        "No necesita clave"
+      ],
+      "correct": 0,
+      "explanation": "El One-Time Pad usa una clave aleatoria y única del mismo tamaño que el mensaje. Si se implementa correctamente, es imposible de descifrar sin la clave."
+    },
+    {
+      "question": "¿Qué tipo de cifrado usa el método de Valla de Riel (Rail Fence)?",
+      "options": [
+        "Transposición",
+        "Sustitución",
+        "Hash",
+        "Asimétrico"
+      ],
+      "correct": 0,
+      "explanation": "El Rail Fence Cipher es un cifrado por transposición que escribe el mensaje en zigzag sobre varias líneas y luego lo lee horizontalmente."
+    },
+    {
+      "question": "En el cifrado César, si aplicamos un desplazamiento de +3, ¿cómo se transforma 'HELLO'?",
+      "options": [
+        "KHOOR",
+        "CHOOH",
+        "UGUUG",
+        "WEOOR"
+      ],
+      "correct": 0,
+      "explanation": "Con desplazamiento +3: H→K, E→H, L→O, L→O, O→R. Por tanto 'HELLO' se convierte en 'KHOOR'."
+    }
+  ]
+}

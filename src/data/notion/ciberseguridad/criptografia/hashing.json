@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "name": "Hashing",
+    "slug": "hashing",
+    "category": "ciberseguridad",
+    "section": "criptografia",
+    "icon": "🏛️",
+    "description": "Hasing y Firmas Digitales",
+    "tags": [
+      "Autenticación",
+      "Cifrado",
+      "PKI"
+    ],
+    "certifications": "FCE,Comptia+",
+    "order": 4,
+    "mode": "markdown",
+    "notionUrl": "https://www.notion.so/Hashing-324ec7e74fc080f5ac2fee4ea99d6c21"
+  },
+  "markdownBody": "\n##  ¿Qué es el **hashing**?\n\n\nEs el **proceso de transformar datos de tamaño arbitrario en un valor único y fijo** llamado **hash**, **digest** o **resumen**.\n\n\n###  Características de una función hash criptográfica:\n\n1. **Salida única para cada entrada:**\n\n    Si se modifica una sola letra del texto original, el hash resultante cambia completamente (efecto avalancha).\n\n2. **No reversible:**\n\n    No se puede obtener el valor original a partir del hash. Por eso **no sirve para cifrar datos**, sino para verificar integridad.\n\n\n---\n\n\n## ¿Qué es una **firma digital**?\n\n\nEs una técnica que usa hashing + criptografía para garantizar:\n\n- **Integridad** (los datos no fueron alterados)\n- **Autenticidad** (quién firmó)\n- **No repudio** (no se puede negar haber firmado)\n\n###  Proceso de firma:\n\n1. Se aplica una función hash al documento.\n2. El hash se cifra con la **clave privada** del remitente.\n3. El resultado es la **firma digital**, que se adjunta al mensaje.\n4. El receptor:\n    - Usa la **clave pública** del remitente (normalmente en un certificado digital).\n    - Verifica el certificado (emitido por una Autoridad Certificadora - CA).\n    - Aplica hash al mensaje recibido y lo compara con el hash descifrado de la firma.\n    - Si coinciden: el mensaje es auténtico e íntegro.\n\n![image.png](/images/notion/ciberseguridad/criptografia/hashing/image.png)\n\n\n---\n\n\n##  Funciones de hash más comunes\n\n\n| Algoritmo  | Longitud de salida | Estado actual                                   |\n| ---------- | ------------------ | ----------------------------------------------- |\n| **MD5**    | 128 bits           | Obsoleto, colisiones conocidas                  |\n| **SHA-1**  | 160 bits           | Obsoleto, colisiones encontradas                |\n| **SHA-2**  | 224-512 bits       | Seguro, ampliamente usado                       |\n| **SHA-3**  | Variable           | Nuevo estándar, alternativa a SHA-2             |\n| **RIPEMD** | 160 bits           | Alternativa más académica                       |\n| **LANMAN** | (varía)            | Muy débil, usado en viejas versiones de Windows |\n| **HAVAL**  | Variable           | Hash personalizable, menos usado                |\n\n\n---\n\n\n##  Ataques al hashing\n\n- **Fuerza bruta:** cuando el atacante no tiene información y prueba todas las combinaciones posibles.\n- **Ataques con información parcial:** por ejemplo, si sabe que la clave tiene 4 dígitos.\n- **Colisiones:** cuando dos valores diferentes generan el mismo hash.\n\n### _La paradoja del cumpleaños_\n\n\nCon solo **23 personas en una sala**, hay un **50% de probabilidad** de que **dos compartan cumpleaños**.\n\n\nEsto se aplica al hashing:\n\n> No hace falta encontrar el valor original. Basta con encontrar cualquier otro valor que genere el mismo hash.\n\nPor eso, **cuanto más largo sea el hash**, más difícil será provocar una colisión.\n\n"
+}

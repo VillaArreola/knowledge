@@ -2,7 +2,7 @@
 
 Convierte una página existente (generada por `notion-sync`) en una página dual-mode con:
 - `data-view="markdown"` — la vista documental existente (sin cambios)
-- `data-view="enriched"` — vista interactiva de diseño libre: cards, timelines, tablas, diagramas, stats, o lo que mejor se adapte al contenido
+- `data-view="enriched"` — vista interactiva con concept cards, quiz y elementos JS
 
 **Argumento:** ruta relativa de la página, con o sin barra inicial.
 Ejemplos: `datacenters/fundamentos/Datos` · `/ciberseguridad/fundamentos/cia`
@@ -33,7 +33,7 @@ Lee `src/pages/[cat]/[sec]/[slug].astro` → guarda el bloque frontmatter y la s
 
 Usa `AskUserQuestion` para las siguientes preguntas (máximo 4 en una sola llamada):
 
-1. **Aspectos clave** — "¿Cuáles son los 3–5 aspectos clave de este tema que quieres destacar en la vista enriquecida? (lista separada por comas)"
+1. **Conceptos principales** — "¿Cuáles son los 3–5 conceptos clave que quieres destacar como cards interactivas? (lista separada por comas)"
 2. **Quiz** — "¿Incluir quiz? Si sí, ¿cuántas preguntas (3–10)? ¿O lo genero yo desde el contenido? (responde: no / 5 / auto)"
 3. **Elemento interactivo** — "¿Hay algún elemento interactivo específico? (simulador, calculadora, diagrama, cifrador, ejercicio, ninguno)"
 4. **Color theme** — Opciones: `seguridad (azul/púrpura)` · `redes (verde/azul)` · `programación (naranja/rosa)` · `datos (púrpura/rosa)` · `custom (describe)`
@@ -131,50 +131,52 @@ const markdownHtml = hasBody
   <div data-view="enriched">
     <div class="ep-page">
 
-      <!-- Gradient header — OBLIGATORIO -->
+      <!-- Gradient header -->
       <div class="ep-header">
         <h1>{pageIcon} {pageName}</h1>
         <p>{pageDesc}</p>
       </div>
 
-      <!--
-        ╔══════════════════════════════════════════════════════╗
-        ║  ZONA DE DISEÑO LIBRE — Elige la estructura óptima   ║
-        ║  para ESTE contenido específico. No copies el mismo  ║
-        ║  layout en todas las páginas.                        ║
-        ╚══════════════════════════════════════════════════════╝
+      <!-- Concept cards grid -->
+      <div class="ep-grid">
+        <div class="ep-card ep-card--primary">
+          <h3><span class="ep-icon">[EMOJI_1]</span>[CONCEPTO_1]</h3>
+          <p>[DESCRIPCION_1]</p>
+          <div class="ep-items">
+            <div class="ep-item">[SUBCONCEPTO_1A]</div>
+            <div class="ep-item">[SUBCONCEPTO_1B]</div>
+          </div>
+        </div>
+        <div class="ep-card ep-card--secondary">
+          <h3><span class="ep-icon">[EMOJI_2]</span>[CONCEPTO_2]</h3>
+          <p>[DESCRIPCION_2]</p>
+          <div class="ep-items">
+            <div class="ep-item">[SUBCONCEPTO_2A]</div>
+            <div class="ep-item">[SUBCONCEPTO_2B]</div>
+          </div>
+        </div>
+        <div class="ep-card ep-card--tertiary">
+          <h3><span class="ep-icon">[EMOJI_3]</span>[CONCEPTO_3]</h3>
+          <p>[DESCRIPCION_3]</p>
+          <div class="ep-items">
+            <div class="ep-item">[SUBCONCEPTO_3A]</div>
+            <div class="ep-item">[SUBCONCEPTO_3B]</div>
+          </div>
+        </div>
+      </div>
 
-        El contenido dentro de este <div data-view="enriched"> es zona de diseño libre.
-        Elige el formato que mejor comunique ESTE tema específico.
-        No uses la misma estructura en todas las páginas.
+      <!-- Optional: practical example block -->
+      <div class="ep-example">
+        <h3>💼 [TITULO_EJEMPLO]</h3>
+        <p>[DESCRIPCION_EJEMPLO]</p>
+        <!-- code block, table, diagram, etc. if relevant -->
+      </div>
 
-        PALETA DE LAYOUTS POSIBLES (no exhaustiva, solo inspiración):
-
-        - Cards             → conceptos paralelos/equivalentes (principios CIA, capas OSI, PKI)
-        - Timeline/stepper  → procesos secuenciales (handshake TLS, ciclo de vida, historia)
-        - Tabla comparativa → comparar algoritmos, protocolos, tecnologías lado a lado
-        - Stat/badge counters → datos numéricos clave (puertos, bits de clave, versiones)
-        - Diagrama ASCII/flow → arquitecturas o flujos de datos (con <pre> estilizado)
-        - Accordion/details → contenido denso con muchas secciones colapsables
-        - Código con pestañas → ejemplos multi-lenguaje o configuraciones
-        - Mapa conceptual visual → jerarquía con listas anidadas estilizadas
-        - Texto enriquecido puro → si el contenido es narrativo y las cards no añaden valor
-
-        RESTRICCIONES QUE SÍ APLICAN:
-        - El .ep-header de arriba es el único elemento fijo/obligatorio
-        - Usar prefijo .ep-* para TODOS los estilos del enriched view
-        - No dejar placeholders — contenido real derivado del markdownBody
-        - Funcionar en dark mode (background var(--color-surface, #1e293b))
-        - Ser responsive (mobile-first, colapsar a 1 columna en max-width: 640px)
-        - El quiz (si se pidió) siempre va al final
-      -->
-
-      [DISEÑA AQUÍ LIBREMENTE BASÁNDOTE EN EL CONTENIDO]
 
       <!-- Optional: custom interactive JS tool -->
       <!-- Add here if the user requested a simulator, calculator, cipher, etc. -->
 
-      <!-- Quiz — siempre al final si se solicitó -->
+      <!-- Quiz -->
       {quizData && <Quiz questions={quizData.questions} title={quizData.title} />}
 
     </div>
@@ -197,33 +199,58 @@ const markdownHtml = hasBody
   .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; }
   .ep-header p { font-size: 1rem; opacity: 0.9; margin: 0; }
 
-  /*
-   * Agrega aquí SOLO los estilos necesarios para el layout elegido.
-   * Usa prefijo .ep-* para todos los estilos del enriched view.
-   *
-   * Estilos base comunes (puedes usar estos como punto de partida):
-   *
-   * .ep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
-   * .ep-card { background: var(--color-surface, #1e293b); border-radius: 0.75rem; padding: 1.5rem; border-left: 4px solid transparent; }
-   * .ep-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-   * .ep-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
-   * .ep-table th { background: rgba(255,255,255,0.08); padding: 0.75rem 1rem; text-align: left; }
-   * .ep-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-   * .ep-timeline { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
-   * .ep-step { display: flex; gap: 1rem; align-items: flex-start; }
-   * .ep-step-num { width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; }
-   * .ep-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-   * .ep-stat { background: var(--color-surface, #1e293b); border-radius: 0.75rem; padding: 1.25rem; text-align: center; }
-   * .ep-stat-value { font-size: 2rem; font-weight: 700; }
-   * .ep-accordion summary { cursor: pointer; padding: 0.75rem 1rem; font-weight: 600; list-style: none; }
-   *
-   * Responsive mínimo requerido:
-   */
+  .ep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .ep-card {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-left: 4px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ep-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+  .ep-card h3 { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.75rem; font-size: 1.1rem; }
+  .ep-card p { font-size: 0.9rem; opacity: 0.8; margin: 0 0 1rem; }
+  .ep-icon { font-size: 1.3rem; }
+
+  .ep-card--primary   { border-left-color: [CARD_COLOR_1]; }
+  .ep-card--secondary { border-left-color: [CARD_COLOR_2]; }
+  .ep-card--tertiary  { border-left-color: [CARD_COLOR_3]; }
+
+  .ep-items { display: flex; flex-direction: column; gap: 0.4rem; }
+  .ep-item {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 0.4rem;
+    cursor: default;
+  }
+
+  .ep-example {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .ep-example h3 { margin: 0 0 0.75rem; font-size: 1.1rem; }
+
+  .ep-mnemonic {
+    background: rgba(255,255,255,0.05);
+    border-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
 
   @media (max-width: 640px) {
     .ep-header { padding: 1.5rem 1rem; }
     .ep-header h1 { font-size: 1.5rem; }
-    /* Agrega overrides responsive para el layout elegido */
+    .ep-grid { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -255,7 +282,7 @@ Esto previene que `npm run notion-sync --force` sobreescriba la página enriquec
 ## Reglas importantes
 
 - **No dejes placeholders** en el archivo final — genera contenido real basado en el `markdownBody`.
-- **Elige el layout que mejor comunique el contenido.** Cards solo si los conceptos son paralelos. Si el contenido es un proceso/secuencia, usa timeline. Si el contenido es comparativo, usa tabla. Si es narrativo, usa texto enriquecido estructurado.
+- Cuando el contenido ya tiene secciones claras (##, tablas, listas), úsalas para derivar las cards.
 - Si el usuario no pidió elemento interactivo (`ninguno`), elimina el bloque `<script>` vacío.
 - Si el usuario no pidió quiz, elimina todos los imports y referencias a `quizData`.
 - Si no hay ejemplo práctico obvio en el contenido, omite el bloque `.ep-example`.

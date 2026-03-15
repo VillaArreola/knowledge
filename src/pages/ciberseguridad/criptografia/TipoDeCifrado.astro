@@ -1,0 +1,329 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import notionData from '../../../data/notion/ciberseguridad/criptografia/TipoDeCifrado.json';
+import { marked } from 'marked';
+import Quiz from '../../../components/Quiz.astro';
+import quizData from '../../../data/quiz/TipoDeCifrado.json';
+
+const body = (notionData.markdownBody || '').trim();
+const hasBody = body.length > 0;
+
+const metadata = notionData.metadata || {};
+const notionUrl = metadata.notionUrl || '';
+const pageIcon = metadata.icon || '📄';
+const pageName = metadata.name || '';
+const pageDesc = metadata.description || '';
+const tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];
+const category = metadata.category || '';
+const section = metadata.section || '';
+const rawCerts = typeof metadata.certifications === 'string' ? metadata.certifications : '';
+const certCodes = rawCerts.split(',').map(c => c.split(':')[0].trim()).filter(Boolean);
+
+const fallbackLines = [
+  '## Contenido pendiente',
+  '',
+  metadata.description ? '**Descripcion:** ' + metadata.description : '',
+  tags.length ? '**Tags:** ' + tags.join(', ') : '',
+  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',
+].filter(Boolean);
+
+const markdownHtml = hasBody
+  ? marked(body)
+  : marked(fallbackLines.join('\n'));
+---
+
+<WikiLayout title="🔑 Tipos de Cifrados" description="Tipos de cifrados" hasDualMode={true}>
+
+  <!-- ── MARKDOWN VIEW ─────────────────────────────────── -->
+  <div data-view="markdown">
+    <div class="doc-page">
+      <header class="doc-header">
+        {(category || section) && (
+          <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
+        )}
+        <h1 class="doc-title">{pageIcon} {pageName}</h1>
+        {pageDesc && <p class="doc-description">{pageDesc}</p>}
+        {(tags.length > 0 || certCodes.length > 0) && (
+          <div class="doc-meta-row">
+            {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+            {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+          </div>
+        )}
+      </header>
+      <div class="doc-content">
+        <Fragment set:html={markdownHtml} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENRICHED VIEW ─────────────────────────────────── -->
+  <div data-view="enriched">
+    <div class="ep-page">
+
+      <!-- Gradient header -->
+      <div class="ep-header">
+        <h1>{pageIcon} {pageName}</h1>
+        <p>{pageDesc}</p>
+      </div>
+
+      <!-- Concept cards grid -->
+      <div class="ep-grid">
+        <div class="ep-card ep-card--primary">
+          <h3><span class="ep-icon">🔤</span>Cifrado por Sustitución</h3>
+          <p>Cada letra del texto plano se reemplaza por otra según una regla definida por la clave.</p>
+          <div class="ep-items">
+            <div class="ep-item">Cifrado César (desplazamiento fijo)</div>
+            <div class="ep-item">Clave = número de posiciones</div>
+            <div class="ep-item">Ejemplo: H +3 = K</div>
+          </div>
+        </div>
+        <div class="ep-card ep-card--secondary">
+          <h3><span class="ep-icon">🔀</span>Cifrado por Transposición</h3>
+          <p>Las letras no se cambian, sino que se reordena su posición según un patrón.</p>
+          <div class="ep-items">
+            <div class="ep-item">Rail Fence (valla de riel)</div>
+            <div class="ep-item">Clave = número de rieles</div>
+            <div class="ep-item">Escribe en zigzag, lee horizontalmente</div>
+          </div>
+        </div>
+        <div class="ep-card ep-card--tertiary">
+          <h3><span class="ep-icon">🔐</span>One-Time Pad (OTP)</h3>
+          <p>El cifrado más seguro si se implementa correctamente. Clave aleatoria única por cada mensaje.</p>
+          <div class="ep-items">
+            <div class="ep-item">Clave = tamaño del mensaje</div>
+            <div class="ep-item">Completamente aleatoria</div>
+            <div class="ep-item">Imposible descifrar sin clave</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Rail Fence Diagram -->
+      <div class="ep-example">
+        <h3>🔧 Diagrama: Rail Fence Cipher</h3>
+        <p>Visualiza cómo funciona el cifrado con 3 rieles:</p>
+        
+        <div class="rail-fence-demo">
+          <div class="rail-input">
+            <label for="rf-message">Mensaje:</label>
+            <input type="text" id="rf-message" value="ATAQUEALAMANANA" placeholder="Escribe tu mensaje">
+          </div>
+          <div class="rail-rails">
+            <label>Rieles (claves):</label>
+            <input type="range" id="rf-rails" min="2" max="6" value="3">
+            <span id="rf-rails-val">3</span>
+          </div>
+          <button id="rf-encode" class="ep-btn">Cifrar</button>
+          
+          <div class="rail-result" id="rf-result">
+            <div class="rail-visual" id="rail-visual"></div>
+            <div class="rail-output" id="rail-output"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mnemonic -->
+      <div class="ep-mnemonic">
+        🧠 <strong>Memoriza:</strong> "Sustituye la letra, Transpone la posición, OTP es único"
+      </div>
+
+      <!-- Quiz -->
+      {quizData && <Quiz questions={quizData.questions} title={quizData.title} />}
+
+    </div>
+  </div>
+
+</WikiLayout>
+
+<style>
+  /* ── Enriched Page Styles (.ep-*) ── */
+  .ep-page { padding: 2rem 0; }
+
+  .ep-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+  }
+  .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .ep-header p { font-size: 1rem; opacity: 0.9; margin: 0; }
+
+  .ep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .ep-card {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-left: 4px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ep-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+  .ep-card h3 { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.75rem; font-size: 1.1rem; }
+  .ep-card p { font-size: 0.9rem; opacity: 0.8; margin: 0 0 1rem; }
+  .ep-icon { font-size: 1.3rem; }
+
+  .ep-card--primary   { border-left-color: #667eea; }
+  .ep-card--secondary { border-left-color: #f093fb; }
+  .ep-card--tertiary  { border-left-color: #4fc3f7; }
+
+  .ep-items { display: flex; flex-direction: column; gap: 0.4rem; }
+  .ep-item {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 0.4rem;
+    cursor: default;
+  }
+
+  .ep-example {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .ep-example h3 { margin: 0 0 0.75rem; font-size: 1.1rem; }
+
+  .ep-mnemonic {
+    background: rgba(255,255,255,0.05);
+    border-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  /* Rail Fence Demo Styles */
+  .rail-fence-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .rail-input, .rail-rails {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .rail-input label, .rail-rails label {
+    font-weight: 600;
+    min-width: 100px;
+  }
+  .rail-input input {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: white;
+    font-family: monospace;
+  }
+  .rail-rails input[type="range"] {
+    width: 150px;
+  }
+  .rail-rails span {
+    font-weight: bold;
+    min-width: 20px;
+  }
+  .ep-btn {
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-weight: 600;
+    align-self: flex-start;
+  }
+  .ep-btn:hover {
+    opacity: 0.9;
+  }
+  .rail-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #0f172a;
+    border-radius: 0.5rem;
+  }
+  .rail-visual {
+    font-family: monospace;
+    white-space: pre;
+    color: #4fc3f7;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+  .rail-output {
+    font-family: monospace;
+    padding: 0.75rem;
+    background: #1e293b;
+    border-radius: 0.4rem;
+    color: #f093fb;
+    font-weight: bold;
+  }
+
+  @media (max-width: 640px) {
+    .ep-header { padding: 1.5rem 1rem; }
+    .ep-header h1 { font-size: 1.5rem; }
+    .ep-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  // Rail Fence Cipher Interactive Demo
+  document.getElementById('rf-rails').addEventListener('input', function() {
+    document.getElementById('rf-rails-val').textContent = this.value;
+  });
+
+  document.getElementById('rf-encode').addEventListener('click', function() {
+    const message = document.getElementById('rf-message').value.toUpperCase().replace(/[^A-Z]/g, '');
+    const rails = parseInt(document.getElementById('rf-rails').value);
+    
+    if (!message) return;
+
+    // Build the zigzag pattern
+    const fence = Array(rails).fill(null).map(() => []);
+    let row = 0;
+    let direction = 1;
+    
+    for (let i = 0; i < message.length; i++) {
+      fence[row].push(message[i]);
+      if (row === rails - 1) direction = -1;
+      if (row === 0) direction = 1;
+      row += direction;
+    }
+
+    // Create visual representation
+    let visualLines = [];
+    for (let r = 0; r < rails; r++) {
+      let line = '';
+      let charIndex = 0;
+      for (let i = 0; i < message.length; i++) {
+        // Calculate if this position belongs to current row
+        let testRow = 0;
+        let testDir = 1;
+        let found = false;
+        for (let j = 0; j <= i; j++) {
+          if (testRow === r && fence[testRow][charIndex] === message[i]) {
+            found = true;
+            charIndex++;
+            break;
+          }
+          if (testRow === rails - 1) testDir = -1;
+          if (testRow === 0) testDir = 1;
+          testRow += testDir;
+        }
+        line += found ? fence[r][fence[r].indexOf(message[i])] : ' ';
+      }
+      visualLines.push(line.replace(/ +$/g, ''));
+    }
+
+    // For simplicity, just show the encoded message
+    const encoded = fence.flat().join('');
+    
+    document.getElementById('rail-visual').textContent = visualLines.join('\n');
+    document.getElementById('rail-output').textContent = 'Resultado: ' + encoded;
+  });
+</script>

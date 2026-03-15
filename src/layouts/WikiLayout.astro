@@ -70,12 +70,9 @@ for (const cat of siteConfig.categories) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Apply saved theme before paint to avoid flash -->
+  <!-- Always use dark mode -->
   <script is:inline>
-    (function () {
-      var t = localStorage.getItem('theme') || 'dark';
-      document.documentElement.classList.toggle('dark', t === 'dark');
-    })();
+    document.documentElement.classList.add('dark');
   </script>
 </head>
 
@@ -108,15 +105,6 @@ for (const cat of siteConfig.categories) {
 
           <a href="https://cheats.villaarreola.com" class="bar-link-btn" target="_blank" rel="noopener" title="Cheat Sheets">🔎</a>
           <a href="https://ctf.villaarreola.com" class="bar-link-btn" target="_blank" rel="noopener" title="CTF WriteUps">📝</a>
-
-          <button id="kb-theme-toggle" class="bar-theme-btn" aria-label="Cambiar tema claro/oscuro">
-            <svg class="icon-sun" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-            </svg>
-            <svg class="icon-moon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-            </svg>
-          </button>
 
           <div class="mode-toggle">
             <button class="mode-btn" data-view="markdown">Markdown</button>
@@ -204,15 +192,6 @@ for (const cat of siteConfig.categories) {
 
       // ── View switching ─────────────────────────────────────
       var saved = localStorage.getItem('kb-view-mode') || 'enriched';
-
-      // ── Theme toggle in unified bar ────────────────────────
-      var themeToggle = document.getElementById('kb-theme-toggle');
-      if (themeToggle) {
-        themeToggle.addEventListener('click', function () {
-          var isDark = document.documentElement.classList.toggle('dark');
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-      }
 
       // ── Page bar search (standalone) ───────────────────────
       var barSearchInput = document.getElementById('kbPageSearch');
@@ -317,7 +296,7 @@ for (const cat of siteConfig.categories) {
           if (v === 'enriched') showToast('No disponible para esta sección');
           return;
         }
-        document.querySelectorAll('[data-view]').forEach(function (el) {
+        document.querySelectorAll('[data-view]:not(.mode-btn)').forEach(function (el) {
           el.style.display = el.dataset.view === v ? '' : 'none';
         });
         setActiveBtn(v);
@@ -546,8 +525,7 @@ for (const cat of siteConfig.categories) {
     color: rgba(148, 163, 184, 0.85);
   }
 
-  .bar-link-btn,
-  .bar-theme-btn {
+  .bar-link-btn {
     width: 2rem;
     height: 2rem;
     display: inline-flex;
@@ -563,16 +541,10 @@ for (const cat of siteConfig.categories) {
     cursor: pointer;
   }
 
-  .bar-link-btn:hover,
-  .bar-theme-btn:hover {
+  .bar-link-btn:hover {
     border-color: rgba(125, 211, 252, 0.55);
     background: rgba(56, 189, 248, 0.18);
   }
-
-  .icon-sun { display: none; }
-  .icon-moon { display: block; }
-  :global(html.dark) .icon-sun { display: block; }
-  :global(html.dark) .icon-moon { display: none; }
 
   /* Mode toggle group */
   .mode-toggle {
@@ -693,8 +665,7 @@ for (const cat of siteConfig.categories) {
       padding-right: 0.6rem;
     }
 
-    .bar-link-btn,
-    .bar-theme-btn {
+    .bar-link-btn {
       width: 1.85rem;
       height: 1.85rem;
     }

@@ -1,0 +1,430 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import notionData from '../../../data/notion/ciberseguridad/criptografia/criptografia.json';
+import { marked } from 'marked';
+import Quiz from '../../../components/Quiz.astro';
+import quizData from '../../../data/quiz/criptografia.json';
+
+const body = (notionData.markdownBody || '').trim();
+const hasBody = body.length > 0;
+
+const metadata = notionData.metadata || {};
+const notionUrl = metadata.notionUrl || '';
+const pageIcon = metadata.icon || '📄';
+const pageName = metadata.name || '';
+const pageDesc = metadata.description || '';
+const tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];
+const category = metadata.category || '';
+const section = metadata.section || '';
+const rawCerts = typeof metadata.certifications === 'string' ? metadata.certifications : '';
+const certCodes = rawCerts.split(',').map(c => c.split(':')[0].trim()).filter(Boolean);
+
+const fallbackLines = [
+  '## Contenido pendiente',
+  '',
+  metadata.description ? '**Descripcion:** ' + metadata.description : '',
+  tags.length ? '**Tags:** ' + tags.join(', ') : '',
+  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',
+].filter(Boolean);
+
+const markdownHtml = hasBody
+  ? marked(body)
+  : marked(fallbackLines.join('\n'));
+---
+
+<WikiLayout title="🔑 Criptografia" description="Concepto técnico de Criptografía" hasDualMode={true}>
+
+  <!-- ── MARKDOWN VIEW ─────────────────────────────────── -->
+  <div data-view="markdown">
+    <div class="doc-page">
+      <header class="doc-header">
+        {(category || section) && (
+          <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
+        )}
+        <h1 class="doc-title">{pageIcon} {pageName}</h1>
+        {pageDesc && <p class="doc-description">{pageDesc}</p>}
+        {(tags.length > 0 || certCodes.length > 0) && (
+          <div class="doc-meta-row">
+            {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+            {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+          </div>
+        )}
+      </header>
+      <div class="doc-content">
+        <Fragment set:html={markdownHtml} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENRICHED VIEW ─────────────────────────────────── -->
+  <div data-view="enriched">
+    <div class="ep-page">
+
+      <!-- Gradient header -->
+      <div class="ep-header">
+        <h1>🔑 Criptografía</h1>
+        <p>Técnicas para proteger información mediante el uso de códigos — base de toda seguridad digital</p>
+      </div>
+
+      <!-- Concept cards grid -->
+      <div class="ep-grid">
+        <div class="ep-card ep-card--primary">
+          <h3><span class="ep-icon">🛡️</span>Principios Clave</h3>
+          <p>Los cuatro pilares que garantizan comunicaciones seguras</p>
+          <div class="ep-items">
+            <div class="ep-item">🔒 Confidencialidad — solo el destinatario accede</div>
+            <div class="ep-item">✅ Integridad — el mensaje no fue alterado</div>
+            <div class="ep-item">🪪 Autenticidad — el remitente es quien dice ser</div>
+            <div class="ep-item">✍️ No repudio — el autor no puede negar su participación</div>
+          </div>
+        </div>
+
+        <div class="ep-card ep-card--secondary">
+          <h3><span class="ep-icon">🏗️</span>PKI</h3>
+          <p>Infraestructura que gestiona claves y certificados digitales</p>
+          <div class="ep-items">
+            <div class="ep-item">🔑 Gestión de claves digitales</div>
+            <div class="ep-item">📜 Certificados digitales</div>
+            <div class="ep-item">✍️ Firma digital (con validez legal)</div>
+            <div class="ep-item">🔐 Cifrado de comunicaciones</div>
+          </div>
+        </div>
+
+        <div class="ep-card ep-card--tertiary">
+          <h3><span class="ep-icon">🌊</span>Cifrado de Flujo</h3>
+          <p>Cifra bit a bit o byte a byte — ideal para tiempo real</p>
+          <div class="ep-items">
+            <div class="ep-item">⚡ Baja latencia — ideal para voz y video</div>
+            <div class="ep-item">🔁 RC4 (Rivest Cipher 4) — hoy considerado inseguro</div>
+            <div class="ep-item">🐟 FISH — otra alternativa de flujo</div>
+          </div>
+        </div>
+
+        <div class="ep-card ep-card--quaternary">
+          <h3><span class="ep-icon">🧱</span>Cifrado por Bloques</h3>
+          <p>Procesa datos en bloques fijos — más seguro para grandes volúmenes</p>
+          <div class="ep-items">
+            <div class="ep-item">🏆 AES — estándar actual (128 / 192 / 256 bits)</div>
+            <div class="ep-item">🦕 DES / 3DES — obsoletos, no recomendados</div>
+            <div class="ep-item">🐡 Blowfish — clave variable hasta 448 bits</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example block -->
+      <div class="ep-example">
+        <h3>💼 Criptografía en la vida real</h3>
+        <p>Cuando visitas un sitio <code>https://</code>, tu navegador negocia una conexión TLS usando <strong>PKI</strong> (certificados X.509) para autenticar el servidor y <strong>AES</strong> para cifrar los datos en tránsito. Sin criptografía, cualquier intermediario podría leer tus contraseñas y datos bancarios.</p>
+        <table class="ep-table">
+          <thead>
+            <tr><th>Protocolo / App</th><th>Cifrado usado</th><th>Propósito</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>HTTPS / TLS 1.3</td><td>AES-256-GCM</td><td>Confidencialidad web</td></tr>
+            <tr><td>WhatsApp E2E</td><td>AES-256</td><td>Mensajería privada</td></tr>
+            <tr><td>BitLocker</td><td>AES-128 / 256</td><td>Cifrado de disco</td></tr>
+            <tr><td>SSH</td><td>AES / ChaCha20</td><td>Acceso remoto seguro</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mnemonic -->
+      <div class="ep-mnemonic">
+        🧠 Para recordar los cuatro principios: <strong>CIAN</strong> — <em>C</em>onfidencialidad · <em>I</em>ntegridad · <em>A</em>utenticidad · <em>N</em>o repudio
+      </div>
+
+      <!-- Interactive Caesar/XOR cipher tool -->
+      <div class="ep-cipher">
+        <h3>🔐 Cifrador Interactivo</h3>
+        <p class="ep-cipher-desc">Experimenta con dos algoritmos clásicos: el Cifrado César (sustitución por desplazamiento) y XOR (operación lógica bit a bit). El cifrado César es el precursor histórico de la criptografía moderna.</p>
+
+        <div class="ep-cipher-controls">
+          <div class="ep-mode-selector">
+            <button class="ep-mode-btn active" data-mode="caesar">🔑 César</button>
+            <button class="ep-mode-btn" data-mode="xor">⊕ XOR</button>
+          </div>
+          <div id="caesar-opts" class="ep-cipher-opts">
+            <label>Desplazamiento (1–25):
+              <input type="number" id="caesar-shift" value="3" min="1" max="25">
+            </label>
+          </div>
+          <div id="xor-opts" class="ep-cipher-opts" style="display:none">
+            <label>Clave XOR:
+              <input type="text" id="xor-key" value="clave" maxlength="20" placeholder="clave">
+            </label>
+          </div>
+        </div>
+
+        <div class="ep-cipher-io">
+          <div class="ep-cipher-col">
+            <label>Texto de entrada:</label>
+            <textarea id="cipher-input" placeholder="Escribe aquí...">Hola mundo</textarea>
+          </div>
+          <div class="ep-cipher-actions">
+            <button id="btn-encrypt" class="ep-cipher-btn">🔒 Cifrar</button>
+            <button id="btn-decrypt" class="ep-cipher-btn ep-cipher-btn--secondary">🔓 Descifrar</button>
+          </div>
+          <div class="ep-cipher-col">
+            <label>Resultado:</label>
+            <textarea id="cipher-output" readonly placeholder="El resultado aparecerá aquí..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <Quiz questions={quizData.questions} title={quizData.title} />
+
+    </div>
+  </div>
+
+</WikiLayout>
+
+<style>
+  /* ── Enriched Page Styles (.ep-*) ── */
+  .ep-page { padding: 2rem 0; }
+
+  .ep-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+  }
+  .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .ep-header p { font-size: 1rem; opacity: 0.9; margin: 0; }
+
+  .ep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .ep-card {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-left: 4px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ep-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+  .ep-card h3 { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.75rem; font-size: 1.1rem; }
+  .ep-card p { font-size: 0.9rem; opacity: 0.8; margin: 0 0 1rem; }
+  .ep-icon { font-size: 1.3rem; }
+
+  .ep-card--primary   { border-left-color: #667eea; }
+  .ep-card--secondary { border-left-color: #f093fb; }
+  .ep-card--tertiary  { border-left-color: #4fc3f7; }
+  .ep-card--quaternary { border-left-color: #a78bfa; }
+
+  .ep-items { display: flex; flex-direction: column; gap: 0.4rem; }
+  .ep-item {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 0.4rem;
+  }
+
+  .ep-example {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .ep-example h3 { margin: 0 0 0.75rem; font-size: 1.1rem; }
+  .ep-example p { font-size: 0.9rem; opacity: 0.85; margin: 0 0 1rem; }
+  .ep-example code {
+    background: rgba(255,255,255,0.1);
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  .ep-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem; }
+  .ep-table th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .ep-table td { padding: 0.45rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+  .ep-mnemonic {
+    background: rgba(102,126,234,0.15);
+    border-left: 3px solid #667eea;
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  /* ── Cipher Tool ── */
+  .ep-cipher {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .ep-cipher h3 { margin: 0 0 0.5rem; font-size: 1.1rem; }
+  .ep-cipher-desc { font-size: 0.875rem; opacity: 0.75; margin: 0 0 1.25rem; }
+
+  .ep-cipher-controls {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .ep-mode-selector { display: flex; gap: 0.5rem; }
+  .ep-mode-btn {
+    padding: 0.4rem 1rem;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background 0.15s;
+  }
+  .ep-mode-btn.active { background: #667eea; border-color: #667eea; color: white; }
+  .ep-mode-btn:hover:not(.active) { background: rgba(255,255,255,0.08); }
+
+  .ep-cipher-opts label {
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ep-cipher-opts input {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 0.35rem;
+    color: inherit;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.875rem;
+    width: 80px;
+  }
+  #xor-key { width: 140px; }
+
+  .ep-cipher-io {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .ep-cipher-col label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .ep-cipher-col textarea {
+    width: 100%;
+    min-height: 90px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0.5rem;
+    color: inherit;
+    padding: 0.6rem;
+    font-size: 0.875rem;
+    resize: vertical;
+    font-family: monospace;
+    box-sizing: border-box;
+  }
+  .ep-cipher-col textarea:focus { outline: none; border-color: #667eea; }
+
+  .ep-cipher-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+  .ep-cipher-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+  .ep-cipher-btn { background: #667eea; color: white; }
+  .ep-cipher-btn--secondary {
+    background: rgba(255,255,255,0.1);
+    color: inherit;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .ep-cipher-btn:hover { opacity: 0.85; }
+
+  @media (max-width: 640px) {
+    .ep-header { padding: 1.5rem 1rem; }
+    .ep-header h1 { font-size: 1.5rem; }
+    .ep-grid { grid-template-columns: 1fr; }
+    .ep-cipher-io { grid-template-columns: 1fr; }
+    .ep-cipher-actions { flex-direction: row; }
+  }
+</style>
+
+<script>
+  // ── Cipher Tool Logic ──
+  function caesarCipher(text: string, shift: number, decrypt = false): string {
+    const s = decrypt ? ((26 - (shift % 26)) % 26) : (shift % 26);
+    return text.replace(/[a-zA-Z]/g, (c: string) => {
+      const code = c.charCodeAt(0);
+      if (code >= 65 && code <= 90) return String.fromCharCode((code - 65 + s) % 26 + 65);
+      if (code >= 97 && code <= 122) return String.fromCharCode((code - 97 + s) % 26 + 97);
+      return c;
+    });
+  }
+
+  function xorCipherToHex(text: string, key: string): string {
+    if (!key) return '';
+    return text.split('').map((c: string, i: number) =>
+      (c.charCodeAt(0) ^ key.charCodeAt(i % key.length)).toString(16).padStart(2, '0')
+    ).join(' ');
+  }
+
+  function hexToXorCipher(hexStr: string, key: string): string {
+    if (!key) return '';
+    try {
+      return hexStr.trim().split(/\s+/).map((hex: string, i: number) =>
+        String.fromCharCode(parseInt(hex, 16) ^ key.charCodeAt(i % key.length))
+      ).join('');
+    } catch { return '(entrada inválida)'; }
+  }
+
+  let currentMode = 'caesar';
+
+  document.querySelectorAll('.ep-mode-btn').forEach((btn: Element) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ep-mode-btn').forEach((b: Element) => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentMode = (btn as HTMLElement).dataset.mode || 'caesar';
+      (document.getElementById('caesar-opts') as HTMLElement).style.display = currentMode === 'caesar' ? '' : 'none';
+      (document.getElementById('xor-opts') as HTMLElement).style.display = currentMode === 'xor' ? '' : 'none';
+      (document.getElementById('cipher-output') as HTMLTextAreaElement).value = '';
+    });
+  });
+
+  document.getElementById('btn-encrypt')!.addEventListener('click', () => {
+    const input = (document.getElementById('cipher-input') as HTMLTextAreaElement).value;
+    const output = document.getElementById('cipher-output') as HTMLTextAreaElement;
+    if (currentMode === 'caesar') {
+      const shift = parseInt((document.getElementById('caesar-shift') as HTMLInputElement).value) || 3;
+      output.value = caesarCipher(input, shift, false);
+    } else {
+      const key = (document.getElementById('xor-key') as HTMLInputElement).value || 'clave';
+      output.value = xorCipherToHex(input, key);
+    }
+  });
+
+  document.getElementById('btn-decrypt')!.addEventListener('click', () => {
+    const input = (document.getElementById('cipher-input') as HTMLTextAreaElement).value;
+    const output = document.getElementById('cipher-output') as HTMLTextAreaElement;
+    if (currentMode === 'caesar') {
+      const shift = parseInt((document.getElementById('caesar-shift') as HTMLInputElement).value) || 3;
+      output.value = caesarCipher(input, shift, true);
+    } else {
+      const key = (document.getElementById('xor-key') as HTMLInputElement).value || 'clave';
+      output.value = hexToXorCipher(input, key);
+    }
+  });
+</script>

@@ -1,0 +1,93 @@
+{
+  "title": "Quiz: Claves y Algoritmos",
+  "questions": [
+    {
+      "question": "¿Qué es una clave digital en criptografía?",
+      "options": [
+        "Un certificado emitido por una Autoridad de Certificación",
+        "Una secuencia de bits usada para operaciones criptográficas como cifrado y firma",
+        "Un protocolo de cifrado simétrico estandarizado",
+        "Una firma electrónica cualificada"
+      ],
+      "correct": 1,
+      "explanation": "Una clave digital es un valor expresado como secuencia de bits utilizado para cifrado, autenticación y firma digital."
+    },
+    {
+      "question": "¿Cuál es el tamaño mínimo estándar recomendado para claves públicas asimétricas?",
+      "options": [
+        "56 bits",
+        "128 bits",
+        "1024 bits",
+        "64 bits"
+      ],
+      "correct": 2,
+      "explanation": "Las claves públicas suelen tener 1024 bits como mínimo, llegando a 2048 o 4096 bits según el nivel de seguridad requerido."
+    },
+    {
+      "question": "¿Cuál es el propósito del estiramiento de claves (Key Stretching)?",
+      "options": [
+        "Acelerar el proceso de cifrado AES",
+        "Generar pares de claves RSA automáticamente",
+        "Hacer que contraseñas débiles sean más resistentes a ataques de fuerza bruta",
+        "Comprimir datos antes de cifrarlos"
+      ],
+      "correct": 2,
+      "explanation": "El estiramiento de claves aplica múltiples iteraciones de hash y un valor 'salt' aleatorio para aumentar la entropía de contraseñas débiles."
+    },
+    {
+      "question": "¿Qué algoritmo de estiramiento de claves también consume mucha memoria, dificultando ataques con GPUs y ASICs?",
+      "options": [
+        "PBKDF2",
+        "bcrypt",
+        "scrypt",
+        "SHA-256"
+      ],
+      "correct": 2,
+      "explanation": "scrypt está diseñado para ser intensivo tanto en CPU como en memoria, lo que lo hace especialmente resistente a hardware especializado como GPUs y ASICs."
+    },
+    {
+      "question": "¿Cuál es la longitud de bloque del algoritmo AES?",
+      "options": [
+        "56 bits",
+        "64 bits",
+        "128 bits",
+        "256 bits"
+      ],
+      "correct": 2,
+      "explanation": "AES opera siempre con bloques de 128 bits. Las claves pueden ser de 128, 192 o 256 bits según la variante."
+    },
+    {
+      "question": "¿Qué algoritmo simétrico se considera obsoleto por su clave de solo 56 bits?",
+      "options": [
+        "AES",
+        "Blowfish",
+        "DES",
+        "RC5"
+      ],
+      "correct": 2,
+      "explanation": "DES (Data Encryption Standard) usa claves de 56 bits, lo que lo hace vulnerable a ataques de fuerza bruta con hardware moderno."
+    },
+    {
+      "question": "¿Cuál es la principal característica del cifrado simétrico frente al asimétrico?",
+      "options": [
+        "Usa claves diferentes para cifrar y descifrar",
+        "No requiere compartir ninguna clave entre las partes",
+        "Usa la misma clave para cifrar y descifrar, siendo más rápido y eficiente",
+        "Solo puede cifrar datos almacenados en reposo"
+      ],
+      "correct": 2,
+      "explanation": "En cifrado simétrico, la misma clave cifra y descifra, lo que lo hace más rápido y eficiente, aunque requiere un canal seguro para compartir la clave."
+    },
+    {
+      "question": "¿Qué algoritmo de cifrado de flujo fue ampliamente usado en SSL/TLS y WEP pero ahora se considera obsoleto?",
+      "options": [
+        "AES",
+        "Blowfish",
+        "Twofish",
+        "RC4"
+      ],
+      "correct": 3,
+      "explanation": "RC4 es un cifrado de flujo que fue muy popular en SSL/TLS y WEP, pero se considera obsoleto por múltiples vulnerabilidades descubiertas en su diseño."
+    }
+  ]
+}

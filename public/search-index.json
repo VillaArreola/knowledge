@@ -1,5 +1,73 @@
 {
-  "pages": [],
+  "pages": [
+    {
+      "title": "Claves y Algoritmos",
+      "slug": "ClavesyAlgoritmos",
+      "icon": "🔑",
+      "status": "completed",
+      "order": 3,
+      "description": "Claves y algoritmos de cifrado criptografico",
+      "tags": [
+        "PKI",
+        "Cifrado",
+        "Autorización"
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/ClavesyAlgoritmos",
+      "searchContent": "Claves y Algoritmos Claves y algoritmos de cifrado criptografico PKI Cifrado Autorización"
+    },
+    {
+      "title": "Criptografia",
+      "slug": "criptografia",
+      "icon": "🔑",
+      "status": "completed",
+      "order": 1,
+      "description": "Concepto técnico de Criptografía",
+      "tags": [
+        "Cifrado",
+        "Seguridad"
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/criptografia",
+      "searchContent": "Criptografia Concepto técnico de Criptografía Cifrado Seguridad"
+    },
+    {
+      "title": "Hashing",
+      "slug": "hashing",
+      "icon": "🏛️",
+      "status": "completed",
+      "order": 4,
+      "description": "Hasing y Firmas Digitales",
+      "tags": [
+        "Autenticación",
+        "Cifrado",
+        "PKI"
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/hashing",
+      "searchContent": "Hashing Hasing y Firmas Digitales Autenticación Cifrado PKI"
+    },
+    {
+      "title": "Tipos de Cifrados",
+      "slug": "TipoDeCifrado",
+      "icon": "🔑",
+      "status": "completed",
+      "order": 2,
+      "description": "Tipos de cifrados",
+      "tags": [
+        "PKI",
+        "Cifrado",
+        "Autorización"
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/TipoDeCifrado",
+      "searchContent": "Tipos de Cifrados Tipos de cifrados PKI Cifrado Autorización"
+    }
+  ],
   "categories": [
     "ciberseguridad",
     "redes",
@@ -7,5 +75,5 @@
     "programacion",
     "cloud"
   ],
-  "lastUpdated": "2026-03-15T02:21:35.843Z"
+  "lastUpdated": "2026-03-15T04:30:51.055Z"
 }

@@ -1,0 +1,50 @@
+{
+  "title": "Quiz: Criptografía",
+  "questions": [
+    {
+      "question": "¿Cuál de los siguientes es un ejemplo de cifrado de flujo?",
+      "options": ["RC4", "AES", "DES", "Blowfish"],
+      "correct": 0,
+      "explanation": "RC4 (Rivest Cipher 4) es un algoritmo de cifrado de flujo que cifra datos bit a bit o byte a byte. AES, DES y Blowfish son algoritmos de cifrado por bloques."
+    },
+    {
+      "question": "¿Cuántos bits puede tener la clave en la versión más segura de AES?",
+      "options": ["56 bits", "128 bits", "192 bits", "256 bits"],
+      "correct": 3,
+      "explanation": "AES soporta claves de 128, 192 o 256 bits. La versión más segura usa 256 bits. DES usaba claves de solo 56 bits, lo que lo hace obsoleto hoy en día."
+    },
+    {
+      "question": "¿Qué garantiza el principio de 'no repudio' en criptografía?",
+      "options": [
+        "Que el autor del mensaje no puede negar su participación",
+        "Que el mensaje no fue alterado durante el envío",
+        "Que solo el destinatario puede leer el contenido",
+        "Que el remitente es quien dice ser"
+      ],
+      "correct": 0,
+      "explanation": "El no repudio garantiza que el emisor de un mensaje no puede negar haberlo enviado. Las firmas digitales implementan este principio. Las otras opciones corresponden a integridad, confidencialidad y autenticidad respectivamente."
+    },
+    {
+      "question": "¿Cuál es el objetivo principal de PKI (Infraestructura de Clave Pública)?",
+      "options": [
+        "Gestionar claves digitales y certificados para asegurar las comunicaciones",
+        "Almacenar y sincronizar contraseñas de usuarios en la red",
+        "Bloquear accesos no autorizados mediante firewalls",
+        "Comprimir archivos para su transferencia segura"
+      ],
+      "correct": 0,
+      "explanation": "PKI es una infraestructura de hardware, software, políticas y procedimientos cuyo objetivo es gestionar claves y certificados digitales para cifrar datos, autenticar identidades y firmar documentos digitalmente."
+    },
+    {
+      "question": "¿Cuál es la principal ventaja del cifrado de flujo sobre el cifrado por bloques?",
+      "options": [
+        "Mayor velocidad y baja latencia para transmisiones en tiempo real",
+        "Mayor seguridad para grandes volúmenes de datos almacenados",
+        "Usa claves más largas que el cifrado por bloques",
+        "Es el estándar actual para cifrado en TLS/HTTPS"
+      ],
+      "correct": 0,
+      "explanation": "El cifrado de flujo es rápido y eficiente para transmisiones en tiempo real como video y voz, ya que cifra bit a bit sin necesidad de acumular bloques completos. Para grandes volúmenes de datos, el cifrado por bloques (como AES) es más adecuado."
+    }
+  ]
+}

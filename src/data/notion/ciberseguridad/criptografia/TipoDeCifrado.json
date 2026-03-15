@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "name": "Tipos de Cifrados ",
+    "slug": "TipoDeCifrado",
+    "category": "ciberseguridad",
+    "section": "criptografia",
+    "icon": "🔑",
+    "description": "Tipos de cifrados",
+    "tags": [
+      "PKI",
+      "Cifrado",
+      "Autorización"
+    ],
+    "certifications": "FCE,Comptia+",
+    "order": 2,
+    "mode": "enriched",
+    "notionUrl": "https://www.notion.so/Tipos-de-Cifrados-324ec7e74fc08086be1fe08d76adcce0"
+  },
+  "markdownBody": "\n## 🔐 Cifrados: Fundamentos y Tipos\n\n\n### Resultados esperados en esta lección\n\n- ✅ Definir qué es un cifrado.\n- ✅ Describir los distintos tipos de cifrado.\n- ✅ Explicar cómo funcionan los cifrados de manera general.\n\n---\n\n\n###  ¿Qué es un cifrado\n\n\nUn **cifrado** es un método para convertir información legible (**texto plano**) en un formato ilegible (**texto cifrado**) usando un algoritmo y una clave.\n\n- **Algoritmo**: método matemático utilizado para cifrar/descifrar. Es público.\n- **Clave**: valor secreto que permite realizar la operación del cifrado o descifrado.\n\n**Proceso general:**\n\n\n```plain text\nTexto plano → (Algoritmo + Clave) → Texto cifrado\nTexto cifrado → (Algoritmo + Clave) → Texto plano\n```\n\n\n---\n\n\n## Tipos de cifrado\n\n\n### Cifrado por sustitución\n\n\nEn este tipo, **cada letra del texto plano se reemplaza por otra** según una regla definida por la clave.\n\n\n**Ejemplo clásico: Cifrado César**\n\n- Se corre el alfabeto una cantidad fija de posiciones.\n- Ejemplo: “HAIL CAESAR” con un desplazamiento de +3 se convierte en “KDLO FDHVDU”.\n\n---\n\n\n### Cifrado por transposición\n\n\nEn lugar de cambiar las letras, **se reordena su posición**.\n\n\n###  Método Valla de Riel (Rail Fence Cipher)\n\n- Se escribe el mensaje en zigzag sobre varias líneas.\n- Luego se lee horizontalmente.\n\n **Clave**: número de filas (rieles).\n\n\n_Ejemplo con 3 rieles:_\n\n\n```plain text\nMensaje: \"ATAQUEALAMANANA\"\nRieles:\nA . . . Q . . . A . . . A\n. T . U . E . L . M . N .\n. . A . . . A . . . A . .\n\nResultado: \"AQAATUELMNAAAA\"\n```\n\n\n---\n\n\n### One-Time Pad (Libreta de un solo uso)\n\n\nUno de los métodos **más seguros** si se implementa correctamente.\n\n- Usa una **clave aleatoria y única** para cada letra.\n- La clave debe ser del **mismo tamaño que el mensaje**.\n- Sin la clave, **es imposible descifrar el mensaje**.\n\n_Ejemplo visual:_\n\n\n```plain text\nTexto plano: Hi Bob\nClave (secreta): 10, 4, 3, 11, 18\nResultado: RMEZT\n```\n\n\nLa clave **nunca debe reutilizarse**.\n\n\n---\n\n\n## 💻 Cifrados modernos usados en computadoras\n\n\n###  Cifrado por flujo (_Stream cipher_)\n\n- Cifra los datos **bit a bit o byte a byte**.\n- Muy usado en transmisión en tiempo real.\n\n📌 Ejemplos: **RC4**, **FISH**\n\n\n---\n\n\n###  Cifrado por bloques (_Block cipher_)\n\n- Divide el mensaje en **bloques de tamaño fijo** y los cifra uno por uno.\n- Más usado en almacenamiento de datos.\n\n Ejemplos: **DES**, **3DES**, **Blobfish** (este último parece ser un error o inventado, podría referirse a _Blowfish_).\n\n\n---\n\n\n## 📘 Glosario\n\n\n| Término       | Traducción             | Descripción breve                          |\n| ------------- | ---------------------- | ------------------------------------------ |\n| Cipher        | Cifrado                | Método de codificación de información      |\n| Plaintext     | Texto plano            | Información sin cifrar                     |\n| Ciphertext    | Texto cifrado          | Información cifrada                        |\n| Key           | Clave                  | Valor secreto que permite cifrar/descifrar |\n| Substitution  | Sustitución            | Tipo de cifrado que reemplaza letras       |\n| Transposition | Transposición          | Tipo de cifrado que reordena letras        |\n| One-Time Pad  | Libreta de un solo uso | Cifrado altamente seguro con clave única   |\n| Stream cipher | Cifrado por flujo      | Cifra bit a bit o byte a byte              |\n| Block cipher  | Cifrado por bloques    | Cifra por segmentos del mensaje            |\n\n"
+}

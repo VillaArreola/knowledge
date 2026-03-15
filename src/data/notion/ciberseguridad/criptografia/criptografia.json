@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "name": "Criptografia",
+    "slug": "criptografia",
+    "category": "ciberseguridad",
+    "section": "criptografia",
+    "icon": "🔑",
+    "description": "Concepto técnico de Criptografía",
+    "tags": [
+      "Cifrado",
+      "Seguridad"
+    ],
+    "certifications": "FCE",
+    "order": 1,
+    "mode": "enriched",
+    "notionUrl": "https://www.notion.so/Criptografia-324ec7e74fc08058bb7fce3f05ddf7bf"
+  },
+  "markdownBody": "\n##  ¿Qué es la criptografía?\n\n\nLa **criptografía** es el estudio y la aplicación de técnicas para **proteger la información mediante el uso de códigos**. También incluye la resolución o ruptura de dichos códigos.\n\n\nActualmente, la criptografía está presente en **casi todos los sistemas informáticos**, aunque muchas veces no la notamos. Desde enviar un mensaje de WhatsApp hasta hacer una compra online, todo se basa en técnicas criptográficas para garantizar seguridad.\n\n\n---\n\n\n## PKI — Infraestructura de Clave Pública \n\n\nLa **PKI** es una infraestructura compuesta por elementos como:\n\n- **Hardware**\n- **Software**\n- **Políticas**\n- **Procedimientos**\n\nSu objetivo principal es **gestionar claves digitales** y **certificados digitales** para asegurar las comunicaciones.\n\n\nPermite cifrar datos, autenticar identidades y firmar digitalmente documentos.\n\n\n---\n\n\n##  ¿Qué permite la criptografía?\n\n\nLa tecnología criptográfica permite:\n\n- **Cifrar datos** → convertir texto plano en texto cifrado (ilegible sin clave).\n- **Firmar digitalmente** → garantiza que un mensaje o documento no ha sido modificado y proviene de quien dice enviarlo.\n> 📌 Una firma digital tiene validez legal en muchos países, siendo equivalente a una firma manuscrita.\n\n---\n\n\n## Principios clave de la criptografía\n\n1. **Privacidad y confidencialidad**: Solo el destinatario previsto puede acceder al contenido.\n2. **Integridad**: El mensaje no ha sido alterado durante el envío.\n3. **Autenticidad**: Se verifica que el remitente es quien dice ser.\n4. **No repudio**: El autor del mensaje no puede negar su participación.\n\nEstos principios garantizan una **comunicación y comercio seguros** en entornos digitales.\n\n\n---\n\n\n## Tipos de cifrado utilizados por las computadoras\n\n\nLos sistemas modernos utilizan principalmente dos tipos de cifrado simétrico: **cifrado de flujo** y **cifrado por bloques**. Ambos convierten texto plano en texto cifrado, pero lo hacen de manera diferente.\n\n\n---\n\n\n### Cifrado de flujo (Stream Cipher)\n\n\nEste tipo de cifrado cifra los datos **bit a bit o byte a byte**, de forma continua, como si fueran parte de un flujo de datos.\n\n- Es rápido y eficiente para transmisiones en tiempo real como video o voz.\n- Se suele usar cuando se necesita **baja latencia**.\n\n**Ejemplos comunes:**\n\n- **FISH**\n- **RC4** (Rivest Cipher 4) → Fue muy popular, aunque hoy se considera inseguro para muchos usos.\n\n---\n\n\n###  Cifrado por bloques (Block Cipher)\n\n\nEste tipo de cifrado procesa los datos en **bloques fijos de texto plano** (por ejemplo, de 64 o 128 bits), y los cifra como una unidad.\n\n- Es más seguro para grandes volúmenes de datos.\n- Cada bloque es tratado individualmente o con modos de operación que encadenan los bloques (como CBC, ECB, etc.).\n\n**Ejemplos populares:**\n\n- **DES** (Data Encryption Standard) → Obsoleto, clave de 56 bits.\n- **3DES** (Triple DES) → Mejorado pero también en desuso.\n- **AES** (Advanced Encryption Standard) → Actualmente el estándar más avanzado y ampliamente usado (clave de 128, 192 o 256 bits).\n- **Blowfish** → Alternativa rápida y segura, clave variable hasta 448 bits.\n\n El tamaño del bloque **no depende** del tamaño de la clave, pero el **nivel de seguridad sí lo hace**. Por ejemplo, AES usa bloques de 128 bits, pero la clave puede ser de 128, 192 o 256 bits.\n\n"
+}

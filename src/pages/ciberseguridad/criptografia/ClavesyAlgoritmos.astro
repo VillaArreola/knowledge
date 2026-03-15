@@ -1,0 +1,462 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import notionData from '../../../data/notion/ciberseguridad/criptografia/ClavesyAlgoritmos.json';
+import { marked } from 'marked';
+import Quiz from '../../../components/Quiz.astro';
+import quizData from '../../../data/quiz/ClavesyAlgoritmos.json';
+
+const body = (notionData.markdownBody || '').trim();
+const hasBody = body.length > 0;
+
+const metadata = notionData.metadata || {};
+const notionUrl = metadata.notionUrl || '';
+const pageIcon = metadata.icon || '📄';
+const pageName = metadata.name || '';
+const pageDesc = metadata.description || '';
+const tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];
+const category = metadata.category || '';
+const section = metadata.section || '';
+const rawCerts = typeof metadata.certifications === 'string' ? metadata.certifications : '';
+const certCodes = rawCerts.split(',').map(c => c.split(':')[0].trim()).filter(Boolean);
+
+const fallbackLines = [
+  '## Contenido pendiente',
+  '',
+  metadata.description ? '**Descripcion:** ' + metadata.description : '',
+  tags.length ? '**Tags:** ' + tags.join(', ') : '',
+  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',
+].filter(Boolean);
+
+const markdownHtml = hasBody
+  ? marked(body)
+  : marked(fallbackLines.join('\n'));
+---
+
+<WikiLayout title="🔑 Claves y Algoritmos" description="Claves y algoritmos de cifrado criptografico" hasDualMode={true}>
+
+  <!-- ── MARKDOWN VIEW ─────────────────────────────────── -->
+  <div data-view="markdown">
+    <div class="doc-page">
+      <header class="doc-header">
+        {(category || section) && (
+          <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
+        )}
+        <h1 class="doc-title">{pageIcon} {pageName}</h1>
+        {pageDesc && <p class="doc-description">{pageDesc}</p>}
+        {(tags.length > 0 || certCodes.length > 0) && (
+          <div class="doc-meta-row">
+            {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+            {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+          </div>
+        )}
+      </header>
+      <div class="doc-content">
+        <Fragment set:html={markdownHtml} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENRICHED VIEW ─────────────────────────────────── -->
+  <div data-view="enriched">
+    <div class="ep-page">
+
+      <!-- Gradient header -->
+      <div class="ep-header">
+        <h1>{pageIcon} {pageName}</h1>
+        <p>{pageDesc}</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="ep-stat-grid">
+        <div class="ep-stat">
+          <div class="ep-stat-value" style="color: #4fc3f7;">128–4096</div>
+          <div class="ep-stat-label">bits en claves modernas</div>
+        </div>
+        <div class="ep-stat">
+          <div class="ep-stat-value" style="color: #f093fb;">3</div>
+          <div class="ep-stat-label">algoritmos de key stretching</div>
+        </div>
+        <div class="ep-stat">
+          <div class="ep-stat-value" style="color: #a5b4fc;">8</div>
+          <div class="ep-stat-label">algoritmos simétricos</div>
+        </div>
+      </div>
+
+      <!-- Tipos y tamaños de claves -->
+      <section class="ep-section">
+        <h2 class="ep-section-title">🔐 Tipos y Tamaños de Claves</h2>
+        <div class="ep-grid ep-grid-3">
+          <div class="ep-card ep-card-blue">
+            <div class="ep-card-icon">🔒</div>
+            <h3>Clave Privada</h3>
+            <p>Solo la conoce el emisor o receptor autorizado. Usada para descifrar datos y generar firmas digitales.</p>
+            <span class="ep-badge">Confidencial</span>
+            <div class="ep-key-size">1024 – 4096 bits</div>
+          </div>
+          <div class="ep-card ep-card-purple">
+            <div class="ep-card-icon">🔓</div>
+            <h3>Clave Pública</h3>
+            <p>Puede compartirse abiertamente. Usada para cifrar mensajes dirigidos al propietario y verificar firmas.</p>
+            <span class="ep-badge">Compartida</span>
+            <div class="ep-key-size">1024 – 4096 bits</div>
+          </div>
+          <div class="ep-card ep-card-cyan">
+            <div class="ep-card-icon">⚡</div>
+            <h3>Clave de Sesión</h3>
+            <p>Temporal, válida por minutos o segundos. Usada en HTTPS y claves de un solo uso para mayor velocidad.</p>
+            <span class="ep-badge">Efímera</span>
+            <div class="ep-key-size">128 – 256 bits</div>
+          </div>
+        </div>
+
+        <!-- Key size scale -->
+        <div class="ep-size-scale">
+          <div class="ep-scale-title">Relación Tamaño → Caso de Uso</div>
+          <div class="ep-scale-row">
+            <div class="ep-scale-label">128–256 bits</div>
+            <div class="ep-scale-bar"><div class="ep-scale-fill" style="width: 30%; background: #4fc3f7;"></div></div>
+            <div class="ep-scale-use">Cifrado masivo (AES)</div>
+          </div>
+          <div class="ep-scale-row">
+            <div class="ep-scale-label">1024 bits</div>
+            <div class="ep-scale-bar"><div class="ep-scale-fill" style="width: 60%; background: #667eea;"></div></div>
+            <div class="ep-scale-use">Firmas digitales (mínimo)</div>
+          </div>
+          <div class="ep-scale-row">
+            <div class="ep-scale-label">2048 bits</div>
+            <div class="ep-scale-bar"><div class="ep-scale-fill" style="width: 80%; background: #7c5cbf;"></div></div>
+            <div class="ep-scale-use">RSA recomendado</div>
+          </div>
+          <div class="ep-scale-row">
+            <div class="ep-scale-label">4096 bits</div>
+            <div class="ep-scale-bar"><div class="ep-scale-fill" style="width: 100%; background: #764ba2;"></div></div>
+            <div class="ep-scale-use">Máxima protección</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proceso de cifrado (timeline) -->
+      <section class="ep-section">
+        <h2 class="ep-section-title">🔄 Proceso de Cifrado</h2>
+        <div class="ep-timeline">
+          <div class="ep-step">
+            <div class="ep-step-num" style="background: #667eea;">1</div>
+            <div class="ep-step-content">
+              <h4>Datos Originales (Plaintext)</h4>
+              <p>El mensaje, archivo o dato que se desea proteger. Legible en su estado original.</p>
+              <code class="ep-code">"Hola, Mundo" → 01001000 01101111 01101100 01100001 ...</code>
+            </div>
+          </div>
+          <div class="ep-step-connector"></div>
+          <div class="ep-step">
+            <div class="ep-step-num" style="background: #7c5cbf;">2</div>
+            <div class="ep-step-content">
+              <h4>Generación / Selección de Clave</h4>
+              <p>Se genera o selecciona una clave criptográfica con la longitud adecuada para el algoritmo elegido.</p>
+              <code class="ep-code">AES-256: clave de 256 bits generada aleatoriamente con CSPRNG</code>
+            </div>
+          </div>
+          <div class="ep-step-connector"></div>
+          <div class="ep-step">
+            <div class="ep-step-num" style="background: #9147b0;">3</div>
+            <div class="ep-step-content">
+              <h4>Aplicación del Algoritmo</h4>
+              <p>El algoritmo transforma matemáticamente los datos usando la clave. Sin ella, el resultado es ilegible.</p>
+              <code class="ep-code">Plaintext + Clave → [Algoritmo AES] → Ciphertext</code>
+            </div>
+          </div>
+          <div class="ep-step-connector"></div>
+          <div class="ep-step">
+            <div class="ep-step-num" style="background: #764ba2;">4</div>
+            <div class="ep-step-content">
+              <h4>Datos Cifrados (Ciphertext)</h4>
+              <p>El resultado es texto cifrado ilegible. Solo quien posee la clave correcta puede revertir el proceso.</p>
+              <code class="ep-code">3d4a7b2c... → (descifrar con clave) → "Hola, Mundo"</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Calculadora de fortaleza -->
+      <section class="ep-section">
+        <h2 class="ep-section-title">⚡ Calculadora de Fortaleza de Clave</h2>
+        <p class="ep-section-desc">Selecciona un tamaño de clave para ver su nivel de seguridad y aplicación recomendada.</p>
+        <div class="ep-calc">
+          <div class="ep-calc-buttons" id="keySizeButtons">
+            <button class="ep-calc-btn" data-bits="56" data-strength="5" data-color="#ef4444" data-level="Muy débil" data-use="DES (obsoleto) — vulnerable en horas con hardware moderno" data-algo="DES / 56 bits">56 bits</button>
+            <button class="ep-calc-btn" data-bits="128" data-strength="55" data-color="#22c55e" data-level="Seguro" data-use="AES-128 — estándar moderno para cifrado de datos en tránsito y en reposo" data-algo="AES-128">128 bits</button>
+            <button class="ep-calc-btn" data-bits="192" data-strength="72" data-color="#16a34a" data-level="Muy seguro" data-use="AES-192 — usado en sectores gubernamentales y entornos críticos" data-algo="AES-192">192 bits</button>
+            <button class="ep-calc-btn" data-bits="256" data-strength="88" data-color="#15803d" data-level="Extremadamente seguro" data-use="AES-256 — recomendado frente a computación cuántica (post-quantum ready)" data-algo="AES-256">256 bits</button>
+            <button class="ep-calc-btn" data-bits="1024" data-strength="48" data-color="#f59e0b" data-level="Aceptable (RSA mínimo)" data-use="RSA-1024 — mínimo histórico para firmas; se recomienda migrar a 2048 bits o superior" data-algo="RSA-1024">1024 bits</button>
+            <button class="ep-calc-btn" data-bits="2048" data-strength="74" data-color="#667eea" data-level="Seguro (RSA estándar)" data-use="RSA-2048 — estándar actual para certificados digitales y PKI" data-algo="RSA-2048">2048 bits</button>
+            <button class="ep-calc-btn" data-bits="4096" data-strength="93" data-color="#a78bfa" data-level="Muy seguro (RSA máximo)" data-use="RSA-4096 — máxima protección asimétrica; mayor coste computacional y de red" data-algo="RSA-4096">4096 bits</button>
+          </div>
+          <div class="ep-calc-result" id="calcResult">
+            <div class="ep-calc-header">
+              <span class="ep-calc-algo" id="calcAlgo">Selecciona un tamaño</span>
+              <span class="ep-calc-level" id="calcLevel"></span>
+            </div>
+            <div class="ep-calc-bar-wrap">
+              <div class="ep-calc-bar-bg">
+                <div class="ep-calc-bar-fill" id="calcBarFill" style="width: 0%;"></div>
+              </div>
+              <span class="ep-calc-pct" id="calcPct"></span>
+            </div>
+            <p class="ep-calc-use" id="calcUse">Haz clic en un tamaño de clave para ver el análisis.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Algoritmos simétricos -->
+      <section class="ep-section">
+        <h2 class="ep-section-title">🔢 Algoritmos de Cifrado Simétrico</h2>
+        <div class="ep-table-wrap">
+          <table class="ep-table">
+            <thead>
+              <tr>
+                <th>Algoritmo</th>
+                <th>Tipo</th>
+                <th>Clave / Bloque</th>
+                <th>Estado</th>
+                <th>Notas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="ep-row-danger">
+                <td><strong>DES</strong></td>
+                <td>Bloque</td>
+                <td>56 bits / 64 bits</td>
+                <td><span class="ep-badge-status ep-obsoleto">Obsoleto</span></td>
+                <td>Primer estándar federal; ya no es seguro</td>
+              </tr>
+              <tr class="ep-row-warn">
+                <td><strong>3DES</strong></td>
+                <td>Bloque</td>
+                <td>112–168 bits</td>
+                <td><span class="ep-badge-status ep-deprecado">Deprecado</span></td>
+                <td>Aplica DES tres veces; lento, en retirada</td>
+              </tr>
+              <tr class="ep-row-ok">
+                <td><strong>AES</strong></td>
+                <td>Bloque</td>
+                <td>128/192/256 bits / 128 bits</td>
+                <td><span class="ep-badge-status ep-seguro">Estándar</span></td>
+                <td>El estándar actual; usado en TLS, VPN, disco</td>
+              </tr>
+              <tr>
+                <td><strong>IDEA</strong></td>
+                <td>Bloque</td>
+                <td>128 bits / 64 bits</td>
+                <td><span class="ep-badge-status ep-legacy">Legacy</span></td>
+                <td>Usado en PGP; patentado hasta 2012</td>
+              </tr>
+              <tr>
+                <td><strong>Blowfish</strong></td>
+                <td>Bloque</td>
+                <td>Hasta 448 bits / 64 bits</td>
+                <td><span class="ep-badge-status ep-legacy">Legacy</span></td>
+                <td>Rápido y flexible; bloque de 64 bits es limitante</td>
+              </tr>
+              <tr class="ep-row-ok">
+                <td><strong>Twofish</strong></td>
+                <td>Bloque</td>
+                <td>Hasta 256 bits / 128 bits</td>
+                <td><span class="ep-badge-status ep-seguro">Seguro</span></td>
+                <td>Finalista del concurso AES; libre de patentes</td>
+              </tr>
+              <tr class="ep-row-danger">
+                <td><strong>RC4</strong></td>
+                <td>Flujo</td>
+                <td>40–2048 bits</td>
+                <td><span class="ep-badge-status ep-obsoleto">Obsoleto</span></td>
+                <td>Fue popular en SSL/WEP; vulnerabilidades serias</td>
+              </tr>
+              <tr>
+                <td><strong>RC5 / RC6</strong></td>
+                <td>Bloque</td>
+                <td>0–2040 bits</td>
+                <td><span class="ep-badge-status ep-legacy">Legacy</span></td>
+                <td>Diseñados por RSA; parámetros configurables</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Estiramiento de claves -->
+      <section class="ep-section">
+        <h2 class="ep-section-title">🧂 Estiramiento de Claves (Key Stretching)</h2>
+        <p class="ep-section-desc">Técnica para reforzar contraseñas débiles mediante iteraciones de hash y sal aleatoria, sin cifrar archivos directamente.</p>
+        <div class="ep-grid ep-grid-3">
+          <div class="ep-card ep-card-blue">
+            <div class="ep-card-icon">🔷</div>
+            <h3>PBKDF2</h3>
+            <p>Aplica una función pseudoaleatoria (ej. HMAC-SHA256) miles de veces. Define el número de iteraciones y la longitud de la clave resultante.</p>
+            <div class="ep-tag-row">
+              <span class="ep-mini-badge">SHA-1 / SHA-256</span>
+              <span class="ep-mini-badge">RFC 2898</span>
+            </div>
+          </div>
+          <div class="ep-card ep-card-purple">
+            <div class="ep-card-icon">🐡</div>
+            <h3>bcrypt</h3>
+            <p>Basado en Blowfish. Ajusta su complejidad con el "cost factor", incrementable con el tiempo para mantener seguridad frente a hardware más rápido.</p>
+            <div class="ep-tag-row">
+              <span class="ep-mini-badge">Cost factor</span>
+              <span class="ep-mini-badge">Resistente a ASIC</span>
+            </div>
+          </div>
+          <div class="ep-card ep-card-cyan">
+            <div class="ep-card-icon">🌊</div>
+            <h3>scrypt</h3>
+            <p>Intensivo en CPU y memoria simultáneamente. Dificulta ataques paralelos con GPUs y ASICs al requerir grandes cantidades de RAM.</p>
+            <div class="ep-tag-row">
+              <span class="ep-mini-badge">Memory-hard</span>
+              <span class="ep-mini-badge">Anti-GPU</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quiz -->
+      <Quiz questions={quizData.questions} title={quizData.title} />
+
+    </div>
+  </div>
+
+</WikiLayout>
+
+<style>
+  /* ── Enriched Page Styles (.ep-*) ── */
+  .ep-page { padding: 2rem 0; }
+
+  .ep-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+  }
+  .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .ep-header p { font-size: 1rem; opacity: 0.9; margin: 0; }
+
+  /* Stats */
+  .ep-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .ep-stat { background: var(--color-surface, #1e293b); border-radius: 0.75rem; padding: 1.25rem; text-align: center; }
+  .ep-stat-value { font-size: 2rem; font-weight: 700; }
+  .ep-stat-label { font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem; }
+
+  /* Sections */
+  .ep-section { margin-bottom: 2.5rem; }
+  .ep-section-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: #a5b4fc; }
+  .ep-section-desc { opacity: 0.75; margin-bottom: 1rem; font-size: 0.9rem; }
+
+  /* Grid */
+  .ep-grid { display: grid; gap: 1.25rem; margin-bottom: 1.5rem; }
+  .ep-grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+  /* Cards */
+  .ep-card { background: var(--color-surface, #1e293b); border-radius: 0.75rem; padding: 1.5rem; border-left: 4px solid transparent; transition: transform 0.2s; }
+  .ep-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+  .ep-card-blue  { border-left-color: #4fc3f7; }
+  .ep-card-purple { border-left-color: #a855f7; }
+  .ep-card-cyan  { border-left-color: #2ebf91; }
+  .ep-card-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .ep-card h3 { font-size: 1rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .ep-card p { font-size: 0.85rem; opacity: 0.8; margin: 0 0 0.75rem; line-height: 1.5; }
+  .ep-badge { display: inline-block; font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 9999px; background: rgba(102,126,234,0.2); color: #a5b4fc; margin-bottom: 0.5rem; }
+  .ep-key-size { font-size: 0.75rem; font-weight: 600; color: #667eea; margin-top: 0.25rem; }
+  .ep-tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .ep-mini-badge { font-size: 0.7rem; padding: 0.15rem 0.5rem; border-radius: 9999px; background: rgba(255,255,255,0.08); }
+
+  /* Size scale */
+  .ep-size-scale { background: var(--color-surface, #1e293b); border-radius: 0.75rem; padding: 1.25rem; }
+  .ep-scale-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em; }
+  .ep-scale-row { display: grid; grid-template-columns: 90px 1fr 200px; gap: 0.75rem; align-items: center; margin-bottom: 0.75rem; }
+  .ep-scale-row:last-child { margin-bottom: 0; }
+  .ep-scale-label { font-size: 0.8rem; font-weight: 600; text-align: right; opacity: 0.8; }
+  .ep-scale-bar { background: rgba(255,255,255,0.08); border-radius: 9999px; height: 10px; overflow: hidden; }
+  .ep-scale-fill { height: 100%; border-radius: 9999px; }
+  .ep-scale-use { font-size: 0.75rem; opacity: 0.65; }
+
+  /* Timeline */
+  .ep-timeline { display: flex; flex-direction: column; }
+  .ep-step { display: flex; gap: 1rem; align-items: flex-start; }
+  .ep-step-num { width: 2.25rem; height: 2.25rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; font-size: 0.9rem; color: white; }
+  .ep-step-content { background: var(--color-surface, #1e293b); border-radius: 0.75rem; padding: 1rem 1.25rem; flex: 1; }
+  .ep-step-content h4 { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.3rem; }
+  .ep-step-content p { font-size: 0.85rem; opacity: 0.8; margin: 0 0 0.5rem; }
+  .ep-code { display: block; font-size: 0.78rem; background: rgba(255,255,255,0.06); padding: 0.4rem 0.75rem; border-radius: 0.4rem; font-family: monospace; color: #93c5fd; }
+  .ep-step-connector { height: 1.25rem; margin-left: 1.05rem; border-left: 2px solid rgba(255,255,255,0.12); }
+
+  /* Calculator */
+  .ep-calc { background: var(--color-surface, #1e293b); border-radius: 0.75rem; padding: 1.5rem; }
+  .ep-calc-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .ep-calc-btn { padding: 0.4rem 0.9rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); font-size: 0.85rem; cursor: pointer; color: inherit; transition: all 0.2s; }
+  .ep-calc-btn:hover { background: rgba(102,126,234,0.2); border-color: #667eea; }
+  .ep-calc-btn.active { background: rgba(102,126,234,0.25); border-color: #667eea; color: #a5b4fc; font-weight: 600; }
+  .ep-calc-result { }
+  .ep-calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem; }
+  .ep-calc-algo { font-size: 1rem; font-weight: 700; }
+  .ep-calc-level { font-size: 0.8rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; background: rgba(255,255,255,0.08); }
+  .ep-calc-bar-wrap { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .ep-calc-bar-bg { flex: 1; height: 16px; background: rgba(255,255,255,0.08); border-radius: 9999px; overflow: hidden; }
+  .ep-calc-bar-fill { height: 100%; border-radius: 9999px; transition: width 0.45s ease, background-color 0.45s ease; }
+  .ep-calc-pct { font-size: 0.85rem; font-weight: 700; width: 2.5rem; text-align: right; }
+  .ep-calc-use { font-size: 0.85rem; opacity: 0.75; margin: 0; }
+
+  /* Table */
+  .ep-table-wrap { overflow-x: auto; border-radius: 0.75rem; }
+  .ep-table { width: 100%; border-collapse: collapse; }
+  .ep-table th { background: rgba(102,126,234,0.15); padding: 0.75rem 1rem; text-align: left; font-size: 0.82rem; font-weight: 600; color: #a5b4fc; white-space: nowrap; }
+  .ep-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.83rem; }
+  .ep-table tr:last-child td { border-bottom: none; }
+  .ep-row-danger td { opacity: 0.65; }
+  .ep-row-warn td { opacity: 0.8; }
+  .ep-badge-status { font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 9999px; white-space: nowrap; font-weight: 600; }
+  .ep-obsoleto  { background: rgba(239,68,68,0.2);   color: #fca5a5; }
+  .ep-deprecado { background: rgba(245,158,11,0.2);  color: #fcd34d; }
+  .ep-seguro    { background: rgba(34,197,94,0.2);   color: #86efac; }
+  .ep-legacy    { background: rgba(148,163,184,0.12); color: #94a3b8; }
+
+  @media (max-width: 640px) {
+    .ep-header { padding: 1.5rem 1rem; }
+    .ep-header h1 { font-size: 1.5rem; }
+    .ep-scale-row { grid-template-columns: 80px 1fr; }
+    .ep-scale-use { display: none; }
+    .ep-table th, .ep-table td { padding: 0.5rem 0.6rem; font-size: 0.76rem; }
+    .ep-calc-btn { font-size: 0.78rem; padding: 0.35rem 0.7rem; }
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.ep-calc-btn');
+  const barFill  = document.getElementById('calcBarFill') as HTMLElement;
+  const pctEl    = document.getElementById('calcPct')     as HTMLElement;
+  const levelEl  = document.getElementById('calcLevel')   as HTMLElement;
+  const algoEl   = document.getElementById('calcAlgo')    as HTMLElement;
+  const useEl    = document.getElementById('calcUse')     as HTMLElement;
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const strength = parseInt(btn.dataset.strength ?? '0');
+      const color    = btn.dataset.color    ?? '#667eea';
+      const lvl      = btn.dataset.level    ?? '';
+      const useText  = btn.dataset.use      ?? '';
+      const algoName = btn.dataset.algo     ?? '';
+
+      barFill.style.width           = strength + '%';
+      barFill.style.backgroundColor = color;
+      pctEl.textContent             = strength + '%';
+      pctEl.style.color             = color;
+      levelEl.textContent           = lvl;
+      levelEl.style.color           = color;
+      algoEl.textContent            = algoName;
+      useEl.textContent             = useText;
+    });
+  });
+</script>
