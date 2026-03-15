@@ -1,0 +1,60 @@
+{
+  "title": "Quiz: Hashing y Firmas Digitales",
+  "questions": [
+    {
+      "question": "¿Qué es una función hash criptográfica?",
+      "options": [
+        "Un algoritmo de cifrado reversible",
+        "Una función que transforma datos en un valor fijo único",
+        "Un tipo de certificado digital",
+        "Una clave pública"
+      ],
+      "correct": 1,
+      "explanation": "Una función hash criptográfica transforma datos de cualquier tamaño en un valor único y fijo (hash o digest), con propiedades como irreversibilidad y efecto avalancha."
+    },
+    {
+      "question": "¿Qué es el 'efecto avalancha' en hashing?",
+      "options": [
+        "El hash se vuelve más largo con más datos",
+        "Un pequeño cambio en la entrada produce un cambio completo en el hash",
+        "El hash se puede revertir usando fuerza bruta",
+        "El hash genera múltiples valores de salida"
+      ],
+      "correct": 1,
+      "explanation": "El efecto avalancha significa que cambiar un solo carácter en la entrada produce un hash completamente diferente, asegurando que no se pueda inferir relación entre entradas."
+    },
+    {
+      "question": "¿Cuál es el propósito principal de una firma digital?",
+      "options": [
+        "Cifrar el mensaje para que sea ilegible",
+        "Garantizar integridad, autenticidad y no repudio",
+        "Comprimir el documento",
+        "Generar un hash del mensaje"
+      ],
+      "correct": 1,
+      "explanation": "La firma digital usa hashing + criptografía asimétrica para verificar que el mensaje no fue alterado (integridad), confirmar la identidad del firmante (autenticidad) y evitar que niegue haber firmado (no repudio)."
+    },
+    {
+      "question": "¿Por qué MD5 se considera obsoleto?",
+      "options": [
+        "Es demasiado lento",
+        "Produce hashes muy cortos",
+        "Tiene colisiones conocidas",
+        "No es compatible con SHA-2"
+      ],
+      "correct": 2,
+      "explanation": "MD5 está obsoleto porque se han encontrado colisiones (diferentes entradas que producen el mismo hash), lo que compromete su utilidad para verificar integridad."
+    },
+    {
+      "question": "¿Qué proceso sigue una firma digital?",
+      "options": [
+        "Se cifra el documento con clave pública",
+        "Se aplica hash al documento y se cifra con clave privada",
+        "Se comprime el documento y se firma",
+        "Se genera un certificado y se envía"
+      ],
+      "correct": 1,
+      "explanation": "El proceso de firma digital: 1) aplicar hash al documento, 2) cifrar el hash con la clave privada del remitente, 3) adjuntar la firma al mensaje para que el receptor pueda verificar con la clave pública."
+    }
+  ]
+}

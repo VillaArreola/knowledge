@@ -2,6 +2,8 @@
 import WikiLayout from '../../../layouts/WikiLayout.astro';
 import notionData from '../../../data/notion/ciberseguridad/criptografia/hashing.json';
 import { marked } from 'marked';
+import Quiz from '../../../components/Quiz.astro';
+import quizData from '../../../data/quiz/hashing.json';
 
 const body = (notionData.markdownBody || '').trim();
 const hasBody = body.length > 0;
@@ -32,23 +34,243 @@ const markdownHtml = hasBody
   : marked(fallbackLines.join('\n'));
 ---
 
-<WikiLayout title="🏛️ Hashing" description="Hasing y Firmas Digitales">
-  <div class="doc-page">
-    <header class="doc-header">
-      {(category || section) && (
-        <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
-      )}
-      <h1 class="doc-title">{pageIcon} {pageName}</h1>
-      {pageDesc && <p class="doc-description">{pageDesc}</p>}
-      {(tags.length > 0 || certCodes.length > 0) && (
-        <div class="doc-meta-row">
-          {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
-          {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
-        </div>
-      )}
-    </header>
-    <div class="doc-content">
-      <Fragment set:html={markdownHtml} />
+<WikiLayout title="🏛️ Hashing" description="Hasing y Firmas Digitales" hasDualMode={true}>
+
+  <!-- ── MARKDOWN VIEW ─────────────────────────────────── -->
+  <div data-view="markdown">
+    <div class="doc-page">
+      <header class="doc-header">
+        {(category || section) && (
+          <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
+        )}
+        <h1 class="doc-title">{pageIcon} {pageName}</h1>
+        {pageDesc && <p class="doc-description">{pageDesc}</p>}
+        {(tags.length > 0 || certCodes.length > 0) && (
+          <div class="doc-meta-row">
+            {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+            {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+          </div>
+        )}
+      </header>
+      <div class="doc-content">
+        <Fragment set:html={markdownHtml} />
+      </div>
     </div>
   </div>
+
+  <!-- ── ENRICHED VIEW ─────────────────────────────────── -->
+  <div data-view="enriched">
+    <div class="ep-page">
+
+      <!-- Gradient header -->
+      <div class="ep-header">
+        <h1>🏛️ Hashing</h1>
+        <p>Funciones hash y Firmas Digitales</p>
+      </div>
+
+      <!-- Concept cards grid -->
+      <div class="ep-grid">
+        <div class="ep-card ep-card--primary">
+          <h3><span class="ep-icon">🔐</span>Función Hash</h3>
+          <p>Transformación de datos de tamaño arbitrario en un valor fijo único</p>
+          <div class="ep-items">
+            <div class="ep-item">Digest o resumen</div>
+            <div class="ep-item">Salida de longitud fija (128-512 bits)</div>
+            <div class="ep-item">Efecto avalancha</div>
+            <div class="ep-item">Irreversible (no es cifrado)</div>
+          </div>
+        </div>
+        <div class="ep-card ep-card--secondary">
+          <h3><span class="ep-icon">✍️</span>Firma Digital</h3>
+          <p>Técnica hashing + criptografía para verificar autenticidad e integridad</p>
+          <div class="ep-items">
+            <div class="ep-item">Hash se cifra con clave privada</div>
+            <div class="ep-item">Certificado digital de la CA</div>
+            <div class="ep-item">Verificación con clave pública</div>
+            <div class="ep-item">No repudio</div>
+          </div>
+        </div>
+        <div class="ep-card ep-card--tertiary">
+          <h3><span class="ep-icon">📊</span>Algoritmos SHA</h3>
+          <p>Familia de funciones hash segura para integridad de datos</p>
+          <div class="ep-items">
+            <div class="ep-item">MD5: 128 bits (obsoleto)</div>
+            <div class="ep-item">SHA-1: 160 bits (obsoleto)</div>
+            <div class="ep-item">SHA-2: 224-512 bits (seguro)</div>
+            <div class="ep-item">SHA-3: Variable (estándar nuevo)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive hash comparator -->
+      <div class="ep-example">
+        <h3>🧮 Comparador de Hashes</h3>
+        <p>Ingresa un texto y observa cómo diferentes algoritmos generan resultados distintos:</p>
+        <div class="hash-comparator">
+          <input type="text" id="hashInput" placeholder="Escribe un texto..." class="hash-input">
+          <div class="hash-results">
+            <div class="hash-result">
+              <span class="hash-label">MD5 (obsoleto)</span>
+              <span class="hash-value" id="md5Output">-</span>
+            </div>
+            <div class="hash-result">
+              <span class="hash-label">SHA-1 (obsoleto)</span>
+              <span class="hash-value" id="sha1Output">-</span>
+            </div>
+            <div class="hash-result">
+              <span class="hash-label">SHA-256</span>
+              <span class="hash-value" id="sha256Output">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      {quizData && <Quiz questions={quizData.questions} title={quizData.title} />}
+
+    </div>
+  </div>
+
 </WikiLayout>
+
+<style>
+  /* ── Enriched Page Styles (.ep-*) ── */
+  .ep-page { padding: 2rem 0; }
+
+  .ep-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+  }
+  .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .ep-header p { font-size: 1rem; opacity: 0.9; margin: 0; }
+
+  .ep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .ep-card {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-left: 4px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ep-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+  .ep-card h3 { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.75rem; font-size: 1.1rem; }
+  .ep-card p { font-size: 0.9rem; opacity: 0.8; margin: 0 0 1rem; }
+  .ep-icon { font-size: 1.3rem; }
+
+  .ep-card--primary   { border-left-color: #667eea; }
+  .ep-card--secondary { border-left-color: #f093fb; }
+  .ep-card--tertiary  { border-left-color: #4fc3f7; }
+
+  .ep-items { display: flex; flex-direction: column; gap: 0.4rem; }
+  .ep-item {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 0.4rem;
+    cursor: default;
+  }
+
+  .ep-example {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .ep-example h3 { margin: 0 0 0.75rem; font-size: 1.1rem; }
+
+  .hash-comparator { margin-top: 1rem; }
+  .hash-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    background: rgba(0,0,0,0.2);
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .hash-input:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+  .hash-results { display: flex; flex-direction: column; gap: 0.75rem; }
+  .hash-result {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .hash-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #667eea;
+  }
+  .hash-value {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+    word-break: break-all;
+    background: rgba(0,0,0,0.2);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .ep-header { padding: 1.5rem 1rem; }
+    .ep-header h1 { font-size: 1.5rem; }
+    .ep-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  async function computeMD5(text: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function computeSHA1(text: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest('SHA-1', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function computeSHA256(text: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  const input = document.getElementById('hashInput') as HTMLInputElement;
+  const md5Output = document.getElementById('md5Output');
+  const sha1Output = document.getElementById('sha1Output');
+  const sha256Output = document.getElementById('sha256Output');
+
+  input.addEventListener('input', async () => {
+    const text = input.value;
+    if (!text) {
+      if (md5Output) md5Output.textContent = '-';
+      if (sha1Output) sha1Output.textContent = '-';
+      if (sha256Output) sha256Output.textContent = '-';
+      return;
+    }
+    if (sha256Output) sha256Output.textContent = await computeSHA256(text);
+    if (sha1Output) sha1Output.textContent = await computeSHA1(text);
+    if (md5Output) md5Output.textContent = await computeSHA256(text);
+  });
+</script>
