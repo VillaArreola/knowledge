@@ -131,7 +131,7 @@ const markdownHtml = hasBody
   <div data-view="enriched">
     <div class="ep-page">
 
-      <!-- Gradient header — OBLIGATORIO -->
+      <!-- Page header (frosted glass) — OBLIGATORIO -->
       <div class="ep-header">
         <h1>{pageIcon} {pageName}</h1>
         <p>{pageDesc}</p>
@@ -187,15 +187,19 @@ const markdownHtml = hasBody
   .ep-page { padding: 2rem 0; }
 
   .ep-header {
-    background: linear-gradient(135deg, [COLOR_1] 0%, [COLOR_2] 100%);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 2px solid rgba(255, 255, 255, 0.15);
     border-radius: 1rem;
     padding: 2.5rem 2rem;
     margin-bottom: 2rem;
     color: white;
     text-align: center;
   }
-  .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; }
-  .ep-header p { font-size: 1rem; opacity: 0.9; margin: 0; }
+  .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+  .ep-header p { font-size: 1rem; opacity: 0.6; margin: 0; }
 
   /*
    * Agrega aquí SOLO los estilos necesarios para el layout elegido.

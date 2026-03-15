@@ -172,7 +172,8 @@ for (const cat of siteConfig.categories) {
             if (isLast) {
               html += '<span class="bc-item bc-current">' + esc(label) + '</span>';
             } else {
-              html += '<a class="bc-item" href="' + path + '">' + esc(label) + '</a>';
+              var href = (i === 1) ? '/' + parts[0] : path;
+              html += '<a class="bc-item" href="' + href + '">' + esc(label) + '</a>';
             }
           }
           bc.innerHTML = html;
@@ -400,13 +401,18 @@ for (const cat of siteConfig.categories) {
 
   .bc-item {
     font-size: 0.8rem;
-    color: rgba(148, 163, 184, 0.72);
+    color: rgba(125, 211, 252, 0.75);
     text-decoration: none;
     white-space: nowrap;
-    transition: color 0.15s ease;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
   }
 
-  .bc-item:hover { color: #cbd5e1; }
+  .bc-item:hover {
+    color: rgba(186, 230, 253, 0.95);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: rgba(125, 211, 252, 0.4);
+  }
 
   .bc-current {
     font-size: 0.88rem;
@@ -423,6 +429,8 @@ for (const cat of siteConfig.categories) {
     color: rgba(148, 163, 184, 0.45);
     user-select: none;
   }
+
+
 
   .page-tools {
     display: flex;
@@ -599,97 +607,101 @@ for (const cat of siteConfig.categories) {
   @media (max-width: 820px) {
     .view-mode-inner {
       flex-wrap: wrap;
-      row-gap: 0.45rem;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      row-gap: 0.3rem;
+      padding-top: 0.45rem;
+      padding-bottom: 0.45rem;
+      align-items: center;
     }
 
+    /* Row 1: brand left, tools right */
     .bar-brand {
       order: 1;
-    }
-
-    .page-breadcrumb {
-      flex-basis: 100%;
-      order: 2;
+      flex-shrink: 0;
     }
 
     .page-tools {
-      width: auto;
+      order: 1;
       margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      order: 3;
+      gap: 0.35rem;
+    }
+
+    /* Row 2: breadcrumb full width, scrollable */
+    .page-breadcrumb {
+      order: 2;
+      flex-basis: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .page-breadcrumb::-webkit-scrollbar {
+      display: none;
     }
 
     .bar-search-wrap {
       display: none;
     }
 
+    .bar-link-btn {
+      display: none;
+    }
+
+    /* Keep the pill style on mobile */
     .mode-toggle {
-      padding: 0;
-      border: none;
-      background: transparent;
-      gap: 0.25rem;
+      padding: 0.14rem;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: linear-gradient(120deg, rgba(15, 23, 42, 0.72), rgba(30, 41, 59, 0.48));
+      gap: 0.2rem;
     }
 
     .mode-btn {
-      padding: 0.24rem 0.56rem;
+      padding: 0.26rem 0.65rem;
+      font-size: 0.73rem;
+    }
+
+    /* No truncation — breadcrumb scrolls horizontally */
+    .bc-item {
       font-size: 0.72rem;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      background: rgba(15, 23, 42, 0.42);
+      max-width: none;
+      white-space: nowrap;
     }
 
     .bc-current {
-      max-width: calc(100vw - 2rem);
+      max-width: none;
       font-size: 0.78rem;
-    }
-
-    .bc-item {
-      font-size: 0.72rem;
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: unset;
     }
   }
 
   @media (max-width: 520px) {
-    .bar-brand {
+    /* Show only the icon, hide the text label */
+    .bar-brand-text {
       display: none;
     }
 
     .page-tools {
-      grid-template-columns: minmax(0, 1fr) auto auto auto;
+      margin-left: auto;
       gap: 0.32rem;
     }
 
     .view-mode-inner {
-      padding-left: 0.6rem;
-      padding-right: 0.6rem;
-    }
-
-    .bar-link-btn {
-      width: 1.85rem;
-      height: 1.85rem;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
     }
 
     .mode-btn {
-      font-size: 0.7rem;
-      padding: 0.22rem 0.5rem;
-    }
-
-    .mode-toggle {
-      width: auto;
-      justify-content: flex-end;
-    }
-
-    .page-breadcrumb {
-      gap: 0.2rem;
+      font-size: 0.71rem;
+      padding: 0.24rem 0.56rem;
     }
 
     .bc-item {
-      font-size: 0.68rem;
+      font-size: 0.69rem;
     }
 
     .bc-current {
-      font-size: 0.72rem;
+      font-size: 0.73rem;
     }
   }
 
