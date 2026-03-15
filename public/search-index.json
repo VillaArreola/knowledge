@@ -51,6 +51,24 @@
       "searchContent": "Hashing Hasing y Firmas Digitales Autenticación Cifrado PKI"
     },
     {
+      "title": "pki",
+      "slug": "pki",
+      "icon": "🔐",
+      "status": "completed",
+      "order": 5,
+      "description": "Infraestructura de Clave Pública pki",
+      "tags": [
+        "Cifrado",
+        "Autenticación",
+        "Autorización",
+        "Seguridad"
+      ],
+      "category": "Ciberseguridad",
+      "section": "criptografia",
+      "url": "/ciberseguridad/criptografia/pki",
+      "searchContent": "pki Infraestructura de Clave Pública pki Cifrado Autenticación Autorización Seguridad"
+    },
+    {
       "title": "Tipos de Cifrados",
       "slug": "TipoDeCifrado",
       "icon": "🔑",
@@ -75,5 +93,5 @@
     "programacion",
     "cloud"
   ],
-  "lastUpdated": "2026-03-15T04:30:51.055Z"
+  "lastUpdated": "2026-03-15T13:40:33.805Z"
 }

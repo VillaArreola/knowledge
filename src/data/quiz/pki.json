@@ -1,0 +1,93 @@
+{
+  "title": "Quiz: Infraestructura de Clave Pública (PKI)",
+  "questions": [
+    {
+      "question": "¿Qué conjunto de elementos forma la PKI?",
+      "options": [
+        "Políticas, procedimientos, software y hardware para gestionar certificados digitales",
+        "Solo hardware criptográfico y servidores de clave pública",
+        "Únicamente las autoridades certificadoras y sus certificados",
+        "Protocolos de red y algoritmos de cifrado simétrico"
+      ],
+      "correct": 0,
+      "explanation": "PKI es un ecosistema completo de políticas, procedimientos, software y hardware necesario para crear, distribuir, usar y revocar certificados digitales."
+    },
+    {
+      "question": "¿Cuál es la función principal de la CA (Autoridad Certificadora)?",
+      "options": [
+        "Verificar la identidad del solicitante antes de emitir un certificado",
+        "Almacenar y distribuir los certificados públicos",
+        "Emitir y firmar certificados digitales",
+        "Gestionar las solicitudes de revocación mediante CRL"
+      ],
+      "correct": 2,
+      "explanation": "La CA (Certificate Authority) es la entidad que emite y firma los certificados digitales, siendo el núcleo de confianza de toda la PKI."
+    },
+    {
+      "question": "¿Qué entidad verifica la identidad del solicitante antes de que se emita un certificado?",
+      "options": [
+        "CA (Autoridad Certificadora)",
+        "Servidor de Directorio",
+        "Entidad Final",
+        "RA (Autoridad de Registro)"
+      ],
+      "correct": 3,
+      "explanation": "La RA (Registration Authority) verifica la identidad del solicitante y actúa como intermediario entre la entidad final y la CA antes de que se emita el certificado."
+    },
+    {
+      "question": "¿Qué estándar siguen los certificados digitales en una PKI?",
+      "options": [
+        "SSL/TLS versión 3",
+        "X.509 versión 3",
+        "PKCS#12 versión 2",
+        "RSA-2048"
+      ],
+      "correct": 1,
+      "explanation": "Los certificados digitales siguen el estándar X.509 v3, que define campos como número de serie, algoritmo de firma, periodo de validez, nombre del emisor, clave pública y uso de clave."
+    },
+    {
+      "question": "¿Qué diferencia a un certificado CON claves públicas de uno SIN claves públicas?",
+      "options": [
+        "El certificado sin claves es más seguro al usar cifrado simétrico",
+        "El certificado con claves sirve para cifrado, autenticación y firma; el sin claves define políticas y CRL",
+        "El certificado sin claves no puede ser emitido por una CA subordinada",
+        "No hay diferencia funcional, solo de formato de archivo"
+      ],
+      "correct": 1,
+      "explanation": "Los certificados con claves públicas se usan para cifrado, autenticación y firma digital. Los sin claves definen políticas PKI e incluyen listas de revocación (CRL)."
+    },
+    {
+      "question": "¿Qué es la 'certificación cruzada' en PKI?",
+      "options": [
+        "Cuando un certificado es firmado por dos CA de forma simultánea",
+        "Cuando una CA de una PKI certifica a una CA de otra PKI para establecer confianza mutua",
+        "Cuando una CA raíz delega su autoridad a una CA subordinada",
+        "El proceso de renovar un certificado antes de que expire"
+      ],
+      "correct": 1,
+      "explanation": "La certificación cruzada permite que dos PKIs diferentes establezcan confianza mutua: una CA de una PKI certifica a una CA de la otra, permitiendo interoperabilidad entre sistemas."
+    },
+    {
+      "question": "¿Cuántos campos comunes define el estándar X.509 v3 en un certificado digital?",
+      "options": [
+        "3 campos",
+        "4 campos",
+        "6 campos",
+        "8 campos"
+      ],
+      "correct": 2,
+      "explanation": "X.509 v3 define 6 campos comunes: número de serie, algoritmo de firma, periodo de validez, nombre del emisor, clave pública y uso de clave."
+    },
+    {
+      "question": "¿Cuál de las siguientes opciones NO es una garantía directa que ofrece la PKI?",
+      "options": [
+        "Autenticidad",
+        "Disponibilidad",
+        "Integridad",
+        "No repudio"
+      ],
+      "correct": 1,
+      "explanation": "PKI garantiza Autenticidad, Confidencialidad, Integridad y No repudio. La Disponibilidad (Availability) es un pilar de la tríada CIA pero no es una garantía que PKI provea directamente mediante certificados."
+    }
+  ]
+}

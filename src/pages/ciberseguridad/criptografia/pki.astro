@@ -1,0 +1,691 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import notionData from '../../../data/notion/ciberseguridad/criptografia/pki.json';
+import { marked } from 'marked';
+import Quiz from '../../../components/Quiz.astro';
+import quizData from '../../../data/quiz/pki.json';
+
+const body = (notionData.markdownBody || '').trim();
+const hasBody = body.length > 0;
+
+const metadata = notionData.metadata || {};
+const notionUrl = metadata.notionUrl || '';
+const pageIcon = metadata.icon || '📄';
+const pageName = metadata.name || '';
+const pageDesc = metadata.description || '';
+const tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];
+const category = metadata.category || '';
+const section = metadata.section || '';
+const rawCerts = typeof metadata.certifications === 'string' ? metadata.certifications : '';
+const certCodes = rawCerts.split(',').map(c => c.split(':')[0].trim()).filter(Boolean);
+
+const fallbackLines = [
+  '## Contenido pendiente',
+  '',
+  metadata.description ? '**Descripcion:** ' + metadata.description : '',
+  tags.length ? '**Tags:** ' + tags.join(', ') : '',
+  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',
+].filter(Boolean);
+
+const markdownHtml = hasBody
+  ? marked(body)
+  : marked(fallbackLines.join('\n'));
+---
+
+<WikiLayout title="🔐 Infraestructura de Clave Pública (PKI)" description="Infraestructura de Clave Pública — componentes, jerarquía de CA, proceso CSR y estándar X.509 v3" hasDualMode={true}>
+
+  <!-- ── MARKDOWN VIEW ─────────────────────────────────── -->
+  <div data-view="markdown">
+    <div class="doc-page">
+      <header class="doc-header">
+        {(category || section) && (
+          <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
+        )}
+        <h1 class="doc-title">{pageIcon} {pageName}</h1>
+        {pageDesc && <p class="doc-description">{pageDesc}</p>}
+        {(tags.length > 0 || certCodes.length > 0) && (
+          <div class="doc-meta-row">
+            {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+            {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+          </div>
+        )}
+      </header>
+      <div class="doc-content">
+        <Fragment set:html={markdownHtml} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENRICHED VIEW ─────────────────────────────────── -->
+  <div data-view="enriched">
+    <div class="ep-page">
+
+      <!-- Header obligatorio -->
+      <div class="ep-header">
+        <div class="ep-header-glow"></div>
+        <div class="ep-header-icon">🔐</div>
+        <h1>Infraestructura de Clave Pública</h1>
+        <p>Ecosistema de políticas, procedimientos y tecnología para crear, distribuir, usar y revocar certificados digitales</p>
+        <div class="ep-header-tags">
+          {tags.map((tag) => <span class="ep-htag">{tag}</span>)}
+          {certCodes.map((code) => <span class="ep-htag ep-htag-cert">{code}</span>)}
+        </div>
+      </div>
+
+      <!-- Garantías PKI -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">
+          <span class="ep-section-line"></span>
+          ¿Qué garantiza la PKI?
+          <span class="ep-section-line"></span>
+        </h2>
+        <div class="ep-guarantees">
+          <div class="ep-guarantee" style="--g: #667eea;">
+            <div class="ep-guarantee-icon">✅</div>
+            <div class="ep-guarantee-label">Autenticidad</div>
+            <div class="ep-guarantee-desc">Verificar que las partes son quienes dicen ser</div>
+          </div>
+          <div class="ep-guarantee" style="--g: #9b59b6;">
+            <div class="ep-guarantee-icon">🔒</div>
+            <div class="ep-guarantee-label">Confidencialidad</div>
+            <div class="ep-guarantee-desc">Solo las partes autorizadas acceden a la información</div>
+          </div>
+          <div class="ep-guarantee" style="--g: #5c7cfa;">
+            <div class="ep-guarantee-icon">🛡️</div>
+            <div class="ep-guarantee-label">Integridad</div>
+            <div class="ep-guarantee-desc">Los datos no han sido alterados en tránsito</div>
+          </div>
+          <div class="ep-guarantee" style="--g: #8e44ad;">
+            <div class="ep-guarantee-icon">✍️</div>
+            <div class="ep-guarantee-label">No Repudio</div>
+            <div class="ep-guarantee-desc">Nadie puede negar haber firmado o enviado un mensaje</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Componentes PKI -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">
+          <span class="ep-section-line"></span>
+          Componentes de la PKI
+          <span class="ep-section-line"></span>
+        </h2>
+        <div class="ep-components">
+          <div class="ep-component" style="--c: #667eea;">
+            <div class="ep-component-top">
+              <span class="ep-component-emoji">🏛️</span>
+              <span class="ep-component-badge">CA</span>
+            </div>
+            <h3>Autoridad Certificadora</h3>
+            <p>Entidad de confianza que <strong>emite y firma</strong> los certificados digitales. Es el núcleo de confianza de toda la PKI.</p>
+            <div class="ep-component-footer">Raíz de confianza</div>
+          </div>
+          <div class="ep-component" style="--c: #764ba2;">
+            <div class="ep-component-top">
+              <span class="ep-component-emoji">🔍</span>
+              <span class="ep-component-badge">RA</span>
+            </div>
+            <h3>Autoridad de Registro</h3>
+            <p><strong>Verifica la identidad</strong> del solicitante antes de que la CA emita el certificado. Actúa como intermediario de confianza.</p>
+            <div class="ep-component-footer">Verificación de identidad</div>
+          </div>
+          <div class="ep-component" style="--c: #5c6bc0;">
+            <div class="ep-component-top">
+              <span class="ep-component-emoji">🗄️</span>
+              <span class="ep-component-badge">DIR</span>
+            </div>
+            <h3>Servidor de Directorio</h3>
+            <p><strong>Almacena y distribuye</strong> los certificados emitidos, haciéndolos accesibles para su consulta y validación.</p>
+            <div class="ep-component-footer">Almacenamiento y distribución</div>
+          </div>
+          <div class="ep-component" style="--c: #7e57c2;">
+            <div class="ep-component-top">
+              <span class="ep-component-emoji">👤</span>
+              <span class="ep-component-badge">EE</span>
+            </div>
+            <h3>Entidad Final</h3>
+            <p>Persona, dispositivo o aplicación que <strong>usa el certificado</strong> para establecer comunicaciones seguras y autenticadas.</p>
+            <div class="ep-component-footer">Persona · Dispositivo · Aplicación</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jerarquía de CA -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">
+          <span class="ep-section-line"></span>
+          Jerarquía de CA
+          <span class="ep-section-line"></span>
+        </h2>
+        <div class="ep-hierarchy-wrap">
+          <div class="ep-hierarchy">
+            <div class="ep-hier-node ep-hier-root">
+              <span class="ep-hier-icon">🏛️</span>
+              <div>
+                <div class="ep-hier-name">CA Raíz <span class="ep-hier-eng">(Root CA)</span></div>
+                <div class="ep-hier-sub-label">Autofirmada · Máxima confianza · Offline</div>
+              </div>
+            </div>
+
+            <div class="ep-hier-branch">
+              <div class="ep-hier-vline"></div>
+              <div class="ep-hier-hrow">
+                <div class="ep-hier-hline-left"></div>
+                <div class="ep-hier-hline-right"></div>
+              </div>
+              <div class="ep-hier-children">
+                <div class="ep-hier-node ep-hier-sub">
+                  <span class="ep-hier-icon">🔐</span>
+                  <div>
+                    <div class="ep-hier-name">CA Subordinada A</div>
+                    <div class="ep-hier-sub-label">Certificada por Root CA</div>
+                  </div>
+                </div>
+                <div class="ep-hier-node ep-hier-sub">
+                  <span class="ep-hier-icon">🔐</span>
+                  <div>
+                    <div class="ep-hier-name">CA Subordinada B</div>
+                    <div class="ep-hier-sub-label">Certificada por Root CA</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ep-hier-branch ep-hier-branch-end">
+              <div class="ep-hier-vline ep-hier-vline-short"></div>
+              <div class="ep-hier-node ep-hier-leaf">
+                <span class="ep-hier-icon">👤</span>
+                <div>
+                  <div class="ep-hier-name">Entidades Finales</div>
+                  <div class="ep-hier-sub-label">Personas · Dispositivos · Apps</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ep-cross-cert">
+            <div class="ep-cross-icon">🔁</div>
+            <div>
+              <strong>Certificación Cruzada</strong>
+              <p>Dos PKIs independientes pueden establecer confianza mutua cuando una CA de una PKI certifica a una CA de la otra, permitiendo interoperabilidad entre organizaciones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proceso CSR — Diagrama interactivo -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">
+          <span class="ep-section-line"></span>
+          Proceso de Solicitud de Certificado (CSR)
+          <span class="ep-section-line"></span>
+        </h2>
+        <div class="ep-csr" id="ep-csr">
+          <!-- Barra de pasos -->
+          <div class="ep-csr-bar">
+            <div class="ep-csr-bar-track" id="ep-csr-bar-track"></div>
+            <button class="ep-csr-dot active" data-goto="0" aria-label="Paso 1">
+              <span>1</span>
+            </button>
+            <button class="ep-csr-dot" data-goto="1" aria-label="Paso 2">
+              <span>2</span>
+            </button>
+            <button class="ep-csr-dot" data-goto="2" aria-label="Paso 3">
+              <span>3</span>
+            </button>
+            <button class="ep-csr-dot" data-goto="3" aria-label="Paso 4">
+              <span>4</span>
+            </button>
+            <button class="ep-csr-dot" data-goto="4" aria-label="Paso 5">
+              <span>5</span>
+            </button>
+            <button class="ep-csr-dot" data-goto="5" aria-label="Paso 6">
+              <span>6</span>
+            </button>
+          </div>
+
+          <!-- Tarjetas de pasos -->
+          <div class="ep-csr-cards">
+            <div class="ep-csr-card active" data-card="0">
+              <div class="ep-csr-card-inner">
+                <div class="ep-csr-card-icon">📝</div>
+                <div class="ep-csr-card-actor">👤 Entidad Final</div>
+                <h3>Generar CSR</h3>
+                <p>La <strong>Entidad Final</strong> genera un par de claves asimétricas (pública y privada) y crea una <em>Certificate Signing Request</em> que incluye su clave pública e información de identidad.</p>
+                <div class="ep-csr-card-tip">💡 La clave privada nunca sale de la entidad final</div>
+              </div>
+            </div>
+            <div class="ep-csr-card" data-card="1">
+              <div class="ep-csr-card-inner">
+                <div class="ep-csr-card-icon">📨</div>
+                <div class="ep-csr-card-actor">👤 → 🔍 RA</div>
+                <h3>Enviar a la RA</h3>
+                <p>La CSR se envía a la <strong>Autoridad de Registro (RA)</strong>, que actúa como puerta de entrada a la PKI y gestiona las solicitudes antes de que lleguen a la CA.</p>
+                <div class="ep-csr-card-tip">💡 La RA separa la verificación de la emisión</div>
+              </div>
+            </div>
+            <div class="ep-csr-card" data-card="2">
+              <div class="ep-csr-card-inner">
+                <div class="ep-csr-card-icon">🔍</div>
+                <div class="ep-csr-card-actor">🔍 RA verificando</div>
+                <h3>Verificación de Identidad</h3>
+                <p>La <strong>RA verifica la identidad</strong> del solicitante mediante documentos oficiales, comprobaciones de dominio (DNS) u otros métodos según la política PKI establecida.</p>
+                <div class="ep-csr-card-tip">💡 El nivel de verificación varía según el tipo de certificado</div>
+              </div>
+            </div>
+            <div class="ep-csr-card" data-card="3">
+              <div class="ep-csr-card-inner">
+                <div class="ep-csr-card-icon">✅</div>
+                <div class="ep-csr-card-actor">🔍 RA → 🏛️ CA</div>
+                <h3>Aprobación</h3>
+                <p>Si la identidad es válida, la <strong>RA aprueba la solicitud</strong> y la reenvía a la CA para emisión. Si la verificación falla, la solicitud es rechazada y se notifica al solicitante.</p>
+                <div class="ep-csr-card-tip">💡 La RA protege a la CA de solicitudes fraudulentas</div>
+              </div>
+            </div>
+            <div class="ep-csr-card" data-card="4">
+              <div class="ep-csr-card-inner">
+                <div class="ep-csr-card-icon">🏛️</div>
+                <div class="ep-csr-card-actor">🏛️ CA emitiendo</div>
+                <h3>Emisión del Certificado</h3>
+                <p>La <strong>CA firma digitalmente el certificado</strong> con su clave privada, vinculando la clave pública del solicitante con su identidad verificada, según el estándar <strong>X.509 v3</strong>.</p>
+                <div class="ep-csr-card-tip">💡 La firma de la CA es la garantía de autenticidad</div>
+              </div>
+            </div>
+            <div class="ep-csr-card" data-card="5">
+              <div class="ep-csr-card-inner">
+                <div class="ep-csr-card-icon">🌐</div>
+                <div class="ep-csr-card-actor">🗄️ Servidor de Directorio</div>
+                <h3>Distribución</h3>
+                <p>El certificado se entrega a la entidad final y se publica en el <strong>Servidor de Directorio</strong>, desde donde cualquier tercero puede descargarlo para validar la identidad del titular.</p>
+                <div class="ep-csr-card-tip">💡 El certificado puede usarse en personas, dispositivos y apps</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controles -->
+          <div class="ep-csr-controls">
+            <button class="ep-csr-btn" id="ep-csr-prev" disabled>← Anterior</button>
+            <span class="ep-csr-counter" id="ep-csr-counter">Paso 1 de 6</span>
+            <button class="ep-csr-btn" id="ep-csr-next">Siguiente →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- X.509 v3 -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">
+          <span class="ep-section-line"></span>
+          Estándar X.509 v3 — Campos del Certificado
+          <span class="ep-section-line"></span>
+        </h2>
+        <div class="ep-x509">
+          <div class="ep-x509-field">
+            <span class="ep-x509-num">01</span>
+            <div class="ep-x509-info">
+              <strong>Número de Serie</strong>
+              <p>Identificador único del certificado dentro de la CA emisora</p>
+            </div>
+          </div>
+          <div class="ep-x509-field">
+            <span class="ep-x509-num">02</span>
+            <div class="ep-x509-info">
+              <strong>Algoritmo de Firma</strong>
+              <p>Algoritmo criptográfico usado para firmar el certificado (ej. SHA-256 con RSA)</p>
+            </div>
+          </div>
+          <div class="ep-x509-field">
+            <span class="ep-x509-num">03</span>
+            <div class="ep-x509-info">
+              <strong>Periodo de Validez</strong>
+              <p>Fechas de inicio y expiración — fuera de este rango el certificado es inválido</p>
+            </div>
+          </div>
+          <div class="ep-x509-field">
+            <span class="ep-x509-num">04</span>
+            <div class="ep-x509-info">
+              <strong>Nombre del Emisor</strong>
+              <p>Identidad de la CA que firmó y emitió el certificado</p>
+            </div>
+          </div>
+          <div class="ep-x509-field">
+            <span class="ep-x509-num">05</span>
+            <div class="ep-x509-info">
+              <strong>Clave Pública</strong>
+              <p>La clave pública del titular del certificado, disponible para cualquiera</p>
+            </div>
+          </div>
+          <div class="ep-x509-field">
+            <span class="ep-x509-num">06</span>
+            <div class="ep-x509-info">
+              <strong>Uso de Clave</strong>
+              <p>Define para qué puede usarse: cifrado, firma digital, autenticación de servidor, etc.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <Quiz questions={quizData.questions} title={quizData.title} />
+
+    </div>
+  </div>
+
+</WikiLayout>
+
+<style>
+  /* ── Enriched Page — PKI (.ep-*) ── */
+  .ep-page { padding: 2rem 0; }
+
+  /* Header */
+  .ep-header {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(102, 126, 234, 0.25);
+    border-top: 2px solid rgba(102, 126, 234, 0.6);
+    border-radius: 1.25rem;
+    padding: 3rem 2rem 2.5rem;
+    margin-bottom: 2.5rem;
+    color: white;
+    text-align: center;
+  }
+  .ep-header-glow {
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 150px;
+    background: radial-gradient(ellipse, rgba(102, 126, 234, 0.35), transparent 70%);
+    pointer-events: none;
+  }
+  .ep-header-icon { font-size: 3rem; margin-bottom: 0.75rem; line-height: 1; }
+  .ep-header h1 { font-size: 2rem; font-weight: 800; margin: 0 0 0.75rem; letter-spacing: -0.03em; background: linear-gradient(135deg, #a78bfa, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .ep-header p { font-size: 1rem; opacity: 0.65; margin: 0 0 1.25rem; max-width: 560px; margin-inline: auto; line-height: 1.6; }
+  .ep-header-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+  .ep-htag { font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 999px; background: rgba(102, 126, 234, 0.2); border: 1px solid rgba(102, 126, 234, 0.35); color: #a5b4fc; }
+  .ep-htag-cert { background: rgba(118, 75, 162, 0.2); border-color: rgba(118, 75, 162, 0.4); color: #c4b5fd; }
+
+  /* Section titles */
+  .ep-section { margin-bottom: 2.5rem; }
+  .ep-section-title {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #94a3b8; margin-bottom: 1.25rem;
+  }
+  .ep-section-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+
+  /* Guarantees */
+  .ep-guarantees {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .ep-guarantee {
+    background: var(--color-surface, #1e293b);
+    border-radius: 1rem;
+    padding: 1.5rem 1.25rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-top: 3px solid var(--g);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ep-guarantee:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+  .ep-guarantee-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .ep-guarantee-label { font-size: 0.95rem; font-weight: 700; color: var(--g); margin-bottom: 0.4rem; }
+  .ep-guarantee-desc { font-size: 0.8rem; color: #94a3b8; line-height: 1.5; }
+
+  /* Components */
+  .ep-components {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.1rem;
+  }
+  .ep-component {
+    background: var(--color-surface, #1e293b);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-left: 3px solid var(--c);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ep-component:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+  .ep-component-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+  .ep-component-emoji { font-size: 1.5rem; }
+  .ep-component-badge { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border-radius: 0.375rem; background: color-mix(in srgb, var(--c) 20%, transparent); color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 35%, transparent); }
+  .ep-component h3 { font-size: 0.95rem; font-weight: 700; color: white; margin: 0 0 0.5rem; }
+  .ep-component p { font-size: 0.82rem; color: #94a3b8; line-height: 1.6; margin: 0 0 0.75rem; }
+  .ep-component p strong { color: #cbd5e1; }
+  .ep-component-footer { font-size: 0.72rem; color: var(--c); opacity: 0.85; font-weight: 600; letter-spacing: 0.03em; }
+
+  /* Hierarchy */
+  .ep-hierarchy-wrap { display: flex; flex-direction: column; gap: 1.25rem; }
+  .ep-hierarchy {
+    background: var(--color-surface, #1e293b);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .ep-hier-node {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    min-width: 220px;
+    justify-content: center;
+  }
+  .ep-hier-root { background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(118,75,162,0.25)); border-color: rgba(102,126,234,0.4); }
+  .ep-hier-sub { background: rgba(92, 107, 192, 0.15); border-color: rgba(92, 107, 192, 0.3); min-width: 180px; }
+  .ep-hier-leaf { background: rgba(126, 87, 194, 0.12); border-color: rgba(126, 87, 194, 0.3); min-width: 200px; }
+  .ep-hier-icon { font-size: 1.25rem; flex-shrink: 0; }
+  .ep-hier-name { font-size: 0.88rem; font-weight: 700; color: white; }
+  .ep-hier-eng { font-weight: 400; color: #94a3b8; font-size: 0.8rem; }
+  .ep-hier-sub-label { font-size: 0.72rem; color: #64748b; margin-top: 0.1rem; }
+
+  .ep-hier-branch { display: flex; flex-direction: column; align-items: center; width: 100%; }
+  .ep-hier-branch-end { align-items: center; }
+  .ep-hier-vline { width: 2px; height: 28px; background: rgba(102,126,234,0.35); }
+  .ep-hier-vline-short { height: 20px; }
+  .ep-hier-hrow { display: flex; width: 60%; position: relative; height: 2px; margin-bottom: -1px; }
+  .ep-hier-hline-left, .ep-hier-hline-right { flex: 1; height: 2px; background: rgba(102,126,234,0.35); }
+  .ep-hier-children { display: flex; gap: 1.5rem; width: 100%; justify-content: center; }
+
+  .ep-cross-cert {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: rgba(102, 126, 234, 0.07);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+  .ep-cross-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .ep-cross-cert strong { display: block; color: #a5b4fc; font-size: 0.9rem; margin-bottom: 0.35rem; }
+  .ep-cross-cert p { font-size: 0.82rem; color: #94a3b8; margin: 0; line-height: 1.6; }
+
+  /* CSR Interactive Flow */
+  .ep-csr {
+    background: var(--color-surface, #1e293b);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  /* Stepper bar */
+  .ep-csr-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .ep-csr-bar-track {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-50%);
+    z-index: 0;
+  }
+  .ep-csr-dot {
+    width: 2.25rem; height: 2.25rem;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.15);
+    background: rgba(15,23,42,0.8);
+    color: #64748b;
+    font-size: 0.8rem; font-weight: 700;
+    cursor: pointer;
+    position: relative; z-index: 1;
+    transition: all 0.25s;
+    display: flex; align-items: center; justify-content: center;
+    flex: 1;
+    max-width: 2.25rem;
+  }
+  .ep-csr-dot:not(:last-child) { margin-right: 0; }
+  .ep-csr-dot.active {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 0 0 4px rgba(102,126,234,0.2);
+  }
+  .ep-csr-dot.done {
+    border-color: rgba(102,126,234,0.5);
+    background: rgba(102,126,234,0.15);
+    color: #a5b4fc;
+  }
+
+  /* CSR Cards */
+  .ep-csr-cards { position: relative; min-height: 220px; }
+  .ep-csr-card {
+    display: none;
+    animation: ep-slide-in 0.3s ease;
+  }
+  .ep-csr-card.active { display: block; }
+  @keyframes ep-slide-in {
+    from { opacity: 0; transform: translateX(12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .ep-csr-card-inner {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(102,126,234,0.2);
+    border-left: 3px solid #667eea;
+    border-radius: 0.875rem;
+    padding: 1.5rem;
+  }
+  .ep-csr-card-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .ep-csr-card-actor {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem; border-radius: 999px;
+    background: rgba(102,126,234,0.15); color: #a5b4fc;
+    border: 1px solid rgba(102,126,234,0.3);
+    margin-bottom: 0.75rem;
+  }
+  .ep-csr-card h3 { font-size: 1.1rem; font-weight: 700; color: white; margin: 0 0 0.5rem; }
+  .ep-csr-card p { font-size: 0.875rem; color: #94a3b8; line-height: 1.65; margin: 0 0 0.75rem; }
+  .ep-csr-card p strong { color: #c7d2fe; }
+  .ep-csr-card p em { color: #a5b4fc; font-style: normal; }
+  .ep-csr-card-tip {
+    font-size: 0.78rem; color: #667eea;
+    background: rgba(102,126,234,0.08);
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  /* Controls */
+  .ep-csr-controls {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 1.25rem; padding-top: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .ep-csr-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(102,126,234,0.4);
+    background: rgba(102,126,234,0.1);
+    color: #a5b4fc;
+    font-size: 0.85rem; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .ep-csr-btn:hover:not(:disabled) { background: rgba(102,126,234,0.25); border-color: #667eea; }
+  .ep-csr-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .ep-csr-counter { font-size: 0.82rem; color: #64748b; font-weight: 500; }
+
+  /* X.509 Fields */
+  .ep-x509 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.75rem;
+  }
+  .ep-x509-field {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: var(--color-surface, #1e293b);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .ep-x509-field:hover { border-color: rgba(102,126,234,0.3); }
+  .ep-x509-num {
+    font-size: 0.7rem; font-weight: 800; font-family: monospace;
+    color: #667eea; background: rgba(102,126,234,0.12);
+    border: 1px solid rgba(102,126,234,0.25);
+    border-radius: 0.375rem;
+    padding: 0.2rem 0.45rem;
+    flex-shrink: 0; margin-top: 0.1rem;
+  }
+  .ep-x509-info strong { display: block; font-size: 0.88rem; color: white; margin-bottom: 0.2rem; }
+  .ep-x509-info p { font-size: 0.78rem; color: #64748b; margin: 0; line-height: 1.5; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .ep-header { padding: 2rem 1.25rem 1.75rem; }
+    .ep-header h1 { font-size: 1.5rem; }
+    .ep-guarantees { grid-template-columns: 1fr 1fr; }
+    .ep-components { grid-template-columns: 1fr; }
+    .ep-hier-children { flex-direction: column; align-items: center; }
+    .ep-hier-hrow { display: none; }
+    .ep-csr { padding: 1.25rem; }
+    .ep-x509 { grid-template-columns: 1fr; }
+    .ep-csr-bar { gap: 0.25rem; }
+    .ep-csr-dot { width: 1.75rem; height: 1.75rem; font-size: 0.7rem; }
+  }
+</style>
+
+<script>
+  const dots = document.querySelectorAll<HTMLButtonElement>('.ep-csr-dot');
+  const cards = document.querySelectorAll<HTMLElement>('.ep-csr-card');
+  const prevBtn = document.getElementById('ep-csr-prev') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('ep-csr-next') as HTMLButtonElement | null;
+  const counter = document.getElementById('ep-csr-counter');
+  const total = cards.length;
+  let current = 0;
+
+  function goTo(n: number) {
+    dots[current].classList.remove('active');
+    if (n > current) dots[current].classList.add('done');
+    cards[current].classList.remove('active');
+    current = n;
+    dots[current].classList.remove('done');
+    dots[current].classList.add('active');
+    cards[current].classList.add('active');
+    if (counter) counter.textContent = `Paso ${current + 1} de ${total}`;
+    if (prevBtn) prevBtn.disabled = current === 0;
+    if (nextBtn) nextBtn.disabled = current === total - 1;
+    // update done states
+    dots.forEach((dot, i) => {
+      if (i < current) dot.classList.add('done');
+      else dot.classList.remove('done');
+    });
+  }
+
+  prevBtn?.addEventListener('click', () => { if (current > 0) goTo(current - 1); });
+  nextBtn?.addEventListener('click', () => { if (current < total - 1) goTo(current + 1); });
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => goTo(i));
+  });
+</script>

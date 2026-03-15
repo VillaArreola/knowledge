@@ -1,0 +1,7 @@
+title=pki
+slug=pki
+icon=🔐
+status=completed
+order=5
+description=Infraestructura de Clave Pública pki
+tags=Cifrado,Autenticación,Autorización,Seguridad

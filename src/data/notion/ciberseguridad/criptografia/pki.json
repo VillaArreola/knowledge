@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "name": "pki",
+    "slug": "pki",
+    "category": "ciberseguridad",
+    "section": "criptografia",
+    "icon": "🔐",
+    "description": "Infraestructura de Clave Pública pki",
+    "tags": [
+      "Cifrado",
+      "Autenticación",
+      "Autorización",
+      "Seguridad"
+    ],
+    "certifications": "FCE,Comptia+",
+    "order": 5,
+    "mode": "enriched",
+    "notionUrl": "https://www.notion.so/pki-324ec7e74fc080f6b974c8b942400832"
+  },
+  "markdownBody": "\n#  Infraestructura de Clave Pública \n\n\nLa **PKI (Public Key Infrastructure)** es un ecosistema compuesto por **políticas, procedimientos, software y hardware** necesarios para **crear, distribuir, usar y revocar certificados digitales**.\n\n\n---\n\n\n##  Componentes de la PKI\n\n\nEstá compuesta por 4 entidades principales:\n\n\n| Entidad                          | Descripción                                                           |\n| -------------------------------- | --------------------------------------------------------------------- |\n| **CA (Autoridad Certificadora)** | Emite y firma certificados digitales.                                 |\n| **RA (Autoridad de Registro)**   | Verifica la identidad del solicitante antes de emitir un certificado. |\n| **Servidor de Directorio**       | Almacena y distribuye los certificados.                               |\n| **Entidad Final**                | Persona, dispositivo o aplicación que usa el certificado.             |\n\n\n---\n\n\n##  Tipos de Certificados\n\n\n| Tipo de Certificado             | Incluye Claves Públicas | Función Principal                                    |\n| ------------------------------- | ----------------------- | ---------------------------------------------------- |\n| Certificado con claves públicas | ✅                       | Cifrado, autenticación y firma digital               |\n| Certificado sin claves públicas | ❌                       | Define políticas, incluye listas de revocación (CRL) |\n\n\n---\n\n\n##  Estándar: X.509 versión 3\n\n\nLos certificados digitales siguen el estándar **X.509 v3**, y sus campos comunes son:\n\n1. Número de serie\n2. Algoritmo de firma\n3. Periodo de validez\n4. Nombre del emisor\n5. Clave pública\n6. Uso de clave\n\nTambién pueden utilizar **plantillas** para crear diferentes tipos de certificados.\n\n\n---\n\n\n##  Jerarquía de CA\n\n- Una CA raíz puede tener **CA subordinadas**, formando una jerarquía.\n- Las PKI pueden **confiar entre sí** mediante **certificación cruzada**, donde una CA de una PKI certifica a otra CA.\n\n---\n\n\n##  Proceso de Solicitud\n\n1. El usuario o entidad final hace una **solicitud de certificado (CSR)** a través de la **RA**.\n2. Si se aprueba, la **CA emite el certificado**.\n3. El certificado puede ser usado por:\n    - Personas (identificación digital)\n    - Dispositivos (como routers o servidores)\n    - Aplicaciones (como navegadores o software seguro)\n\n![image.webp](/images/notion/ciberseguridad/criptografia/pki/image.webp)\n\n\n---\n\n\n**¿Qué garantiza la PKI?**\n\n- Autenticidad\n- Confidencialidad\n- Integridad\n- No repudio\n"
+}
