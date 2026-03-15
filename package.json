@@ -12,6 +12,7 @@
     "generate": "node src/scripts/generateSimple.cjs",
     "update": "npm run generate && npm run build",
     "deploy": "npm run build && wrangler deploy",
+    "deploy:full": "npm run notion-pull && npm run generate && npm run build && wrangler deploy",
     "notion-pull": "node src/scripts/notionPull.cjs",
     "cf-typegen": "wrangler types"
   },
