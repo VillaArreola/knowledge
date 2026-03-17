@@ -5,14 +5,6 @@ Disallow: /api/
 Disallow: /private/
 Disallow: /drafts/
 
-
-# ------------------------------------------
-User-agent: GPTBot
-User-agent: ChatGPT-User
-User-agent: anthropic-ai
-User-agent: Claude-Web
-
-Disallow: /
 Allow: /llms.txt
 
 # ------------------------------------------
