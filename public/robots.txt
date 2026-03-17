@@ -1,12 +1,9 @@
-# ==========================================
-# Robots.txt para kb.villaarreola.com
-# ==========================================
+======================================
 
 User-agent: *
 Allow: /
 # Bloquear rutas de sistema o borradores
 Disallow: /api/
-Disallow: /_next/
 Disallow: /private/
 Disallow: /drafts/
 
