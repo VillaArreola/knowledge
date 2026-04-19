@@ -84,6 +84,24 @@
       "section": "criptografia",
       "url": "/ciberseguridad/criptografia/TipoDeCifrado",
       "searchContent": "Tipos de Cifrados Tipos de cifrados PKI Cifrado Autorización"
+    },
+    {
+      "title": "SD-WAN",
+      "slug": "sdwan",
+      "icon": "💭",
+      "status": "completed",
+      "order": 2,
+      "description": "Software-Defined WAN",
+      "tags": [
+        "Redes",
+        "Cloud",
+        "Seguridad",
+        "Firewall"
+      ],
+      "category": "Cloud",
+      "section": "security",
+      "url": "/cloud/security/sdwan",
+      "searchContent": "SD-WAN Software-Defined WAN Redes Cloud Seguridad Firewall"
     }
   ],
   "categories": [
@@ -93,5 +111,5 @@
     "programacion",
     "cloud"
   ],
-  "lastUpdated": "2026-03-15T13:40:33.805Z"
+  "lastUpdated": "2026-04-19T00:10:42.355Z"
 }

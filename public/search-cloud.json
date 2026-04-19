@@ -1,3 +1,22 @@
 {
-  "pages": []
+  "pages": [
+    {
+      "title": "SD-WAN",
+      "slug": "sdwan",
+      "icon": "💭",
+      "status": "completed",
+      "order": 2,
+      "description": "Software-Defined WAN",
+      "tags": [
+        "Redes",
+        "Cloud",
+        "Seguridad",
+        "Firewall"
+      ],
+      "category": "Cloud",
+      "section": "security",
+      "url": "/cloud/security/sdwan",
+      "searchContent": "SD-WAN Software-Defined WAN Redes Cloud Seguridad Firewall"
+    }
+  ]
 }

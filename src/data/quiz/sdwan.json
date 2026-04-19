@@ -1,0 +1,93 @@
+{
+  "title": "Quiz: SD-WAN",
+  "questions": [
+    {
+      "question": "¿Qué significa el acrónimo SD-WAN?",
+      "options": [
+        "Software-Defined Wide Area Network",
+        "Secure Data Wide Area Network",
+        "Software-Driven Wireless Access Node",
+        "Standard Digital WAN"
+      ],
+      "correct": 0,
+      "explanation": "SD-WAN significa Software-Defined Wide Area Network: una solución WAN controlada por software que permite gestión centralizada e inteligente del tráfico."
+    },
+    {
+      "question": "¿Cómo gestiona el tráfico de red una SD-WAN?",
+      "options": [
+        "De forma estática predefinida por el administrador",
+        "Siempre por la ruta más barata disponible",
+        "Dinámicamente según las condiciones de red en tiempo real",
+        "Por orden de llegada sin ninguna priorización"
+      ],
+      "correct": 2,
+      "explanation": "La SD-WAN monitorea el rendimiento de las conexiones en tiempo real y rutea el tráfico dinámicamente según las condiciones actuales (latencia, pérdida de paquetes, jitter)."
+    },
+    {
+      "question": "¿Cuáles de los siguientes tipos de conexión puede administrar simultáneamente una SD-WAN?",
+      "options": [
+        "Solo MPLS y fibra óptica dedicada",
+        "MPLS, banda ancha, LTE y conexiones similares",
+        "Únicamente conexiones satelitales de alta disponibilidad",
+        "Solo VPN sobre conexiones de Internet genéricas"
+      ],
+      "correct": 1,
+      "explanation": "Una SD-WAN puede administrar múltiples tipos de conexión simultáneamente —MPLS, banda ancha, LTE y otras— seleccionando la mejor ruta para cada tipo de tráfico."
+    },
+    {
+      "question": "¿Qué ventaja ofrece SD-WAN respecto al acceso a servicios cloud?",
+      "options": [
+        "Obliga a redirigir todo el tráfico por el datacenter corporativo",
+        "Permite acceso directo a servicios SaaS sin pasar por el datacenter",
+        "Bloquea el acceso directo a Internet por razones de seguridad",
+        "Requiere una VPN independiente para cada servicio cloud"
+      ],
+      "correct": 1,
+      "explanation": "SD-WAN permite cloud breakout: enruta tráfico directamente a servicios como Office 365, AWS o Google Cloud sin el rodeo innecesario por el datacenter central."
+    },
+    {
+      "question": "¿Cuántas necesidades crecientes impulsaron la adopción de SD-WAN?",
+      "options": [
+        "Dos: mayor ancho de banda y reducción de costos",
+        "Cuatro: rendimiento, costo, agilidad y seguridad",
+        "Tres: mayor ancho de banda, mejor rendimiento cloud/SaaS y seguridad unificada",
+        "Una: la sustitución de MPLS por Internet"
+      ],
+      "correct": 2,
+      "explanation": "La adopción de SD-WAN responde a tres necesidades: demanda de mayor ancho de banda, mejor rendimiento para aplicaciones cloud/SaaS, e infraestructura de seguridad unificada en entornos distribuidos."
+    },
+    {
+      "question": "¿Qué diferencia principalmente a la Secure SD-WAN de una SD-WAN estándar?",
+      "options": [
+        "No incluye cifrado para maximizar la velocidad de tránsito",
+        "Combina capacidades de seguridad avanzadas y conectividad en un solo dispositivo",
+        "Es una VPN de capa 3 con gestión de ancho de banda integrada",
+        "Utiliza exclusivamente MPLS para garantizar la seguridad del tráfico"
+      ],
+      "correct": 1,
+      "explanation": "La Secure SD-WAN combina en un único dispositivo conectividad SD-WAN con seguridad avanzada (NGFW, IPS, cifrado, segmentación), eliminando la necesidad de múltiples appliances."
+    },
+    {
+      "question": "¿Qué fabricante integra su Next-Generation Firewall con SD-WAN como ejemplo de Secure SD-WAN?",
+      "options": [
+        "Cisco Systems con ISR routers",
+        "Palo Alto Networks con Prisma SD-WAN",
+        "Fortinet con FortiGate",
+        "Juniper Networks con SRX series"
+      ],
+      "correct": 2,
+      "explanation": "Fortinet integra su FortiGate Next-Generation Firewall con capacidades SD-WAN en un mismo dispositivo, creando una solución Secure SD-WAN todo-en-uno con protección, visibilidad y rendimiento."
+    },
+    {
+      "question": "¿Cuál es la ventaja de SD-WAN en términos de costos operativos?",
+      "options": [
+        "Requiere siempre enlaces MPLS premium para garantizar calidad de servicio",
+        "Permite sustituir costosos enlaces MPLS por conexiones de Internet estándar",
+        "Duplica los costos al necesitar redundancia completa en todos los enlaces",
+        "Elimina completamente la necesidad de ancho de banda contratado"
+      ],
+      "correct": 1,
+      "explanation": "Una de las ventajas clave de SD-WAN es el ahorro de costos: permite usar conexiones de Internet estándar —más económicas— en lugar de depender exclusivamente de enlaces MPLS dedicados, manteniendo o mejorando la calidad de servicio."
+    }
+  ]
+}

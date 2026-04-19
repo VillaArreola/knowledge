@@ -1,0 +1,635 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import notionData from '../../../data/notion/cloud/security/sdwan.json';
+import { marked } from 'marked';
+import Quiz from '../../../components/Quiz.astro';
+import quizData from '../../../data/quiz/sdwan.json';
+
+const body = (notionData.markdownBody || '').trim();
+const hasBody = body.length > 0;
+
+const metadata = notionData.metadata || {};
+const notionUrl = metadata.notionUrl || '';
+const pageIcon = metadata.icon || '📄';
+const pageName = metadata.name || '';
+const pageDesc = metadata.description || '';
+const tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];
+const category = metadata.category || '';
+const section = metadata.section || '';
+const rawCerts = typeof metadata.certifications === 'string' ? metadata.certifications : '';
+const certCodes = rawCerts.split(',').map(c => c.split(':')[0].trim()).filter(Boolean);
+
+const fallbackLines = [
+  '## Contenido pendiente',
+  '',
+  metadata.description ? '**Descripcion:** ' + metadata.description : '',
+  tags.length ? '**Tags:** ' + tags.join(', ') : '',
+  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',
+].filter(Boolean);
+
+const markdownHtml = hasBody
+  ? marked(body)
+  : marked(fallbackLines.join('\n'));
+---
+
+<WikiLayout title="💭 SD-WAN" description="Software-Defined WAN" hasDualMode={true}>
+
+  <!-- ── MARKDOWN VIEW ─────────────────────────────────── -->
+  <div data-view="markdown">
+    <div class="doc-page">
+      <header class="doc-header">
+        {(category || section) && (
+          <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
+        )}
+        <h1 class="doc-title">{pageIcon} {pageName}</h1>
+        {pageDesc && <p class="doc-description">{pageDesc}</p>}
+        {(tags.length > 0 || certCodes.length > 0) && (
+          <div class="doc-meta-row">
+            {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+            {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+          </div>
+        )}
+      </header>
+      <div class="doc-content">
+        <Fragment set:html={markdownHtml} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENRICHED VIEW ─────────────────────────────────── -->
+  <div data-view="enriched">
+    <div class="ep-page">
+
+      <!-- Header -->
+      <div class="ep-header">
+        <h1>{pageIcon} {pageName}</h1>
+        <p>Conectividad inteligente controlada por software — WAN del futuro</p>
+      </div>
+
+      <!-- ── Funciones clave ── -->
+      <section class="ep-section">
+        <h2 class="ep-section-title">🧠 ¿Qué hace una SD-WAN?</h2>
+        <div class="ep-fn-grid">
+          <div class="ep-fn-card">
+            <div class="ep-fn-icon">📡</div>
+            <h3>Monitoreo en tiempo real</h3>
+            <p>Supervisa continuamente latencia, jitter y pérdida de paquetes en cada enlace para tomar decisiones de ruteo informadas al instante.</p>
+          </div>
+          <div class="ep-fn-card">
+            <div class="ep-fn-icon">🔀</div>
+            <h3>Ruteo dinámico</h3>
+            <p>Dirige el tráfico automáticamente por la ruta óptima según las condiciones actuales de la red, sin intervención manual.</p>
+          </div>
+          <div class="ep-fn-card">
+            <div class="ep-fn-icon">🔗</div>
+            <h3>Gestión multi-enlace</h3>
+            <p>Administra simultáneamente MPLS, banda ancha, LTE y otras conexiones desde una única plataforma centralizada.</p>
+          </div>
+          <div class="ep-fn-card">
+            <div class="ep-fn-icon">🎯</div>
+            <h3>Priorización de aplicaciones</h3>
+            <p>Garantiza ancho de banda y baja latencia para apps críticas (VoIP, ERP, video) por encima del tráfico de menor importancia.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Diagrama de arquitectura interactivo ── -->
+      <section class="ep-section">
+        <h2 class="ep-section-title">🏗️ Arquitectura SD-WAN</h2>
+        <div class="ep-arch-wrapper">
+          <div class="ep-arch-scroll">
+            <div class="ep-arch">
+
+              <!-- Sucursales -->
+              <div class="ep-arch-panel">
+                <p class="ep-arch-panel-label">Sucursales</p>
+                <button class="ep-arch-node ep-arch-node--branch" data-conn="MPLS">🏢 Sede Central</button>
+                <button class="ep-arch-node ep-arch-node--branch" data-conn="Internet">🏬 Sucursal A</button>
+                <button class="ep-arch-node ep-arch-node--branch" data-conn="Internet">🏪 Sucursal B</button>
+                <button class="ep-arch-node ep-arch-node--branch" data-conn="LTE">👤 Teletrabajo</button>
+                <div class="ep-arch-conn-tags">
+                  <span class="ep-arch-tag" style="--c:#4299e1">MPLS</span>
+                  <span class="ep-arch-tag" style="--c:#48bb78">Internet</span>
+                  <span class="ep-arch-tag" style="--c:#f6ad55">LTE</span>
+                </div>
+              </div>
+
+              <!-- Flechas izquierda -->
+              <div class="ep-arch-arrows">
+                <div class="ep-arch-arrow ep-arch-arrow--right"></div>
+                <div class="ep-arch-arrow ep-arch-arrow--left"></div>
+              </div>
+
+              <!-- Controlador SD-WAN -->
+              <div class="ep-arch-controller">
+                <div class="ep-arch-controller-glow"></div>
+                <div class="ep-arch-controller-icon">🌐</div>
+                <h3 class="ep-arch-controller-title">SD-WAN Controller</h3>
+                <div class="ep-arch-controller-badges">
+                  <span>Orquestación</span>
+                  <span>Políticas</span>
+                  <span>Monitoreo</span>
+                  <span>Cifrado</span>
+                </div>
+                <p class="ep-arch-controller-hint" id="ep-arch-hint">Haz clic en un nodo para ver su conexión</p>
+              </div>
+
+              <!-- Flechas derecha -->
+              <div class="ep-arch-arrows">
+                <div class="ep-arch-arrow ep-arch-arrow--right"></div>
+                <div class="ep-arch-arrow ep-arch-arrow--left"></div>
+              </div>
+
+              <!-- Destinos cloud -->
+              <div class="ep-arch-panel">
+                <p class="ep-arch-panel-label">Destinos</p>
+                <div class="ep-arch-node ep-arch-node--cloud" style="--c:#f6ad55" data-path="Directo (Internet breakout)">☁️ AWS</div>
+                <div class="ep-arch-node ep-arch-node--cloud" style="--c:#4299e1" data-path="Directo (SaaS optimizado)">📧 Office 365</div>
+                <div class="ep-arch-node ep-arch-node--cloud" style="--c:#48bb78" data-path="Directo (salida local)">🌍 Internet</div>
+                <div class="ep-arch-node ep-arch-node--cloud" style="--c:#a78bfa" data-path="Backhaul (ruta segura)">🖥️ Data Center</div>
+                <div class="ep-arch-conn-tags">
+                  <span class="ep-arch-tag" style="--c:#667eea">Directo</span>
+                  <span class="ep-arch-tag" style="--c:#a78bfa">Backhaul</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <p class="ep-arch-note">
+            El SD-WAN Controller selecciona la ruta óptima para cada flujo según políticas configuradas y condiciones actuales de los enlaces. Haz clic en cualquier nodo para ver su tipo de conexión.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── 6 Ventajas ── -->
+      <section class="ep-section">
+        <h2 class="ep-section-title">✅ 6 Ventajas de SD-WAN</h2>
+        <div class="ep-adv-grid">
+          <div class="ep-adv-card" style="--accent:#4299e1">
+            <div class="ep-adv-num">01</div>
+            <div class="ep-adv-icon">🎯</div>
+            <h3>Orquestación centralizada</h3>
+            <p>Configuración y gestión de toda la WAN desde una única consola, sin intervención local en cada sede.</p>
+          </div>
+          <div class="ep-adv-card" style="--accent:#667eea">
+            <div class="ep-adv-num">02</div>
+            <div class="ep-adv-icon">☁️</div>
+            <h3>Acceso directo a la nube</h3>
+            <p>Enruta tráfico directamente a Office 365, AWS o Google Cloud sin el rodeo por el datacenter central.</p>
+          </div>
+          <div class="ep-adv-card" style="--accent:#48bb78">
+            <div class="ep-adv-num">03</div>
+            <div class="ep-adv-icon">🚀</div>
+            <h3>Mejor rendimiento de apps</h3>
+            <p>Las aplicaciones críticas tienen siempre garantizado el ancho de banda y la baja latencia que necesitan.</p>
+          </div>
+          <div class="ep-adv-card" style="--accent:#4fc3f7">
+            <div class="ep-adv-num">04</div>
+            <div class="ep-adv-icon">🌀</div>
+            <h3>Mayor agilidad</h3>
+            <p>Incorporar una nueva sucursal puede hacerse en horas, no semanas. Fácil de escalar y desplegar.</p>
+          </div>
+          <div class="ep-adv-card" style="--accent:#f6ad55">
+            <div class="ep-adv-num">05</div>
+            <div class="ep-adv-icon">💰</div>
+            <h3>Ahorro de costos</h3>
+            <p>Sustituye costosos enlaces MPLS dedicados por conexiones de Internet estándar con la misma calidad de servicio.</p>
+          </div>
+          <div class="ep-adv-card" style="--accent:#fc8181">
+            <div class="ep-adv-num">06</div>
+            <div class="ep-adv-icon">🔐</div>
+            <h3>Seguridad mejorada</h3>
+            <p>Cifrado end-to-end, firewalls integrados, segmentación y políticas de acceso unificadas en toda la WAN.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Tabla comparativa ── -->
+      <section class="ep-section">
+        <h2 class="ep-section-title">⚖️ WAN Tradicional vs SD-WAN vs Secure SD-WAN</h2>
+        <div class="ep-table-wrapper">
+          <table class="ep-table">
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>WAN Tradicional</th>
+                <th>SD-WAN</th>
+                <th class="ep-th-highlight">Secure SD-WAN</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ep-td-key">Gestión</td>
+                <td>Manual, por dispositivo</td>
+                <td>Centralizada por software</td>
+                <td class="ep-td-highlight">Centralizada + seguridad unificada</td>
+              </tr>
+              <tr>
+                <td class="ep-td-key">Tipo de enlaces</td>
+                <td>MPLS dedicado</td>
+                <td>MPLS, Internet, LTE</td>
+                <td class="ep-td-highlight">MPLS, Internet, LTE (cifrados)</td>
+              </tr>
+              <tr>
+                <td class="ep-td-key">Ruteo</td>
+                <td>Estático / manual</td>
+                <td>Dinámico por condiciones</td>
+                <td class="ep-td-highlight">Dinámico + application-aware</td>
+              </tr>
+              <tr>
+                <td class="ep-td-key">Acceso cloud</td>
+                <td>Backhaul al datacenter</td>
+                <td>Directo a Internet/SaaS</td>
+                <td class="ep-td-highlight">Directo + inspección de seguridad</td>
+              </tr>
+              <tr>
+                <td class="ep-td-key">Seguridad</td>
+                <td>Perimetral (firewall en sede)</td>
+                <td>Básica (IPsec)</td>
+                <td class="ep-td-highlight">NGFW + IPS + segmentación</td>
+              </tr>
+              <tr>
+                <td class="ep-td-key">Costo</td>
+                <td>Alto (MPLS)</td>
+                <td>Reducido</td>
+                <td class="ep-td-highlight">Reducido + ROI en seguridad</td>
+              </tr>
+              <tr>
+                <td class="ep-td-key">Ejemplo</td>
+                <td>Router legacy + MPLS</td>
+                <td>Cualquier vendor SD-WAN</td>
+                <td class="ep-td-highlight">Fortinet FortiGate NGFW + SD-WAN</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Quiz -->
+      <Quiz questions={quizData.questions} title={quizData.title} />
+
+    </div>
+  </div>
+
+</WikiLayout>
+
+<style>
+  /* ── Base ── */
+  .ep-page { padding: 2rem 0; }
+
+  .ep-header {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 2px solid rgba(66, 153, 225, 0.6);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+  }
+  .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+  .ep-header p { font-size: 1rem; opacity: 0.55; margin: 0; }
+
+  /* ── Sections ── */
+  .ep-section { margin-bottom: 2.5rem; }
+  .ep-section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #93c5fd;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(66, 153, 225, 0.22);
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Functions grid ── */
+  .ep-fn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+  }
+  .ep-fn-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(66, 153, 225, 0.16);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .ep-fn-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(66, 153, 225, 0.1);
+    border-color: rgba(66, 153, 225, 0.38);
+  }
+  .ep-fn-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .ep-fn-card h3 { font-size: 0.88rem; font-weight: 600; color: #93c5fd; margin: 0 0 0.4rem; }
+  .ep-fn-card p { font-size: 0.81rem; color: rgba(255, 255, 255, 0.58); line-height: 1.55; margin: 0; }
+
+  /* ── Architecture diagram ── */
+  .ep-arch-wrapper {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(66, 153, 225, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  .ep-arch-scroll { overflow-x: auto; padding-bottom: 0.5rem; }
+  .ep-arch {
+    display: grid;
+    grid-template-columns: 1fr 44px 1.3fr 44px 1fr;
+    gap: 0.75rem;
+    align-items: center;
+    min-width: 580px;
+  }
+  .ep-arch-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .ep-arch-panel-label {
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.28);
+    margin: 0 0 0.2rem;
+  }
+  .ep-arch-node {
+    border-radius: 0.4rem;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.78rem;
+    text-align: center;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .ep-arch-node--branch {
+    background: rgba(66, 153, 225, 0.08);
+    border: 1px solid rgba(66, 153, 225, 0.2);
+    color: #93c5fd;
+    cursor: pointer;
+  }
+  .ep-arch-node--branch:hover,
+  .ep-arch-node--branch.active {
+    background: rgba(66, 153, 225, 0.22);
+    border-color: #4299e1;
+    transform: translateX(3px);
+  }
+  .ep-arch-node--cloud {
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-left: 3px solid var(--c, #667eea);
+    color: rgba(255, 255, 255, 0.68);
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .ep-arch-node--cloud:hover,
+  .ep-arch-node--cloud.active {
+    background: rgba(102, 126, 234, 0.14);
+    transform: translateX(-3px);
+  }
+  .ep-arch-conn-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: center;
+    margin-top: 0.35rem;
+  }
+  .ep-arch-tag {
+    font-size: 0.58rem;
+    font-weight: 700;
+    border: 1px solid var(--c, #4299e1);
+    color: var(--c, #4299e1);
+    padding: 0.08rem 0.35rem;
+    border-radius: 999px;
+    background: transparent;
+    letter-spacing: 0.04em;
+  }
+  .ep-arch-arrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .ep-arch-arrow {
+    width: 36px;
+    height: 2px;
+    position: relative;
+  }
+  .ep-arch-arrow--right {
+    background: linear-gradient(90deg, rgba(66, 153, 225, 0.35), rgba(66, 153, 225, 0.9));
+    animation: ep-pulse 2s ease-in-out infinite;
+  }
+  .ep-arch-arrow--right::after {
+    content: '▶';
+    position: absolute;
+    right: -10px;
+    top: -7px;
+    font-size: 0.62rem;
+    color: rgba(66, 153, 225, 0.85);
+  }
+  .ep-arch-arrow--left {
+    background: linear-gradient(90deg, rgba(66, 153, 225, 0.9), rgba(66, 153, 225, 0.35));
+    animation: ep-pulse 2s ease-in-out infinite 1s;
+  }
+  .ep-arch-arrow--left::after {
+    content: '◀';
+    position: absolute;
+    left: -10px;
+    top: -7px;
+    font-size: 0.62rem;
+    color: rgba(66, 153, 225, 0.5);
+  }
+  @keyframes ep-pulse {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 1; }
+  }
+  .ep-arch-controller {
+    background: linear-gradient(135deg, rgba(66, 153, 225, 0.11) 0%, rgba(102, 126, 234, 0.17) 100%);
+    border: 2px solid rgba(66, 153, 225, 0.42);
+    border-radius: 1rem;
+    padding: 1.25rem 0.75rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 40px rgba(66, 153, 225, 0.09);
+  }
+  .ep-arch-controller-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    background: radial-gradient(circle at 50% 30%, rgba(66, 153, 225, 0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .ep-arch-controller-icon { font-size: 1.875rem; margin-bottom: 0.35rem; }
+  .ep-arch-controller-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #93c5fd;
+    margin: 0 0 0.75rem;
+  }
+  .ep-arch-controller-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+  .ep-arch-controller-badges span {
+    font-size: 0.58rem;
+    font-weight: 600;
+    background: rgba(66, 153, 225, 0.16);
+    border: 1px solid rgba(66, 153, 225, 0.28);
+    color: #93c5fd;
+    padding: 0.12rem 0.4rem;
+    border-radius: 0.2rem;
+  }
+  .ep-arch-controller-hint {
+    font-size: 0.63rem;
+    color: rgba(255, 255, 255, 0.28);
+    margin: 0;
+    font-style: italic;
+    min-height: 1.2em;
+    transition: color 0.25s;
+  }
+  .ep-arch-controller-hint.ep-highlighted {
+    color: #93c5fd;
+    font-style: normal;
+    font-weight: 600;
+  }
+  .ep-arch-note {
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.38);
+    text-align: center;
+    margin: 1rem 0 0;
+    font-style: italic;
+  }
+
+  /* ── Advantages grid ── */
+  .ep-adv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .ep-adv-card {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-left: 4px solid var(--accent, #4299e1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ep-adv-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+  }
+  .ep-adv-num {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--accent, #4299e1);
+    opacity: 0.1;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .ep-adv-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+  .ep-adv-card h3 { font-size: 0.9rem; font-weight: 600; color: white; margin: 0 0 0.4rem; }
+  .ep-adv-card p { font-size: 0.81rem; color: rgba(255, 255, 255, 0.56); line-height: 1.55; margin: 0; }
+
+  /* ── Comparison table ── */
+  .ep-table-wrapper {
+    overflow-x: auto;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(66, 153, 225, 0.1);
+  }
+  .ep-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+    min-width: 560px;
+  }
+  .ep-table th {
+    background: rgba(66, 153, 225, 0.09);
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(66, 153, 225, 0.18);
+    font-size: 0.79rem;
+  }
+  .ep-th-highlight { color: #93c5fd !important; }
+  .ep-table td {
+    padding: 0.62rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.62);
+    vertical-align: top;
+  }
+  .ep-td-key {
+    color: rgba(255, 255, 255, 0.38);
+    font-weight: 500;
+    font-size: 0.79rem;
+    white-space: nowrap;
+  }
+  .ep-td-highlight { color: #93c5fd; }
+  .ep-table tr:last-child td { border-bottom: none; }
+  .ep-table tr:hover td { background: rgba(66, 153, 225, 0.04); }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .ep-header { padding: 1.5rem 1rem; }
+    .ep-header h1 { font-size: 1.5rem; }
+    .ep-fn-grid { grid-template-columns: 1fr; }
+    .ep-adv-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const enrichedView = document.querySelector('[data-view="enriched"]');
+  if (enrichedView) {
+    const hint = enrichedView.querySelector('#ep-arch-hint');
+
+    enrichedView.querySelectorAll('.ep-arch-node--branch').forEach((node) => {
+      node.addEventListener('click', () => {
+        const isActive = node.classList.contains('active');
+        enrichedView.querySelectorAll('.ep-arch-node--branch').forEach(n => n.classList.remove('active'));
+        enrichedView.querySelectorAll('.ep-arch-node--cloud').forEach(n => n.classList.remove('active'));
+        if (!isActive) {
+          node.classList.add('active');
+          const conn = (node as HTMLElement).dataset.conn;
+          if (hint) {
+            hint.textContent = `Enlace activo: ${conn}`;
+            hint.classList.add('ep-highlighted');
+          }
+        } else {
+          if (hint) {
+            hint.textContent = 'Haz clic en un nodo para ver su conexión';
+            hint.classList.remove('ep-highlighted');
+          }
+        }
+      });
+    });
+
+    enrichedView.querySelectorAll('.ep-arch-node--cloud').forEach((node) => {
+      node.addEventListener('click', () => {
+        const isActive = node.classList.contains('active');
+        enrichedView.querySelectorAll('.ep-arch-node--cloud').forEach(n => n.classList.remove('active'));
+        enrichedView.querySelectorAll('.ep-arch-node--branch').forEach(n => n.classList.remove('active'));
+        if (!isActive) {
+          node.classList.add('active');
+          const path = (node as HTMLElement).dataset.path;
+          if (hint) {
+            hint.textContent = `Ruta: ${path}`;
+            hint.classList.add('ep-highlighted');
+          }
+        } else {
+          if (hint) {
+            hint.textContent = 'Haz clic en un nodo para ver su conexión';
+            hint.classList.remove('ep-highlighted');
+          }
+        }
+      });
+    });
+  }
+</script>

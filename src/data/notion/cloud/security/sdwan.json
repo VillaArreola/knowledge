@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "name": "SD-WAN",
+    "slug": "sdwan",
+    "category": "cloud",
+    "section": "security",
+    "icon": "💭",
+    "description": "Software-Defined WAN",
+    "tags": [
+      "Redes",
+      "Cloud",
+      "Seguridad",
+      "Firewall"
+    ],
+    "certifications": "FCE",
+    "order": 2.1,
+    "mode": "enriched",
+    "notionUrl": "https://www.notion.so/SD-WAN-347ec7e74fc080d490fae70d2d6b670f"
+  },
+  "markdownBody": "\n# 🌐 SD-WAN (Software-Defined Wide Area Network)\n\n\nUna **SD-WAN** es una solución similar a una red WAN tradicional, pero **controlada por software**.\n\n\nPermite **conectar usuarios, aplicaciones y datos de forma segura** mediante una gestión centralizada e inteligente del tráfico.\n\n\n---\n\n\n## 🧠 ¿Qué hace una SD-WAN?\n\n- Administra múltiples tipos de conexión (MPLS, banda ancha, LTE, etc.)\n- **Monitorea el rendimiento** de las conexiones en tiempo real\n- **Rutea el tráfico dinámicamente** según las condiciones de red\n- **Prioriza aplicaciones críticas** para garantizar experiencia de usuario\n\n---\n\n\n## ✅ Ventajas de una SD-WAN\n\n1. 🎯 **Orquestación centralizada**\n    - Configuración y gestión desde una única consola.\n2. ☁️ **Acceso directo a la nube**\n    - Optimiza el tráfico a servicios como Office 365, AWS, Google Cloud, etc.\n3. 🚀 **Mejor rendimiento de aplicaciones**\n    - Las apps críticas siempre tienen ancho de banda garantizado.\n4. 🌀 **Mayor agilidad del negocio**\n    - Fácil de escalar y desplegar en nuevas sucursales.\n5. 💰 **Ahorro de costos**\n    - Usa conexiones de Internet estándar en lugar de enlaces MPLS costosos.\n6. 🔐 **Seguridad mejorada**\n    - Integra cifrado, firewalls, políticas de acceso y más.\n\n---\n\n\n## 📈 Evolución de la SD-WAN\n\n\nLa adopción de SD-WAN responde a tres necesidades crecientes:\n\n1. 🌐 **Demanda de mayor ancho de banda**\n2. ⚡ **Mayor rendimiento para aplicaciones cloud y SaaS**\n3. 🛡️ **Infraestructura de seguridad unificada** en entornos distribuidos\n\n---\n\n\n## 🔒 Secure SD-WAN\n\n\nUna evolución clave es la **Secure SD-WAN**, que **combina capacidades de seguridad avanzadas y conectividad en un solo dispositivo**.\n\n> 🔥 Ejemplo: Fortinet integra su FortiGate Next-Gen Firewall con SD-WAN, creando una solución todo en uno que permite protección, visibilidad y rendimiento.\n\n---\n\n\n## 🧪 ¿Qué podrías hacer luego?\n\n\nCuando termines el curso podrías practicar:\n\n- Configurar una red SD-WAN simulada con múltiples rutas (en GNS3 o EVE-NG)\n- Simular pérdida de paquetes y ver cómo cambia la ruta\n- Probar Secure SD-WAN con una imagen de FortiGate\n"
+}

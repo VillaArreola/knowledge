@@ -1,0 +1,14 @@
+{
+  "title": "SD-WAN",
+  "slug": "sdwan",
+  "icon": "💭",
+  "status": "completed",
+  "order": 2,
+  "description": "Software-Defined WAN",
+  "tags": [
+    "Redes",
+    "Cloud",
+    "Seguridad",
+    "Firewall"
+  ]
+}
