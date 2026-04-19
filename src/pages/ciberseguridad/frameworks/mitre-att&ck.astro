@@ -1,0 +1,849 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import notionData from '../../../data/notion/ciberseguridad/frameworks/mitre-att&ck.json';
+import { marked } from 'marked';
+import Quiz from '../../../components/Quiz.astro';
+import quizData from '../../../data/quiz/mitre-att&ck.json';
+
+const body = (notionData.markdownBody || '').trim();
+const hasBody = body.length > 0;
+
+const metadata = notionData.metadata || {};
+const notionUrl = metadata.notionUrl || '';
+const pageIcon = metadata.icon || '📄';
+const pageName = metadata.name || '';
+const pageDesc = metadata.description || '';
+const tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];
+const category = metadata.category || '';
+const section = metadata.section || '';
+const rawCerts = typeof metadata.certifications === 'string' ? metadata.certifications : '';
+const certCodes = rawCerts.split(',').map(c => c.split(':')[0].trim()).filter(Boolean);
+
+const fallbackLines = [
+  '## Contenido pendiente',
+  '',
+  metadata.description ? '**Descripcion:** ' + metadata.description : '',
+  tags.length ? '**Tags:** ' + tags.join(', ') : '',
+  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',
+].filter(Boolean);
+
+const markdownHtml = hasBody
+  ? marked(body)
+  : marked(fallbackLines.join('\n'));
+---
+
+<WikiLayout title="🛡️ MITRE ATT&CK" description="Base de conocimiento de tácticas y técnicas de atacantes reales" hasDualMode={true}>
+
+  <!-- ── MARKDOWN VIEW ─────────────────────────────────── -->
+  <div data-view="markdown">
+    <div class="doc-page">
+      <header class="doc-header">
+        {(category || section) && (
+          <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
+        )}
+        <h1 class="doc-title">{pageIcon} {pageName}</h1>
+        {pageDesc && <p class="doc-description">{pageDesc}</p>}
+        {(tags.length > 0 || certCodes.length > 0) && (
+          <div class="doc-meta-row">
+            {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+            {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+          </div>
+        )}
+      </header>
+      <div class="doc-content">
+        <Fragment set:html={markdownHtml} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENRICHED VIEW ─────────────────────────────────── -->
+  <div data-view="enriched">
+    <div class="ep-page">
+
+      <!-- Header -->
+      <div class="ep-header">
+        <div class="ep-header-eyebrow">MITRE Corporation</div>
+        <h1>🛡️ MITRE ATT&amp;CK</h1>
+        <p>Un mapa detallado del comportamiento de los atacantes — tácticas, técnicas y procedimientos documentados con ejemplos reales</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="ep-stat-grid">
+        <div class="ep-stat">
+          <span class="ep-stat-value">14</span>
+          <span class="ep-stat-label">Tácticas</span>
+        </div>
+        <div class="ep-stat">
+          <span class="ep-stat-value">700+</span>
+          <span class="ep-stat-label">Técnicas y subtécnicas</span>
+        </div>
+        <div class="ep-stat">
+          <span class="ep-stat-value">TTPs</span>
+          <span class="ep-stat-label">Lenguaje universal</span>
+        </div>
+        <div class="ep-stat">
+          <span class="ep-stat-value">Global</span>
+          <span class="ep-stat-label">Base pública y gratuita</span>
+        </div>
+      </div>
+
+      <!-- 14 Tactics Visual Map -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🗺️ Las 14 Tácticas — Mapa del Ataque</h2>
+        <p class="ep-section-desc">Haz clic en cualquier táctica para ver su descripción y una técnica de ejemplo.</p>
+
+        <div class="ep-tactic-grid" id="tacticGrid">
+          <!-- Phase: Pre-ataque -->
+          <button class="ep-tactic" data-id="1" data-phase="pre" data-tag="TA0043"
+            data-name="Reconocimiento"
+            data-desc="El atacante investiga a la víctima antes del ataque: OSINT, LinkedIn, Shodan, escaneos pasivos."
+            data-example="T1595 — Active Scanning · T1591 — Gather Victim Org Info">
+            <span class="ep-tactic-num">01</span>
+            <span class="ep-tactic-tag">TA0043</span>
+            <span class="ep-tactic-name">Reconocimiento</span>
+            <span class="ep-tactic-short">Investigar a la víctima</span>
+          </button>
+
+          <button class="ep-tactic" data-id="2" data-phase="pre" data-tag="TA0042"
+            data-name="Desarrollo de Recursos"
+            data-desc="El atacante prepara infraestructura maliciosa: servidores C2, dominios, exploits, identidades falsas."
+            data-example="T1583 — Acquire Infrastructure · T1587 — Develop Capabilities">
+            <span class="ep-tactic-num">02</span>
+            <span class="ep-tactic-tag">TA0042</span>
+            <span class="ep-tactic-name">Desarrollo de Recursos</span>
+            <span class="ep-tactic-short">Preparar infraestructura</span>
+          </button>
+
+          <!-- Phase: Acceso -->
+          <button class="ep-tactic" data-id="3" data-phase="access" data-tag="TA0001"
+            data-name="Acceso Inicial"
+            data-desc="El atacante consigue un primer punto de entrada: phishing, exploits públicos, credenciales comprometidas."
+            data-example="T1566.001 — Spearphishing Attachment · T1190 — Exploit Public-Facing App">
+            <span class="ep-tactic-num">03</span>
+            <span class="ep-tactic-tag">TA0001</span>
+            <span class="ep-tactic-name">Acceso Inicial</span>
+            <span class="ep-tactic-short">Entrar al sistema</span>
+          </button>
+
+          <button class="ep-tactic" data-id="4" data-phase="access" data-tag="TA0002"
+            data-name="Ejecución"
+            data-desc="El atacante ejecuta código malicioso: PowerShell, macros, WMI, scripts. El inicio del daño activo."
+            data-example="T1059 — Command and Scripting Interpreter · T1106 — Native API">
+            <span class="ep-tactic-num">04</span>
+            <span class="ep-tactic-tag">TA0002</span>
+            <span class="ep-tactic-name">Ejecución</span>
+            <span class="ep-tactic-short">Correr código malicioso</span>
+          </button>
+
+          <button class="ep-tactic" data-id="5" data-phase="access" data-tag="TA0003"
+            data-name="Persistencia"
+            data-desc="El atacante garantiza que sobrevivirá a reinicios y cambios de credenciales. Backdoors, tareas programadas."
+            data-example="T1053 — Scheduled Task/Job · T1547 — Boot or Logon Autostart">
+            <span class="ep-tactic-num">05</span>
+            <span class="ep-tactic-tag">TA0003</span>
+            <span class="ep-tactic-name">Persistencia</span>
+            <span class="ep-tactic-short">Mantener acceso</span>
+          </button>
+
+          <!-- Phase: Escalación -->
+          <button class="ep-tactic" data-id="6" data-phase="escalation" data-tag="TA0004"
+            data-name="Escalada de Privilegios"
+            data-desc="El atacante obtiene permisos más altos: de usuario a administrador, de admin a SYSTEM/root."
+            data-example="T1548 — Abuse Elevation Control · T1055 — Process Injection">
+            <span class="ep-tactic-num">06</span>
+            <span class="ep-tactic-tag">TA0004</span>
+            <span class="ep-tactic-name">Escalada de Privilegios</span>
+            <span class="ep-tactic-short">Obtener más permisos</span>
+          </button>
+
+          <button class="ep-tactic" data-id="7" data-phase="escalation" data-tag="TA0005"
+            data-name="Evasión Defensiva"
+            data-desc="El atacante evita ser detectado: ofusca código, borra logs, inyecta en procesos legítimos."
+            data-example="T1027 — Obfuscated Files · T1562 — Impair Defenses">
+            <span class="ep-tactic-num">07</span>
+            <span class="ep-tactic-tag">TA0005</span>
+            <span class="ep-tactic-name">Evasión Defensiva</span>
+            <span class="ep-tactic-short">Evitar ser detectado</span>
+          </button>
+
+          <button class="ep-tactic" data-id="8" data-phase="escalation" data-tag="TA0006"
+            data-name="Acceso a Credenciales"
+            data-desc="El atacante roba contraseñas y hashes: dumping de LSASS, keyloggers, ataques Kerberoasting."
+            data-example="T1003 — OS Credential Dumping · T1110 — Brute Force">
+            <span class="ep-tactic-num">08</span>
+            <span class="ep-tactic-tag">TA0006</span>
+            <span class="ep-tactic-name">Acceso a Credenciales</span>
+            <span class="ep-tactic-short">Robar contraseñas</span>
+          </button>
+
+          <!-- Phase: Operación interna -->
+          <button class="ep-tactic" data-id="9" data-phase="internal" data-tag="TA0007"
+            data-name="Descubrimiento"
+            data-desc="El atacante explora el entorno: qué hosts hay, qué servicios corren, quién es administrador de dominio."
+            data-example="T1018 — Remote System Discovery · T1087 — Account Discovery">
+            <span class="ep-tactic-num">09</span>
+            <span class="ep-tactic-tag">TA0007</span>
+            <span class="ep-tactic-name">Descubrimiento</span>
+            <span class="ep-tactic-short">Explorar la red</span>
+          </button>
+
+          <button class="ep-tactic" data-id="10" data-phase="internal" data-tag="TA0008"
+            data-name="Movimiento Lateral"
+            data-desc="El atacante salta de un sistema a otro: PsExec, Pass-the-Hash, WMI, RDP con credenciales robadas."
+            data-example="T1021 — Remote Services · T1550 — Use Alternate Auth Material">
+            <span class="ep-tactic-num">10</span>
+            <span class="ep-tactic-tag">TA0008</span>
+            <span class="ep-tactic-name">Movimiento Lateral</span>
+            <span class="ep-tactic-short">Moverse entre sistemas</span>
+          </button>
+
+          <button class="ep-tactic" data-id="11" data-phase="internal" data-tag="TA0009"
+            data-name="Colección"
+            data-desc="El atacante recopila lo que le interesa: archivos, emails, capturas de pantalla, keylogging."
+            data-example="T1005 — Data from Local System · T1113 — Screen Capture">
+            <span class="ep-tactic-num">11</span>
+            <span class="ep-tactic-tag">TA0009</span>
+            <span class="ep-tactic-name">Colección</span>
+            <span class="ep-tactic-short">Reunir datos</span>
+          </button>
+
+          <!-- Phase: Post-explotación -->
+          <button class="ep-tactic" data-id="12" data-phase="post" data-tag="TA0011"
+            data-name="Comando y Control"
+            data-desc="El atacante mantiene comunicación con el sistema comprometido: beacons cifrados, DNS tunneling, C2."
+            data-example="T1071 — Application Layer Protocol · T1132 — Data Encoding">
+            <span class="ep-tactic-num">12</span>
+            <span class="ep-tactic-tag">TA0011</span>
+            <span class="ep-tactic-name">Comando y Control</span>
+            <span class="ep-tactic-short">Comunicarse con el atacante</span>
+          </button>
+
+          <button class="ep-tactic" data-id="13" data-phase="post" data-tag="TA0010"
+            data-name="Exfiltración"
+            data-desc="El atacante extrae los datos robados fuera de la red: por HTTPS, DNS, o canales alternativos."
+            data-example="T1048 — Exfiltration Over Alt Protocol · T1567 — Exfiltration Over Web Service">
+            <span class="ep-tactic-num">13</span>
+            <span class="ep-tactic-tag">TA0010</span>
+            <span class="ep-tactic-name">Exfiltración</span>
+            <span class="ep-tactic-short">Robar datos</span>
+          </button>
+
+          <button class="ep-tactic" data-id="14" data-phase="post" data-tag="TA0040"
+            data-name="Impacto"
+            data-desc="El objetivo final: cifrar con ransomware, borrar backups, destruir datos, dejar el sistema inutilizable."
+            data-example="T1486 — Data Encrypted for Impact · T1485 — Data Destruction">
+            <span class="ep-tactic-num">14</span>
+            <span class="ep-tactic-tag">TA0040</span>
+            <span class="ep-tactic-name">Impacto</span>
+            <span class="ep-tactic-short">Dañar, cifrar, borrar</span>
+          </button>
+        </div>
+
+        <!-- Detail panel -->
+        <div class="ep-tactic-detail" id="tacticDetail" style="display:none">
+          <div class="ep-detail-header">
+            <span class="ep-detail-tag" id="detailTag"></span>
+            <h3 id="detailName"></h3>
+          </div>
+          <p id="detailDesc"></p>
+          <div class="ep-detail-example">
+            <span class="ep-detail-label">Técnicas de ejemplo</span>
+            <span id="detailExample"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TTP Hierarchy callout -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🔺 Jerarquía TTP</h2>
+        <div class="ep-ttp-hierarchy">
+          <div class="ep-ttp-level ep-ttp-level--tactic">
+            <div class="ep-ttp-badge">Táctica</div>
+            <div class="ep-ttp-info">
+              <h4>¿Qué quiere lograr?</h4>
+              <p>El objetivo del atacante en esa fase. <em>Ejemplo: Acceso Inicial (TA0001)</em></p>
+            </div>
+          </div>
+          <div class="ep-ttp-arrow">▼</div>
+          <div class="ep-ttp-level ep-ttp-level--technique">
+            <div class="ep-ttp-badge">Técnica</div>
+            <div class="ep-ttp-info">
+              <h4>¿Cómo lo logra?</h4>
+              <p>El método específico usado. <em>Ejemplo: Phishing (T1566)</em></p>
+            </div>
+          </div>
+          <div class="ep-ttp-arrow">▼</div>
+          <div class="ep-ttp-level ep-ttp-level--sub">
+            <div class="ep-ttp-badge">Subtécnica</div>
+            <div class="ep-ttp-info">
+              <h4>¿Variante exacta?</h4>
+              <p>Variante más granular. <em>Ejemplo: Spearphishing Attachment (T1566.001)</em></p>
+            </div>
+          </div>
+          <div class="ep-ttp-arrow">▼</div>
+          <div class="ep-ttp-level ep-ttp-level--proc">
+            <div class="ep-ttp-badge">Procedimiento</div>
+            <div class="ep-ttp-info">
+              <h4>¿Caso real?</h4>
+              <p>Ejemplo documentado de un grupo APT. <em>Ejemplo: APT29 usó T1566.001 contra diplomáticos</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Roles -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">👤 ATT&amp;CK por Rol Profesional</h2>
+        <div class="ep-roles-grid">
+          <div class="ep-role ep-role--soc">
+            <div class="ep-role-icon">🖥️</div>
+            <h3>Analista SOC</h3>
+            <ul>
+              <li>Mapear alertas a técnicas ATT&amp;CK</li>
+              <li>Crear detecciones basadas en comportamiento</li>
+              <li>Priorizar alertas según fase del ataque</li>
+              <li>Comunicar incidentes con lenguaje estándar</li>
+            </ul>
+            <div class="ep-role-example">
+              <span>Ej: Alert → T1059.001 (PowerShell)</span>
+            </div>
+          </div>
+          <div class="ep-role ep-role--hunter">
+            <div class="ep-role-icon">🔍</div>
+            <h3>Threat Hunter</h3>
+            <ul>
+              <li>Buscar actividad de técnicas específicas</li>
+              <li>Proactivamente cazar TTPs conocidas de APTs</li>
+              <li>Hipótesis basadas en el framework</li>
+              <li>Identificar indicadores de técnicas sin alertas</li>
+            </ul>
+            <div class="ep-role-example">
+              <span>Ej: Cazar uso de T1003 (Credential Dumping)</span>
+            </div>
+          </div>
+          <div class="ep-role ep-role--redteam">
+            <div class="ep-role-icon">⚔️</div>
+            <h3>Red Team</h3>
+            <ul>
+              <li>Planear ataques basados en TTPs reales de APTs</li>
+              <li>Simular adversarios específicos (emulation)</li>
+              <li>Reportar hallazgos en lenguaje ATT&amp;CK</li>
+              <li>Validar detecciones del blue team</li>
+            </ul>
+            <div class="ep-role-example">
+              <span>Ej: Simular APT29 usando TTPs documentadas</span>
+            </div>
+          </div>
+          <div class="ep-role ep-role--defender">
+            <div class="ep-role-icon">🛡️</div>
+            <h3>Defensor / Blue Team</h3>
+            <ul>
+              <li>Evaluar qué técnicas puedes detectar</li>
+              <li>Identificar brechas de cobertura</li>
+              <li>Priorizar controles según riesgo</li>
+              <li>Usar ATT&amp;CK Navigator para visualizar estado</li>
+            </ul>
+            <div class="ep-role-example">
+              <span>Ej: Navigator heatmap de cobertura SIEM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TTP Identifier -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🔎 Identificador de Tácticas ATT&amp;CK</h2>
+        <p class="ep-section-desc">Describe un escenario de ataque y sugiero las tácticas ATT&amp;CK más probables.</p>
+        <div class="ep-identifier">
+          <textarea
+            id="ttpInput"
+            class="ep-ttp-textarea"
+            placeholder="Ej: El atacante envió un correo con un adjunto Word con macros. Al abrirlo, ejecutó PowerShell para descargar un beacon de Cobalt Strike que se comunicaba con el C2..."
+            rows="4"
+          ></textarea>
+          <div class="ep-identifier-actions">
+            <button id="ttpAnalyze" class="ep-analyze-btn">🔍 Analizar escenario</button>
+            <button id="ttpClear" class="ep-clear-btn">✕ Limpiar</button>
+          </div>
+          <div id="ttpResults" class="ep-ttp-results" style="display:none">
+            <h4 class="ep-results-title">Tácticas identificadas:</h4>
+            <div id="ttpMatches" class="ep-ttp-matches"></div>
+            <p class="ep-results-note">💡 Estas son sugerencias basadas en palabras clave. Valida siempre en <strong>attack.mitre.org</strong></p>
+          </div>
+          <div id="ttpNoMatch" class="ep-ttp-nomatch" style="display:none">
+            <p>No se identificaron tácticas. Intenta usar términos más específicos: phishing, powershell, mimikatz, ransomware, C2, lateral, etc.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      {quizData && <Quiz questions={quizData.questions} title={quizData.title} />}
+
+    </div>
+  </div>
+
+</WikiLayout>
+
+<style>
+  /* ── MITRE ATT&CK Enriched Page (.ep-*) ── */
+  .ep-page { padding: 2rem 0; }
+
+  /* Header */
+  .ep-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+  }
+  .ep-header-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+  }
+  .ep-header h1 { font-size: 2rem; font-weight: 800; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+  .ep-header p  { font-size: 1rem; opacity: 0.85; margin: 0; max-width: 600px; margin-inline: auto; }
+
+  /* Stats */
+  .ep-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .ep-stat {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    border-top: 3px solid #667eea;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .ep-stat-value { font-size: 1.6rem; font-weight: 800; color: #a78bfa; font-family: monospace; }
+  .ep-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+
+  /* Sections */
+  .ep-section { margin-bottom: 2.5rem; }
+  .ep-section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    color: #a78bfa;
+  }
+  .ep-section-desc { font-size: 0.88rem; opacity: 0.65; margin: -0.5rem 0 1rem; }
+
+  /* Tactics Grid */
+  .ep-tactic-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .ep-tactic {
+    background: var(--color-surface, #1e293b);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 0.6rem;
+    padding: 0.7rem 0.5rem;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ep-tactic::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .ep-tactic:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+  .ep-tactic.selected { border-color: var(--tactic-color, #667eea); box-shadow: 0 0 0 2px var(--tactic-color, #667eea); }
+
+  /* Phase colors */
+  .ep-tactic[data-phase="pre"]        { --tactic-color: #4fc3f7; }
+  .ep-tactic[data-phase="pre"]::before { background: #4fc3f7; }
+  .ep-tactic[data-phase="access"]        { --tactic-color: #667eea; }
+  .ep-tactic[data-phase="access"]::before { background: #667eea; }
+  .ep-tactic[data-phase="escalation"]        { --tactic-color: #764ba2; }
+  .ep-tactic[data-phase="escalation"]::before { background: #764ba2; }
+  .ep-tactic[data-phase="internal"]        { --tactic-color: #f093fb; }
+  .ep-tactic[data-phase="internal"]::before { background: #f093fb; }
+  .ep-tactic[data-phase="post"]        { --tactic-color: #e53e3e; }
+  .ep-tactic[data-phase="post"]::before { background: #e53e3e; }
+
+  .ep-tactic-num  { font-size: 0.65rem; font-weight: 800; color: var(--tactic-color, #667eea); font-family: monospace; }
+  .ep-tactic-tag  { font-size: 0.6rem; font-family: monospace; opacity: 0.45; }
+  .ep-tactic-name { font-size: 0.78rem; font-weight: 700; line-height: 1.2; color: rgba(255,255,255,0.9); }
+  .ep-tactic-short { font-size: 0.68rem; opacity: 0.5; line-height: 1.2; }
+
+  /* Phase legend */
+  .ep-phase-legend {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+  }
+  .ep-phase-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.35rem;
+    vertical-align: middle;
+  }
+
+  /* Tactic detail panel */
+  .ep-tactic-detail {
+    background: rgba(102,126,234,0.1);
+    border: 1px solid rgba(102,126,234,0.3);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    margin-top: 0.75rem;
+    animation: fadeIn 0.2s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .ep-detail-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .ep-detail-tag {
+    font-size: 0.75rem;
+    font-family: monospace;
+    font-weight: 700;
+    background: rgba(102,126,234,0.2);
+    color: #a78bfa;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.3rem;
+    flex-shrink: 0;
+  }
+  .ep-detail-header h3 { font-size: 1rem; font-weight: 700; margin: 0; }
+  #detailDesc { font-size: 0.88rem; opacity: 0.8; margin: 0 0 0.75rem; line-height: 1.6; }
+  .ep-detail-example { display: flex; flex-direction: column; gap: 0.2rem; }
+  .ep-detail-label { font-size: 0.7rem; font-weight: 600; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.08em; }
+  #detailExample { font-size: 0.8rem; font-family: monospace; opacity: 0.7; }
+
+  /* TTP Hierarchy */
+  .ep-ttp-hierarchy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .ep-ttp-level {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    width: 100%;
+    border-left: 4px solid transparent;
+  }
+  .ep-ttp-level--tactic    { border-left-color: #667eea; background: rgba(102,126,234,0.08); }
+  .ep-ttp-level--technique { border-left-color: #764ba2; background: rgba(118,75,162,0.08); }
+  .ep-ttp-level--sub       { border-left-color: #f093fb; background: rgba(240,147,251,0.08); }
+  .ep-ttp-level--proc      { border-left-color: #4fc3f7; background: rgba(79,195,247,0.08); }
+  .ep-ttp-arrow { font-size: 0.9rem; opacity: 0.35; padding-left: 1.5rem; }
+  .ep-ttp-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.3rem;
+    background: rgba(255,255,255,0.08);
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: 90px;
+    text-align: center;
+  }
+  .ep-ttp-info h4 { font-size: 0.88rem; font-weight: 700; margin: 0 0 0.2rem; }
+  .ep-ttp-info p  { font-size: 0.8rem; opacity: 0.65; margin: 0; }
+  .ep-ttp-info em { opacity: 0.85; font-style: normal; color: #a78bfa; }
+
+  /* Roles */
+  .ep-roles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .ep-role {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-top: 3px solid transparent;
+  }
+  .ep-role--soc      { border-top-color: #667eea; }
+  .ep-role--hunter   { border-top-color: #f093fb; }
+  .ep-role--redteam  { border-top-color: #e53e3e; }
+  .ep-role--defender { border-top-color: #4fc3f7; }
+  .ep-role-icon { font-size: 1.75rem; margin-bottom: 0.5rem; display: block; }
+  .ep-role h3 { font-size: 1rem; font-weight: 700; margin: 0 0 0.75rem; }
+  .ep-role ul {
+    margin: 0 0 0.75rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.82rem;
+    opacity: 0.8;
+  }
+  .ep-role-example {
+    font-size: 0.75rem;
+    font-family: monospace;
+    background: rgba(0,0,0,0.25);
+    border-radius: 0.4rem;
+    padding: 0.35rem 0.6rem;
+    opacity: 0.7;
+  }
+
+  /* Identifier */
+  .ep-identifier {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+  .ep-ttp-textarea {
+    width: 100%;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 0.88rem;
+    padding: 0.75rem 1rem;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.6;
+    box-sizing: border-box;
+  }
+  .ep-ttp-textarea:focus { outline: none; border-color: #667eea; }
+  .ep-ttp-textarea::placeholder { opacity: 0.4; }
+  .ep-identifier-actions { display: flex; gap: 0.75rem; margin-top: 0.75rem; margin-bottom: 1rem; }
+  .ep-analyze-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .ep-analyze-btn:hover { opacity: 0.9; transform: scale(1.02); }
+  .ep-clear-btn {
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .ep-clear-btn:hover { background: rgba(255,255,255,0.12); }
+
+  .ep-ttp-results { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem; }
+  .ep-results-title { font-size: 0.88rem; font-weight: 700; margin: 0 0 0.75rem; color: #a78bfa; }
+  .ep-ttp-matches { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 0.75rem; }
+  .ep-match-card {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    background: rgba(102,126,234,0.08);
+    border: 1px solid rgba(102,126,234,0.2);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    animation: fadeIn 0.2s ease;
+  }
+  .ep-match-tag {
+    font-size: 0.7rem;
+    font-family: monospace;
+    font-weight: 700;
+    color: #a78bfa;
+    background: rgba(102,126,234,0.2);
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .ep-match-info { display: flex; flex-direction: column; gap: 0.2rem; }
+  .ep-match-name { font-size: 0.88rem; font-weight: 700; }
+  .ep-match-desc { font-size: 0.8rem; opacity: 0.65; line-height: 1.4; }
+  .ep-match-keywords { font-size: 0.72rem; opacity: 0.5; font-family: monospace; }
+  .ep-results-note { font-size: 0.78rem; opacity: 0.55; margin: 0; }
+  .ep-ttp-nomatch {
+    background: rgba(229,62,62,0.08);
+    border: 1px solid rgba(229,62,62,0.2);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .ep-tactic-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .ep-header h1 { font-size: 1.5rem; }
+    .ep-stat-grid  { grid-template-columns: repeat(2, 1fr); }
+    .ep-tactic-grid { grid-template-columns: repeat(2, 1fr); }
+    .ep-roles-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  // ── Tactics data ──────────────────────────────────────────────
+  interface TacticData {
+    id: number;
+    tag: string;
+    name: string;
+    phase: string;
+    keywords: string[];
+    desc: string;
+    example: string;
+  }
+
+  const TACTICS: TacticData[] = [
+    { id: 1,  tag: 'TA0043', phase: 'pre',        name: 'Reconocimiento',
+      keywords: ['reconocimiento','recon','osint','linkedin','shodan','scan','nmap','escaneo','investigar','whois','passive','hunter'],
+      desc: 'El atacante investiga a la víctima antes del ataque.',
+      example: 'T1595 — Active Scanning · T1591 — Gather Victim Org Info' },
+    { id: 2,  tag: 'TA0042', phase: 'pre',        name: 'Desarrollo de Recursos',
+      keywords: ['infraestructura','vps','servidor','dominio','botnet','staging','phishing kit','c2 infra','malware develop'],
+      desc: 'El atacante prepara infraestructura y herramientas.',
+      example: 'T1583 — Acquire Infrastructure · T1587 — Develop Capabilities' },
+    { id: 3,  tag: 'TA0001', phase: 'access',     name: 'Acceso Inicial',
+      keywords: ['phishing','spearphishing','adjunto','macro','exploit','vulnerabilidad','usb','drive-by','rdp expuesto','vpn','brute force login','credential stuffing','supply chain'],
+      desc: 'El atacante consigue un primer punto de entrada.',
+      example: 'T1566.001 — Spearphishing Attachment · T1190 — Exploit Public-Facing App' },
+    { id: 4,  tag: 'TA0002', phase: 'access',     name: 'Ejecución',
+      keywords: ['powershell','cmd','script','macro','wmi','ejecutar','payload','código','shellcode','mshta','regsvr32','cscript','vbscript','js'],
+      desc: 'El atacante ejecuta código malicioso en el sistema comprometido.',
+      example: 'T1059 — Command and Scripting Interpreter · T1106 — Native API' },
+    { id: 5,  tag: 'TA0003', phase: 'access',     name: 'Persistencia',
+      keywords: ['persistencia','startup','registro','cron','scheduled task','tarea programada','backdoor','reboot','autorun','service install','mantener acceso'],
+      desc: 'El atacante garantiza acceso incluso tras reinicios.',
+      example: 'T1053 — Scheduled Task/Job · T1547 — Boot Autostart Execution' },
+    { id: 6,  tag: 'TA0004', phase: 'escalation', name: 'Escalada de Privilegios',
+      keywords: ['privilegios','admin','root','sudo','token','uac bypass','elevación','escalada','local admin','domain admin','juicy potato','getsystem'],
+      desc: 'El atacante obtiene permisos más altos.',
+      example: 'T1548 — Abuse Elevation Control · T1055 — Process Injection' },
+    { id: 7,  tag: 'TA0005', phase: 'escalation', name: 'Evasión Defensiva',
+      keywords: ['evasión','ocultar','ofuscación','obfuscation','antivirus','av bypass','log','borrar log','inject','masquerade','lolbin','amsi','disable defender'],
+      desc: 'El atacante evita ser detectado por herramientas de seguridad.',
+      example: 'T1027 — Obfuscated Files · T1562 — Impair Defenses' },
+    { id: 8,  tag: 'TA0006', phase: 'escalation', name: 'Acceso a Credenciales',
+      keywords: ['contraseña','password','hash','lsass','mimikatz','dump','credenciales','kerberos','ntlm','brute force','keylog','kerberoasting','pass the hash','secretsdump'],
+      desc: 'El atacante roba contraseñas y hashes del sistema.',
+      example: 'T1003 — OS Credential Dumping · T1110 — Brute Force' },
+    { id: 9,  tag: 'TA0007', phase: 'internal',   name: 'Descubrimiento',
+      keywords: ['descubrimiento','explorar','red interna','host','inventario','shares','servicios','usuarios','domain','whoami','net user','net view','ping','ipconfig','arp'],
+      desc: 'El atacante explora el entorno interno.',
+      example: 'T1018 — Remote System Discovery · T1087 — Account Discovery' },
+    { id: 10, tag: 'TA0008', phase: 'internal',   name: 'Movimiento Lateral',
+      keywords: ['lateral','psexec','wmi','rdp','smb','pass the hash','moverse','pivoting','otro sistema','winrm','dcom','at.exe','evil-winrm'],
+      desc: 'El atacante salta de un sistema a otro dentro de la red.',
+      example: 'T1021 — Remote Services · T1550 — Use Alternate Auth Material' },
+    { id: 11, tag: 'TA0009', phase: 'internal',   name: 'Colección',
+      keywords: ['recopilar','datos','archivos','captura','screenshot','keylogger','email','documentos','collect','clipboard','audio','webcam'],
+      desc: 'El atacante recopila información de interés.',
+      example: 'T1005 — Data from Local System · T1113 — Screen Capture' },
+    { id: 12, tag: 'TA0011', phase: 'post',       name: 'Comando y Control',
+      keywords: ['c2','comando','control','beacon','cobalt strike','conexión remota','canal oculto','dns tunnel','callback','c&c','http beacon','https beacon','empire','metasploit'],
+      desc: 'El atacante mantiene comunicación con el sistema comprometido.',
+      example: 'T1071 — Application Layer Protocol · T1132 — Data Encoding' },
+    { id: 13, tag: 'TA0010', phase: 'post',       name: 'Exfiltración',
+      keywords: ['exfiltración','robar','enviar','ftp','dns','upload','exfiltrar','transferir','data theft','mega','dropbox','pastebin','exfil'],
+      desc: 'El atacante extrae datos fuera de la red víctima.',
+      example: 'T1048 — Exfiltration Over Alt Protocol · T1567 — Exfiltration Over Web' },
+    { id: 14, tag: 'TA0040', phase: 'post',       name: 'Impacto',
+      keywords: ['ransomware','cifrar','borrar','destruir','wipe','ddos','daño','disruption','defacement','encrypt','wiper','locky','conti','ryuk','backup delete','vssdelete'],
+      desc: 'El atacante causa daño final: cifra, destruye o interrumpe.',
+      example: 'T1486 — Data Encrypted for Impact · T1485 — Data Destruction' },
+  ];
+
+  // ── Tactic Map ────────────────────────────────────────────────
+  const tacticBtns = document.querySelectorAll<HTMLButtonElement>('.ep-tactic');
+  const detailPanel = document.getElementById('tacticDetail')!;
+  const detailTag  = document.getElementById('detailTag')!;
+  const detailName = document.getElementById('detailName')!;
+  const detailDesc = document.getElementById('detailDesc')!;
+  const detailExample = document.getElementById('detailExample')!;
+
+  tacticBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tacticBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      detailTag.textContent  = btn.dataset.tag  || '';
+      detailName.textContent = btn.dataset.name || '';
+      detailDesc.textContent = btn.dataset.desc || '';
+      detailExample.textContent = btn.dataset.example || '';
+      detailPanel.style.display = 'block';
+      detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+
+  // ── TTP Identifier ─────────────────────────────────────────────
+  const inputEl   = document.getElementById('ttpInput')  as HTMLTextAreaElement;
+  const analyzeBtn = document.getElementById('ttpAnalyze') as HTMLButtonElement;
+  const clearBtn   = document.getElementById('ttpClear')   as HTMLButtonElement;
+  const resultsEl  = document.getElementById('ttpResults') as HTMLElement;
+  const matchesEl  = document.getElementById('ttpMatches') as HTMLElement;
+  const noMatchEl  = document.getElementById('ttpNoMatch') as HTMLElement;
+
+  function analyze() {
+    const text = inputEl.value.toLowerCase();
+    if (!text.trim()) return;
+
+    const scored = TACTICS.map(tactic => {
+      const hits = tactic.keywords.filter(kw => text.includes(kw.toLowerCase()));
+      return { tactic, hits, score: hits.length };
+    }).filter(r => r.score > 0).sort((a, b) => b.score - a.score);
+
+    resultsEl.style.display = 'none';
+    noMatchEl.style.display = 'none';
+    matchesEl.innerHTML = '';
+
+    if (scored.length === 0) {
+      noMatchEl.style.display = 'block';
+      return;
+    }
+
+    scored.slice(0, 5).forEach(({ tactic, hits }) => {
+      const card = document.createElement('div');
+      card.className = 'ep-match-card';
+      card.innerHTML = `
+        <span class="ep-match-tag">${tactic.tag}</span>
+        <div class="ep-match-info">
+          <span class="ep-match-name">${tactic.id.toString().padStart(2,'0')}. ${tactic.name}</span>
+          <span class="ep-match-desc">${tactic.desc}</span>
+          <span class="ep-match-keywords">Palabras detectadas: ${hits.join(', ')}</span>
+        </div>
+      `;
+      matchesEl.appendChild(card);
+    });
+
+    resultsEl.style.display = 'block';
+  }
+
+  analyzeBtn.addEventListener('click', analyze);
+  clearBtn.addEventListener('click', () => {
+    inputEl.value = '';
+    resultsEl.style.display = 'none';
+    noMatchEl.style.display = 'none';
+    matchesEl.innerHTML = '';
+  });
+  inputEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) analyze();
+  });
+</script>

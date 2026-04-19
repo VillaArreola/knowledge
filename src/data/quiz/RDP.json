@@ -1,0 +1,71 @@
+{
+  "title": "Quiz: RDP — Remote Desktop Protocol",
+  "questions": [
+    {
+      "question": "¿Qué significa RDP y quién lo desarrolló?",
+      "options": [
+        "Remote Data Protocol — desarrollado por Cisco",
+        "Remote Desktop Protocol — desarrollado por Microsoft",
+        "Remote Display Protocol — desarrollado por Apple",
+        "Reliable Desktop Protocol — desarrollado por IBM"
+      ],
+      "correct": 1,
+      "explanation": "RDP (Remote Desktop Protocol) es un protocolo de red desarrollado por Microsoft que permite conectarse a otro ordenador de forma remota a través de una red."
+    },
+    {
+      "question": "¿Dónde se habilita el Escritorio Remoto en Windows?",
+      "options": [
+        "Panel de Control > Red e Internet > RDP",
+        "Configuración > Sistema > Escritorio remoto",
+        "Configuración > Privacidad > Conexiones remotas",
+        "Administrador de dispositivos > Protocolo RDP"
+      ],
+      "correct": 1,
+      "explanation": "El Escritorio Remoto en Windows se activa desde Configuración > Sistema > Escritorio remoto."
+    },
+    {
+      "question": "¿Qué tipo de datos transfiere RDP entre cliente y servidor?",
+      "options": [
+        "Solo archivos de texto y documentos",
+        "Únicamente audio y vídeo comprimido",
+        "Datos de entrada (teclado/mouse) y salida (pantalla)",
+        "Solo comandos de terminal"
+      ],
+      "correct": 2,
+      "explanation": "RDP transfiere datos de entrada como teclado y mouse desde el cliente al servidor, y datos de salida como la pantalla del servidor de vuelta al cliente."
+    },
+    {
+      "question": "¿Cómo se llama el software cliente de RDP en Windows?",
+      "options": [
+        "Remote Access Tool (RAT)",
+        "Terminal Services Client (TSC)",
+        "Remote Desktop Connection (RDC) / Conexión a Escritorio Remoto",
+        "Windows Remote Manager (WRM)"
+      ],
+      "correct": 2,
+      "explanation": "El cliente RDP en Windows se llama 'Remote Desktop Connection' (RDC) o 'Conexión a Escritorio Remoto', y el servicio del servidor se denomina 'Remote Desktop Services' o 'Terminal Services'."
+    },
+    {
+      "question": "¿Cuál de las siguientes es una característica técnica de RDP?",
+      "options": [
+        "Transmisión de datos sin ningún tipo de compresión",
+        "Solo permite una sesión de usuario a la vez en Windows Server",
+        "Redirección de recursos locales como impresoras y discos al equipo remoto",
+        "Requiere siempre una conexión VPN para funcionar"
+      ],
+      "correct": 2,
+      "explanation": "RDP permite redirigir recursos locales (impresoras, discos duros, puertos USB) al equipo remoto. También comprime datos y admite múltiples sesiones en Windows Server."
+    },
+    {
+      "question": "¿Qué características de seguridad incluye RDP?",
+      "options": [
+        "No tiene características de seguridad nativas",
+        "Solo autenticación básica por contraseña sin cifrado",
+        "Cifrado de datos, autenticación de usuario y control de acceso",
+        "Seguridad únicamente por firewall externo"
+      ],
+      "correct": 2,
+      "explanation": "RDP incluye cifrado de datos para proteger la información en tránsito, autenticación de usuario para verificar la identidad, y control de acceso para limitar quién puede conectarse."
+    }
+  ]
+}

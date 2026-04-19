@@ -1,0 +1,766 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import notionData from '../../../data/notion/redes/protocolos/RDP.json';
+import { marked } from 'marked';
+import Quiz from '../../../components/Quiz.astro';
+import quizData from '../../../data/quiz/RDP.json';
+
+const body = (notionData.markdownBody || '').trim();
+const hasBody = body.length > 0;
+
+const metadata = notionData.metadata || {};
+const notionUrl = metadata.notionUrl || '';
+const pageIcon = metadata.icon || '📄';
+const pageName = metadata.name || '';
+const pageDesc = metadata.description || '';
+const tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];
+const category = metadata.category || '';
+const section = metadata.section || '';
+const rawCerts = typeof metadata.certifications === 'string' ? metadata.certifications : '';
+const certCodes = rawCerts.split(',').map(c => c.split(':')[0].trim()).filter(Boolean);
+
+const fallbackLines = [
+  '## Contenido pendiente',
+  '',
+  metadata.description ? '**Descripcion:** ' + metadata.description : '',
+  tags.length ? '**Tags:** ' + tags.join(', ') : '',
+  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',
+].filter(Boolean);
+
+const markdownHtml = hasBody
+  ? marked(body)
+  : marked(fallbackLines.join('\n'));
+---
+
+<WikiLayout title="🖥️ RDP — Remote Desktop Protocol" description="Protocolo de escritorio remoto de Microsoft para acceso, soporte y administración de sistemas" hasDualMode={true}>
+
+  <!-- ── MARKDOWN VIEW ─────────────────────────────────── -->
+  <div data-view="markdown">
+    <div class="doc-page">
+      <header class="doc-header">
+        {(category || section) && (
+          <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
+        )}
+        <h1 class="doc-title">{pageIcon} {pageName}</h1>
+        {pageDesc && <p class="doc-description">{pageDesc}</p>}
+        {(tags.length > 0 || certCodes.length > 0) && (
+          <div class="doc-meta-row">
+            {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+            {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+          </div>
+        )}
+      </header>
+      <div class="doc-content">
+        <Fragment set:html={markdownHtml} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENRICHED VIEW ─────────────────────────────────── -->
+  <div data-view="enriched">
+    <div class="ep-page">
+
+      <!-- Header -->
+      <div class="ep-header">
+        <div class="ep-header-logo">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect width="40" height="40" rx="8" fill="#0078d4"/>
+            <rect x="6" y="8" width="28" height="20" rx="2" fill="white" opacity="0.9"/>
+            <rect x="8" y="10" width="24" height="16" rx="1" fill="#0078d4"/>
+            <rect x="15" y="30" width="10" height="2" rx="1" fill="white" opacity="0.7"/>
+            <rect x="12" y="32" width="16" height="2" rx="1" fill="white" opacity="0.5"/>
+          </svg>
+        </div>
+        <h1>🖥️ Remote Desktop Protocol</h1>
+        <p>Protocolo Microsoft para escritorio remoto — acceso, soporte técnico y administración de sistemas</p>
+        <div class="ep-header-badges">
+          <span class="ep-badge">Puerto 3389</span>
+          <span class="ep-badge">TCP</span>
+          <span class="ep-badge">TLS / NLA</span>
+          <span class="ep-badge">Windows</span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="ep-stat-grid">
+        <div class="ep-stat">
+          <span class="ep-stat-value">3389</span>
+          <span class="ep-stat-label">Puerto TCP por defecto</span>
+        </div>
+        <div class="ep-stat">
+          <span class="ep-stat-value">6</span>
+          <span class="ep-stat-label">Casos de uso principales</span>
+        </div>
+        <div class="ep-stat">
+          <span class="ep-stat-value">TLS</span>
+          <span class="ep-stat-label">Cifrado de transporte</span>
+        </div>
+        <div class="ep-stat">
+          <span class="ep-stat-value">Multi</span>
+          <span class="ep-stat-label">Sesiones en Windows Server</span>
+        </div>
+      </div>
+
+      <!-- Use cases -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🎯 Usos Principales</h2>
+        <div class="ep-use-grid">
+          <div class="ep-use-card">
+            <span class="ep-use-icon">🌐</span>
+            <h4>Acceso Remoto</h4>
+            <p>Accede a escritorio, archivos y aplicaciones desde cualquier lugar con conexión a Internet</p>
+          </div>
+          <div class="ep-use-card">
+            <span class="ep-use-icon">🛠️</span>
+            <h4>Soporte Técnico</h4>
+            <p>Los técnicos se conectan remotamente para resolver problemas sin presencia física</p>
+          </div>
+          <div class="ep-use-card">
+            <span class="ep-use-icon">👥</span>
+            <h4>Trabajo Colaborativo</h4>
+            <p>Equipos distribuidos acceden y trabajan en la misma máquina simultáneamente</p>
+          </div>
+          <div class="ep-use-card">
+            <span class="ep-use-icon">🔒</span>
+            <h4>Seguridad Integrada</h4>
+            <p>Cifrado de datos, autenticación de usuario y control de acceso en la conexión</p>
+          </div>
+          <div class="ep-use-card">
+            <span class="ep-use-icon">🗄️</span>
+            <h4>Gestión de Servidores</h4>
+            <p>Administración remota de servidores en centros de datos y entornos cloud</p>
+          </div>
+          <div class="ep-use-card">
+            <span class="ep-use-icon">⚡</span>
+            <h4>Productividad Flexible</h4>
+            <p>Trabajo remoto e híbrido sin restricciones geográficas</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client vs Server -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">⚙️ Componentes: Cliente vs Servidor</h2>
+        <div class="ep-component-split">
+          <div class="ep-component ep-component--client">
+            <div class="ep-comp-header">
+              <span class="ep-comp-icon">💻</span>
+              <div>
+                <h3>Cliente RDP</h3>
+                <span class="ep-comp-tag">Remote Desktop Connection (RDC)</span>
+              </div>
+            </div>
+            <ul class="ep-comp-list">
+              <li>Software que inicia la conexión</li>
+              <li>Envía entradas de teclado y mouse</li>
+              <li>Recibe y renderiza la pantalla remota</li>
+              <li>Redirige recursos locales al servidor</li>
+              <li>Disponible en Windows, macOS, iOS, Android</li>
+            </ul>
+            <div class="ep-comp-cmd">Configuración → Sistema → Escritorio remoto</div>
+          </div>
+          <div class="ep-component-arrow">⇄</div>
+          <div class="ep-component ep-component--server">
+            <div class="ep-comp-header">
+              <span class="ep-comp-icon">🗄️</span>
+              <div>
+                <h3>Servidor RDP</h3>
+                <span class="ep-comp-tag">Remote Desktop Services / Terminal Services</span>
+              </div>
+            </div>
+            <ul class="ep-comp-list">
+              <li>Acepta conexiones entrantes en puerto 3389</li>
+              <li>Gestiona múltiples sesiones simultáneas</li>
+              <li>Procesa entradas del cliente</li>
+              <li>Envía capturas de pantalla comprimidas</li>
+              <li>Aplica políticas de acceso y seguridad</li>
+            </ul>
+            <div class="ep-comp-cmd">Remote Desktop Services (Windows Server)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical features -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🔧 Características Técnicas</h2>
+        <div class="ep-tech-grid">
+          <div class="ep-tech-item">
+            <span class="ep-tech-dot"></span>
+            <div>
+              <h4>Transferencia de Datos</h4>
+              <p>Teclado y mouse van del cliente al servidor; la pantalla renderizada viaja del servidor al cliente</p>
+            </div>
+          </div>
+          <div class="ep-tech-item">
+            <span class="ep-tech-dot"></span>
+            <div>
+              <h4>Compresión</h4>
+              <p>Los datos se comprimen para optimizar el ancho de banda y mejorar la velocidad en conexiones lentas</p>
+            </div>
+          </div>
+          <div class="ep-tech-item">
+            <span class="ep-tech-dot"></span>
+            <div>
+              <h4>Redirección de Recursos</h4>
+              <p>Impresoras, discos duros y puertos USB locales se pueden redirigir y usar en el equipo remoto</p>
+            </div>
+          </div>
+          <div class="ep-tech-item">
+            <span class="ep-tech-dot"></span>
+            <div>
+              <h4>Soporte Multiusuario</h4>
+              <p>Windows Server admite múltiples sesiones de escritorio remoto simultáneas con licencias RDS</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🛡️ Seguridad en RDP</h2>
+        <div class="ep-security-row">
+          <div class="ep-sec-card ep-sec-card--good">
+            <h4>✅ Medidas de seguridad nativas</h4>
+            <ul>
+              <li><strong>Cifrado TLS</strong> — protege los datos en tránsito</li>
+              <li><strong>NLA (Network Level Authentication)</strong> — autentica antes de abrir sesión</li>
+              <li><strong>Control de acceso</strong> — grupos y permisos por usuario</li>
+              <li><strong>Auditoría de sesiones</strong> — registro de conexiones</li>
+            </ul>
+          </div>
+          <div class="ep-sec-card ep-sec-card--risk">
+            <h4>⚠️ Riesgos conocidos</h4>
+            <ul>
+              <li><strong>Puerto 3389 expuesto</strong> — objetivo frecuente de ataques de fuerza bruta</li>
+              <li><strong>BlueKeep (CVE-2019-0708)</strong> — vulnerabilidad crítica sin autenticación</li>
+              <li><strong>Man-in-the-Middle</strong> — sin NLA, riesgo de interceptación</li>
+              <li><strong>Credenciales débiles</strong> — principal vector de compromiso</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simulator -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🔌 Simulador: Flujo de Conexión RDP</h2>
+        <p class="ep-section-desc">Haz clic en "Siguiente paso" para ver cómo se establece una sesión RDP.</p>
+        <div class="ep-simulator">
+          <div class="ep-sim-stage">
+            <!-- Client -->
+            <div class="ep-sim-node ep-sim-node--client" id="simClient">
+              <span class="ep-sim-node-icon">💻</span>
+              <span class="ep-sim-node-label">Cliente RDP</span>
+              <span class="ep-sim-node-sub">mstsc.exe</span>
+            </div>
+
+            <!-- Connection channel -->
+            <div class="ep-sim-channel" id="simChannel">
+              <div class="ep-sim-packet" id="simPacket"></div>
+              <div class="ep-sim-channel-label" id="simChannelLabel">Puerto 3389 / TCP</div>
+            </div>
+
+            <!-- Server -->
+            <div class="ep-sim-node ep-sim-node--server" id="simServer">
+              <span class="ep-sim-node-icon">🗄️</span>
+              <span class="ep-sim-node-label">Servidor RDP</span>
+              <span class="ep-sim-node-sub">Remote Desktop Services</span>
+            </div>
+          </div>
+
+          <!-- Step description -->
+          <div class="ep-sim-desc" id="simDesc">
+            <div class="ep-sim-step-badge" id="simStepBadge">Paso 0 / 5</div>
+            <p id="simDescText">Presiona "Iniciar conexión" para comenzar la simulación del handshake RDP.</p>
+          </div>
+
+          <!-- Steps timeline -->
+          <div class="ep-sim-steps">
+            <div class="ep-sim-step" id="step-0">
+              <div class="ep-sim-step-dot"></div>
+              <div class="ep-sim-step-content">
+                <span class="ep-sim-step-name">Inicio</span>
+                <span class="ep-sim-step-detail">Cliente solicita conexión TCP al puerto 3389</span>
+              </div>
+            </div>
+            <div class="ep-sim-step" id="step-1">
+              <div class="ep-sim-step-dot"></div>
+              <div class="ep-sim-step-content">
+                <span class="ep-sim-step-name">Negociación de protocolo</span>
+                <span class="ep-sim-step-detail">Cliente y servidor acuerdan versión RDP y capacidades</span>
+              </div>
+            </div>
+            <div class="ep-sim-step" id="step-2">
+              <div class="ep-sim-step-dot"></div>
+              <div class="ep-sim-step-content">
+                <span class="ep-sim-step-name">Seguridad TLS / NLA</span>
+                <span class="ep-sim-step-detail">Negociación de cifrado y autenticación de nivel de red</span>
+              </div>
+            </div>
+            <div class="ep-sim-step" id="step-3">
+              <div class="ep-sim-step-dot"></div>
+              <div class="ep-sim-step-content">
+                <span class="ep-sim-step-name">Autenticación de usuario</span>
+                <span class="ep-sim-step-detail">El servidor valida credenciales (usuario/contraseña o MFA)</span>
+              </div>
+            </div>
+            <div class="ep-sim-step" id="step-4">
+              <div class="ep-sim-step-dot"></div>
+              <div class="ep-sim-step-content">
+                <span class="ep-sim-step-name">Sesión activa</span>
+                <span class="ep-sim-step-detail">Escritorio remoto disponible — flujo bidireccional de datos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ep-sim-controls">
+            <button id="simNext" class="ep-sim-btn">▶ Iniciar conexión</button>
+            <button id="simReset" class="ep-sim-btn ep-sim-btn--secondary" style="display:none">↺ Reiniciar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      {quizData && <Quiz questions={quizData.questions} title={quizData.title} />}
+
+    </div>
+  </div>
+
+</WikiLayout>
+
+<style>
+  /* ── Enriched Page — RDP (.ep-*) ── */
+  .ep-page { padding: 2rem 0; }
+
+  /* Header */
+  .ep-header {
+    background: linear-gradient(135deg, #0078d4 0%, #106ebe 60%, #005a9e 100%);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+  }
+  .ep-header-logo { margin-bottom: 0.75rem; display: inline-block; }
+  .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+  .ep-header p  { font-size: 1rem; opacity: 0.85; margin: 0 0 1rem; }
+  .ep-header-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+  .ep-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: monospace;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+
+  /* Stats */
+  .ep-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .ep-stat {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    border-top: 3px solid #0078d4;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .ep-stat-value { font-size: 1.5rem; font-weight: 700; color: #0078d4; font-family: monospace; }
+  .ep-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+
+  /* Sections */
+  .ep-section { margin-bottom: 2rem; }
+  .ep-section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    color: #50e6ff;
+  }
+  .ep-section-desc { font-size: 0.88rem; opacity: 0.7; margin: -0.5rem 0 1rem; }
+
+  /* Use cases grid */
+  .ep-use-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .ep-use-card {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1rem;
+    border-bottom: 3px solid #0078d4;
+    transition: transform 0.2s;
+  }
+  .ep-use-card:hover { transform: translateY(-2px); }
+  .ep-use-icon { font-size: 1.75rem; display: block; margin-bottom: 0.5rem; }
+  .ep-use-card h4 { font-size: 0.92rem; font-weight: 700; margin: 0 0 0.4rem; }
+  .ep-use-card p  { font-size: 0.8rem; opacity: 0.7; margin: 0; line-height: 1.5; }
+
+  /* Client vs Server */
+  .ep-component-split {
+    display: flex;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  .ep-component-arrow {
+    font-size: 2rem;
+    color: #0078d4;
+    align-self: center;
+    flex-shrink: 0;
+  }
+  .ep-component {
+    flex: 1;
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+  .ep-component--client { border-left: 4px solid #0078d4; }
+  .ep-component--server { border-left: 4px solid #106ebe; }
+  .ep-comp-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .ep-comp-icon { font-size: 1.75rem; flex-shrink: 0; }
+  .ep-comp-header h3 { font-size: 1rem; font-weight: 700; margin: 0 0 0.25rem; }
+  .ep-comp-tag {
+    font-size: 0.72rem;
+    background: rgba(0,120,212,0.15);
+    color: #50e6ff;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+  }
+  .ep-comp-list {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.83rem;
+    opacity: 0.8;
+  }
+  .ep-comp-cmd {
+    font-size: 0.75rem;
+    font-family: monospace;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,120,212,0.3);
+    border-radius: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    color: #50e6ff;
+  }
+
+  /* Technical features */
+  .ep-tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .ep-tech-item {
+    display: flex;
+    gap: 1rem;
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    align-items: flex-start;
+  }
+  .ep-tech-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #0078d4;
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+  }
+  .ep-tech-item h4 { font-size: 0.9rem; font-weight: 700; margin: 0 0 0.3rem; }
+  .ep-tech-item p  { font-size: 0.82rem; opacity: 0.7; margin: 0; line-height: 1.5; }
+
+  /* Security */
+  .ep-security-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .ep-sec-card {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+  .ep-sec-card--good { border-top: 3px solid #107c10; }
+  .ep-sec-card--risk { border-top: 3px solid #d13438; }
+  .ep-sec-card h4 { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.75rem; }
+  .ep-sec-card ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    opacity: 0.8;
+  }
+  .ep-sec-card--good h4 { color: #54d65c; }
+  .ep-sec-card--risk h4 { color: #f1707a; }
+
+  /* Simulator */
+  .ep-simulator {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(0,120,212,0.2);
+  }
+  .ep-sim-stage {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    min-height: 110px;
+  }
+  .ep-sim-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    background: rgba(0,120,212,0.1);
+    border: 2px solid rgba(0,120,212,0.3);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    min-width: 130px;
+    transition: border-color 0.4s, box-shadow 0.4s;
+  }
+  .ep-sim-node.active {
+    border-color: #0078d4;
+    box-shadow: 0 0 18px rgba(0,120,212,0.4);
+  }
+  .ep-sim-node-icon  { font-size: 2rem; }
+  .ep-sim-node-label { font-size: 0.85rem; font-weight: 700; }
+  .ep-sim-node-sub   { font-size: 0.7rem; font-family: monospace; opacity: 0.6; }
+
+  .ep-sim-channel {
+    flex: 1;
+    position: relative;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: visible;
+  }
+  .ep-sim-channel-label {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    font-family: monospace;
+    color: rgba(255,255,255,0.45);
+    white-space: nowrap;
+  }
+  .ep-sim-packet {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #0078d4;
+    opacity: 0;
+    left: 0;
+    box-shadow: 0 0 8px #0078d4;
+    transition: left 0.6s ease, opacity 0.2s;
+  }
+  .ep-sim-packet.traveling { opacity: 1; animation: travel 0.8s ease forwards; }
+  .ep-sim-packet.traveling-back { opacity: 1; animation: travel-back 0.8s ease forwards; }
+
+  @keyframes travel      { from { left: 0; }    to { left: calc(100% - 16px); } }
+  @keyframes travel-back { from { left: calc(100% - 16px); } to { left: 0; } }
+
+  .ep-sim-desc {
+    background: rgba(0,120,212,0.08);
+    border: 1px solid rgba(0,120,212,0.2);
+    border-radius: 0.5rem;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .ep-sim-step-badge {
+    background: #0078d4;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  #simDescText { font-size: 0.88rem; opacity: 0.85; margin: 0; line-height: 1.5; }
+
+  .ep-sim-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .ep-sim-step {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    opacity: 0.35;
+    transition: opacity 0.3s;
+  }
+  .ep-sim-step.done  { opacity: 1; }
+  .ep-sim-step.active { opacity: 1; }
+  .ep-sim-step-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.25);
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .ep-sim-step.done  .ep-sim-step-dot  { background: #107c10; border-color: #107c10; }
+  .ep-sim-step.active .ep-sim-step-dot { background: #0078d4; border-color: #0078d4; box-shadow: 0 0 6px #0078d4; }
+  .ep-sim-step-content { display: flex; flex-direction: column; gap: 0.1rem; }
+  .ep-sim-step-name   { font-size: 0.85rem; font-weight: 600; }
+  .ep-sim-step-detail { font-size: 0.75rem; opacity: 0.65; }
+
+  .ep-sim-controls { display: flex; gap: 0.75rem; }
+  .ep-sim-btn {
+    background: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .ep-sim-btn:hover { background: #106ebe; transform: scale(1.02); }
+  .ep-sim-btn--secondary { background: rgba(255,255,255,0.08); }
+  .ep-sim-btn--secondary:hover { background: rgba(255,255,255,0.14); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .ep-stat-grid        { grid-template-columns: repeat(2, 1fr); }
+    .ep-use-grid         { grid-template-columns: 1fr 1fr; }
+    .ep-component-split  { flex-direction: column; }
+    .ep-component-arrow  { align-self: flex-start; transform: rotate(90deg); }
+    .ep-tech-grid        { grid-template-columns: 1fr; }
+    .ep-security-row     { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .ep-header h1 { font-size: 1.5rem; }
+    .ep-use-grid  { grid-template-columns: 1fr; }
+    .ep-sim-stage { flex-direction: column; gap: 0.75rem; }
+    .ep-sim-channel { width: 4px; height: 60px; flex: none; }
+  }
+</style>
+
+<script>
+  const steps = [
+    {
+      label: 'Paso 1 / 5',
+      desc: '📡 El cliente inicia una conexión TCP al servidor en el puerto 3389.',
+      direction: 'forward',
+      channelLabel: 'TCP SYN → puerto 3389',
+    },
+    {
+      label: 'Paso 2 / 5',
+      desc: '🤝 Negociación de protocolo: cliente y servidor intercambian capacidades RDP (versión, compresión, canales virtuales).',
+      direction: 'both',
+      channelLabel: 'Negotiation Request / Response',
+    },
+    {
+      label: 'Paso 3 / 5',
+      desc: '🔒 Handshake TLS/NLA: se establece el canal cifrado y se realiza la autenticación de nivel de red antes de crear la sesión.',
+      direction: 'both',
+      channelLabel: 'TLS Handshake + NLA',
+    },
+    {
+      label: 'Paso 4 / 5',
+      desc: '👤 El servidor valida las credenciales del usuario (usuario/contraseña o certificado). Si son incorrectas, se rechaza la conexión.',
+      direction: 'forward',
+      channelLabel: 'Credentials → Validate',
+    },
+    {
+      label: 'Paso 5 / 5',
+      desc: '✅ ¡Sesión activa! El servidor envía el escritorio remoto al cliente. El flujo de datos es bidireccional: pantalla ↓, teclado/mouse ↑.',
+      direction: 'both',
+      channelLabel: '⇄ Screen + Input (cifrado)',
+    },
+  ];
+
+  let currentStep = -1;
+  const btnNext  = document.getElementById('simNext')   as HTMLButtonElement;
+  const btnReset = document.getElementById('simReset')  as HTMLButtonElement;
+  const descText = document.getElementById('simDescText') as HTMLElement;
+  const stepBadge = document.getElementById('simStepBadge') as HTMLElement;
+  const packet   = document.getElementById('simPacket')  as HTMLElement;
+  const channelLabel = document.getElementById('simChannelLabel') as HTMLElement;
+  const clientNode   = document.getElementById('simClient') as HTMLElement;
+  const serverNode   = document.getElementById('simServer') as HTMLElement;
+
+  function getStepEl(i: number) { return document.getElementById(`step-${i}`); }
+
+  function advance() {
+    currentStep++;
+    const s = steps[currentStep];
+
+    stepBadge.textContent = s.label;
+    descText.textContent  = s.desc;
+    channelLabel.textContent = s.channelLabel;
+
+    // Animate packet
+    packet.className = 'ep-sim-packet';
+    void (packet as HTMLElement).offsetWidth; // reflow
+    packet.className = s.direction === 'forward' || s.direction === 'both'
+      ? 'ep-sim-packet traveling'
+      : 'ep-sim-packet traveling-back';
+
+    // Highlight nodes
+    clientNode.classList.toggle('active', true);
+    serverNode.classList.toggle('active', currentStep >= 1);
+
+    // Update step indicators
+    for (let i = 0; i < steps.length; i++) {
+      const el = getStepEl(i);
+      if (!el) continue;
+      el.classList.remove('done', 'active');
+      if (i < currentStep) el.classList.add('done');
+      else if (i === currentStep) el.classList.add('active');
+    }
+
+    if (currentStep >= steps.length - 1) {
+      btnNext.style.display = 'none';
+      btnReset.style.display = 'inline-block';
+    }
+  }
+
+  function reset() {
+    currentStep = -1;
+    stepBadge.textContent = 'Paso 0 / 5';
+    descText.textContent  = 'Presiona "Iniciar conexión" para comenzar la simulación del handshake RDP.';
+    channelLabel.textContent = 'Puerto 3389 / TCP';
+    packet.className = 'ep-sim-packet';
+    clientNode.classList.remove('active');
+    serverNode.classList.remove('active');
+    for (let i = 0; i < steps.length; i++) {
+      const el = getStepEl(i);
+      if (el) el.classList.remove('done', 'active');
+    }
+    btnNext.style.display  = 'inline-block';
+    btnReset.style.display = 'none';
+    btnNext.textContent = '▶ Iniciar conexión';
+  }
+
+  btnNext?.addEventListener('click', () => {
+    if (currentStep === -1) btnNext.textContent = '⏭ Siguiente paso';
+    advance();
+  });
+  btnReset?.addEventListener('click', reset);
+</script>

@@ -1,0 +1,623 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import notionData from '../../../data/notion/redes/fundamentos/Segmentaciondered.json';
+import { marked } from 'marked';
+import Quiz from '../../../components/Quiz.astro';
+import quizData from '../../../data/quiz/Segmentaciondered.json';
+
+const body = (notionData.markdownBody || '').trim();
+const hasBody = body.length > 0;
+
+const metadata = notionData.metadata || {};
+const notionUrl = metadata.notionUrl || '';
+const pageIcon = metadata.icon || '📄';
+const pageName = metadata.name || '';
+const pageDesc = metadata.description || '';
+const tags = Array.isArray(metadata.tags) ? metadata.tags.filter(Boolean) : [];
+const category = metadata.category || '';
+const section = metadata.section || '';
+const rawCerts = typeof metadata.certifications === 'string' ? metadata.certifications : '';
+const certCodes = rawCerts.split(',').map(c => c.split(':')[0].trim()).filter(Boolean);
+
+const fallbackLines = [
+  '## Contenido pendiente',
+  '',
+  'Esta entrada existe en el indice, pero la pagina de Notion aun no tiene bloques de contenido para convertir a Markdown.',
+  '',
+  metadata.description ? '**Descripcion:** ' + metadata.description : '',
+  tags.length ? '**Tags:** ' + tags.join(', ') : '',
+  notionUrl ? '[Abrir en Notion](' + notionUrl + ')' : '',
+].filter(Boolean);
+
+const markdownHtml = hasBody
+  ? marked(body)
+  : marked(fallbackLines.join('\n'));
+---
+
+<WikiLayout title="🌐 Segmentacion de Red" description="La segmentación de red consiste en dividir una red grande en subredes más pequeñas" hasDualMode={true}>
+
+  <!-- ── MARKDOWN VIEW ─────────────────────────────────── -->
+  <div data-view="markdown">
+    <div class="doc-page">
+      <header class="doc-header">
+        {(category || section) && (
+          <div class="doc-breadcrumb">{category}{section ? ` / ${section}` : ''}</div>
+        )}
+        <h1 class="doc-title">{pageIcon} {pageName}</h1>
+        {pageDesc && <p class="doc-description">{pageDesc}</p>}
+        {(tags.length > 0 || certCodes.length > 0) && (
+          <div class="doc-meta-row">
+            {tags.map((tag) => <span class="doc-tag">{tag}</span>)}
+            {certCodes.map((code) => <span class="doc-cert">{code}</span>)}
+          </div>
+        )}
+      </header>
+      <div class="doc-content">
+        <Fragment set:html={markdownHtml} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENRICHED VIEW ─────────────────────────────────── -->
+  <div data-view="enriched">
+    <div class="ep-page">
+
+      <!-- Header -->
+      <div class="ep-header">
+        <h1>🌐 Segmentación de Red</h1>
+        <p>Divide una red grande en subredes más pequeñas para mejorar seguridad, rendimiento y administración</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="ep-stat-grid">
+        <div class="ep-stat">
+          <span class="ep-stat-value">Capa 3</span>
+          <span class="ep-stat-label">Segm. Física (OSI)</span>
+        </div>
+        <div class="ep-stat">
+          <span class="ep-stat-value">Capa 7</span>
+          <span class="ep-stat-label">SD-WAN Overlay</span>
+        </div>
+        <div class="ep-stat">
+          <span class="ep-stat-value">2 tipos</span>
+          <span class="ep-stat-label">Física vs Lógica</span>
+        </div>
+        <div class="ep-stat">
+          <span class="ep-stat-value">DMZ</span>
+          <span class="ep-stat-label">Zona Aislada</span>
+        </div>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">⚖️ Comparativa: Física vs Lógica</h2>
+        <div class="ep-table-wrap">
+          <table class="ep-table">
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th>🔹 Segmentación Física</th>
+                <th>🔸 Segmentación Lógica</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Base</td>
+                <td>Hardware (cables, switches)</td>
+                <td>Software (VLANs, SD-WAN)</td>
+              </tr>
+              <tr>
+                <td>Capa OSI</td>
+                <td>Capa 3 (Red)</td>
+                <td>Capa 2–7 (Data Link a App)</td>
+              </tr>
+              <tr>
+                <td>Herramientas</td>
+                <td>ACLs, routers, firewalls</td>
+                <td>VLANs, SD-WAN, tunneling</td>
+              </tr>
+              <tr>
+                <td>Cableado extra</td>
+                <td>Generalmente sí</td>
+                <td>No necesario</td>
+              </tr>
+              <tr>
+                <td>Flexibilidad</td>
+                <td>Baja — cambios físicos</td>
+                <td>Alta — reconfiguración por software</td>
+              </tr>
+              <tr>
+                <td>Costo</td>
+                <td>Mayor (hardware)</td>
+                <td>Menor (software-defined)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Zones diagram -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🗺️ Diagrama de Zonas de Red</h2>
+        <div class="ep-zones-diagram">
+          <div class="ep-zone ep-zone--internet">
+            <span class="ep-zone-icon">🌐</span>
+            <span class="ep-zone-label">Internet</span>
+          </div>
+          <div class="ep-zone-arrow">▼</div>
+          <div class="ep-zone ep-zone--firewall">
+            <span class="ep-zone-icon">🔥</span>
+            <span class="ep-zone-label">Firewall Perimetral</span>
+          </div>
+          <div class="ep-zone-arrow">▼</div>
+          <div class="ep-zones-split">
+            <div class="ep-zone ep-zone--dmz">
+              <span class="ep-zone-icon">⚠️</span>
+              <span class="ep-zone-label">DMZ</span>
+              <div class="ep-zone-items">
+                <span>Servidor Web</span>
+                <span>Servidor DNS</span>
+                <span>Mail Server</span>
+              </div>
+            </div>
+            <div class="ep-zone-vsep">↔</div>
+            <div class="ep-zone ep-zone--internal">
+              <span class="ep-zone-icon">🏢</span>
+              <span class="ep-zone-label">Red Interna</span>
+              <div class="ep-zone-items">
+                <span>VLAN Usuarios</span>
+                <span>VLAN Servidores</span>
+                <span>VLAN Gestión</span>
+              </div>
+            </div>
+          </div>
+          <div class="ep-zone-legend">
+            <span class="ep-legend-item ep-legend--dmz">⚠️ DMZ: zona semipública, servidores expuestos</span>
+            <span class="ep-legend-item ep-legend--internal">🏢 Red Interna: zona privada protegida</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Access cards -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🚪 Acceso Seguro a Redes Segmentadas</h2>
+        <div class="ep-access-cards">
+          <div class="ep-access-card ep-access-card--bastion">
+            <div class="ep-access-icon">🛡️</div>
+            <h3>Bastion Host</h3>
+            <p>Servidor expuesto y protegido que actúa como <strong>punto de entrada único</strong> hacia la red interna segmentada.</p>
+            <div class="ep-access-protocols">
+              <span class="ep-protocol">SSH</span>
+              <span class="ep-protocol">HTTPS</span>
+              <span class="ep-protocol">RDP</span>
+            </div>
+            <ul class="ep-access-features">
+              <li>Limita el acceso directo a sistemas internos</li>
+              <li>Auditoría centralizada de accesos</li>
+              <li>Superficie de ataque reducida</li>
+            </ul>
+          </div>
+          <div class="ep-access-card ep-access-card--proxy">
+            <div class="ep-access-icon">🔄</div>
+            <h3>Servidor Proxy / Puente</h3>
+            <p>Actúa como <strong>intermediario</strong> entre la red interna y el usuario externo, controlando y filtrando el tráfico.</p>
+            <div class="ep-access-protocols">
+              <span class="ep-protocol">HTTP/S</span>
+              <span class="ep-protocol">SOCKS</span>
+              <span class="ep-protocol">FTP</span>
+            </div>
+            <ul class="ep-access-features">
+              <li>Inspección y control del tráfico</li>
+              <li>Caché de contenido</li>
+              <li>Anonimización de origen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits grid -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">✅ Ventajas de la Segmentación</h2>
+        <div class="ep-benefits-grid">
+          <div class="ep-benefit">
+            <span class="ep-benefit-icon">⚙️</span>
+            <h4>Configuración por zonas</h4>
+            <p>Administración más sencilla agrupando dispositivos por función</p>
+          </div>
+          <div class="ep-benefit">
+            <span class="ep-benefit-icon">📡</span>
+            <h4>Menos broadcasts</h4>
+            <p>Los dominios de broadcast se reducen, mejorando el rendimiento</p>
+          </div>
+          <div class="ep-benefit">
+            <span class="ep-benefit-icon">📉</span>
+            <h4>Menos congestión</h4>
+            <p>El tráfico queda localizado en cada segmento</p>
+          </div>
+          <div class="ep-benefit">
+            <span class="ep-benefit-icon">🔒</span>
+            <h4>Confinamiento de ataques</h4>
+            <p>Un ataque queda limitado a un segmento específico</p>
+          </div>
+          <div class="ep-benefit">
+            <span class="ep-benefit-icon">🛡️</span>
+            <h4>Protección de dispositivos</h4>
+            <p>Los equipos vulnerables se aíslan del resto de la red</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simulator -->
+      <div class="ep-section">
+        <h2 class="ep-section-title">🧪 Simulador: Red Plana vs Segmentada</h2>
+        <p class="ep-section-desc">Observa cómo los mismos dispositivos se organizan de forma distinta en una red plana versus una red segmentada con VLANs.</p>
+        <div class="ep-simulator">
+          <div class="ep-sim-controls">
+            <button id="simToggle" class="ep-sim-btn">Ver Red Segmentada</button>
+            <span id="simStatus" class="ep-sim-status ep-sim-status--flat">🔴 Red Plana (sin segmentar)</span>
+          </div>
+          <svg id="simSvg" viewBox="0 0 700 340" class="ep-sim-svg" aria-label="Simulador de red">
+            <!-- Flat state: all nodes in one broadcast domain -->
+            <g id="flatNet">
+              <!-- Central switch -->
+              <rect x="290" y="145" width="120" height="50" rx="8" fill="#2d3748" stroke="#4a5568" stroke-width="2"/>
+              <text x="350" y="166" text-anchor="middle" fill="#a0aec0" font-size="11" font-weight="600">Switch Central</text>
+              <text x="350" y="182" text-anchor="middle" fill="#718096" font-size="9">Broadcast único</text>
+
+              <!-- PC nodes -->
+              <circle cx="100" cy="80" r="28" fill="#2d3748" stroke="#00b09b" stroke-width="2"/>
+              <text x="100" y="75" text-anchor="middle" fill="#e2e8f0" font-size="10">💻</text>
+              <text x="100" y="88" text-anchor="middle" fill="#a0aec0" font-size="9">PC-1</text>
+
+              <circle cx="200" cy="60" r="28" fill="#2d3748" stroke="#00b09b" stroke-width="2"/>
+              <text x="200" y="55" text-anchor="middle" fill="#e2e8f0" font-size="10">💻</text>
+              <text x="200" y="68" text-anchor="middle" fill="#a0aec0" font-size="9">PC-2</text>
+
+              <circle cx="500" cy="80" r="28" fill="#2d3748" stroke="#00b09b" stroke-width="2"/>
+              <text x="500" y="75" text-anchor="middle" fill="#e2e8f0" font-size="10">🖥️</text>
+              <text x="500" y="88" text-anchor="middle" fill="#a0aec0" font-size="9">SRV-1</text>
+
+              <circle cx="600" cy="60" r="28" fill="#2d3748" stroke="#00b09b" stroke-width="2"/>
+              <text x="600" y="55" text-anchor="middle" fill="#e2e8f0" font-size="10">🖥️</text>
+              <text x="600" y="68" text-anchor="middle" fill="#a0aec0" font-size="9">SRV-2</text>
+
+              <circle cx="150" cy="270" r="28" fill="#2d3748" stroke="#00b09b" stroke-width="2"/>
+              <text x="150" y="265" text-anchor="middle" fill="#e2e8f0" font-size="10">📠</text>
+              <text x="150" y="278" text-anchor="middle" fill="#a0aec0" font-size="9">IoT-1</text>
+
+              <circle cx="550" cy="270" r="28" fill="#2d3748" stroke="#00b09b" stroke-width="2"/>
+              <text x="550" y="265" text-anchor="middle" fill="#e2e8f0" font-size="10">📠</text>
+              <text x="550" y="278" text-anchor="middle" fill="#a0aec0" font-size="9">IoT-2</text>
+
+              <!-- Connections -->
+              <line x1="128" y1="88" x2="292" y2="155" stroke="#4a5568" stroke-width="1.5"/>
+              <line x1="225" y1="72" x2="292" y2="155" stroke="#4a5568" stroke-width="1.5"/>
+              <line x1="472" y1="88" x2="410" y2="155" stroke="#4a5568" stroke-width="1.5"/>
+              <line x1="575" y1="72" x2="410" y2="155" stroke="#4a5568" stroke-width="1.5"/>
+              <line x1="175" y1="254" x2="292" y2="178" stroke="#4a5568" stroke-width="1.5"/>
+              <line x1="525" y1="254" x2="410" y2="178" stroke="#4a5568" stroke-width="1.5"/>
+
+              <!-- Broadcast flood indicator -->
+              <text x="350" y="330" text-anchor="middle" fill="#e53e3e" font-size="11">⚡ Broadcast llega a TODOS — riesgo de ataque lateral</text>
+            </g>
+
+            <!-- Segmented state: nodes in VLANs -->
+            <g id="segNet" style="display:none">
+              <!-- VLAN Usuarios -->
+              <rect x="20" y="20" width="190" height="130" rx="10" fill="rgba(0,176,155,0.08)" stroke="#00b09b" stroke-width="2" stroke-dasharray="6,3"/>
+              <text x="115" y="42" text-anchor="middle" fill="#00b09b" font-size="11" font-weight="700">VLAN 10 — Usuarios</text>
+
+              <circle cx="75" cy="95" r="28" fill="#2d3748" stroke="#00b09b" stroke-width="2"/>
+              <text x="75" y="90" text-anchor="middle" fill="#e2e8f0" font-size="10">💻</text>
+              <text x="75" y="103" text-anchor="middle" fill="#a0aec0" font-size="9">PC-1</text>
+
+              <circle cx="155" cy="95" r="28" fill="#2d3748" stroke="#00b09b" stroke-width="2"/>
+              <text x="155" y="90" text-anchor="middle" fill="#e2e8f0" font-size="10">💻</text>
+              <text x="155" y="103" text-anchor="middle" fill="#a0aec0" font-size="9">PC-2</text>
+
+              <!-- VLAN Servidores -->
+              <rect x="490" y="20" width="190" height="130" rx="10" fill="rgba(66,153,225,0.08)" stroke="#4299e1" stroke-width="2" stroke-dasharray="6,3"/>
+              <text x="585" y="42" text-anchor="middle" fill="#4299e1" font-size="11" font-weight="700">VLAN 20 — Servidores</text>
+
+              <circle cx="545" cy="95" r="28" fill="#2d3748" stroke="#4299e1" stroke-width="2"/>
+              <text x="545" y="90" text-anchor="middle" fill="#e2e8f0" font-size="10">🖥️</text>
+              <text x="545" y="103" text-anchor="middle" fill="#a0aec0" font-size="9">SRV-1</text>
+
+              <circle cx="625" cy="95" r="28" fill="#2d3748" stroke="#4299e1" stroke-width="2"/>
+              <text x="625" y="90" text-anchor="middle" fill="#e2e8f0" font-size="10">🖥️</text>
+              <text x="625" y="103" text-anchor="middle" fill="#a0aec0" font-size="9">SRV-2</text>
+
+              <!-- VLAN IoT -->
+              <rect x="255" y="200" width="190" height="120" rx="10" fill="rgba(150,201,61,0.08)" stroke="#96c93d" stroke-width="2" stroke-dasharray="6,3"/>
+              <text x="350" y="222" text-anchor="middle" fill="#96c93d" font-size="11" font-weight="700">VLAN 30 — IoT</text>
+
+              <circle cx="305" cy="275" r="28" fill="#2d3748" stroke="#96c93d" stroke-width="2"/>
+              <text x="305" y="270" text-anchor="middle" fill="#e2e8f0" font-size="10">📠</text>
+              <text x="305" y="283" text-anchor="middle" fill="#a0aec0" font-size="9">IoT-1</text>
+
+              <circle cx="395" cy="275" r="28" fill="#2d3748" stroke="#96c93d" stroke-width="2"/>
+              <text x="395" y="270" text-anchor="middle" fill="#e2e8f0" font-size="10">📠</text>
+              <text x="395" y="283" text-anchor="middle" fill="#a0aec0" font-size="9">IoT-2</text>
+
+              <!-- Central router/switch L3 -->
+              <rect x="295" y="105" width="110" height="45" rx="8" fill="#2d3748" stroke="#48bb78" stroke-width="2"/>
+              <text x="350" y="124" text-anchor="middle" fill="#a0aec0" font-size="10" font-weight="600">Router L3</text>
+              <text x="350" y="139" text-anchor="middle" fill="#68d391" font-size="9">Inter-VLAN</text>
+
+              <!-- Connections between VLANs and router -->
+              <line x1="210" y1="95" x2="297" y2="127" stroke="#00b09b" stroke-width="1.5" stroke-dasharray="4,2"/>
+              <line x1="490" y1="95" x2="405" y2="127" stroke="#4299e1" stroke-width="1.5" stroke-dasharray="4,2"/>
+              <line x1="350" y1="150" x2="350" y2="200" stroke="#96c93d" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+              <!-- Benefit label -->
+              <text x="350" y="335" text-anchor="middle" fill="#68d391" font-size="11">✅ Ataque en VLAN 30 queda confinado — no afecta Usuarios ni Servidores</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      {quizData && <Quiz questions={quizData.questions} title={quizData.title} />}
+
+    </div>
+  </div>
+
+</WikiLayout>
+
+<style>
+  /* ── Enriched Page Styles (.ep-*) ── */
+  .ep-page { padding: 2rem 0; }
+
+  /* Header */
+  .ep-header {
+    background: linear-gradient(135deg, #00b09b 0%, #4299e1 100%);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+  }
+  .ep-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .ep-header p  { font-size: 1rem; opacity: 0.9; margin: 0; }
+
+  /* Stats */
+  .ep-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .ep-stat {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    border-top: 3px solid #00b09b;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .ep-stat-value { font-size: 1.5rem; font-weight: 700; color: #00b09b; }
+  .ep-stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+  /* Sections */
+  .ep-section { margin-bottom: 2rem; }
+  .ep-section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    color: #48bb78;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ep-section-desc { font-size: 0.9rem; opacity: 0.75; margin: -0.5rem 0 1rem; }
+
+  /* Comparison table */
+  .ep-table-wrap {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .ep-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .ep-table th {
+    background: rgba(0,176,155,0.15);
+    color: #00b09b;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .ep-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.8);
+  }
+  .ep-table tr:last-child td { border-bottom: none; }
+  .ep-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Zones diagram */
+  .ep-zones-diagram {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ep-zone {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 0.6rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .ep-zone-icon { font-size: 1.5rem; }
+  .ep-zone-label { font-size: 0.9rem; font-weight: 600; }
+  .ep-zone--internet { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); }
+  .ep-zone--firewall { background: rgba(229,62,62,0.12); border: 1px solid rgba(229,62,62,0.4); }
+  .ep-zone-arrow { font-size: 1.2rem; color: rgba(255,255,255,0.4); }
+
+  .ep-zones-split {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 600px;
+  }
+  .ep-zone-vsep { font-size: 1.5rem; color: rgba(255,255,255,0.3); align-self: center; }
+  .ep-zone--dmz      { background: rgba(237,137,54,0.12); border: 1px solid rgba(237,137,54,0.4); flex: 1; max-width: none; }
+  .ep-zone--internal { background: rgba(0,176,155,0.12); border: 1px solid rgba(0,176,155,0.4); flex: 1; max-width: none; }
+  .ep-zone-items { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.5rem; width: 100%; }
+  .ep-zone-items span {
+    font-size: 0.78rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 0.3rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .ep-zone-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+  }
+  .ep-legend-item { opacity: 0.75; }
+
+  /* Access cards */
+  .ep-access-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .ep-access-card {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-top: 3px solid transparent;
+  }
+  .ep-access-card--bastion { border-top-color: #00b09b; }
+  .ep-access-card--proxy   { border-top-color: #4299e1; }
+  .ep-access-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+  .ep-access-card h3 { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .ep-access-card p  { font-size: 0.88rem; opacity: 0.8; margin: 0 0 0.75rem; }
+  .ep-access-protocols { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .ep-protocol {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(0,176,155,0.15);
+    color: #00b09b;
+    font-family: monospace;
+  }
+  .ep-access-card--proxy .ep-protocol { background: rgba(66,153,225,0.15); color: #4299e1; }
+  .ep-access-features {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.83rem;
+    opacity: 0.75;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  /* Benefits grid */
+  .ep-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  .ep-benefit {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    border-bottom: 3px solid #48bb78;
+    transition: transform 0.2s;
+  }
+  .ep-benefit:hover { transform: translateY(-2px); }
+  .ep-benefit-icon { font-size: 1.75rem; display: block; margin-bottom: 0.5rem; }
+  .ep-benefit h4 { font-size: 0.9rem; font-weight: 700; margin: 0 0 0.4rem; }
+  .ep-benefit p  { font-size: 0.8rem; opacity: 0.7; margin: 0; }
+
+  /* Simulator */
+  .ep-simulator {
+    background: var(--color-surface, #1e293b);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+  .ep-sim-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .ep-sim-btn {
+    background: linear-gradient(135deg, #00b09b, #4299e1);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .ep-sim-btn:hover { opacity: 0.9; transform: scale(1.02); }
+  .ep-sim-status { font-size: 0.85rem; opacity: 0.8; }
+  .ep-sim-status--flat      { color: #e53e3e; }
+  .ep-sim-status--segmented { color: #68d391; }
+  .ep-sim-svg { width: 100%; border-radius: 0.5rem; background: #0f1923; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .ep-stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .ep-access-cards { grid-template-columns: 1fr; }
+    .ep-zones-split { flex-direction: column; }
+    .ep-zone-vsep { transform: rotate(90deg); }
+  }
+  @media (max-width: 480px) {
+    .ep-header { padding: 1.5rem 1rem; }
+    .ep-header h1 { font-size: 1.5rem; }
+    .ep-stat-grid { grid-template-columns: 1fr 1fr; }
+    .ep-benefits-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('simToggle') as HTMLButtonElement;
+  const status = document.getElementById('simStatus');
+  const flatNet = document.getElementById('flatNet');
+  const segNet = document.getElementById('segNet');
+
+  let isSegmented = false;
+
+  btn?.addEventListener('click', () => {
+    isSegmented = !isSegmented;
+
+    if (flatNet) flatNet.style.display = isSegmented ? 'none' : 'block';
+    if (segNet)  segNet.style.display  = isSegmented ? 'block' : 'none';
+
+    if (btn) btn.textContent = isSegmented ? 'Ver Red Plana' : 'Ver Red Segmentada';
+
+    if (status) {
+      status.textContent = isSegmented
+        ? '🟢 Red Segmentada (VLANs activas)'
+        : '🔴 Red Plana (sin segmentar)';
+      status.className = isSegmented
+        ? 'ep-sim-status ep-sim-status--segmented'
+        : 'ep-sim-status ep-sim-status--flat';
+    }
+  });
+</script>

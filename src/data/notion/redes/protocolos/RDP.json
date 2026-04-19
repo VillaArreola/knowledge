@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "name": "RDP",
+    "slug": "RDP",
+    "category": "redes",
+    "section": "protocolos",
+    "icon": "📄",
+    "description": "Que es RDP?",
+    "tags": [
+      "Redes",
+      "Seguridad",
+      "Protocolos",
+      "Windows"
+    ],
+    "certifications": "FCE",
+    "order": 1,
+    "mode": "enriched",
+    "notionUrl": "https://www.notion.so/RDP-347ec7e74fc080afb736d24db8cf3451"
+  },
+  "markdownBody": "\nEl protocolo RDP (Remote Desktop Protocol) es un protocolo de red desarrollado por Microsoft que permite a los usuarios conectarse a otro ordenador a través de una red. Está diseñado para proporcionar una experiencia de escritorio remoto, permitiendo a los usuarios interactuar con el sistema operativo y las aplicaciones del equipo remoto como si estuvieran físicamente presentes. Aquí hay algunos de los usos y características principales de RDP:\n\n\n**Configuración > Sistema > Escritorio remoto**\n\n1. **Acceso Remoto**: Permite a los usuarios acceder a su escritorio, archivos y aplicaciones desde cualquier lugar, siempre que tengan una conexión a Internet y las credenciales adecuadas.\n2. **Soporte Técnico**: Los técnicos de soporte pueden conectarse a las máquinas de los clientes o empleados para solucionar problemas, instalar software o realizar mantenimiento sin estar físicamente presentes.\n3. **Trabajo Colaborativo**: Facilita la colaboración entre equipos distribuidos geográficamente, permitiendo a varios usuarios acceder y trabajar en la misma máquina simultáneamente si se configura adecuadamente.\n4. **Seguridad**: RDP incluye características de seguridad como cifrado de datos, autenticación de usuario y control de acceso, lo que ayuda a proteger la información transmitida entre el cliente y el servidor.\n5. **Gestión de Servidores**: Los administradores de sistemas pueden usar RDP para gestionar servidores y otros recursos de red de forma remota, lo que es especialmente útil en entornos de centros de datos y nube.\n6. **Eficiencia y Productividad**: Permite a los empleados trabajar de manera flexible desde cualquier ubicación, lo cual puede mejorar la eficiencia y la productividad, especialmente en entornos de trabajo remoto o híbrido.\n\n### Características Técnicas\n\n- **Transferencia de Datos**: Transfiere datos de entrada (como teclado y mouse) y de salida (pantalla) entre el cliente y el servidor.\n- **Compresión**: Los datos se comprimen para optimizar el ancho de banda y mejorar la velocidad de la conexión.\n- **Redirección de Recursos**: Permite redirigir recursos locales (como impresoras, discos duros y puertos USB) al equipo remoto.\n- **Multiusuario**: En versiones de Windows Server, permite múltiples sesiones de escritorio remoto simultáneas.\n\n### Componentes Principales\n\n1. **Cliente RDP**: Software utilizado por el usuario para conectarse a la máquina remota. En Windows, este software es conocido como \"Conexión a Escritorio Remoto\" o \"Remote Desktop Connection (RDC)\".\n2. **Servidor RDP**: Servicio que se ejecuta en la máquina remota y que acepta conexiones desde los clientes RDP. En Windows, este servicio se llama \"Remote Desktop Services\" o \"Terminal Services\".\n\nEn resumen, RDP es una herramienta poderosa y versátil para acceso remoto, soporte técnico, y administración de sistemas, que mejora la flexibilidad y eficiencia en diversos entornos de TI.\n\n"
+}

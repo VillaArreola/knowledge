@@ -1,3 +1,40 @@
 {
-  "pages": []
+  "pages": [
+    {
+      "title": "Segmentacion de Red",
+      "slug": "Segmentaciondered",
+      "icon": "🌐",
+      "status": "completed",
+      "order": 5,
+      "description": "La segmentación de red consiste en dividir una red grande en subredes más pequeñas",
+      "tags": [
+        "Redes",
+        "Autorización",
+        "Seguridad",
+        "Protocolos"
+      ],
+      "category": "Redes",
+      "section": "fundamentos",
+      "url": "/redes/fundamentos/Segmentaciondered",
+      "searchContent": "Segmentacion de Red La segmentación de red consiste en dividir una red grande en subredes más pequeñas Redes Autorización Seguridad Protocolos"
+    },
+    {
+      "title": "RDP",
+      "slug": "RDP",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Que es RDP?",
+      "tags": [
+        "Redes",
+        "Seguridad",
+        "Protocolos",
+        "Windows"
+      ],
+      "category": "Redes",
+      "section": "protocolos",
+      "url": "/redes/protocolos/RDP",
+      "searchContent": "RDP Que es RDP? Redes Seguridad Protocolos Windows"
+    }
+  ]
 }

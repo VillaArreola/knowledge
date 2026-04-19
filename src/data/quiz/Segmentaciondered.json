@@ -1,0 +1,93 @@
+{
+  "title": "Quiz: Segmentación de Red",
+  "questions": [
+    {
+      "question": "¿Cuál es el objetivo principal de la segmentación de red?",
+      "options": [
+        "Aumentar el número de dispositivos conectados",
+        "Dividir una red grande en subredes más pequeñas para mejorar seguridad y rendimiento",
+        "Eliminar la necesidad de firewalls",
+        "Conectar redes de diferentes países"
+      ],
+      "correct": 1,
+      "explanation": "La segmentación de red divide una red grande en subredes más pequeñas (segmentos), mejorando la seguridad, el rendimiento y la administración, y limitando el alcance de fallos o ataques."
+    },
+    {
+      "question": "¿Cuál es la diferencia principal entre segmentación física y lógica?",
+      "options": [
+        "La segmentación física usa software y la lógica usa hardware",
+        "La segmentación física se basa en hardware y la lógica en software como VLANs o SD-WAN",
+        "No hay diferencia real entre ambas",
+        "La segmentación lógica solo funciona en redes locales"
+      ],
+      "correct": 1,
+      "explanation": "La segmentación física usa hardware (switches, routers, firewalls), mientras que la lógica usa software como VLANs o SD-WAN para dividir la red sin cables adicionales."
+    },
+    {
+      "question": "¿Cuál de las siguientes herramientas pertenece a la segmentación física?",
+      "options": [
+        "VLAN",
+        "SD-WAN",
+        "ACLs (Access Control Lists)",
+        "Protocolo OSPF"
+      ],
+      "correct": 2,
+      "explanation": "Las ACLs (Access Control Lists) junto con routers y firewalls son herramientas de segmentación física que operan principalmente en la capa de red (OSI capa 3)."
+    },
+    {
+      "question": "¿Qué es una VLAN?",
+      "options": [
+        "Un tipo de cable de red de alta velocidad",
+        "Una red de área amplia virtual que conecta continentes",
+        "Una red local virtual que divide lógicamente una red física sin cables adicionales",
+        "Un protocolo de seguridad para redes inalámbricas"
+      ],
+      "correct": 2,
+      "explanation": "Una VLAN (Virtual LAN) es una segmentación lógica que permite dividir una red física en múltiples redes virtuales usando software, sin necesidad de cables adicionales."
+    },
+    {
+      "question": "¿En qué capa OSI trabaja SD-WAN?",
+      "options": [
+        "Capa 2 (Enlace de datos)",
+        "Capa 3 (Red)",
+        "Capa 4 (Transporte)",
+        "Capa 7 (Aplicación)"
+      ],
+      "correct": 3,
+      "explanation": "SD-WAN trabaja en la capa de aplicación (capa 7), creando una red superpuesta (overlay) que opera sobre la red subyacente (underlay) para aplicar políticas de segmentación y enrutamiento."
+    },
+    {
+      "question": "¿Qué es una DMZ en el contexto de segmentación de red?",
+      "options": [
+        "Un protocolo de cifrado para redes corporativas",
+        "Una zona desmilitarizada donde se aíslan servidores expuestos públicamente",
+        "Un tipo de firewall de hardware",
+        "Una conexión VPN entre dos sedes"
+      ],
+      "correct": 1,
+      "explanation": "La DMZ (Zona Desmilitarizada) es una zona especial donde se aíslan los equipos expuestos, como servidores públicos, separándolos de la red interna para limitar el impacto de posibles ataques."
+    },
+    {
+      "question": "¿Cuál es la función de un Bastion Host?",
+      "options": [
+        "Bloquear todo el tráfico de red entrante",
+        "Actuar como punto de entrada seguro hacia una red segmentada mediante SSH, HTTPS o RDP",
+        "Reemplazar el firewall perimetral",
+        "Gestionar las direcciones IP de la red interna"
+      ],
+      "correct": 1,
+      "explanation": "Un Bastion Host es un servidor expuesto y protegido que actúa como punto de entrada seguro hacia una red segmentada, ofreciendo acceso mediante SSH, HTTPS o RDP y limitando el acceso directo a sistemas internos."
+    },
+    {
+      "question": "¿Cuál es la ventaja principal del confinamiento de ataques en una red segmentada?",
+      "options": [
+        "Elimina completamente la posibilidad de ataques",
+        "Limita la propagación de un ataque a un único segmento, protegiendo el resto de la red",
+        "Aumenta el ancho de banda disponible para todos los dispositivos",
+        "Permite que todos los dispositivos compartan la misma dirección IP"
+      ],
+      "correct": 1,
+      "explanation": "El confinamiento de ataques en redes segmentadas limita la propagación de un ataque a un segmento específico, evitando que se extienda al resto de la red y protegiendo los dispositivos en otras zonas."
+    }
+  ]
+}

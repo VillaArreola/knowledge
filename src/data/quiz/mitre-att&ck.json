@@ -1,0 +1,45 @@
+{
+  "title": "Quiz: MITRE ATT&CK",
+  "questions": [
+    {
+      "question": "¿Cuántas tácticas define el marco MITRE ATT&CK Enterprise?",
+      "options": ["10 tácticas", "12 tácticas", "14 tácticas", "18 tácticas"],
+      "correct": 2,
+      "explanation": "MITRE ATT&CK Enterprise define 14 tácticas que representan las fases del ataque, desde Reconocimiento hasta Impacto."
+    },
+    {
+      "question": "¿Qué describe una 'táctica' en MITRE ATT&CK?",
+      "options": [
+        "Una herramienta específica usada por el atacante",
+        "El objetivo del atacante en una fase del ataque",
+        "Un grupo de amenazas (APT) específico",
+        "El sistema operativo objetivo del ataque"
+      ],
+      "correct": 1,
+      "explanation": "Las tácticas representan los objetivos del atacante (el 'qué quiere lograr'), mientras que las técnicas describen cómo lo logra."
+    },
+    {
+      "question": "¿Cuál es el identificador correcto de un ataque de Spearphishing con adjunto malicioso en MITRE ATT&CK?",
+      "options": ["T1566", "T1566.001", "TA0001", "T1059.001"],
+      "correct": 1,
+      "explanation": "T1566.001 es la subtécnica 'Spearphishing Attachment', parte de la técnica T1566 (Phishing), dentro de la táctica Acceso Inicial (TA0001)."
+    },
+    {
+      "question": "¿A qué táctica ATT&CK corresponde el objetivo de 'mantener acceso' en el sistema comprometido?",
+      "options": ["Acceso inicial", "Ejecución", "Persistencia", "Movimiento lateral"],
+      "correct": 2,
+      "explanation": "La táctica de Persistencia (TA0003) describe las técnicas que usan los atacantes para mantener su acceso al sistema incluso después de reinicios o cambios de credenciales."
+    },
+    {
+      "question": "¿Cuál es la función principal del ATT&CK Navigator?",
+      "options": [
+        "Ejecutar ataques simulados automáticamente",
+        "Visualizar qué técnicas detectas y qué brechas tienes en tu cobertura",
+        "Escanear la red en busca de vulnerabilidades",
+        "Gestionar incidentes de seguridad en tiempo real"
+      ],
+      "correct": 1,
+      "explanation": "ATT&CK Navigator es una herramienta web que permite pintar qué técnicas puedes detectar, ver brechas de cobertura, mapear actores y campañas, y crear reportes visuales."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "name": "Segmentacion de Red",
+    "slug": "Segmentaciondered",
+    "category": "redes",
+    "section": "fundamentos",
+    "icon": "🌐",
+    "description": "La segmentación de red consiste en dividir una red grande en subredes más pequeñas",
+    "tags": [
+      "Redes",
+      "Autorización",
+      "Seguridad",
+      "Protocolos"
+    ],
+    "certifications": "FCE",
+    "order": 5,
+    "mode": "enriched",
+    "notionUrl": "https://www.notion.so/Segmentacion-de-Red-347ec7e74fc08051b573d43423664d33"
+  },
+  "markdownBody": "\n# Segmentación de Red\n\n\nLa **segmentación de red** consiste en dividir una red grande en **subredes más pequeñas** (segmentos), con el fin de mejorar la **seguridad, el rendimiento y la administración**.\n\n\nPermite **controlar el tráfico por zonas**, aislar dispositivos vulnerables y **limitar el alcance de posibles fallos o ataques**.\n\n\n---\n\n\n## ¿Cómo se agrupan los dispositivos?\n\n- Equipos con funciones similares se agrupan juntos.\n- Equipos expuestos (como servidores públicos) se aíslan en zonas especiales, como la **DMZ (Zona Desmilitarizada)**.\n\n---\n\n\n## Tipos de Segmentación\n\n\n### 🔹 Segmentación física\n\n- Basada en hardware (switches, routers, firewalls).\n- Ocurre principalmente en la **capa de red** (OSI capa 3).\n- Se controla con:\n    - **ACLs (Access Control Lists)**\n    - **Ruteadores**\n    - **Firewalls**\n\n### 🔸 Segmentación lógica\n\n- Se realiza mediante software, como:\n    - **VLANs (Virtual LANs)**\n    - **SD-WAN**\n- Permite dividir una red sin necesidad de cables físicos adicionales.\n- Usa protocolos de red para **interconectar los segmentos**.\n\n---\n\n\n## SD-WAN y segmentación lógica\n\n\nUna **SD-WAN** trabaja en la **capa de aplicación (capa 7)**, creando una **red superpuesta (overlay)** que opera sobre la **red subyacente (underlay)**.\n\n\nEsto permite aplicar políticas de segmentación, enrutamiento y seguridad de manera más inteligente y centralizada.\n\n\n---\n\n\n## Acceso a redes segmentadas\n\n\n###  Bastion Host\n\n- Es un servidor expuesto y protegido que **actúa como punto de entrada seguro** hacia una red segmentada.\n- Ofrece acceso mediante protocolos como:\n    - `SSH`\n    - `HTTPS`\n    - `RDP`\n- Limita el acceso directo a los sistemas internos.\n\n### Servidor de puente (Proxy)\n\n- Actúa como intermediario entre la red interna y el usuario externo.\n- Puede inspeccionar y controlar el tráfico.\n\n---\n\n\n##  Ventajas de la Segmentación de Red\n\n- **Configuración más sencilla** por zonas o funciones\n- **Menor propagación de broadcasts**\n- **Reducción de congestión** en la red\n- **Confinamiento de ataques** a un segmento específico\n- **Mayor protección para dispositivos vulnerables**\n\n---\n\n\n---\n\n\n## ¿Cómo se agrupan los dispositivos?\n\n- Equipos con funciones similares se agrupan juntos.\n- Equipos expuestos (como servidores públicos) se aíslan en zonas especiales, como la **DMZ (Zona Desmilitarizada)**.\n\n---\n\n"
+}

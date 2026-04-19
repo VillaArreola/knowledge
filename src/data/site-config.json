@@ -29,6 +29,12 @@
           "name": "Redes Seguras",
           "icon": "🌐",
           "column": 2
+        },
+        {
+          "slug": "frameworks",
+          "name": "Frameworks",
+          "icon": "📄",
+          "column": 2
         }
       ]
     },

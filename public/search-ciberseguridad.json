@@ -84,6 +84,18 @@
       "section": "criptografia",
       "url": "/ciberseguridad/criptografia/TipoDeCifrado",
       "searchContent": "Tipos de Cifrados Tipos de cifrados PKI Cifrado Autorización"
+    },
+    {
+      "title": "mitre att&ck",
+      "slug": "mitre-att&ck",
+      "icon": "📄",
+      "status": "completed",
+      "order": 1,
+      "description": "Base de conocimientos en tecnicas y tacticas",
+      "category": "Ciberseguridad",
+      "section": "frameworks",
+      "url": "/ciberseguridad/frameworks/mitre-att&ck",
+      "searchContent": "mitre att&ck Base de conocimientos en tecnicas y tacticas "
     }
   ]
 }
