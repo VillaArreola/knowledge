@@ -10,9 +10,10 @@
     "notion-sync": "node src/scripts/notionSync.cjs",
     "publish-content": "npm run notion-pull -- --force && npm run notion-sync -- --force && npm run update",
     "generate": "node src/scripts/generateSimple.cjs",
-    "update": "npm run generate && npm run build",
-    "deploy": "npm run build && wrangler deploy",
-    "deploy:full": "npm run notion-pull && npm run generate && npm run build && wrangler deploy",
+    "validate-sitemap": "node src/scripts/validateSitemap.cjs",
+    "update": "npm run generate && npm run validate-sitemap && npm run build",
+    "deploy": "npm run update && wrangler deploy",
+    "deploy:full": "npm run notion-pull && npm run update && wrangler deploy",
     "notion-pull": "node src/scripts/notionPull.cjs",
     "cf-typegen": "wrangler types"
   },

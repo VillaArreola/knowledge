@@ -159,6 +159,10 @@ function generateSimpleSystem() {
     
     fs.writeFileSync(globalIndexPath, JSON.stringify(globalIndexData, null, 2));
     console.log(`✅ Índice global generado: ${globalIndexPath} (${allPages.length} páginas)`);
+
+    const globalIndexSrcDataPath = path.join(__dirname, '../data/search-index.json');
+    fs.writeFileSync(globalIndexSrcDataPath, JSON.stringify(globalIndexData, null, 2));
+    console.log(`✅ Índice global para runtime generado: ${globalIndexSrcDataPath} (${allPages.length} páginas)`);
     
     // Generar índices por categoría
     Object.entries(categoryIndexes).forEach(([category, pages]) => {
